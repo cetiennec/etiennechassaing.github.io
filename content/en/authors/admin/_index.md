@@ -83,7 +83,7 @@ Education:
 
       Préparatoires:
       - MPSI-PSI* at Collège Stanislas
-      
+
   - area: Visiting Student Researcher
     institution: Stanford University
     date_start: 2021-09-01
@@ -95,28 +95,64 @@ Education:
       - Investigated how to detect secure grasps by measuring the stiffness of the recipient's grasp. See publication below.
 
 work:
-  - position: Director of Cloud Infrastructure
-    company_name: GenCoin
+  - position: Master-Thesis intern on Physics-Informed Deep-Learning
+    company_name: Schindler Lab
     company_url: ''
     company_logo: ''
-    date_start: 2021-01-01
-    date_end: ''
-    summary: |2-
-      Responsibilities include:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - position: Backend Software Engineer
-    company_name: X
-    company_url: ''
-    company_logo: ''
-    date_start: 2016-01-01
-    date_end: 2020-12-31
+    date_start: 2024-02-01
+    date_end: 2024-08-31
+    location: Lausanne, Switzerland
     summary: |
       Responsibilities include:
-      - Migrated infrastructure to a new data center
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      - Develop a cross-modality model to generate thermal models of buildings.
+      - Integrate physics priors to obtain a model consistent with heat transfer laws.
+
+  - position: Deep-Reinforcement-Learning intern
+    company_name: Airbus Group
+    company_url: ''
+    company_logo: ''
+    date_start: 2022-03-01
+    date_end: 2022-07-31
+    location: Le Plessis Robinson, France
+    summary: |
+      Responsibilities include:
+      - Developed multi-UAVs control strategies using Deep Reinforcement Learning (DRL).
+      - Designed a novel dedicated control structure based on existing state of the art.
+
+  - position: Oral Examiner, Tutor and Teaching Assistant
+    company_name: Marcelin Berthelot Preparatory Class, Gustave Eiffel University, EPFL
+    company_url: ''
+    company_logo: ''
+    date_start: 2020-01-01
+    date_end: 2024-07-31
+    summary: |
+      Responsibilities include:
+      - Organized weekly graded tutorial classes to prepare students' oral exams for Grandes écoles ("Colleur").
+      - Taught statistics, probabilities, and basic Data-Science to a master student.
+      - Teaching Assistant at EPFL for "Legged Robots" (Master) and "Foundations of Artificial Intelligence" (Bachelor).
+
+  - position: Consultant
+    company_name: Junior CentraleSupélec
+    company_url: ''
+    company_logo: ''
+    date_start: 2020-01-01
+    date_end: 2024-07-31
+    summary: |
+      Responsibilities include:
+      - Helped startups design their robotics projects and advised on design and control aspects.
+      - Developed an autonomous camera system to monitor bacteria in micro cavities for Doctors Without Borders.
+
+  - position: University Project "Cubesat"
+    company_name: Sponsored by Thales Alenia Space
+    company_url: ''
+    company_logo: ''
+    date_start: 2019-09-01
+    date_end: 2021-07-31
+    summary: |
+      Responsibilities include:
+      - Designed a unique TestBed for ADCS (Attitude) control algorithms, now used as a tutorial workbench to predict Cubesat attitude-behavior in space.
+      - The project was defended to CNES and Thales Alenia Space.
+
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
@@ -139,59 +175,41 @@ skills:
     color: '#eeac02'
     color_border: '#f0bf23'
     items:
-      - name: Hiking
-        description: ''
-        percent: 60
-        icon: person-simple-walk
-      - name: Cats
+      - name: CLimbing, Hiking and trekking
         description: ''
         percent: 100
-        icon: cat
-      - name: Photography
-        description: ''
-        percent: 80
-        icon: camera
+        icon: person-simple-walk
+
 
 languages:
-  - name: Français
+  - name: French
     percent: 100
   - name: English
-    percent: 75
-  - name: Portuguese
-    percent: 25
+    percent: 85
+  - name: German
+    percent: 30
 
 # Awards.
 #   Add/remove as many awards below as you like.
 #   Only `title`, `awarder`, and `date` are required.
 #   Begin multi-line `summary` with YAML's `|` or `|2-` multi-line prefix and indent 2 spaces below.
 awards:
-  - title: Neural Networks and Deep Learning
-    url: https://www.coursera.org/learn/neural-networks-deep-learning
-    date: '2023-11-25'
-    awarder: Coursera
-    icon: coursera
+  - title: Stanford-France Fellowship
+    date: '2021-07-01'
+    url: https://francestanford.stanford.edu/funding/visiting-student-researcher-fellowship
+    awarder: Stanford-France Center
+    icon: custom/stanford
     summary: |
-      I studied the foundational concept of neural networks and deep learning. By the end, I was familiar with the significant technological trends driving the rise of deep learning; build, train, and apply fully connected deep neural networks; implement efficient (vectorized) neural networks; identify key parameters in a neural network’s architecture; and apply deep learning to your own applications.
-  - title: Blockchain Fundamentals
-    url: https://www.edx.org/professional-certificate/uc-berkeleyx-blockchain-fundamentals
-    date: '2023-07-01'
-    awarder: edX
-    icon: edx
+      Laureate of the Stanford-France Center fellowship to conduct a 6-month research project at Stanford University. The fellowship was associated with Stanford University.
+
+  - title: IEEExCentraleSupélec Innovation Challenge - 3rd Prize
+    date: '2021-05-01'
+    awarder: IEEExCentraleSupélec
     summary: |
-      Learned:
-      - Synthesize your own blockchain solutions
-      - Gain an in-depth understanding of the specific mechanics of Bitcoin
-      - Understand Bitcoin’s real-life applications and learn how to attack and destroy Bitcoin, Ethereum, smart contracts and Dapps, and alternatives to Bitcoin’s Proof-of-Work consensus algorithm
-  - title: 'Object-Oriented Programming in R'
-    url: https://www.datacamp.com/courses/object-oriented-programming-with-s3-and-r6-in-r
-    certificate_url: https://www.datacamp.com
-    date: '2023-01-21'
-    awarder: datacamp
-    icon: datacamp
-    summary: |
-      Object-oriented programming (OOP) lets you specify relationships between functions and the objects that they can act on, helping you manage complexity in your code. This is an intermediate level course, providing an introduction to OOP, using the S3 and R6 systems. S3 is a great day-to-day R programming tool that simplifies some of the functions that you write. R6 is especially useful for industry-specific analyses, working with web APIs, and building GUIs.
+      Finalist in the IEEExCentraleSupélec Innovation Challenge, awarded 3rd prize. The project was associated with CS³ - Centre Spatial de CentraleSupélec for CubeSats.
+
 ---
 
 ## About me
 
-Diplômé de CentraleSupélec, de l'EPFL en Robotique et Contrôle et fort d'expériences de recherches à Stanford University, j'accompagne des PMEs souhaitant explorer des sujet d'IA, de Robotique ou de Machine-Learning pour répondre à leurs problèmes métiers. 
+After graduating from CentraleSupélec and EPFL in Robotics and Control, and gaining research experience at Stanford University, I work with small and medium-sized businesses wishing to explore AI, Robotics or Machine-Learning to solve their business problems.

@@ -1,6 +1,6 @@
 ---
-title: Formations et enseignements
-summary: Mes expériences d'enseignements
+title: Formations et enseignments
+summary: My courses
 type: landing
 
 cascade:
@@ -21,10 +21,11 @@ sections:
       view: article-grid
       columns: 2
 
+sections:
   - block: collection
-    id: Enseignements
+    id: Enseingements
     content:
-      title: Enseignements
+      title: Enseingements
       filters:
         folders:
           - enseignements

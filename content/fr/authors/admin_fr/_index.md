@@ -45,79 +45,124 @@ Domaines:
   - Machine Learning
   
 Education:
-  - area: Master's in Robotics (Double Degree with CentraleSupélec)
+  - area: Master en Robotique
     institution: EPFL, Lausanne
     date_start: 2022-09-01
     date_end: 2024-07-31
     summary: |
       GPA: 5.76/6.0, A+
 
-      Courses included:
-      - Control
-      - Robotics Design
-      - Machine Learning
-      - Model Predictive Control
-      - Mobile Robotics
-      - Data Analysis
+      Cours suivis :
+      - Contrôle
+      - Conception robotique
+      - Applied Machinel-Learning
+      - Reinforcement Learning
+      - Contrôle prédictif de modèle
+      - Robotique mobile
+      - Analyse de données
 
-      Semester Projects:
-      - Optimal control of a new UAV drone based on ROS (See publication below)
-      - Design and control of a robotics platform for biology tasks in labs
+      Projets de semestre :
+      - Contrôle optimal d'un nouveau drone basé sur ROS (Voir publication ci-dessous)
+      - Conception et contrôle d'une plateforme robotique pour des tâches de biologie en laboratoire
 
-  - area: Diplôme d'ingénieur and MS in Control Engineering
+  - area: Diplôme d'ingénieur en Contrôle
     institution: CentraleSupélec, University Paris-Saclay
     date_start: 2017-09-01
     date_end: 2023-08-31
     summary: |
       GPA: 4.05/4.33, A+
 
-      Courses included:
-      - Robotics
-      - Control Engineering
-      - Theoretical and Applied Mathematics
-      - Mechanical Engineering
-      - Electrical Engineering
-      - Fluid Mechanics
-      - Heat Transfer
-      - Swarm Robotics Control
+      Cours suivis :
+      - Robotique
+      - Ingénierie du contrôle
+      - Mathématiques théoriques et appliquées
+      - Génie mécanique
+      - Génie électrique
+      - Mécanique des fluides
+      - Transfert de chaleur
+      - Contrôle multi-agents
 
-      Préparatoires:
+      Classes préparatoires:
       - MPSI-PSI* at Collège Stanislas
 
-Recherche:
-  - area: Visiting Student Researcher
-    institution: Stanford University
+  - area: Student Researcher
+    institution: Stanford University - AI Lab
     date_start: 2021-09-01
     date_end: 2022-02-28
     summary: |
-      Conducted research at Stanford Artificial Intelligence Lab, supervised by Prof J. Kenneth Salisbury.
+      Recherche au laboratoire d'intelligence artificielle de Stanford, sous la direction du professeur J. Kenneth Salisbury.
 
-      - Started a Human Robot Interaction project aimed at natural handovers from robots to humans.
-      - Investigated how to detect secure grasps by measuring the stiffness of the recipient's grasp. See publication below.
+      Projet visant à effectuer des dons d'objets entre un robot et un humain.
+      Détection de la préhension humaine avec précision. Voir publication ci-dessous.
 
 work:
-  - position: Director of Cloud Infrastructure
-    company_name: GenCoin
+  - position: Thèse de Master en Computer-Vision
+    company_name: Schindler Lab
     company_url: ''
     company_logo: ''
-    date_start: 2021-01-01
-    date_end: ''
-    summary: |2-
-      Responsibilities include:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - position: Backend Software Engineer
-    company_name: X
-    company_url: ''
-    company_logo: ''
-    date_start: 2016-01-01
-    date_end: 2020-12-31
+    date_start: 2024-02-01
+    date_end: 2024-08-31
+    location: Lausanne, Suisse
     summary: |
-      Responsibilities include:
-      - Migrated infrastructure to a new data center
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      Responsabilités :
+      - Développement d’un algorithme multimodal de génération de modèles thermiques de bâtiments. Ce modèle permet de prévoir le besoin futur de rénovation thermique d'un bâtiment.
+      - Intégration d'à priori physiques pour garantir un modèle conforme aux lois de transfert de chaleur.
+
+  - position: Stage en Reinforcement-Learning
+    company_name: Airbus Group
+    company_url: ''
+    company_logo: ''
+    date_start: 2022-03-01
+    date_end: 2022-07-31
+    location: Le Plessis Robinson, France
+    summary: |
+      Responsabilités :
+      - Développement de stratégies de contrôle multi-drones en utilisant le Deep Reinforcement Learning (DRL).
+      - Conception d’une structure de contrôle dédiée basée sur l’état de l’art existant.
+
+  - position: Examinateur oral, tuteur et chargé de TD
+    company_name: Marcelin Berthelot, Université Gustave Eiffel, EPFL
+    company_url: ''
+    company_logo: ''
+    date_start: 2020-01-01
+    date_end: 2024-07-31
+    summary: |
+      Responsabilités :
+      - Oraux hebdomadaires notés pour préparer les étudiants aux concours d’entrée des Grandes Écoles.
+      - Enseignement des statistiques, des probabilités et des bases de l'algèbre à des étudiants de licence.
+      - Chargé de TD des cours "Legged Robots" (Master) et "Foundations of Artificial Intelligence" (Bachelor) à l'EPFL.
+
+  - position: Intervenant
+    company_name: Junior CentraleSupélec
+    company_url: ''
+    company_logo: ''
+    date_start: 2020-01-01
+    date_end: 2024-07-31
+    summary: |
+      Responsabilités :
+      - Conception avec des startups de leurs projets robotiques. Conseil sur les aspects de contrôle.
+      - Développement d'un système de caméra autonome pour surveiller des bactéries pour Médecins Sans Frontières.
+
+  - position: Projet universitaire "Cubesat"
+    company_name: Parrainé par Thales Alenia Space
+    company_url: ''
+    company_logo: ''
+    date_start: 2019-09-01
+    date_end: 2021-07-31
+    summary: |
+      Responsabilités :
+      - Conception d'un banc de test et de TP unique pour les algorithmes de contrôle d'attitude. Le projet a été soutenu devant le CNES et Thales Alenia Space.
+
+  - position: Projets personnels, réalisations et activités sportives
+    company_name: ''
+    company_url: ''
+    company_logo: ''
+    date_start: ''
+    date_end: ''
+    summary: |
+      - Randonnées sur le sentier "GR20", traversant la Corse du nord au sud. Grimpeur en falaise et en grande voie.
+      - Construction de ma propre imprimante 3D RepRap au lycée. Conception d'un robot sphérique "BB8" pour le concours des grandes écoles.
+      - Ancien Vice-Président de Symposium CS, organisant des conférences sur le campus (François Hollande...).
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
@@ -140,24 +185,17 @@ skills:
     color: '#eeac02'
     color_border: '#f0bf23'
     items:
-      - name: Hiking
+      - name: Escalade, randonnée
         description: ''
         percent: 60
         icon: person-simple-walk
-      - name: Cats
-        description: ''
-        percent: 100
-        icon: cat
-      - name: Photography
-        description: ''
-        percent: 80
-        icon: camera
+
 
 languages:
   - name: Français
     percent: 100
   - name: Anglais
-    percent: 80
+    percent: 85
   - name: Allemand
     percent: 30
 
@@ -166,6 +204,18 @@ languages:
 #   Only `title`, `awarder`, and `date` are required.
 #   Begin multi-line `summary` with YAML's `|` or `|2-` multi-line prefix and indent 2 spaces below.
 awards:
+  - title: Stanford-France Fellowship
+    date: '2021-07-01'
+    url: https://francestanford.stanford.edu/funding/visiting-student-researcher-fellowship
+    awarder: Stanford-France Center
+    icon: custom/stanford
+    summary: |
+      Lauréat de la bourse du Centre Stanford-France pour mener un projet de recherche de 6 mois à l'Université de Stanford. 
+  - title: IEEExCentraleSupélec Innovation Challenge - 3rd Prize
+    date: '2021-05-01'
+    awarder: IEEExCentraleSupélec
+    summary: |
+      Finaliste de l'IEEExCentraleSupélec Innovation Challenge, 3e prix. Le projet a été associé au CS³ - Centre Spatial de CentraleSupélec pour les CubeSats.
 
 
 
