@@ -2,8 +2,6 @@
 # Display name
 title: Etienne Chassaing
 
-# Name pronunciation (optional)
-name_pronunciation: Chien Shiung Wu
 
 # Full name (for SEO)
 first_name: Etienne
@@ -20,36 +18,34 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: Chief Scientist
+role: Consultant en IA, ML et Robotique
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
-  - name: OpenAI
-    url: https://openai.com/
+  - name: ""
+    url: ""
 
 # Social network links
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
   - icon: at-symbol
-    url: 'mailto:your-email@example.com'
+    url: 'mailto:etienne.chassaing.conseil@gmail.com'
     label: E-mail Me
-  - icon: brands/x
-    url: https://twitter.com/GetResearchDev
   - icon: brands/instagram
     url: https://www.instagram.com/
   - icon: brands/github
-    url: https://github.com/gcushen
+    url: https://github.com/cetiennec
   - icon: brands/linkedin
-    url: https://www.linkedin.com/
+    url: https://www.linkedin.com/in/etienne-chassaing1/
   - icon: academicons/google-scholar
-    url: https://scholar.google.com/
-  - icon: academicons/orcid
-    url: https://orcid.org/
+    url: https://scholar.google.com/citations?user=TYvGzyUAAAAJ&hl=fr&oi=ao
+
 
 interests:
   - Artificial Intelligence
-  - Computational Linguistics
-  - Information Retrieval
+  - Robotics and Control Engineering
+  - Machine Learning
+  
 
 education:
   - area: PhD Artificial Intelligence
@@ -142,9 +138,9 @@ skills:
         icon: camera
 
 languages:
-  - name: English
+  - name: Français
     percent: 100
-  - name: Chinese
+  - name: English
     percent: 75
   - name: Portuguese
     percent: 25
@@ -183,4 +179,4 @@ awards:
 
 ## About Me
 
-Chien Shiung Wu is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Diplômé de CentraleSupélec, de l'EPFL en Robotique et Contrôle et fort d'expériences de recherches à Stanford University, j'accompagne des PMEs souhaitant explorer des sujet d'IA, de Robotique ou de Machine-Learning pour répondre à leurs problèmes métiers. 
