@@ -9,7 +9,7 @@ last_name: Chassaing
 
 # Status emoji
 status:
-  icon: ☕️
+  icon: 👨🏻‍💻
 
 # Is this the primary user of the site?
 superuser: true
@@ -41,44 +41,62 @@ profiles:
     url: https://scholar.google.com/citations?user=TYvGzyUAAAAJ&hl=fr&oi=ao
 
 
-interests:
+Domaines:
   - Artificial Intelligence
   - Robotics and Control Engineering
   - Machine Learning
   
+Education:
+  - area: Master's in Robotics (Double Degree with CentraleSupélec)
+    institution: EPFL, Lausanne
+    date_start: 2022-09-01
+    date_end: 2024-07-31
+    summary: |
+      GPA: 5.76/6.0, A+
 
-education:
-  - area: PhD Artificial Intelligence
+      Courses included:
+      - Control
+      - Robotics Design
+      - Machine Learning
+      - Model Predictive Control
+      - Mobile Robotics
+      - Data Analysis
+
+      Semester Projects:
+      - Optimal control of a new UAV drone based on ROS (See publication below)
+      - Design and control of a robotics platform for biology tasks in labs
+
+  - area: Diplôme d'ingénieur and MS in Control Engineering
+    institution: CentraleSupélec, University Paris-Saclay
+    date_start: 2017-09-01
+    date_end: 2023-08-31
+    summary: |
+      GPA: 4.05/4.33, A+
+
+      Courses included:
+      - Robotics
+      - Control Engineering
+      - Theoretical and Applied Mathematics
+      - Mechanical Engineering
+      - Electrical Engineering
+      - Fluid Mechanics
+      - Heat Transfer
+      - Swarm Robotics Control
+
+      Préparatoires:
+      - MPSI-PSI* at Collège Stanislas
+
+Recherche:
+  - area: Visiting Student Researcher
     institution: Stanford University
-    date_start: 2016-01-01
-    date_end: 2020-12-31
+    date_start: 2021-09-01
+    date_end: 2022-02-28
     summary: |
-      Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.
-    button:
-      text: 'Read Thesis'
-      url: 'https://example.com'
-  - area: MEng Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    date_start: 2016-01-01
-    date_end: 2020-12-31
-    summary: |
-      GPA: 3.8/4.0
+      Conducted research at Stanford Artificial Intelligence Lab, supervised by Prof J. Kenneth Salisbury.
 
-      Courses included:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - area: BSc Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    date_start: 2016-01-01
-    date_end: 2020-12-31
-    summary: |
-      GPA: 3.4/4.0
-      
-      Courses included:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+      - Started a Human Robot Interaction project aimed at natural handovers from robots to humans.
+      - Investigated how to detect secure grasps by measuring the stiffness of the recipient's grasp. See publication below.
+
 work:
   - position: Director of Cloud Infrastructure
     company_name: GenCoin
@@ -177,6 +195,6 @@ awards:
       Object-oriented programming (OOP) lets you specify relationships between functions and the objects that they can act on, helping you manage complexity in your code. This is an intermediate level course, providing an introduction to OOP, using the S3 and R6 systems. S3 is a great day-to-day R programming tool that simplifies some of the functions that you write. R6 is especially useful for industry-specific analyses, working with web APIs, and building GUIs.
 ---
 
-## About Me
+## Mon profi
 
 Diplômé de CentraleSupélec, de l'EPFL en Robotique et Contrôle et fort d'expériences de recherches à Stanford University, j'accompagne des PMEs souhaitant explorer des sujet d'IA, de Robotique ou de Machine-Learning pour répondre à leurs problèmes métiers. 
