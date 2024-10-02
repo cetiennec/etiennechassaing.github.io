@@ -35,11 +35,8 @@ sections:
       title: 'Ma vision'
       subtitle: ''
       text: |-
-        Use this area to speak to your mission. I'm a research scientist in the Moonshot team at DeepMind. I blog about machine learning, deep learning, and moonshots.
+        Diplômé de CentraleSupélec, de l'EPFL en Robotique et Contrôle et fort d'expériences de recherches à Stanford University, j'accompagne des PMEs souhaitant explorer des sujet d'IA, de Robotique ou de Machine-Learning pour répondre à leurs problèmes métiers. 
 
-        I apply a range of qualitative and quantitative methods to comprehensively investigate the role of science and technology in the economy.
-        
-        Please reach out to collaborate 😃
     design:
       columns: '1'
   - block: cta-card
@@ -61,17 +58,17 @@ sections:
   - block: collection
     id: papers
     content:
-      title: Featured Publications
+      title: Projets récents
       filters:
         folders:
           - publication
-        featured_only: true
+        featured_only: false
     design:
       view: article-grid
       columns: 2
   - block: collection
     content:
-      title: Recent Publications
+      title: Publications
       text: ""
       filters:
         folders:
