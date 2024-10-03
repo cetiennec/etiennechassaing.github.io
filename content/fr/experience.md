@@ -29,6 +29,9 @@ sections:
       title: Langues
       
   - block: 'github.cetiennec.language-block'
+    content:
+      title: My title
+      text: Add any **markdown** formatted content here - text, images, videos, galleries - and even HTML code!
     
   - block: resume-experience
     content:
