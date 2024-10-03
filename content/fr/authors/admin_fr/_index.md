@@ -167,7 +167,7 @@ work:
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
 skills:
-  - name: Technical Skills
+  - name: Compétences techniques
     items:
       - name: Python
         description: ''
@@ -181,7 +181,7 @@ skills:
         description: ''
         percent: 40
         icon: circle-stack
-  - name: Hobbies
+  - name: Activités sportives
     color: '#eeac02'
     color_border: '#f0bf23'
     items:
@@ -190,20 +190,23 @@ skills:
         percent: 60
         icon: person-simple-walk
 
-
 languages:
   - name: Français
     percent: 100
+    description: C2
   - name: Anglais
     percent: 85
+    description: C1+
   - name: Allemand
     percent: 30
+    description: B1
+
 
 # Awards.
 #   Add/remove as many awards below as you like.
 #   Only `title`, `awarder`, and `date` are required.
 #   Begin multi-line `summary` with YAML's `|` or `|2-` multi-line prefix and indent 2 spaces below.
-awards:
+Awards:
   - title: Stanford-France Fellowship
     date: '2021-07-01'
     url: https://francestanford.stanford.edu/funding/visiting-student-researcher-fellowship
