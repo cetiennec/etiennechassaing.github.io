@@ -226,4 +226,4 @@ Awards:
 
 ## Mon profil
 
-Diplômé de CentraleSupélec, de l'EPFL en Robotique et Contrôle et fort d'expériences de recherches à Stanford University, j'accompagne des PMEs souhaitant explorer des sujet d'IA, de Robotique ou de Machine-Learning pour répondre à leurs problèmes métiers. 
+Diplômé de CentraleSupélec et de l'EPFL en Robotique et Contrôle et fort d'expériences de recherches à Stanford University et à l'EPFL, j'accompagne des PMEs souhaitant explorer des sujet d'IA, de Robotique ou de Machine-Learning pour répondre à leurs problèmes métiers. 
