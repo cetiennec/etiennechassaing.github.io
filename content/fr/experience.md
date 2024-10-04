@@ -44,6 +44,8 @@ sections:
           description: Falaise et grandes voies
         - name: 🏔️ Randonnée et trekking
           description: GR 20, GR70 et treks en autonomie 
+      design:
+        columns: '2'
 
 
 
