@@ -73,9 +73,9 @@ sections:
         # Card background color (CSS class)
         css_class: "bg-primary-700"
         css_style: ""
-      # spacing:
-      #  #padding: ["0", "15px", "0", "15px"]  # Adjust padding as needed
-      #   margin: ["50px", "0", "40px", "0"]  # Reduces top and bottom margins to 5px, 0 on sides
+      spacing:
+        padding: ["0", "30px", "30px", "30px"]  # Adjust padding as needed
+        margin: ["50px", "0", "40px", "0"]  # Reduces top and bottom margins to 5px, 0 on sides
   
   - block: cta-button-list
     content:
