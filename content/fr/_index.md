@@ -1,7 +1,7 @@
 ---
 # Leave the homepage title empty to use the site title
 title: ""
-date: 2024-10-24
+date: 2024-10-04
 type: landing
 
 design:
@@ -17,9 +17,7 @@ sections:
       # Show a call-to-action button under your biography? (optional)
       button:
         text: Download CV
-        #url: uploads/resume.pdf
-        url:  'https://drive.google.com/uc?export=download&id=1MMlh1rtOdCdeIpU9QKK-XQv2tei8wmIu'
-
+        url: https://drive.google.com/file/d/1MMlh1rtOdCdeIpU9QKK-XQv2tei8wmIu/view?usp=share_link
     design:
       css_class: dark
       background:
@@ -75,6 +73,9 @@ sections:
         # Card background color (CSS class)
         css_class: "bg-primary-700"
         css_style: ""
+      spacing:
+        padding: ["0", "15px", "0", "15px"]  # Adjust padding as needed
+        margin: ["50px", "0", "40px", "0"]  # Reduces top and bottom margins to 5px, 0 on sides
   
   - block: cta-button-list
     content:
@@ -90,6 +91,8 @@ sections:
         - text: Contactez moi sur Linkedin
           icon: brands/linkedin
           url: https://linkedin.com
+      spacing:
+        margin: ["-50px", "0", "-50px", "0"]  # Reduces top and bottom margins to 5px, 0 on sides
 
   - block: collection
     id: papers
@@ -107,6 +110,7 @@ sections:
     design:
       view: article-grid
       columns: 3
+
   # - block: collection
   #   id: talks
   #   content:
