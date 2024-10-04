@@ -40,8 +40,8 @@ profiles:
 
 
 interests:
-  - Robotics et Control Engineering
-  - Artificial Intelligence
+  - Robotique et Contrôle
+  - Intelligence Articielle et Optimisation
   - Machine-Learning et Reinforcement-Learning
   
 Education:

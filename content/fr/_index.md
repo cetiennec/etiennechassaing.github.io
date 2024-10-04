@@ -36,7 +36,7 @@ sections:
       subtitle: ''
       text: |-
         <div style="font-size: smaller;">
-          En partant de votre problème métier, je vous accompagne dans votre projet d'explorer l'utilisation de l'IA, en particulier dans le domaine de l'ingéniérie. J'apporte une attention particulière à vous aider à formuler le problème de façon scientifique et générique.
+          En partant de votre besoin métier, je vous accompagne dans votre projet d'explorer l'utilisation de l'IA, en particulier appliqué à l'ingéniérie. J'apporte une attention particulière à vous aider à formuler le problème de façon scientifique et générique.
 
           ![Image alt](ma_vision.svg)
 
@@ -45,11 +45,11 @@ sections:
           - Un client identifie le besoin de détecter des pannes sur son parc machine
           - Le client peut avoir une idée de technologie pour mener ce projet
           - Nous formulons ensemble le problème comme un problème de détection d'anomalies, courant en Machine-Learning
-          - Une fois le problème formulé, travaillons ensemble pour éclaircir ce domaine et la ou les technologies envisagés
-          - J'établi une feuille de route pour identifier les technologies les moins risquées, par exemple une famille d'algorithme 
+          - Une fois le problème formulé, nous travaillons ensemble pour éclaircir ce domaine et la ou les technologies envisagés
+          - J'établis une feuille de route pour identifier les technologies les moins risquées, par exemple une famille d'algorithme 
           - Je vous propose un plan pour réaliser une preuve de concept de la solution et former vos équipes sur cette technologie
 
-          Vous pouvez retrouver des exemples de missions rélisées dans l'onglet "Conseil et Projets".
+          Vous pouvez retrouver des exemples de missions rélisées dans l'onglet [Conseil et Projets](https://cetiennec.github.io/etiennechassaing.github.io/fr/projects/).
 
           Certifications:
           - Consultant agréé Crédit Impôt Innovation depuis le 3 octobre 2024
@@ -90,7 +90,7 @@ sections:
           url: mailto:etienne.chassaing.conseil@gmail.com
         - text: Contactez moi sur Linkedin
           icon: brands/linkedin
-          url: https://linkedin.com
+          url: https://www.linkedin.com/in/etienne-chassaing1/
 
 
   - block: collection
