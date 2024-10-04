@@ -18,7 +18,7 @@ sections:
       button:
         text: Download CV
         #url: uploads/resume.pdf
-        url:  'https://drive.google.com/file/d/1MMlh1rtOdCdeIpU9QKK-XQv2tei8wmIu/view?usp=share_link'
+        url:  'https://drive.google.com/uc?export=download&id=1MMlh1rtOdCdeIpU9QKK-XQv2tei8wmIu'
 
     design:
       css_class: dark
@@ -80,11 +80,10 @@ sections:
     content:
       # Need a custom icon?
       # Add an SVG image to the `assets/media/icons/` folder and reference it in the `icon` field below
-      text: test
       buttons:
         - text: Ajoutez moi en contact
           icon: custom/contact
-          url: https://drive.google.com/file/d/1JciEvEQxkVXFb69l4v_F1Mw5LEy27DTY/view?usp=share_link
+          url: https://drive.google.com/uc?export=download&id=1JciEvEQxkVXFb69l4v_F1Mw5LEy27DTY
         - text: Contactez moi par mail
           icon: at-symbol
           url: mailto:etienne.chassaing.conseil@gmail.com
