@@ -4,9 +4,9 @@
   #   The weight parameter defines the order that the links will appear in.
 
 main:
-  - name: Présentation
-    url: https://cetiennec.github.io/etiennechassaing.github.io/fr/
-    weight: 10
+  # - name: Présentation
+  #   url: https://cetiennec.github.io/etiennechassaing.github.io/fr/
+  #   weight: 10
   # - name: Talks
   #   url: /#talks
   #   weight: 12
