@@ -1,7 +1,7 @@
 ---
 # Leave the homepage title empty to use the site title
 title: ""
-date: 2022-10-24
+date: 2024-10-24
 type: landing
 
 design:
@@ -17,7 +17,8 @@ sections:
       # Show a call-to-action button under your biography? (optional)
       button:
         text: Download CV
-        url: uploads/resume.pdf
+        #url: uploads/resume.pdf
+        url:  'https://drive.google.com/file/d/1MMlh1rtOdCdeIpU9QKK-XQv2tei8wmIu/view?usp=share_link'
 
     design:
       css_class: dark
@@ -83,7 +84,7 @@ sections:
       buttons:
         - text: Ajoutez moi en contact
           icon: custom/contact
-          url: 'uploads/Etienne_Chassaing.vcf'
+          url: https://drive.google.com/file/d/1JciEvEQxkVXFb69l4v_F1Mw5LEy27DTY/view?usp=share_link
         - text: Contactez moi par mail
           icon: at-symbol
           url: mailto:etienne.chassaing.conseil@gmail.com
