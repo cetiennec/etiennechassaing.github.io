@@ -18,6 +18,7 @@ sections:
       button:
         text: Download CV
         url: uploads/resume.pdf
+
     design:
       css_class: dark
       background:
@@ -39,7 +40,7 @@ sections:
           En partant de votre problème métier, je vous accompagne dans votre projet d'explorer l'utilisation de l'IA, en particulier dans le domaine de l'ingéniérie. J'apporte une attention particulière à vous aider à formuler le problème de façon scientifique et générique.
 
           ![Image alt](ma_vision.svg)
-          
+
           Voici un exemple type :
 
           - Un client identifie le besoin de détecter des pannes sur son parc machine
@@ -56,7 +57,7 @@ sections:
         </div>
     design:
       columns: 2
-
+    
 
   - block: cta-card
     demo: false # Only display this section in the Hugo Blox Builder demo site
@@ -73,6 +74,22 @@ sections:
         # Card background color (CSS class)
         css_class: "bg-primary-700"
         css_style: ""
+  
+  - block: cta-button-list
+    content:
+      # Need a custom icon?
+      # Add an SVG image to the `assets/media/icons/` folder and reference it in the `icon` field below
+      text: test
+      buttons:
+        - text: Ajoutez moi en contact
+          icon: custom/contact
+          url: 'uploads/Etienne_Chassaing.vcf'
+        - text: Contactez moi par mail
+          icon: at-symbol
+          url: mailto:etienne.chassaing.conseil@gmail.com
+        - text: Contactez moi sur Linkedin
+          icon: brands/linkedin
+          url: https://linkedin.com
 
   - block: collection
     id: papers
