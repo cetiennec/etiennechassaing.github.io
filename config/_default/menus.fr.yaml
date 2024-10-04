@@ -5,7 +5,7 @@
 
 main:
   - name: Présentation
-    url: /fr/
+    url: fr/
     weight: 10
   # - name: Talks
   #   url: /#talks
