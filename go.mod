@@ -7,4 +7,4 @@ require (
 	github.com/HugoBlox/hugo-blox-builder/modules/blox-tailwind v0.2.1-0.20240602133901-492e343c2a33
 )
 
-require github.com/cetiennec/language_block v0.0.0-20241003100802-c39dab6bc0eb // indirect
+require github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003121656-f36ea3cfea6d // indirect

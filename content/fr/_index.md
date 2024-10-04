@@ -32,12 +32,31 @@ sections:
           parallax: false
   - block: markdown
     content:
-      title: 'Ma vision'
+      title: 'Mon approche'
       subtitle: ''
       text: |-
-        Diplômé de CentraleSupélec, de l'EPFL en Robotique et Contrôle et fort d'expériences de recherches à Stanford University, j'accompagne des PMEs souhaitant explorer des sujet d'IA, de Robotique ou de Machine-Learning pour répondre à leurs problèmes métiers. 
+        <div style="font-size: smaller;">
+          En partant de votre problème métier, je vous accompagne dans votre projet d'explorer l'utilisation de l'IA, en particulier dans le domaine de l'ingéniérie. J'apporte une attention particulière à vous aider à formuler le problème de façon scientifique et générique.
+
+          ![Image alt](ma_vision.svg)
+          
+          Voici un exemple type :
+
+          - Un client identifie le besoin de détecter des pannes sur son parc machine
+          - Le client peut avoir une idée de technologie pour mener ce projet
+          - Nous formulons ensemble le problème comme un problème de détection d'anomalies, courant en Machine-Learning
+          - Une fois le problème formulé, travaillons ensemble pour éclaircir ce domaine et la ou les technologies envisagés
+          - J'établi une feuille de route pour identifier les technologies les moins risquées, par exemple une famille d'algorithme 
+          - Je vous propose un plan pour réaliser une preuve de concept de la solution et former vos équipes sur cette technologie
+
+          Vous pouvez retrouver des exemples de missions rélisées dans l'onglet "Conseil et Projets".
+
+          Certifications:
+          - Consultant agréé Crédit Impôt Innovation depuis le 3 octobre 2024
+        </div>
     design:
-      columns: '1'
+      columns: 2
+
 
   - block: cta-card
     demo: false # Only display this section in the Hugo Blox Builder demo site
@@ -59,13 +78,18 @@ sections:
     id: papers
     content:
       title: Projets récents
+      sort_by: 'Date'
+      # Choose how many pages you would like to display (0 = all pages)
+      count: 9 
       filters:
         folders:
+          - project
           - publication
+          - formations
         featured_only: false
     design:
       view: article-grid
-      columns: 2
+      columns: 3
   # - block: collection
   #   id: talks
   #   content:

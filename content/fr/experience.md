@@ -10,28 +10,18 @@ design:
 
 # Page sections
 sections:
-  - block: skills
+  - block: resume-skills
     content:
       title: Compétences
       id: 1
       username: admin_fr
     design:
       columns: '1'
-  - block: skills
-    content:
-      title: Activités sportives
-      username: admin_fr
-    design:
-      columns: '1'
-  - block: markdown
-    id: section-1
+
+  - block: 'github.cetiennec.language_block'
     content:
       title: Langues
-      
-  - block: 'github.cetiennec.language-block'
-    content:
-      title: My title
-      text: Add any **markdown** formatted content here - text, images, videos, galleries - and even HTML code!
+      text: Langues
     
   - block: resume-experience
     content:
@@ -45,15 +35,17 @@ sections:
     content:
       title: Récompenses
       username: admin_fr
-  - block: resume-languages
+  - block: features
     content:
-      title: Langues
-      text: ''
-      # Choose a user to display skills from (a folder name within `content/authors/`)
-      username: admin_fr
-    design:
-      columns: '1'
-      show_percentage: false
+      title: Activités sportives
+      subtitle: Mes activités sportives
+      items:
+        - name: 🧗🏻‍♂️ Escalade sportive 
+          description: Falaise et grandes voies
+        - name: 🏔️ Randonnée et trekking
+          description: GR 20, GR70 et treks en autonomie 
+
+
 
 
 ---

@@ -39,10 +39,10 @@ profiles:
     url: https://scholar.google.com/citations?user=TYvGzyUAAAAJ&hl=fr&oi=ao
 
 
-Domaines:
+interests:
+  - Robotics et Control Engineering
   - Artificial Intelligence
-  - Robotics and Control Engineering
-  - Machine Learning
+  - Machine-Learning et Reinforcement-Learning
   
 Education:
   - area: Master en Robotique
@@ -168,38 +168,39 @@ work:
 # Add your own SVG icons to `assets/media/icons/`
 skills:
   - name: Compétences techniques
-    items:
-      - name: Python
-        description: ''
-        percent: 80
-        icon: code-bracket
-      - name: Data Science
-        description: ''
-        percent: 100
-        icon: chart-bar
-      - name: SQL
-        description: ''
-        percent: 40
-        icon: circle-stack
-  - name: Activités sportives
     color: '#eeac02'
     color_border: '#f0bf23'
     items:
-      - name: Escalade, randonnée
-        description: ''
-        percent: 60
-        icon: person-simple-walk
+      - name: 'Python: '
+        description: 'Librairies utilisées : OpenCV, Pytorch, AzureML'
+        percent: 90
+        icon: python
+      - name: 'Data Science: ' 
+        description: 'Librairies utilisées : Pandas, Seaborn, Scikit-Learn'
+        percent: 80
+        icon: chart-bar
+      - name: 'Contrôle: ' 
+        description: 'Systèmes linéaires, State-Feedback control, PID et MPC'
+        icon: arrow-trending-down
+      - name: 'C/C++'
+        description: 'Connaissances de bases, programmation en Arduino'
+        icon: circle-stack
+      - name: "Optimisation quadratique et linéaire"
+        description: "Formulation et résolution de problèmes d\'optimisation"
+        icon: check
+      - name: 'Modélisation Physique et Mathématiques'
+        description: 'Modélisation de problèmes concrets en équation'
+        icon: calculator
+      - name: IoT
+        description: 'Conception et mise en place de réseaux de capteurs'
+        icon: link
+      - name: 'Impression 3D'
+        description: "Maîtrise avancée des techniques d\'impressions 3D, conception et montage d\'imprimantes"
+        icon: printer
+      - name: 'Conception 3D'
+        description: 'Utilisation de Fusion360 et Solidworks'
+        icon: cube
 
-languages:
-  - name: Français
-    percent: 100
-    description: C2
-  - name: Anglais
-    percent: 85
-    description: C1+
-  - name: Allemand
-    percent: 30
-    description: B1
 
 
 # Awards.
@@ -219,7 +220,6 @@ Awards:
     awarder: IEEExCentraleSupélec
     summary: |
       Finaliste de l'IEEExCentraleSupélec Innovation Challenge, 3e prix. Le projet a été associé au CS³ - Centre Spatial de CentraleSupélec pour les CubeSats.
-
 
 
 ---

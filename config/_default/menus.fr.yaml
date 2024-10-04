@@ -18,10 +18,10 @@ main:
     weight: 12
   - name: Blog
     url: /#news
-    weight: 13
-  - name: Mon CV
-    url: experience/
     weight: 14
+  - name: Compétences
+    url: experience/
+    weight: 13
   - name: Publications
     url: publication
     weight: 15

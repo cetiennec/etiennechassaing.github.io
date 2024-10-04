@@ -1,5 +1,5 @@
 ---
-title: 'Projects'
+title: 'Projets et use-cases réalisés'
 date: 2024-05-19
 type: landing
 
@@ -26,7 +26,7 @@ sections:
       text: Voici des projets de recherches ou des projets universitaires auquel j'ai participé.
       filters:
         folders:
-          - project_2
+          - research_project
     design:
       view: article-grid
       fill_image: false

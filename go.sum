@@ -2,5 +2,17 @@ github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-netlify v1.1.2-0.20231
 github.com/HugoBlox/hugo-blox-builder/modules/blox-plugin-netlify v1.1.2-0.20231209203044-d31adfedd40b/go.mod h1:C7jfxMLv1bEUqbM9XDSmEpfOpS8w06OgqNDEcbuRgL4=
 github.com/HugoBlox/hugo-blox-builder/modules/blox-tailwind v0.2.1-0.20240602133901-492e343c2a33 h1:x348mgyKtNQKGROIZ/A0WYbKitzD5ySaWWny0C8wF9U=
 github.com/HugoBlox/hugo-blox-builder/modules/blox-tailwind v0.2.1-0.20240602133901-492e343c2a33/go.mod h1:+qBbqXbKT7M2nOeHQa5OrRXwQKpEx1RXpMGirHbT7HU=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003112854-3bac3a97e27a h1:9LGN0PDo1Bh8I3UrnBWd9+cUbuNksmYmsdrts/UEgSM=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003112854-3bac3a97e27a/go.mod h1:ffScxmGst3FB3eDX9AFg4MTWaMD2OzSLFZ8z/+Sx8Ks=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003113427-f209dc894aaf h1:o2nmoUEEHA1m7wiM+h3hSaCrUCVmHFdDMaySmE1R7Js=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003113427-f209dc894aaf/go.mod h1:ffScxmGst3FB3eDX9AFg4MTWaMD2OzSLFZ8z/+Sx8Ks=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003114237-17092e512b92 h1:9sQoLw8LQO6xKlEJnnUhcSwf/cl2n8KoMiJL2eT4NyM=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003114237-17092e512b92/go.mod h1:ffScxmGst3FB3eDX9AFg4MTWaMD2OzSLFZ8z/+Sx8Ks=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003114534-e061dd97a66a h1:ttm2WfUdMn9BxRSQ/Ul54fB4c2J3OcAUvskCagOU1g8=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003114534-e061dd97a66a/go.mod h1:ffScxmGst3FB3eDX9AFg4MTWaMD2OzSLFZ8z/+Sx8Ks=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003121446-7d03377699eb h1:LSyeWYNL9R2Z84lXOFL/HmNdbitMQbFqQc9HjieJRmk=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003121446-7d03377699eb/go.mod h1:ffScxmGst3FB3eDX9AFg4MTWaMD2OzSLFZ8z/+Sx8Ks=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003121656-f36ea3cfea6d h1:Rml0F5LOKPPL3C7MEybnhQP8IZ+nDC7cL5n3tN0omcc=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003121656-f36ea3cfea6d/go.mod h1:ffScxmGst3FB3eDX9AFg4MTWaMD2OzSLFZ8z/+Sx8Ks=
 github.com/cetiennec/language_block v0.0.0-20241003100802-c39dab6bc0eb h1:lKko6fbqpVflYbNR/gkr0rn1zzTSsZ0DOiNn78CXeUI=
 github.com/cetiennec/language_block v0.0.0-20241003100802-c39dab6bc0eb/go.mod h1:3o1TNPceorBqwv8dwM3KLjVwft3lY5PMHFmUfe6zHSw=
