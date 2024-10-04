@@ -14,5 +14,9 @@ github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003121446-7d03377699eb
 github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003121446-7d03377699eb/go.mod h1:ffScxmGst3FB3eDX9AFg4MTWaMD2OzSLFZ8z/+Sx8Ks=
 github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003121656-f36ea3cfea6d h1:Rml0F5LOKPPL3C7MEybnhQP8IZ+nDC7cL5n3tN0omcc=
 github.com/cetiennec/hugo-blox-language_block v0.0.0-20241003121656-f36ea3cfea6d/go.mod h1:ffScxmGst3FB3eDX9AFg4MTWaMD2OzSLFZ8z/+Sx8Ks=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241004155749-48d25de577bf h1:PFhWeaEJTyKQ8f3vxoo1sgXPKIqKFTAFRbKgSg+W898=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241004155749-48d25de577bf/go.mod h1:2nxZghZ2TKz/c36iJ+55nE5bo+f+SdhGove61LD7Y6M=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241004160135-ce6b7ecbc24f h1:/xyDw2brMIdRe/gXbAF6rhcM6Do/cSj0Yq+YD0hH05c=
+github.com/cetiennec/hugo-blox-language_block v0.0.0-20241004160135-ce6b7ecbc24f/go.mod h1:2nxZghZ2TKz/c36iJ+55nE5bo+f+SdhGove61LD7Y6M=
 github.com/cetiennec/language_block v0.0.0-20241003100802-c39dab6bc0eb h1:lKko6fbqpVflYbNR/gkr0rn1zzTSsZ0DOiNn78CXeUI=
 github.com/cetiennec/language_block v0.0.0-20241003100802-c39dab6bc0eb/go.mod h1:3o1TNPceorBqwv8dwM3KLjVwft3lY5PMHFmUfe6zHSw=

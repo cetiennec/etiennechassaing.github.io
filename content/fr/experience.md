@@ -18,11 +18,6 @@ sections:
     design:
       columns: '1'
 
-  - block: 'github.cetiennec.language_block'
-    content:
-      title: Langues
-      text: Langues
-    
   - block: resume-experience
     content:
       username: admin_fr
@@ -35,6 +30,11 @@ sections:
     content:
       title: Récompenses
       username: admin_fr
+  - block: 'github.cetiennec.language_block'
+    content:
+      title: Langues
+      text: Langues
+    
   - block: features
     content:
       title: Activités sportives
