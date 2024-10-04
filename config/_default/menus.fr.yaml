@@ -19,7 +19,7 @@ main:
   - name: Blog
     url: post/
     weight: 14
-  - name: Compétences
+  - name: Compétences et expériences
     url: experience/
     weight: 13
   - name: Publications

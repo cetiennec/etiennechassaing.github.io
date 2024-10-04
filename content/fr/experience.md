@@ -12,7 +12,7 @@ design:
 sections:
   - block: resume-skills
     content:
-      title: Compétences
+      title: Compétences 
       id: 1
       username: admin_fr
     design:
