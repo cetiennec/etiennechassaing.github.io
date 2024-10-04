@@ -17,7 +17,7 @@ main:
     url: teaching/
     weight: 12
   - name: Blog
-    url: /#news
+    url: post/
     weight: 14
   - name: Compétences
     url: experience/

@@ -49,7 +49,7 @@ sections:
           - J'établis une feuille de route pour identifier les technologies les moins risquées, par exemple une famille d'algorithme 
           - Je vous propose un plan pour réaliser une preuve de concept de la solution et former vos équipes sur cette technologie
 
-          Vous pouvez retrouver des exemples de missions rélisées dans l'onglet [Conseil et Projets](https://cetiennec.github.io/etiennechassaing.github.io/fr/projects/).
+          Vous pouvez retrouver des exemples de missions rélisées dans l'onglet Conseil et Projets.
 
           Certifications:
           - Consultant agréé Crédit Impôt Innovation depuis le 3 octobre 2024
