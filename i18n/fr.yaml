@@ -99,7 +99,7 @@
 # About widget
 
 - id: interests
-  translation: Intérêts
+  translation: Domaines principaux
 
 - id: education
   translation: Formation

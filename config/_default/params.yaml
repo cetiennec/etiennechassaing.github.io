@@ -36,6 +36,11 @@ header:
     show_theme_chooser: true
     logo:
       text: "Etienne Chassaing"
+      image: ''
+        # Shop a call-to-action button in the top right?
+    # button:
+    #   enable: true
+    #   text: "Discutons de votre projet"
 
 # Site footer
 footer:
