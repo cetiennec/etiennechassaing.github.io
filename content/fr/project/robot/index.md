@@ -15,16 +15,16 @@ Cette mission a pour objectif de développer un robot autonome pour une tâche a
 
 ## Phases de la Mission
 
-### 1. Benchmarking des solutions existantes (2 jours)
+### 1. Benchmarking des solutions existantes - 2 jours
 - Recherche et analyse des systèmes robotiques existants dans l’agriculture et autres domaines similaires.
 - Identification d'entreprises, projets étudiants, brevets et articles scientifiques pertinents.
 - Résumé des solutions techniques pertinentes pour le projet.
 
-### 2. Dimensionnement d'une solution prototype (2 jours)
+### 2. Dimensionnement d'une solution prototype - 2 jours
 - Identification des composants électroniques et mécaniques nécessaires : batterie, capteurs, GPS, etc.
 - Calcul du coût de production et du poids du robot pour garantir un prototype fonctionnel et accessible à un prix compétitif (15 000 € pour le prototype et 2 500 € par unité en production).
 
-### 3. Rapport final et recommandations (2 jours)
+### 3. Rapport final et recommandations - 2 jours 
 - Rédaction d’un rapport PDF détaillant le benchmark des solutions existantes, la description de la solution choisie et les verrous techniques futurs.
 - Présentation des résultats clés dans un tableau Excel (prix et poids) et une présentation PowerPoint pour les principales conclusions.
 
