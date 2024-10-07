@@ -1,5 +1,5 @@
 ---
-title: Étude de Faisabilité sur l'Implémentation d'Algorithmes de MultiAgent Reinforcement-Learning
+title: Étude de Faisabilité sur l'Implémentation d'Algorithmes de Multi-Agent Reinforcement-Learning (MARL)
 summary: '2 mois : 14 jours facturés'
 date: 2024-02-01
 type: docs
@@ -39,8 +39,9 @@ Cette mission a pour objectif d'étudier la faisabilité de l'intégration d'alg
 - Développement d'un notebook Jupyter Python pour l'analyse des données et l'intégration des algorithmes MARL.
 
 
-### 5. Création d'un démonstrateur - 1 jour - Optionnel
+### 5. Création d'un démonstrateur - 1 jour 
 - Développement d'un simulateur simplifié basé sur les données du client, illustrant l'intégration d'un algorithme MARL.
+- Utilisation de **OpenAI Gym** et **Stablebaselines3**
 - Simulation des trajectoires et tests d'apprentissage.
 - Rapport d'évaluation des performances du simulateur.
 

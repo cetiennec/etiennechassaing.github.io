@@ -58,7 +58,7 @@ sections:
 
         <div style="display: flex; gap: 10px; margin-top: 10px;">
           <div style="flex: 1;">
-            <ul style="list-style: none; padding: 0; margin: 0; font-size: 20px;"> <!-- Adjust font-size as needed -->
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 22px;"> <!-- Adjust font-size as needed -->
               <li><a href="https://calendly.com/etienne-chassaing-conseil/30min">👉 Discutons de votre projet: réservez un créneau de 30 min</a></li>
               <li><a href="https://drive.google.com/uc?export=download&id=1JciEvEQxkVXFb69l4v_F1Mw5LEy27DTY">📞 Ajoutez moi en contact</a></li>
               <li><a href="mailto:etienne.chassaing.conseil@gmail.com">✉️ Contactez moi par mail</a></li>
