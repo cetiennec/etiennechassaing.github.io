@@ -10,6 +10,13 @@ design:
 
 # Page sections
 sections:
+  - block: resume-skills
+    content:
+      title: Compétences 
+      id: 1
+      username: admin_fr
+    design:
+      columns: '1'
   - block: cta-button-list
     content:
       # Need a custom icon?
@@ -18,13 +25,6 @@ sections:
         - text: Téléchargez mon CV
           icon: custom/download
           url: https://drive.google.com/file/d/1MMlh1rtOdCdeIpU9QKK-XQv2tei8wmIu/view?usp=share_link
-  - block: resume-skills
-    content:
-      title: Compétences 
-      id: 1
-      username: admin_fr
-    design:
-      columns: '1'
 
   - block: resume-experience
     content:
