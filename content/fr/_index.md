@@ -46,11 +46,12 @@ sections:
 
            ![Image alt](ma_vision.svg)
 
-          Vous pouvez retrouver mes différents projets dans l'onglet <a href="/fr/projects">**Portfolio**</a>.
+          Vous pouvez retrouver mes différents projets dans l'onglet <a href="etiennechassaing.github.io/fr/projects/">**Portfolio**</a>.
 
           <h3>Ma spécificité</h3>
-          J'offre à mes clients une approche de conseil et de formations sur-mesure, en prenant le temps de collaborer en personne avec vous et vos équipes. Grâce à ma formation diversifiée et à mes expériences pluridisciplinaires, je suis en mesure de dialoguer avec les ingénieurs métiers et les responsables de votre entreprise. Une fois le problème clairement défini et correctement formulé, mes compétences en recherche me permettent de vous guider vers des solutions innovantes, aux frontières de l'état de l'art.
-          Tout au long de ce processus, je m'engage à vous fournir les clés pour comprendre les dernières avancées technologiques, que vous soyez décideur ou ingénieur. En définissant ensemble les métriques clés pour votre projet, je m'assure de livrer une solution à la fois fonctionnelle et parfaitement compréhensible par vos équipes.
+          ➡️ J'offre à mes clients une approche de conseil et de formations sur-mesure, en prenant le temps de collaborer en personne avec vous et vos équipes. Grâce à ma formation diversifiée et à mes expériences pluridisciplinaires, je suis en mesure de dialoguer avec les ingénieurs métiers et les responsables de votre entreprise. Une fois le problème clairement défini et correctement formulé, mes compétences en recherche me permettent de vous guider vers des solutions <b>innovantes</b>, aux frontières de l'état de l'art.
+
+          ➡️ Tout au long de ce processus, je m'engage à vous fournir les clés pour comprendre les dernières avancées technologiques, que vous soyez décideur ou ingénieur. En définissant ensemble les métriques clés pour votre projet, je m'assure de livrer une solution à la fois <b>fonctionnelle</b> et parfaitement <b>compréhensible</b> par vos équipes.
           <br>
           <h3>Certifications:</h3>
           - Consultant agréé Crédit Impôt Innovation (CII)
