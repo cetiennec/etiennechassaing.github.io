@@ -7,7 +7,6 @@ tags:
   - Robotique
   - Agriculture
 ---
-# Analyse d'État de l'Art et Identification d'un verrou Technologique
 
 ## Contexte de la Mission
 Durée : **1 mois et 4 jours**  

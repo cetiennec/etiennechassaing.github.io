@@ -1,5 +1,5 @@
 ---
-title: Étude de Faisabilité sur l'Implémentation d'Algorithmes Multi Agent Reinforcement Learning
+title: Étude de Faisabilité sur l'Implémentation d'Algorithmes de MultiAgent Reinforcement-Learning
 summary: '2 mois : 14 jours facturés'
 date: 2024-02-01
 type: docs
@@ -8,7 +8,6 @@ tags:
   - Multi-Agent
   - Modélisaiton
 ---
-# Use case : Étude de Faisabilité sur l'Implémentation d'Algorithmes Multi Agent Reinforcement Learning
 
 ## Contexte
 Cette mission a pour objectif d'étudier la faisabilité de l'intégration d'algorithmes d'apprentissage par renforcement multi-agents (MARL) dans un système d'information du client. L'objectif est d'optimiser l'outil d'aide à la décision du client dans un contexte de classification.

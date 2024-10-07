@@ -8,8 +8,6 @@ tags:
   - Agriculture
 ---
 
-# Use-case : Conception d’un Robot Autonome pour l’Agriculture
-
 **Nombre de jours facturés : 6 jours**
 
 ## Contexte

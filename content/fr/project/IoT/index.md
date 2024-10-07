@@ -9,7 +9,6 @@ tags:
 image:
   caption: 'Projet'
 ---
-# Use case : Conception d'un Système de cpateurs connectés
 
 ## Contexte
 Cette mission a pour but de concevoir un ensemble de capteurs connectés pour optimiser l’utilisation de machines en laboratoire. Le système permet un suivi centralisé des durées de cycles via une interface dédiée, avec la possibilité d'extension à d'autres laboratoires et jusqu'à 60 capteurs par site. Le projet inclut une preuve de concept (POC) comprenant 5 capteurs connectés.
