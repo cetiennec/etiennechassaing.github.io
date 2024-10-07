@@ -46,7 +46,7 @@ sections:
 
            ![Image alt](ma_vision.svg)
 
-          Vous pouvez retrouver mes différents projets dans l'onglet <a href="/projects/">**Portfolio**</a>.
+          Vous pouvez retrouver mes différents projets dans l'onglet <a href="https://cetiennec.github.io/etiennechassaing.github.io/fr/projects/">**Portfolio**</a>.
 
           <h3>Ma spécificité</h3>
           ➡️ J'offre à mes clients une approche de conseil et de formations sur-mesure, en prenant le temps de collaborer en personne avec vous et vos équipes. Grâce à ma formation diversifiée et à mes expériences pluridisciplinaires, je suis en mesure de dialoguer avec les ingénieurs métiers et les responsables de votre entreprise. Une fois le problème clairement défini et correctement formulé, mes compétences en recherche me permettent de vous guider vers des solutions <b>innovantes</b>, aux frontières de l'état de l'art.
