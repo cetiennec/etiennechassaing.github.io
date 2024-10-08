@@ -69,6 +69,11 @@ sections:
 
 
         </div>
+
+        ## Ils m'ont fait confiance
+        <img src="../../assets/media/geomatys.svg" width="200" height="100">
+
+
       design:
         columns: 1
         style: "margin-bottom: 1px;"  # Adjust the margin here

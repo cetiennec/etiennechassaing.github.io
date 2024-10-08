@@ -9,7 +9,11 @@ tags:
   - Modélisaiton
 ---
 
+**Client : [Geomatys](https://www.geomatys.com/en/home/) expert en géo-datascience et visualisation**
 **Durée : 14 jours sur 2 mois**
+
+
+![Image alt](geomatys.svg)
 
 ## Contexte
 Cette mission a pour objectif d'étudier la faisabilité de l'intégration d'algorithmes d'apprentissage par renforcement multi-agents (MARL) dans un système d'information du client. L'objectif est d'optimiser l'outil d'aide à la décision du client dans un contexte de classification.
@@ -41,7 +45,7 @@ Cette mission a pour objectif d'étudier la faisabilité de l'intégration d'alg
 
 ### 5. Création d'un démonstrateur - 1 jour 
 - Développement d'un simulateur simplifié basé sur les données du client, illustrant l'intégration d'un algorithme MARL.
-- Utilisation de **OpenAI Gym** et **Stablebaselines3**
+- Utilisation de **OpenAI Gym** et **Stable-Baselines3**
 - Simulation des trajectoires et tests d'apprentissage.
 - Rapport d'évaluation des performances du simulateur.
 

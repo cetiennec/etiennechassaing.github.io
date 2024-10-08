@@ -11,6 +11,15 @@
     margin-bottom: 10; /* Reduce bottom margin if necessary */
 }
 
-/* .main-content-wrap{
-  max-width: 750px
-} */
+.trusted-companies {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.company-logo {
+  max-width: 150px;
+  margin: 10px;
+}
+
