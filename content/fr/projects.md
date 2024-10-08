@@ -12,10 +12,10 @@ sections:
   - block: collection
     content:
       title: Exemple de projets réalises
-      text: Voici des exemples de projets que j'ai pu réaliser pour des entreprises et des clients.
+      text: Voici une liste non exhaustive des projets que j'ai réalisé pour des clients.
       filters:
         folders:
-          - project
+          - projets
     design:
       view: article-grid
       fill_image: false
@@ -23,10 +23,10 @@ sections:
   - block: collection
     content:
       title: Projets de recherche
-      text: Voici des projets de recherches ou des projets universitaires auquel j'ai participé.
+      text: Voici les projets de recherches et les projets universitaires auquels j'ai participé.
       filters:
         folders:
-          - research_project
+          - projets-recherche
     design:
       view: article-grid
       fill_image: false

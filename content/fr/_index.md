@@ -71,9 +71,11 @@ sections:
         <div class="trusted-companies">
           <img src="assets/geomatys.jpeg" alt="Company 2" class="company-logo">
           <img src="assets/JCS.png" alt="Company 1" class="company-logo">
+          <img src="assets/logo-eurofins.jpg" alt="Company 3" class="company-logo">
+          <img src="assets/schindler.png" alt="Company 4" class="company-logo">
+          <img src="assets/airbus-group.png" alt="Company 5" class="company-logo">
         </div>
         </div>
-# <img src="assets/logo-eurofins.jpg" alt="Company 3" class="company-logo">
 
       design:
         columns: 1
@@ -185,15 +187,15 @@ sections:
       # Reduce spacing
       spacing:
         padding: [0, 0, 0, 0]
-  - block: collection
-    content:
-      title: Publications
-      text: ""
-      filters:
-        folders:
-          - publication
-        exclude_featured: false
-    design:
-      view: citation
+  # - block: collection
+  #   content:
+  #     title: Publications
+  #     text: ""
+  #     filters:
+  #       folders:
+  #         - publication
+  #       exclude_featured: false
+  #   design:
+  #     view: citation
 
 ---
