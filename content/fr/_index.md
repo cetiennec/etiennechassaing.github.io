@@ -66,13 +66,14 @@ sections:
             </ul>
           </div>
         </div>
-
-
+        
+        <h3>Ils m'ont fait confiance :</h3>
+        <div class="trusted-companies">
+          <img src="assets/geomatys.jpeg" alt="Company 2" class="company-logo">
+          <img src="assets/JCS.png" alt="Company 1" class="company-logo">
         </div>
-
-        ## Ils m'ont fait confiance
-        <img src="../../assets/media/geomatys.svg" width="200" height="100">
-
+        </div>
+# <img src="assets/logo-eurofins.jpg" alt="Company 3" class="company-logo">
 
       design:
         columns: 1
