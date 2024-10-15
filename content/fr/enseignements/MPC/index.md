@@ -10,7 +10,6 @@ image:
   caption: "Taxonomie de l'IA, source Google"
 ---
 
-# Foundations of artificial intelligence
 
 ![Image alt](featured.png)
 *Principe du MPC*
@@ -24,10 +23,15 @@ Provide an introduction to the theory and practice of Model Predictive Control (
 ## Contenu
 
 -Review of convex optimization and required optimal control theory.
+
 -Receding-horizon control for constrained linear systems.
+
 -Practical issues: Tracking and offset-free control of constrained systems.
+
 -Theoretical properties of constrained control: Constraint satisfaction and invariant set theory, Stability of MPC.
+
 -Introduction to advanced topics in predictive control.
+
 -Simulation-based project providing practical experience with MPC.
 
 

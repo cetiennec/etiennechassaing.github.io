@@ -10,8 +10,6 @@ image:
   caption: "Taxonomie de l'IA, source Google"
 ---
 
-# Foundations of artificial intelligence
-
 ![Image alt](featured.png)
 *Taxonomie de l'IA, source Google*
 
@@ -21,14 +19,18 @@ This course provides the students with 1) a set of theoretical concepts to under
 
 ## Contenu
 
-Tools
+Tools:
 Supervised learning: regression and classification
+
 Unsupervised learning: singular value decomposition, K-means
+
 Deep learning: brief introduction to neural networks
+
 Reinforcement learning: brief introduction to policy gradient method
  
 Theory
 Optimization: role of convexity, gradient descent, least-squares
+
 Statistics: Bayesian approach, bias and variance trade-off
 
 
