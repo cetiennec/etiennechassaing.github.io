@@ -72,8 +72,9 @@ sections:
           <img src="assets/geomatys.jpeg" alt="Company 2" class="company-logo">
           <img src="assets/JCS.png" alt="Company 1" class="company-logo">
           <img src="assets/logo-eurofins.jpg" alt="Company 3" class="company-logo">
-          <img src="assets/schindler.png" alt="Company 4" class="company-logo">
-          <img src="assets/airbus-group.png" alt="Company 5" class="company-logo">
+          <img src="assets/neodesystems_logo.jpeg" alt="Company 4" class="company-logo">
+          <img src="assets/schindler.png" alt="Company 5" class="company-logo">
+          <img src="assets/airbus-group.png" alt="Company 6" class="company-logo">
         </div>
         </div>
 

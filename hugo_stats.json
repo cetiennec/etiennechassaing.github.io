@@ -336,7 +336,6 @@
       "max-lg:hidden",
       "max-w-3xl",
       "max-w-6xl",
-      "max-w-[500px]",
       "max-w-[65ch]",
       "max-w-none",
       "max-w-prose",
@@ -634,8 +633,6 @@
       "cycle-de-formation--introduction-à-la-data-science-en-5-jours",
       "cycle-de-formation--reinforcement-learning-avec-stable-baselines-3-et-openai-gym",
       "did-you-find-this-page-helpful-consider-sharing-it-",
-      "foundations-of-artificial-intelligence",
-      "grâce-à-cette-collaboration-nous-avons-développé-une-méthode-robuste-pour-mesurer-la-rigidité-de-la-prise-humaine-en-temps-réel-lors-des-transferts-robot-humain-ce-projet-ouvre-la-voie-à-de-futures-recherches-sur-lamélioration-de-la-sécurité-et-de-la-fluidité-des-interactions-physiques-entre-robots-et-humains-dans-des-applications-industrielles-et-collaboratives",
       "hide-button",
       "inline-images",
       "jour-1--introduction-au-reinforcement-learning-rl",
@@ -698,6 +695,7 @@
       "teaching",
       "test-students",
       "top",
+      "tâches-effectuées-",
       "video"
     ]
   }
