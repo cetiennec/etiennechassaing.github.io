@@ -37,7 +37,7 @@ sections:
 
   - block: markdown
     content:
-      title: 'Pourquoi me faire confiance ? '
+      title: "Je vous accompagne pour définir une utilisation raisonnée de l'IA pour votre entreprise :"
       subtitle: ''
       text: |-
         <div style="font-size: smaller; line-height: 1.4; text-align: justify;">
