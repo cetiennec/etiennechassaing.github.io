@@ -13,6 +13,7 @@ sections:
     content:
       title: Exemple de projets réalises
       text: Voici une liste non exhaustive des projets que j'ai réalisé pour des clients.
+      count: 9 
       filters:
         folders:
           - projets
@@ -20,6 +21,7 @@ sections:
       view: article-grid
       fill_image: false
       columns: 3
+      limit: 9
   - block: collection
     content:
       title: Projets de recherche

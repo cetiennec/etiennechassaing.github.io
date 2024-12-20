@@ -42,7 +42,7 @@ sections:
       text: |-
         <div style="font-size: smaller; line-height: 1.4; text-align: justify;">
           <h3>Mon approche</h3>
-          En partant de votre besoin métier, je vous accompagne dans votre projet d'explorer des solutions innovantes par exemple à travers l'IA, la Data, la Robotique ou l'IoT. J'apporte une attention particulière à vous aider à formuler le problème de façon scientifique et générique en combinant une approche ingénieur métier et système.
+          En partant de votre besoin métier, je vous accompagne dans votre projet d'explorer des solutions innovantes d'IA, de Data ou de Robotique. J'apporte une attention particulière à vous aider à formuler le problème de façon scientifique et générique en combinant une approche d'ingénieur métier et système.
 
            ![Image alt](ma_vision.svg)
 
@@ -69,10 +69,12 @@ sections:
         
         <h3>Ils m'ont fait confiance :</h3>
         <div class="trusted-companies">
-          <img src="assets/geomatys.jpeg" alt="Company 2" class="company-logo">
-          <img src="assets/JCS.png" alt="Company 1" class="company-logo">
-          <img src="assets/logo-eurofins.jpg" alt="Company 3" class="company-logo">
+          <img src="assets/nehemis.png" alt="Company 6" class="company-logo">
+          <img src="assets/phospho.svg" alt="Company 6" class="company-logo">
           <img src="assets/neodesystems_logo.jpeg" alt="Company 4" class="company-logo">
+          <img src="assets/geomatys.jpeg" alt="Company 2" class="company-logo">
+          <img src="assets/logo-eurofins.jpg" alt="Company 3" class="company-logo">
+          <img src="assets/JCS.png" alt="Company 1" class="company-logo">
           <img src="assets/schindler.png" alt="Company 5" class="company-logo">
           <img src="assets/airbus-group.png" alt="Company 6" class="company-logo">
         </div>
