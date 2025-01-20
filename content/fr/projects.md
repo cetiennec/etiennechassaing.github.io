@@ -11,7 +11,7 @@ design:
 sections:
   - block: collection
     content:
-      title: Exemple de projets réalises
+      title: Exemple de projets
       text: Voici une liste non exhaustive des projets que j'ai réalisé pour des clients.
       count: 9 
       filters:
