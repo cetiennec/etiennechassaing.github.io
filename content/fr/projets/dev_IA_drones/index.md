@@ -17,7 +17,9 @@ Facturation : **9 jours**
 
 ### Objectifs :
 
+
 Aider le client dans le développement de son service de reconnaissance d'image embarqué dans un drone et pour la mise en place d'une démonstration live avec un planning serré.
+
 
 ### Tâches effectuées :
 

@@ -11,7 +11,7 @@ design:
 sections:
   - block: collection
     content:
-      title: Exemple de projets
+      title: Exemple de projets 
       text: Voici une liste non exhaustive des projets que j'ai réalisé pour des clients.
       count: 9 
       filters:
@@ -25,7 +25,7 @@ sections:
   - block: collection
     content:
       title: Projets de recherche
-      text: Voici les projets de recherches et les projets universitaires auquels j'ai participé.
+      text: Voici les projets de recherches et les projets universitaires auxquels j'ai participé.
       filters:
         folders:
           - projets-recherche
