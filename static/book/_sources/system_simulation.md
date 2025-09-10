@@ -1,4 +1,3 @@
-## 2. System Simulation
 
 ## 3. Control
 
@@ -64,15 +63,17 @@ where:
 
 # Appendix
 
-- $ x $: Position along the pipe in $meter$.
-- $ t $: Time in $second$.
-- $ T(x, t) $: Temperature of water at position $ x $ and time $ t $ $kelvin$.
-- $ u $: Fluid velocity in $meter/second$.
-- $ \rho $: Density of water in $[ \si{\kilogram\per\meter\cubed} ]$.
-- $ c_p $: Specific heat capacity of water in $[ \si{\joule\per\kilogram\kelvin} ]$.
-- $ S $: Cross-sectional area of the pipe in $[ \si{\meter\squared} ]$.
-- $ P_{\text{pipe}} $: Perimeter of the pipe in $meter$.
-- $ h $: Convective heat transfer coefficient in $[ \si{\watt\per\meter\squared\kelvin} ]$.
-- $ P $: Heater power input in $watt$.
-- $K = e^{-\frac{\alpha \tau}{2}}$, a factor representing the effect of time delay and thermal losses,
-- $\tau$ is the delay time in $second$,
+- $x$: Position along the pipe in **meters (m)**.
+- $t$: Time in **seconds (s)**.
+- $T(x, t)$: Temperature of water at position $x$ and time $t$ in **kelvin (K)**.
+- $u$: Fluid velocity in **meters per second (m/s)**.
+- $\rho$: Density of water in **kilograms per cubic meter (kg/m³)**.
+- $c_p$: Specific heat capacity of water in **joules per kilogram-kelvin (J/(kg·K))**.
+- $S$: Cross-sectional area of the pipe in **square meters (m²)**.
+- $P_{\text{pipe}}$: Perimeter of the pipe in **meters (m)**.
+- $h$: Convective heat transfer coefficient in **watts per square meter-kelvin (W/(m²·K))**.
+- $P$: Heater power input in **watts (W)**.
+- $K = e^{-\frac{\alpha \tau}{2}}$: A factor representing the effect of time delay and thermal losses (dimensionless).
+- $\tau$: Delay time in **seconds (s)**.
+- $\alpha$: Heat loss coefficient in **per second (1/s)**.
+

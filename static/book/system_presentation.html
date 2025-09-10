@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Heated Pipe System with Heat Loss &#8212; My sample book</title>
+    <title>1. System Description &#8212; My sample book</title>
   
   
   
@@ -321,7 +321,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Heated Pipe System with Heat Loss</h1>
+    <h1>1. System Description</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -331,34 +331,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Heated Pipe System with Heat Loss</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-description">1. System Description</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schematic-of-the-system">Schematic of the system:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-and-first-findings">Step response and first findings:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. System Description</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schematic-of-the-system">Schematic of the system:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-and-first-findings">Step response and first findings:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-simulation">2. System Simulation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control">3. Control</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-objectives">Control Objectives</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#traditionnal-control-technique-with-tinkering">1) Traditionnal control technique with tinkering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-control-via-mpc">2) Optimal control via MPC</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reinforcement-learning">3) Reinforcement Learning</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-and-conclusion">Comparison and conclusion</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performances">Performances</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity">Complexity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix">Appendix</a></li>
 </ul>
 
             </nav>
@@ -371,24 +352,18 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="heated-pipe-system-with-heat-loss">
-<h1>Heated Pipe System with Heat Loss<a class="headerlink" href="#heated-pipe-system-with-heat-loss" title="Link to this heading">#</a></h1>
-<p>This tutorial describes the process of controlling the outlet temperature of a 300 meters heat pipe close to the</p>
-<p>boiling temperature.</p>
-<p>The main goal is to describe the process of solving rather than the details of the equations.</p>
-<hr class="docutils" />
-<section id="system-description">
-<h2>1. System Description<a class="headerlink" href="#system-description" title="Link to this heading">#</a></h2>
+  <section id="system-description">
+<h1>1. System Description<a class="headerlink" href="#system-description" title="Link to this heading">#</a></h1>
 <p>The system consists of a circular pipe through which water flows continuously. A heater is connected at the entrance (<span class="math notranslate nohighlight">\(x = 0\)</span>)
 of the pipe, providing a constant power input <span class="math notranslate nohighlight">\(P\)</span> to the water. The water flows with constant velocity <span class="math notranslate nohighlight">\(u\)</span>, losing heat
 to the environment due to convection. At the outlet, the water returns to the heater, creating a closed loop.</p>
 <p><img alt="heat loop" src="_images/simple_diagram.png" /></p>
 <section id="schematic-of-the-system">
-<h3>Schematic of the system:<a class="headerlink" href="#schematic-of-the-system" title="Link to this heading">#</a></h3>
+<h2>Schematic of the system:<a class="headerlink" href="#schematic-of-the-system" title="Link to this heading">#</a></h2>
 <p><img alt="heat loop" src="_images/heat_loop.png" /></p>
 </section>
 <section id="step-response-and-first-findings">
-<h3>Step response and first findings:<a class="headerlink" href="#step-response-and-first-findings" title="Link to this heading">#</a></h3>
+<h2>Step response and first findings:<a class="headerlink" href="#step-response-and-first-findings" title="Link to this heading">#</a></h2>
 <p><img alt="heat loop" src="_images/step_response.jpg" /></p>
 <p>From this we observe :</p>
 <ul class="simple">
@@ -401,7 +376,7 @@ to the environment due to convection. At the outlet, the water returns to the he
 </section>
 </section>
 <section id="physical-model-equations">
-<h2>Physical model equations:<a class="headerlink" href="#physical-model-equations" title="Link to this heading">#</a></h2>
+<h1>Physical model equations:<a class="headerlink" href="#physical-model-equations" title="Link to this heading">#</a></h1>
 <p>The evolution of the temperature in the pipe is governed by the following partial differential equation (PDE):</p>
 <div class="math notranslate nohighlight">
 \[
@@ -416,7 +391,7 @@ to the environment due to convection. At the outlet, the water returns to the he
 \Theta_{\text{outlet}}(t) = K \left( \frac{P}{D c_p} +  \Theta_{\text{outlet}}(t - \tau) \right).
 \]</div>
 <section id="naive-model">
-<h3>Naive model<a class="headerlink" href="#naive-model" title="Link to this heading">#</a></h3>
+<h2>Naive model<a class="headerlink" href="#naive-model" title="Link to this heading">#</a></h2>
 <p>The PDE equation can be naively discretized as follows:</p>
 <ul class="simple">
 <li><p>The pipe is divided in N discrete segments</p></li>
@@ -424,124 +399,14 @@ to the environment due to convection. At the outlet, the water returns to the he
 environment,subject to the heat loss coefficient.</p></li>
 <li><p>Each temperature value is transferred to the next segment</p></li>
 </ul>
-<p><img alt="heat loop" src="_images/pipe_simulation.gif" /></p>
 <p>This simulation divides a pipe into small segments to model heat transfer step by step. At each time step, every segment’s
 temperature is updated based on its neighbors and the environment, while the temperature at the pipe’s end is “pushed forward”
 to the start—like a wave of heat moving through. The heater at one end injects warmth, and the animation reveals how heat spreads,
 stabilizes, and flows through the system.</p>
+<p><img alt="heat loop" src="_images/pipe_simulation.gif" /></p>
+<p>Following plots show the impact of heat loss coefficient and external temperature on the curves :</p>
 <p><img alt="heat loop" src="_images/param_comparison.png" /></p>
 </section>
-</section>
-<section id="system-simulation">
-<h2>2. System Simulation<a class="headerlink" href="#system-simulation" title="Link to this heading">#</a></h2>
-<div id="plot"></div>
-<input type="range" min="1" max="6" value="3" id="powerSlider">
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script>
-fetch("results.json")
-  .then(r => r.json())
-  .then(data => {
-    function updatePlot(P) {
-      let d = data[P];
-      let trace1 = { x: d.time, y: d.Tin, mode: "lines", name: "Inlet" };
-      let trace2 = { x: d.time, y: d.Tout, mode: "lines", name: "Outlet" };
-      Plotly.newPlot("plot", [trace1, trace2], {
-        title: "Simulation (P=" + P + " kW)",
-        xaxis:{ title:"Time (s)" },
-        yaxis:{ title:"Temperature (°C)" }
-      });
-    }
-    updatePlot(3);
-    document.getElementById("powerSlider")
-      .addEventListener("input", e => updatePlot(e.target.value));
-  });
-</script>
-</section>
-<section id="control">
-<h2>3. Control<a class="headerlink" href="#control" title="Link to this heading">#</a></h2>
-<section id="control-objectives">
-<h3>Control Objectives<a class="headerlink" href="#control-objectives" title="Link to this heading">#</a></h3>
-</section>
-<section id="traditionnal-control-technique-with-tinkering">
-<h3>1) Traditionnal control technique with tinkering<a class="headerlink" href="#traditionnal-control-technique-with-tinkering" title="Link to this heading">#</a></h3>
-<p>The standard equation of the PI controller is:</p>
-<div class="math notranslate nohighlight">
-\[
-u(t) = K_p \, e(t) + K_i \int_0^t e(\tau) \, d\tau,
-\]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p>u(t) is the power of the heater,</p></li>
-<li><p><span class="math notranslate nohighlight">\(K_p\)</span> is the proportional gain,</p></li>
-<li><p><span class="math notranslate nohighlight">\(K_i\)</span> is the integral gain,</p></li>
-<li><p>e(t) is the error between the setpoint and the outlet temperature.</p></li>
-</ul>
-</section>
-<section id="optimal-control-via-mpc">
-<h3>2) Optimal control via MPC<a class="headerlink" href="#optimal-control-via-mpc" title="Link to this heading">#</a></h3>
-<div class="math notranslate nohighlight">
-\[
-u^*(k) = \min_{u(0), \dots, u(N_p-1)}
-\sum_{i=0}^{N_p-1} \left( y_i - (r_i - d_i) \right)^T Q \left( y_i - (r_i - d_i) \right) + u_i^T R u_i + \Delta u_i^T S \Delta u_i,
-\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\text{subject to:}
-\begin{align*}
-&amp;\mathbf{x}(0) = \mathbf{x}_0, \\
-&amp;\mathbf{x}_{i+1} = A \mathbf{x}_i + B u_i, \quad i = 0, \dots, N_p-1, \\
-&amp;y_i = C \mathbf{x}_i, \quad i = 0, \dots, N_p-1, \\
-&amp;0 \leq \mathbf{x}_i \leq 95, \quad i = 1, \dots, N_p, \\
-&amp;0 \leq u_i \leq 33, \quad i = 0, \dots, N_p-1, \\
-&amp;\Delta u_i = u(i) - u(i-1), \quad i = 1, \dots, N_p-1, \\
-&amp;0 \leq \Delta{u}_i \leq \Delta{u}_{max}, \quad i = 0, \dots, N_p-1, \\
-&amp;Q \succ 0, \, R \succ 0.
-\end{align*}
-\end{split}\]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(N_p\)</span> is the prediction horizon.</p></li>
-<li><p><span class="math notranslate nohighlight">\(r_i\)</span> is the moving reference at time <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(d_i\)</span> is the moving disturbance (<span class="math notranslate nohighlight">\(T_{ext}\)</span>) at time <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(Q \succ 0\)</span> and <span class="math notranslate nohighlight">\(R \succ 0\)</span> are weighting matrices for output tracking and input usage, respectively.</p></li>
-</ul>
-</section>
-<section id="reinforcement-learning">
-<h3>3) Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Link to this heading">#</a></h3>
-</section>
-</section>
-<section id="comparison-and-conclusion">
-<h2>Comparison and conclusion<a class="headerlink" href="#comparison-and-conclusion" title="Link to this heading">#</a></h2>
-<section id="performances">
-<h3>Performances<a class="headerlink" href="#performances" title="Link to this heading">#</a></h3>
-</section>
-<section id="security">
-<h3>Security<a class="headerlink" href="#security" title="Link to this heading">#</a></h3>
-</section>
-<section id="complexity">
-<h3>Complexity<a class="headerlink" href="#complexity" title="Link to this heading">#</a></h3>
-</section>
-<section id="conclusion">
-<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
-</section>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="appendix">
-<h1>Appendix<a class="headerlink" href="#appendix" title="Link to this heading">#</a></h1>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\( x \)</span>: Position along the pipe in <span class="math notranslate nohighlight">\(meter\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( t \)</span>: Time in <span class="math notranslate nohighlight">\(second\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( T(x, t) \)</span>: Temperature of water at position <span class="math notranslate nohighlight">\( x \)</span> and time <span class="math notranslate nohighlight">\( t \)</span> <span class="math notranslate nohighlight">\(kelvin\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( u \)</span>: Fluid velocity in <span class="math notranslate nohighlight">\(meter/second\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( \rho \)</span>: Density of water in <span class="math notranslate nohighlight">\([ \si{\kilogram\per\meter\cubed} ]\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( c_p \)</span>: Specific heat capacity of water in <span class="math notranslate nohighlight">\([ \si{\joule\per\kilogram\kelvin} ]\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( S \)</span>: Cross-sectional area of the pipe in <span class="math notranslate nohighlight">\([ \si{\meter\squared} ]\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( P_{\text{pipe}} \)</span>: Perimeter of the pipe in <span class="math notranslate nohighlight">\(meter\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( h \)</span>: Convective heat transfer coefficient in <span class="math notranslate nohighlight">\([ \si{\watt\per\meter\squared\kelvin} ]\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( P \)</span>: Heater power input in <span class="math notranslate nohighlight">\(watt\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(K = e^{-\frac{\alpha \tau}{2}}\)</span>, a factor representing the effect of time delay and thermal losses,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\tau\)</span> is the delay time in <span class="math notranslate nohighlight">\(second\)</span>,</p></li>
-</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -590,34 +455,15 @@ u^*(k) = \min_{u(0), \dots, u(N_p-1)}
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Heated Pipe System with Heat Loss</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-description">1. System Description</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schematic-of-the-system">Schematic of the system:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-and-first-findings">Step response and first findings:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. System Description</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schematic-of-the-system">Schematic of the system:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-and-first-findings">Step response and first findings:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-simulation">2. System Simulation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control">3. Control</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-objectives">Control Objectives</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#traditionnal-control-technique-with-tinkering">1) Traditionnal control technique with tinkering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-control-via-mpc">2) Optimal control via MPC</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reinforcement-learning">3) Reinforcement Learning</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-and-conclusion">Comparison and conclusion</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performances">Performances</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity">Complexity</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix">Appendix</a></li>
 </ul>
 
   </nav></div>
