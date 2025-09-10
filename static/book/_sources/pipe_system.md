@@ -13,20 +13,17 @@ The system consists of a circular pipe through which water flows continuously. A
 of the pipe, providing a constant power input $P$ to the water. The water flows with constant velocity $u$, losing heat 
 to the environment due to convection. At the outlet, the water returns to the heater, creating a closed loop.
 
-<img src="simple_diagram.png" alt="Description 1" width="60%" />
-
+![heat loop](simple_diagram.png)
 
 
 ### Schematic of the system:
 
-<img src="heat_loop.png" alt="Description 2" width="110%" />
-
+![heat loop](heat_loop.png)
 
 
 ### Step response and first findings:
 
-
-<img src="step_response.jpg" alt="Description 1" width="80%" />
+![heat loop](step_response.jpg)
 
 From this we observe :
 - Stair-like behavior due to the recirculation
