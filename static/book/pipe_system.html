@@ -62,7 +62,6 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'pipe_system';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Simulation" href="simu.html" />
     <link rel="prev" title="&lt;no title&gt;" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -184,7 +183,6 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Heated Pipe System with Heat Loss</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="simu.html">Simulation</a></li>
 </ul>
 
     </div>
@@ -378,20 +376,14 @@ boiling temperature.</p>
 <p>The system consists of a circular pipe through which water flows continuously. A heater is connected at the entrance (<span class="math notranslate nohighlight">\(x = 0\)</span>)
 of the pipe, providing a constant power input <span class="math notranslate nohighlight">\(P\)</span> to the water. The water flows with constant velocity <span class="math notranslate nohighlight">\(u\)</span>, losing heat
 to the environment due to convection. At the outlet, the water returns to the heater, creating a closed loop.</p>
-<div style="display: flex; justify-content: space-around;">
-  <img src="simple_diagram.png" alt="Description 1" width="60%" />
-</div>
+<img src="simple_diagram.png" alt="Description 1" width="60%" />
 <section id="schematic-of-the-system">
 <h3>Schematic of the system:<a class="headerlink" href="#schematic-of-the-system" title="Link to this heading">#</a></h3>
-<div style="display: flex; justify-content: space-around;">
-  <img src="heat_loop.png" alt="Description 2" width="110%" />
-</div>
+<img src="heat_loop.png" alt="Description 2" width="110%" />
 </section>
 <section id="step-response-and-first-findings">
 <h3>Step response and first findings:<a class="headerlink" href="#step-response-and-first-findings" title="Link to this heading">#</a></h3>
-<div style="display: flex; justify-content: space-around;">
-  <img src="step_response.jpg" alt="Description 1" width="80%" />
-</div>
+<img src="step_response.jpg" alt="Description 1" width="80%" />
 <p>From this we observe :</p>
 <ul class="simple">
 <li><p>Stair-like behavior due to the recirculation</p></li>
@@ -404,11 +396,11 @@ to the environment due to convection. At the outlet, the water returns to the he
 </section>
 <section id="physical-model-equations">
 <h2>Physical model equations:<a class="headerlink" href="#physical-model-equations" title="Link to this heading">#</a></h2>
-<p>The evolution of the temperature in the pipe is governed by the following partial differential equation (PDE):
-$<span class="math notranslate nohighlight">\(
+<p>The evolution of the temperature in the pipe is governed by the following partial differential equation (PDE):</p>
+<div class="math notranslate nohighlight">
+\[
 \frac{\partial T}{\partial t} + u \frac{\partial T}{\partial x} = -\frac{h P_{\text{pipe}}}{\rho S c_p} \left[ T(x, t) - T_{\text{ext}} \right]
-\label{eq:complete_equation}
-\)</span>$</p>
+\]</div>
 <p>All notations are detailed in Appendix.</p>
 <p>Using <span class="math notranslate nohighlight">\( \Theta_{\text{inlet}}(t) = T_{\text{inlet}} - T_{\text{ext}} \)</span> and <span class="math notranslate nohighlight">\(\Theta_{\text{outlet}}(t) = T_{\text{outlet}} - T_{\text{ext}}\)</span></p>
 <p>We can write delayed equations in which <span class="math notranslate nohighlight">\(\tau\)</span> is the time of travel and <span class="math notranslate nohighlight">\(P\)</span> the power f the heater:</p>
@@ -549,15 +541,6 @@ u^*(k) = \min_{u(0), \dots, u(N_p-1)}
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">&lt;no title&gt;</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="simu.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Simulation</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

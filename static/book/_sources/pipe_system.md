@@ -13,24 +13,20 @@ The system consists of a circular pipe through which water flows continuously. A
 of the pipe, providing a constant power input $P$ to the water. The water flows with constant velocity $u$, losing heat 
 to the environment due to convection. At the outlet, the water returns to the heater, creating a closed loop.
 
-<div style="display: flex; justify-content: space-around;">
-  <img src="simple_diagram.png" alt="Description 1" width="60%" />
-</div>
+<img src="simple_diagram.png" alt="Description 1" width="60%" />
+
+
 
 ### Schematic of the system:
 
+<img src="heat_loop.png" alt="Description 2" width="110%" />
 
-<div style="display: flex; justify-content: space-around;">
-  <img src="heat_loop.png" alt="Description 2" width="110%" />
-</div>
 
 
 ### Step response and first findings:
 
 
-<div style="display: flex; justify-content: space-around;">
-  <img src="step_response.jpg" alt="Description 1" width="80%" />
-</div>
+<img src="step_response.jpg" alt="Description 1" width="80%" />
 
 From this we observe :
 - Stair-like behavior due to the recirculation
@@ -45,9 +41,9 @@ From this we observe :
 
 
 The evolution of the temperature in the pipe is governed by the following partial differential equation (PDE):
+
 $$
 \frac{\partial T}{\partial t} + u \frac{\partial T}{\partial x} = -\frac{h P_{\text{pipe}}}{\rho S c_p} \left[ T(x, t) - T_{\text{ext}} \right]
-\label{eq:complete_equation}
 $$
 
 All notations are detailed in Appendix.
