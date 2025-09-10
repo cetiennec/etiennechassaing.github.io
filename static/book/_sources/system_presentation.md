@@ -1,11 +1,15 @@
-# Heated Pipe System with Heat Loss
+[//]: # (# Heated Pipe System with Heat Loss)
 
-This tutorial describes the process of controlling the outlet temperature of a 300 meters heat pipe close to the 
-boiling temperature.
+[//]: # ()
+[//]: # (This tutorial describes the process of controlling the outlet temperature of a 300 meters heat pipe close to the )
 
-The main goal is to describe the process of solving rather than the details of the equations.
+[//]: # (boiling temperature.)
 
----
+[//]: # ()
+[//]: # (The main goal is to describe the process of solving rather than the details of the equations.)
+
+[//]: # ()
+[//]: # (---)
 
 ## 1. System Description
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Heated Pipe System with Heat Loss &#8212; My sample book</title>
+    <title>1. System Description &#8212; My sample book</title>
   
   
   
@@ -179,7 +179,10 @@
                 </a>
             </li>
         </ul>
-        
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="system_tutorial.html">Heated Pipe System with Heat Loss</a></li>
+</ul>
+
     </div>
 </nav></div>
     </div>
@@ -316,7 +319,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Heated Pipe System with Heat Loss</h1>
+    <h1>1. System Description</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -326,17 +329,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-description">1. System Description</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schematic-of-the-system">Schematic of the system:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-and-first-findings">Step response and first findings:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. System Description</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schematic-of-the-system">Schematic of the system:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-and-first-findings">Step response and first findings:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-simulation">2. System Simulation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#system-simulation">2. System Simulation</a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -347,24 +351,18 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="heated-pipe-system-with-heat-loss">
-<h1>Heated Pipe System with Heat Loss<a class="headerlink" href="#heated-pipe-system-with-heat-loss" title="Link to this heading">#</a></h1>
-<p>This tutorial describes the process of controlling the outlet temperature of a 300 meters heat pipe close to the
-boiling temperature.</p>
-<p>The main goal is to describe the process of solving rather than the details of the equations.</p>
-<hr class="docutils" />
-<section id="system-description">
-<h2>1. System Description<a class="headerlink" href="#system-description" title="Link to this heading">#</a></h2>
+  <section id="system-description">
+<h1>1. System Description<a class="headerlink" href="#system-description" title="Link to this heading">#</a></h1>
 <p>The system consists of a circular pipe through which water flows continuously. A heater is connected at the entrance ($x = 0$)
 of the pipe, providing a constant power input $P$ to the water. The water flows with constant velocity $u$, losing heat
 to the environment due to convection. At the outlet, the water returns to the heater, creating a closed loop.</p>
 <p><img alt="heat loop" src="_images/simple_diagram.png" /></p>
 <section id="schematic-of-the-system">
-<h3>Schematic of the system:<a class="headerlink" href="#schematic-of-the-system" title="Link to this heading">#</a></h3>
+<h2>Schematic of the system:<a class="headerlink" href="#schematic-of-the-system" title="Link to this heading">#</a></h2>
 <p><img alt="heat loop" src="_images/heat_loop.png" /></p>
 </section>
 <section id="step-response-and-first-findings">
-<h3>Step response and first findings:<a class="headerlink" href="#step-response-and-first-findings" title="Link to this heading">#</a></h3>
+<h2>Step response and first findings:<a class="headerlink" href="#step-response-and-first-findings" title="Link to this heading">#</a></h2>
 <p><img alt="heat loop" src="_images/step_response.jpg" /></p>
 <p>From this we observe :</p>
 <ul class="simple">
@@ -377,7 +375,7 @@ to the environment due to convection. At the outlet, the water returns to the he
 </section>
 </section>
 <section id="physical-model-equations">
-<h2>Physical model equations:<a class="headerlink" href="#physical-model-equations" title="Link to this heading">#</a></h2>
+<h1>Physical model equations:<a class="headerlink" href="#physical-model-equations" title="Link to this heading">#</a></h1>
 <p>The evolution of the temperature in the pipe is governed by the following partial differential equation (PDE):</p>
 <p>$$
 \frac{\partial T}{\partial t} + u \frac{\partial T}{\partial x} = -\frac{h P_{\text{pipe}}}{\rho S c_p} \left[ T(x, t) - T_{\text{ext}} \right]
@@ -390,7 +388,7 @@ $$</p>
 \Theta_{\text{outlet}}(t) = K \left( \frac{P}{D c_p} +  \Theta_{\text{outlet}}(t - \tau) \right).
 $$</p>
 <section id="naive-model">
-<h3>Naive model<a class="headerlink" href="#naive-model" title="Link to this heading">#</a></h3>
+<h2>Naive model<a class="headerlink" href="#naive-model" title="Link to this heading">#</a></h2>
 <p>The PDE equation can be naively discretized as follows:</p>
 <ul class="simple">
 <li><p>The pipe is divided in N discrete segments</p></li>
@@ -407,8 +405,7 @@ stabilizes, and flows through the system.</p>
 </section>
 </section>
 <section id="system-simulation">
-<h2>2. System Simulation<a class="headerlink" href="#system-simulation" title="Link to this heading">#</a></h2>
-</section>
+<h1>2. System Simulation<a class="headerlink" href="#system-simulation" title="Link to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -457,17 +454,18 @@ stabilizes, and flows through the system.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-description">1. System Description</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schematic-of-the-system">Schematic of the system:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-and-first-findings">Step response and first findings:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. System Description</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schematic-of-the-system">Schematic of the system:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-and-first-findings">Step response and first findings:</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-simulation">2. System Simulation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#system-simulation">2. System Simulation</a></li>
 </ul>
+
   </nav></div>
 
 </div></div>
