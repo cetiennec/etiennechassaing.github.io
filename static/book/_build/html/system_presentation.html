@@ -1,0 +1,676 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Heated Pipe System with Heat Loss &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'system_presentation';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/icon.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/icon.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="system_tutorial.html">Heated Pipe System with Heat Loss</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/system_presentation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Heated Pipe System with Heat Loss</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Heated Pipe System with Heat Loss</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-description">1. System Description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schematic-of-the-system">Schematic of the system:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-and-first-findings">Step response and first findings:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-simulation">2. System Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control">3. Control</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-objectives">Control Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#traditionnal-control-technique-with-tinkering">1) Traditionnal control technique with tinkering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-control-via-mpc">2) Optimal control via MPC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reinforcement-learning">3) Reinforcement Learning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-and-conclusion">Comparison and conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performances">Performances</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity">Complexity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix">Appendix</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="heated-pipe-system-with-heat-loss">
+<h1>Heated Pipe System with Heat Loss<a class="headerlink" href="#heated-pipe-system-with-heat-loss" title="Link to this heading">#</a></h1>
+<p>This tutorial describes the process of controlling the outlet temperature of a 300 meters heat pipe close to the</p>
+<p>boiling temperature.</p>
+<p>The main goal is to describe the process of solving rather than the details of the equations.</p>
+<hr class="docutils" />
+<section id="system-description">
+<h2>1. System Description<a class="headerlink" href="#system-description" title="Link to this heading">#</a></h2>
+<p>The system consists of a circular pipe through which water flows continuously. A heater is connected at the entrance (<span class="math notranslate nohighlight">\(x = 0\)</span>)
+of the pipe, providing a constant power input <span class="math notranslate nohighlight">\(P\)</span> to the water. The water flows with constant velocity <span class="math notranslate nohighlight">\(u\)</span>, losing heat
+to the environment due to convection. At the outlet, the water returns to the heater, creating a closed loop.</p>
+<p><img alt="heat loop" src="_images/simple_diagram.png" /></p>
+<section id="schematic-of-the-system">
+<h3>Schematic of the system:<a class="headerlink" href="#schematic-of-the-system" title="Link to this heading">#</a></h3>
+<p><img alt="heat loop" src="_images/heat_loop.png" /></p>
+</section>
+<section id="step-response-and-first-findings">
+<h3>Step response and first findings:<a class="headerlink" href="#step-response-and-first-findings" title="Link to this heading">#</a></h3>
+<p><img alt="heat loop" src="_images/step_response.jpg" /></p>
+<p>From this we observe :</p>
+<ul class="simple">
+<li><p>Stair-like behavior due to the recirculation</p></li>
+<li><p>An inlet temperature that can go close to 100°C despite an outlet temperature that is barely above 85°C</p></li>
+<li><p>A significant delay (~12 min)</p></li>
+<li><p>A coupling and an intrication between inlet and outlet temperature</p></li>
+</ul>
+<p><strong>How to model and simulate these stairs?</strong></p>
+</section>
+</section>
+<section id="physical-model-equations">
+<h2>Physical model equations:<a class="headerlink" href="#physical-model-equations" title="Link to this heading">#</a></h2>
+<p>The evolution of the temperature in the pipe is governed by the following partial differential equation (PDE):</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial T}{\partial t} + u \frac{\partial T}{\partial x} = -\frac{h P_{\text{pipe}}}{\rho S c_p} \left[ T(x, t) - T_{\text{ext}} \right]
+\]</div>
+<p>All notations are detailed in Appendix.</p>
+<p>Using <span class="math notranslate nohighlight">\( \Theta_{\text{inlet}}(t) = T_{\text{inlet}} - T_{\text{ext}} \)</span> and <span class="math notranslate nohighlight">\(\Theta_{\text{outlet}}(t) = T_{\text{outlet}} - T_{\text{ext}}\)</span></p>
+<p>We can write delayed equations in which <span class="math notranslate nohighlight">\(\tau\)</span> is the time of travel and <span class="math notranslate nohighlight">\(P\)</span> the power f the heater:</p>
+<div class="math notranslate nohighlight">
+\[
+\Theta_{\text{inlet}}(t) = \frac{P}{\dot{m}c_p} + K \Theta_{\text{inlet}}(t - \tau),
+\Theta_{\text{outlet}}(t) = K \left( \frac{P}{D c_p} +  \Theta_{\text{outlet}}(t - \tau) \right).
+\]</div>
+<section id="naive-model">
+<h3>Naive model<a class="headerlink" href="#naive-model" title="Link to this heading">#</a></h3>
+<p>The PDE equation can be naively discretized as follows:</p>
+<ul class="simple">
+<li><p>The pipe is divided in N discrete segments</p></li>
+<li><p>For each segment, its temperature is obtained by averaging its temperature with the neighbors and with the surrounding
+environment,subject to the heat loss coefficient.</p></li>
+<li><p>Each temperature value is transferred to the next segment</p></li>
+</ul>
+<p><img alt="heat loop" src="_images/pipe_simulation.gif" /></p>
+<p>This simulation divides a pipe into small segments to model heat transfer step by step. At each time step, every segment’s
+temperature is updated based on its neighbors and the environment, while the temperature at the pipe’s end is “pushed forward”
+to the start—like a wave of heat moving through. The heater at one end injects warmth, and the animation reveals how heat spreads,
+stabilizes, and flows through the system.</p>
+<p><img alt="heat loop" src="_images/param_comparison.png" /></p>
+</section>
+</section>
+<section id="system-simulation">
+<h2>2. System Simulation<a class="headerlink" href="#system-simulation" title="Link to this heading">#</a></h2>
+<div id="plot"></div>
+<input type="range" min="1" max="6" value="3" id="powerSlider">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+fetch("results.json")
+  .then(r => r.json())
+  .then(data => {
+    function updatePlot(P) {
+      let d = data[P];
+      let trace1 = { x: d.time, y: d.Tin, mode: "lines", name: "Inlet" };
+      let trace2 = { x: d.time, y: d.Tout, mode: "lines", name: "Outlet" };
+      Plotly.newPlot("plot", [trace1, trace2], {
+        title: "Simulation (P=" + P + " kW)",
+        xaxis:{ title:"Time (s)" },
+        yaxis:{ title:"Temperature (°C)" }
+      });
+    }
+    updatePlot(3);
+    document.getElementById("powerSlider")
+      .addEventListener("input", e => updatePlot(e.target.value));
+  });
+</script>
+</section>
+<section id="control">
+<h2>3. Control<a class="headerlink" href="#control" title="Link to this heading">#</a></h2>
+<section id="control-objectives">
+<h3>Control Objectives<a class="headerlink" href="#control-objectives" title="Link to this heading">#</a></h3>
+</section>
+<section id="traditionnal-control-technique-with-tinkering">
+<h3>1) Traditionnal control technique with tinkering<a class="headerlink" href="#traditionnal-control-technique-with-tinkering" title="Link to this heading">#</a></h3>
+<p>The standard equation of the PI controller is:</p>
+<div class="math notranslate nohighlight">
+\[
+u(t) = K_p \, e(t) + K_i \int_0^t e(\tau) \, d\tau,
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p>u(t) is the power of the heater,</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_p\)</span> is the proportional gain,</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_i\)</span> is the integral gain,</p></li>
+<li><p>e(t) is the error between the setpoint and the outlet temperature.</p></li>
+</ul>
+</section>
+<section id="optimal-control-via-mpc">
+<h3>2) Optimal control via MPC<a class="headerlink" href="#optimal-control-via-mpc" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+u^*(k) = \min_{u(0), \dots, u(N_p-1)}
+\sum_{i=0}^{N_p-1} \left( y_i - (r_i - d_i) \right)^T Q \left( y_i - (r_i - d_i) \right) + u_i^T R u_i + \Delta u_i^T S \Delta u_i,
+\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\text{subject to:}
+\begin{align*}
+&amp;\mathbf{x}(0) = \mathbf{x}_0, \\
+&amp;\mathbf{x}_{i+1} = A \mathbf{x}_i + B u_i, \quad i = 0, \dots, N_p-1, \\
+&amp;y_i = C \mathbf{x}_i, \quad i = 0, \dots, N_p-1, \\
+&amp;0 \leq \mathbf{x}_i \leq 95, \quad i = 1, \dots, N_p, \\
+&amp;0 \leq u_i \leq 33, \quad i = 0, \dots, N_p-1, \\
+&amp;\Delta u_i = u(i) - u(i-1), \quad i = 1, \dots, N_p-1, \\
+&amp;0 \leq \Delta{u}_i \leq \Delta{u}_{max}, \quad i = 0, \dots, N_p-1, \\
+&amp;Q \succ 0, \, R \succ 0.
+\end{align*}
+\end{split}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(N_p\)</span> is the prediction horizon.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_i\)</span> is the moving reference at time <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(d_i\)</span> is the moving disturbance (<span class="math notranslate nohighlight">\(T_{ext}\)</span>) at time <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Q \succ 0\)</span> and <span class="math notranslate nohighlight">\(R \succ 0\)</span> are weighting matrices for output tracking and input usage, respectively.</p></li>
+</ul>
+</section>
+<section id="reinforcement-learning">
+<h3>3) Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="comparison-and-conclusion">
+<h2>Comparison and conclusion<a class="headerlink" href="#comparison-and-conclusion" title="Link to this heading">#</a></h2>
+<section id="performances">
+<h3>Performances<a class="headerlink" href="#performances" title="Link to this heading">#</a></h3>
+</section>
+<section id="security">
+<h3>Security<a class="headerlink" href="#security" title="Link to this heading">#</a></h3>
+</section>
+<section id="complexity">
+<h3>Complexity<a class="headerlink" href="#complexity" title="Link to this heading">#</a></h3>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="appendix">
+<h1>Appendix<a class="headerlink" href="#appendix" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( x \)</span>: Position along the pipe in <span class="math notranslate nohighlight">\(meter\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( t \)</span>: Time in <span class="math notranslate nohighlight">\(second\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( T(x, t) \)</span>: Temperature of water at position <span class="math notranslate nohighlight">\( x \)</span> and time <span class="math notranslate nohighlight">\( t \)</span> <span class="math notranslate nohighlight">\(kelvin\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( u \)</span>: Fluid velocity in <span class="math notranslate nohighlight">\(meter/second\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \rho \)</span>: Density of water in <span class="math notranslate nohighlight">\([ \si{\kilogram\per\meter\cubed} ]\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( c_p \)</span>: Specific heat capacity of water in <span class="math notranslate nohighlight">\([ \si{\joule\per\kilogram\kelvin} ]\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( S \)</span>: Cross-sectional area of the pipe in <span class="math notranslate nohighlight">\([ \si{\meter\squared} ]\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( P_{\text{pipe}} \)</span>: Perimeter of the pipe in <span class="math notranslate nohighlight">\(meter\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( h \)</span>: Convective heat transfer coefficient in <span class="math notranslate nohighlight">\([ \si{\watt\per\meter\squared\kelvin} ]\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( P \)</span>: Heater power input in <span class="math notranslate nohighlight">\(watt\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(K = e^{-\frac{\alpha \tau}{2}}\)</span>, a factor representing the effect of time delay and thermal losses,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\tau\)</span> is the delay time in <span class="math notranslate nohighlight">\(second\)</span>,</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Heated Pipe System with Heat Loss</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-description">1. System Description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schematic-of-the-system">Schematic of the system:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-and-first-findings">Step response and first findings:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-simulation">2. System Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control">3. Control</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-objectives">Control Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#traditionnal-control-technique-with-tinkering">1) Traditionnal control technique with tinkering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-control-via-mpc">2) Optimal control via MPC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reinforcement-learning">3) Reinforcement Learning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-and-conclusion">Comparison and conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performances">Performances</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity">Complexity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix">Appendix</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
