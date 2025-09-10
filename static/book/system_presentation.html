@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'system_presentation';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -353,8 +355,8 @@ document.write(`
                   
   <section id="system-description">
 <h1>1. System Description<a class="headerlink" href="#system-description" title="Link to this heading">#</a></h1>
-<p>The system consists of a circular pipe through which water flows continuously. A heater is connected at the entrance ($x = 0$)
-of the pipe, providing a constant power input $P$ to the water. The water flows with constant velocity $u$, losing heat
+<p>The system consists of a circular pipe through which water flows continuously. A heater is connected at the entrance (<span class="math notranslate nohighlight">\(x = 0\)</span>)
+of the pipe, providing a constant power input <span class="math notranslate nohighlight">\(P\)</span> to the water. The water flows with constant velocity <span class="math notranslate nohighlight">\(u\)</span>, losing heat
 to the environment due to convection. At the outlet, the water returns to the heater, creating a closed loop.</p>
 <p><img alt="heat loop" src="_images/simple_diagram.png" /></p>
 <section id="schematic-of-the-system">
@@ -377,16 +379,18 @@ to the environment due to convection. At the outlet, the water returns to the he
 <section id="physical-model-equations">
 <h1>Physical model equations:<a class="headerlink" href="#physical-model-equations" title="Link to this heading">#</a></h1>
 <p>The evolution of the temperature in the pipe is governed by the following partial differential equation (PDE):</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 \frac{\partial T}{\partial t} + u \frac{\partial T}{\partial x} = -\frac{h P_{\text{pipe}}}{\rho S c_p} \left[ T(x, t) - T_{\text{ext}} \right]
-$$</p>
+\]</div>
 <p>All notations are detailed in Appendix.</p>
-<p>Using $ \Theta_{\text{inlet}}(t) = T_{\text{inlet}} - T_{\text{ext}} $ and $\Theta_{\text{outlet}}(t) = T_{\text{outlet}} - T_{\text{ext}}$</p>
-<p>We can write delayed equations in which $\tau$ is the time of travel and $P$ the power f the heater:</p>
-<p>$$
+<p>Using <span class="math notranslate nohighlight">\( \Theta_{\text{inlet}}(t) = T_{\text{inlet}} - T_{\text{ext}} \)</span> and <span class="math notranslate nohighlight">\(\Theta_{\text{outlet}}(t) = T_{\text{outlet}} - T_{\text{ext}}\)</span></p>
+<p>We can write delayed equations in which <span class="math notranslate nohighlight">\(\tau\)</span> is the time of travel and <span class="math notranslate nohighlight">\(P\)</span> the power f the heater:</p>
+<div class="math notranslate nohighlight">
+\[
 \Theta_{\text{inlet}}(t) = \frac{P}{\dot{m}c_p} + K \Theta_{\text{inlet}}(t - \tau),
 \Theta_{\text{outlet}}(t) = K \left( \frac{P}{D c_p} +  \Theta_{\text{outlet}}(t - \tau) \right).
-$$</p>
+\]</div>
 <section id="naive-model">
 <h2>Naive model<a class="headerlink" href="#naive-model" title="Link to this heading">#</a></h2>
 <p>The PDE equation can be naively discretized as follows:</p>
