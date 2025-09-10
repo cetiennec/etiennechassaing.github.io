@@ -265,7 +265,7 @@ def create_parameter_comparison():
     
     plt.tight_layout()
     plt.subplots_adjust(top=0.94, bottom=0.08, left=0.06, right=0.98)
-    plt.savefig('param_comparison.png')
+    plt.savefig('param_comparison.pdf')
     plt.show()
    
     return results_summary
