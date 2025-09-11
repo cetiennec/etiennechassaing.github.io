@@ -63,6 +63,8 @@ where:
 
 # Appendix
 
+### Parameters
+
 - $x$: Position along the pipe in **meters (m)**.
 - $t$: Time in **seconds (s)**.
 - $T(x, t)$: Temperature of water at position $x$ and time $t$ in **kelvin (K)**.
@@ -77,3 +79,10 @@ where:
 - $\tau$: Delay time in **seconds (s)**.
 - $\alpha$: Heat loss coefficient in **per second (1/s)**.
 
+## Impact of coefficients:
+
+Following plots the impact of heat loss coefficient and external temperature on the curves.
+
+![heat loop](param_comparison.png)
+
+## Bonus : Bode plots

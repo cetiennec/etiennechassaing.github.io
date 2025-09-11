@@ -1,0 +1,1131 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'train_env';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/icon.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/icon.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="system_tutorial.html">Heated Pipe System with Heat Loss</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/train_env.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/train_env.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">stable_baselines3</span> <span class="kn">import</span> <span class="n">PPO</span>
+<span class="kn">from</span> <span class="nn">PipeEnv</span> <span class="kn">import</span> <span class="n">PipeHeaterSafeEnvGymnasium</span>
+<span class="kn">from</span> <span class="nn">stable_baselines3</span> <span class="kn">import</span> <span class="n">PPO</span>
+<span class="kn">from</span> <span class="nn">simulation_backend</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">PipeHeaterSafeEnvGymnasium</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Tinlet</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">Tset</span><span class="o">=</span><span class="mi">85</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="mi">1800</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">PPO</span><span class="p">(</span><span class="s2">&quot;MlpPolicy&quot;</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">total_timesteps</span><span class="o">=</span><span class="mi">1000000</span><span class="p">)</span>  <span class="c1"># adjust for convergence</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using cpu device
+Wrapping the env with a `Monitor` wrapper
+Wrapping the env in a DummyVecEnv.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------
+| rollout/           |          |
+|    ep_len_mean     | 1.8e+03  |
+|    ep_rew_mean     | -509     |
+| time/              |          |
+|    fps             | 6678     |
+|    iterations      | 1        |
+|    time_elapsed    | 0        |
+|    total_timesteps | 2048     |
+---------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------
+| rollout/                |           |
+|    ep_len_mean          | 1.8e+03   |
+|    ep_rew_mean          | -462      |
+| time/                   |           |
+|    fps                  | 3772      |
+|    iterations           | 2         |
+|    time_elapsed         | 1         |
+|    total_timesteps      | 4096      |
+| train/                  |           |
+|    approx_kl            | 0.0205887 |
+|    clip_fraction        | 0.179     |
+|    clip_range           | 0.2       |
+|    entropy_loss         | -1.38     |
+|    explained_variance   | -0.000981 |
+|    learning_rate        | 0.0003    |
+|    loss                 | 0.906     |
+|    n_updates            | 10        |
+|    policy_gradient_loss | -0.0242   |
+|    std                  | 0.936     |
+|    value_loss           | 3.25      |
+---------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 1.8e+03     |
+|    ep_rew_mean          | -414        |
+| time/                   |             |
+|    fps                  | 3284        |
+|    iterations           | 3           |
+|    time_elapsed         | 1           |
+|    total_timesteps      | 6144        |
+| train/                  |             |
+|    approx_kl            | 0.013904285 |
+|    clip_fraction        | 0.121       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -1.33       |
+|    explained_variance   | -0.0019     |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.332       |
+|    n_updates            | 20          |
+|    policy_gradient_loss | -0.0179     |
+|    std                  | 0.901       |
+|    value_loss           | 1.72        |
+-----------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 1.8e+03     |
+|    ep_rew_mean          | -375        |
+| time/                   |             |
+|    fps                  | 3028        |
+|    iterations           | 4           |
+|    time_elapsed         | 2           |
+|    total_timesteps      | 8192        |
+| train/                  |             |
+|    approx_kl            | 0.014753692 |
+|    clip_fraction        | 0.153       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -1.29       |
+|    explained_variance   | -0.00158    |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.384       |
+|    n_updates            | 30          |
+|    policy_gradient_loss | -0.0216     |
+|    std                  | 0.859       |
+|    value_loss           | 1.27        |
+-----------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------------------------------------
+| rollout/                |            |
+|    ep_len_mean          | 1.8e+03    |
+|    ep_rew_mean          | -339       |
+| time/                   |            |
+|    fps                  | 2907       |
+|    iterations           | 5          |
+|    time_elapsed         | 3          |
+|    total_timesteps      | 10240      |
+| train/                  |            |
+|    approx_kl            | 0.01365402 |
+|    clip_fraction        | 0.106      |
+|    clip_range           | 0.2        |
+|    entropy_loss         | -1.24      |
+|    explained_variance   | -0.000283  |
+|    learning_rate        | 0.0003     |
+|    loss                 | 0.479      |
+|    n_updates            | 40         |
+|    policy_gradient_loss | -0.0152    |
+|    std                  | 0.824      |
+|    value_loss           | 0.845      |
+----------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 1.8e+03     |
+|    ep_rew_mean          | -304        |
+| time/                   |             |
+|    fps                  | 2598        |
+|    iterations           | 6           |
+|    time_elapsed         | 4           |
+|    total_timesteps      | 12288       |
+| train/                  |             |
+|    approx_kl            | 0.010051656 |
+|    clip_fraction        | 0.117       |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -1.2        |
+|    explained_variance   | -4.8e-05    |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.164       |
+|    n_updates            | 50          |
+|    policy_gradient_loss | -0.0176     |
+|    std                  | 0.79        |
+|    value_loss           | 0.723       |
+-----------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 1.8e+03      |
+|    ep_rew_mean          | -274         |
+| time/                   |              |
+|    fps                  | 2650         |
+|    iterations           | 7            |
+|    time_elapsed         | 5            |
+|    total_timesteps      | 14336        |
+| train/                  |              |
+|    approx_kl            | 0.0076602884 |
+|    clip_fraction        | 0.09         |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -1.15        |
+|    explained_variance   | -0.000197    |
+|    learning_rate        | 0.0003       |
+|    loss                 | 0.0884       |
+|    n_updates            | 60           |
+|    policy_gradient_loss | -0.0144      |
+|    std                  | 0.75         |
+|    value_loss           | 0.58         |
+------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 1.8e+03     |
+|    ep_rew_mean          | -221        |
+| time/                   |             |
+|    fps                  | 2699        |
+|    iterations           | 8           |
+|    time_elapsed         | 6           |
+|    total_timesteps      | 16384       |
+| train/                  |             |
+|    approx_kl            | 0.010911705 |
+|    clip_fraction        | 0.0968      |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -1.11       |
+|    explained_variance   | 0.000157    |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.846       |
+|    n_updates            | 70          |
+|    policy_gradient_loss | -0.0133     |
+|    std                  | 0.717       |
+|    value_loss           | 0.432       |
+-----------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 1.8e+03     |
+|    ep_rew_mean          | -200        |
+| time/                   |             |
+|    fps                  | 2741        |
+|    iterations           | 9           |
+|    time_elapsed         | 6           |
+|    total_timesteps      | 18432       |
+| train/                  |             |
+|    approx_kl            | 0.003960505 |
+|    clip_fraction        | 0.0529      |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -1.07       |
+|    explained_variance   | 0.00316     |
+|    learning_rate        | 0.0003      |
+|    loss                 | 0.0577      |
+|    n_updates            | 80          |
+|    policy_gradient_loss | -0.00709    |
+|    std                  | 0.696       |
+|    value_loss           | 0.519       |
+-----------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 1.8e+03      |
+|    ep_rew_mean          | -182         |
+| time/                   |              |
+|    fps                  | 2750         |
+|    iterations           | 10           |
+|    time_elapsed         | 7            |
+|    total_timesteps      | 20480        |
+| train/                  |              |
+|    approx_kl            | 0.0023021912 |
+|    clip_fraction        | 0.022        |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -1.03        |
+|    explained_variance   | 0.00754      |
+|    learning_rate        | 0.0003       |
+|    loss                 | 0.0224       |
+|    n_updates            | 90           |
+|    policy_gradient_loss | -0.0053      |
+|    std                  | 0.667        |
+|    value_loss           | 0.218        |
+------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 1.8e+03      |
+|    ep_rew_mean          | -166         |
+| time/                   |              |
+|    fps                  | 2750         |
+|    iterations           | 11           |
+|    time_elapsed         | 8            |
+|    total_timesteps      | 22528        |
+| train/                  |              |
+|    approx_kl            | 0.0055286037 |
+|    clip_fraction        | 0.04         |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -0.993       |
+|    explained_variance   | 0.00176      |
+|    learning_rate        | 0.0003       |
+|    loss                 | 0.0236       |
+|    n_updates            | 100          |
+|    policy_gradient_loss | -0.00692     |
+|    std                  | 0.644        |
+|    value_loss           | 0.159        |
+------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 1.8e+03      |
+|    ep_rew_mean          | -153         |
+| time/                   |              |
+|    fps                  | 2761         |
+|    iterations           | 12           |
+|    time_elapsed         | 8            |
+|    total_timesteps      | 24576        |
+| train/                  |              |
+|    approx_kl            | 0.0059138634 |
+|    clip_fraction        | 0.0564       |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -0.966       |
+|    explained_variance   | 0.00716      |
+|    learning_rate        | 0.0003       |
+|    loss                 | 0.045        |
+|    n_updates            | 110          |
+|    policy_gradient_loss | -0.00831     |
+|    std                  | 0.628        |
+|    value_loss           | 0.12         |
+------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 1.8e+03      |
+|    ep_rew_mean          | -142         |
+| time/                   |              |
+|    fps                  | 2781         |
+|    iterations           | 13           |
+|    time_elapsed         | 9            |
+|    total_timesteps      | 26624        |
+| train/                  |              |
+|    approx_kl            | 0.0048699155 |
+|    clip_fraction        | 0.0358       |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -0.922       |
+|    explained_variance   | 0.00776      |
+|    learning_rate        | 0.0003       |
+|    loss                 | 0.045        |
+|    n_updates            | 120          |
+|    policy_gradient_loss | -0.00803     |
+|    std                  | 0.592        |
+|    value_loss           | 0.0982       |
+------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------
+| rollout/                |           |
+|    ep_len_mean          | 1.8e+03   |
+|    ep_rew_mean          | -132      |
+| time/                   |           |
+|    fps                  | 2778      |
+|    iterations           | 14        |
+|    time_elapsed         | 10        |
+|    total_timesteps      | 28672     |
+| train/                  |           |
+|    approx_kl            | 0.0047135 |
+|    clip_fraction        | 0.0423    |
+|    clip_range           | 0.2       |
+|    entropy_loss         | -0.885    |
+|    explained_variance   | 0.00833   |
+|    learning_rate        | 0.0003    |
+|    loss                 | 0.0327    |
+|    n_updates            | 130       |
+|    policy_gradient_loss | -0.00547  |
+|    std                  | 0.582     |
+|    value_loss           | 0.0769    |
+---------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 1.8e+03      |
+|    ep_rew_mean          | -114         |
+| time/                   |              |
+|    fps                  | 2762         |
+|    iterations           | 15           |
+|    time_elapsed         | 11           |
+|    total_timesteps      | 30720        |
+| train/                  |              |
+|    approx_kl            | 0.0015008217 |
+|    clip_fraction        | 0.0217       |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -0.86        |
+|    explained_variance   | 0.00549      |
+|    learning_rate        | 0.0003       |
+|    loss                 | 0.021        |
+|    n_updates            | 140          |
+|    policy_gradient_loss | -0.00208     |
+|    std                  | 0.562        |
+|    value_loss           | 0.0222       |
+------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 1.8e+03      |
+|    ep_rew_mean          | -107         |
+| time/                   |              |
+|    fps                  | 2763         |
+|    iterations           | 16           |
+|    time_elapsed         | 11           |
+|    total_timesteps      | 32768        |
+| train/                  |              |
+|    approx_kl            | 0.0058878115 |
+|    clip_fraction        | 0.0344       |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -0.838       |
+|    explained_variance   | 0.0233       |
+|    learning_rate        | 0.0003       |
+|    loss                 | 0.0153       |
+|    n_updates            | 150          |
+|    policy_gradient_loss | -0.00247     |
+|    std                  | 0.556        |
+|    value_loss           | 0.032        |
+------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 1.8e+03      |
+|    ep_rew_mean          | -100         |
+| time/                   |              |
+|    fps                  | 2760         |
+|    iterations           | 17           |
+|    time_elapsed         | 12           |
+|    total_timesteps      | 34816        |
+| train/                  |              |
+|    approx_kl            | 0.0015212165 |
+|    clip_fraction        | 0.0179       |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -0.815       |
+|    explained_variance   | 0.0273       |
+|    learning_rate        | 0.0003       |
+|    loss                 | 0.000402     |
+|    n_updates            | 160          |
+|    policy_gradient_loss | -0.00366     |
+|    std                  | 0.54         |
+|    value_loss           | 0.0224       |
+------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 1.8e+03      |
+|    ep_rew_mean          | -94.1        |
+| time/                   |              |
+|    fps                  | 2742         |
+|    iterations           | 18           |
+|    time_elapsed         | 13           |
+|    total_timesteps      | 36864        |
+| train/                  |              |
+|    approx_kl            | 0.0024965983 |
+|    clip_fraction        | 0.0212       |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -0.785       |
+|    explained_variance   | 0.0199       |
+|    learning_rate        | 0.0003       |
+|    loss                 | 0.0146       |
+|    n_updates            | 170          |
+|    policy_gradient_loss | -0.00461     |
+|    std                  | 0.523        |
+|    value_loss           | 0.0144       |
+------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 1.8e+03     |
+|    ep_rew_mean          | -88.7       |
+| time/                   |             |
+|    fps                  | 2749        |
+|    iterations           | 19          |
+|    time_elapsed         | 14          |
+|    total_timesteps      | 38912       |
+| train/                  |             |
+|    approx_kl            | 0.004826223 |
+|    clip_fraction        | 0.0479      |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -0.763      |
+|    explained_variance   | 0.00729     |
+|    learning_rate        | 0.0003      |
+|    loss                 | -0.000157   |
+|    n_updates            | 180         |
+|    policy_gradient_loss | -0.00534    |
+|    std                  | 0.516       |
+|    value_loss           | 0.00506     |
+-----------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 1.8e+03      |
+|    ep_rew_mean          | -83.7        |
+| time/                   |              |
+|    fps                  | 2758         |
+|    iterations           | 20           |
+|    time_elapsed         | 14           |
+|    total_timesteps      | 40960        |
+| train/                  |              |
+|    approx_kl            | 0.0032704682 |
+|    clip_fraction        | 0.0311       |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -0.749       |
+|    explained_variance   | -0.0214      |
+|    learning_rate        | 0.0003       |
+|    loss                 | 0.0126       |
+|    n_updates            | 190          |
+|    policy_gradient_loss | -0.00431     |
+|    std                  | 0.51         |
+|    value_loss           | 0.0148       |
+------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 1.8e+03      |
+|    ep_rew_mean          | -79.2        |
+| time/                   |              |
+|    fps                  | 2752         |
+|    iterations           | 21           |
+|    time_elapsed         | 15           |
+|    total_timesteps      | 43008        |
+| train/                  |              |
+|    approx_kl            | 0.0064893784 |
+|    clip_fraction        | 0.0669       |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -0.742       |
+|    explained_variance   | 0.0103       |
+|    learning_rate        | 0.0003       |
+|    loss                 | 0.00507      |
+|    n_updates            | 200          |
+|    policy_gradient_loss | -0.00675     |
+|    std                  | 0.508        |
+|    value_loss           | 0.0115       |
+------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
+| rollout/                |             |
+|    ep_len_mean          | 1.8e+03     |
+|    ep_rew_mean          | -71.1       |
+| time/                   |             |
+|    fps                  | 2758        |
+|    iterations           | 22          |
+|    time_elapsed         | 16          |
+|    total_timesteps      | 45056       |
+| train/                  |             |
+|    approx_kl            | 0.004976283 |
+|    clip_fraction        | 0.0381      |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -0.729      |
+|    explained_variance   | 0.00673     |
+|    learning_rate        | 0.0003      |
+|    loss                 | -0.000494   |
+|    n_updates            | 210         |
+|    policy_gradient_loss | -0.00577    |
+|    std                  | 0.498       |
+|    value_loss           | 0.00923     |
+-----------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
+| rollout/                |              |
+|    ep_len_mean          | 1.8e+03      |
+|    ep_rew_mean          | -67.5        |
+| time/                   |              |
+|    fps                  | 2764         |
+|    iterations           | 23           |
+|    time_elapsed         | 17           |
+|    total_timesteps      | 47104        |
+| train/                  |              |
+|    approx_kl            | 0.0040277643 |
+|    clip_fraction        | 0.0465       |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -0.721       |
+|    explained_variance   | -0.0312      |
+|    learning_rate        | 0.0003       |
+|    loss                 | -0.00219     |
+|    n_updates            | 220          |
+|    policy_gradient_loss | -0.0026      |
+|    std                  | 0.497        |
+|    value_loss           | 0.00477      |
+------------------------------------------
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">env</span> <span class="o">=</span> <span class="n">PipeHeaterSafeEnvGymnasium</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Tinlet</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">Tset</span><span class="o">=</span><span class="mi">85</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="mi">1800</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">model</span> <span class="o">=</span> <span class="n">PPO</span><span class="p">(</span><span class="s2">&quot;MlpPolicy&quot;</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">model</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">total_timesteps</span><span class="o">=</span><span class="mi">1000000</span><span class="p">)</span>  <span class="c1"># adjust for convergence</span>
+
+<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/ppo/ppo.py:311,</span> in <span class="ni">PPO.learn</span><span class="nt">(self, total_timesteps, callback, log_interval, tb_log_name, reset_num_timesteps, progress_bar)</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span> <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="bp">self</span><span class="p">:</span> <span class="n">SelfPPO</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>     <span class="n">total_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>     <span class="n">progress_bar</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SelfPPO</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>         <span class="n">total_timesteps</span><span class="o">=</span><span class="n">total_timesteps</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span>         <span class="n">log_interval</span><span class="o">=</span><span class="n">log_interval</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">315</span>         <span class="n">tb_log_name</span><span class="o">=</span><span class="n">tb_log_name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">316</span>         <span class="n">reset_num_timesteps</span><span class="o">=</span><span class="n">reset_num_timesteps</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span>         <span class="n">progress_bar</span><span class="o">=</span><span class="n">progress_bar</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span>     <span class="p">)</span>
+
+<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:323,</span> in <span class="ni">OnPolicyAlgorithm.learn</span><span class="nt">(self, total_timesteps, callback, log_interval, tb_log_name, reset_num_timesteps, progress_bar)</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span> <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_timesteps</span> <span class="o">&lt;</span> <span class="n">total_timesteps</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">323</span>     <span class="n">continue_training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">collect_rollouts</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rollout_buffer</span><span class="p">,</span> <span class="n">n_rollout_steps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">continue_training</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span>         <span class="k">break</span>
+
+<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:247,</span> in <span class="ni">OnPolicyAlgorithm.collect_rollouts</span><span class="nt">(self, env, callback, rollout_buffer, n_rollout_steps)</span>
+<span class="g g-Whitespace">    </span><span class="mi">244</span>             <span class="n">terminal_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">policy</span><span class="o">.</span><span class="n">predict_values</span><span class="p">(</span><span class="n">terminal_obs</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="g g-Whitespace">    </span><span class="mi">245</span>         <span class="n">rewards</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">*</span> <span class="n">terminal_value</span>
+<span class="ne">--&gt; </span><span class="mi">247</span> <span class="n">rollout_buffer</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">248</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_last_obs</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="g g-Whitespace">    </span><span class="mi">249</span>     <span class="n">actions</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">250</span>     <span class="n">rewards</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">251</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_last_episode_starts</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="g g-Whitespace">    </span><span class="mi">252</span>     <span class="n">values</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span>     <span class="n">log_probs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_obs</span> <span class="o">=</span> <span class="n">new_obs</span>  <span class="c1"># type: ignore[assignment]</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_episode_starts</span> <span class="o">=</span> <span class="n">dones</span>
+
+<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/buffers.py:475,</span> in <span class="ni">RolloutBuffer.add</span><span class="nt">(self, obs, action, reward, episode_start, value, log_prob)</span>
+<span class="g g-Whitespace">    </span><span class="mi">473</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">474</span> <span class="bp">self</span><span class="o">.</span><span class="n">episode_starts</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">episode_start</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">475</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">476</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_probs</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_prob</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">477</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">Tin_hist</span><span class="p">,</span> <span class="n">Tout_hist</span><span class="p">,</span> <span class="n">P_hist</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">steps</span><span class="p">):</span>
+    <span class="n">action</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+    <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+    <span class="n">Tin_hist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">Tout_hist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">P_hist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tin_hist</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Tinlet&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tout_hist</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Toutlet&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">Tset</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Setpoint&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">95</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Safety limit&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Temperature (°C)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Timestep&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">P_hist</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Heater Power (kW)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Power (kW)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Timestep&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/07863a6471c698fa645394e852e589a910f5916ff067860a6ec8a017fe8d68fc.png" src="_images/07863a6471c698fa645394e852e589a910f5916ff067860a6ec8a017fe8d68fc.png" />
+<img alt="_images/684061ac0fe49805b461eb458f1145f7df9237457f9f05eaf474309461e20ff7.png" src="_images/684061ac0fe49805b461eb458f1145f7df9237457f9f05eaf474309461e20ff7.png" />
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
