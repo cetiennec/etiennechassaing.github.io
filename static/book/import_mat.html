@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. System Description &#8212; My sample book</title>
+    <title>&lt;no title&gt; &#8212; My sample book</title>
   
   
   
@@ -57,9 +57,7 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'system_presentation';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'import_mat';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -224,6 +222,37 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/import_mat.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -232,7 +261,7 @@
       
       
       
-      <li><a href="_sources/system_presentation.md" target="_blank"
+      <li><a href="_sources/import_mat.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -242,7 +271,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -316,7 +345,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>1. System Description</h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -325,13 +354,7 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. System Description</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-findings-why-is-it-tricky">First findings, why is it tricky?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a></li>
+                <ul class="simple visible nav section-nav flex-column">
 </ul>
 
             </nav>
@@ -344,65 +367,63 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="system-description">
-<h1>1. System Description<a class="headerlink" href="#system-description" title="Link to this heading">#</a></h1>
-<p>The system consists of a 300m circular pipe through which water flows continuously. A heater is connected at the entrance (<span class="math notranslate nohighlight">\(x = 0\)</span>)
-of the pipe, providing a constant power input <span class="math notranslate nohighlight">\(P\)</span> to the water. The water flows with constant velocity <span class="math notranslate nohighlight">\(u\)</span>, losing heat
-to the environment due to convection. At the outlet, the water returns to the heater, creating a closed loop.</p>
-<p><img alt="heat loop" src="_images/simple_diagram1.png" /></p>
-<p>The goal is to perform a bacteria decontamination of the loop, requiring a temperature of at least 85°C through the loop
-with a 2°C/min ascent and without creating steam in the pipe.</p>
-<p><em><strong>How to ensure <span class="math notranslate nohighlight">\(T_{outlet}\)</span>&gt;85°C and <span class="math notranslate nohighlight">\(T_{inlet}\)</span>&lt;95°C ? Can we control the heating speed precisely to 2°C/min?</strong></em></p>
-<section id="first-findings-why-is-it-tricky">
-<h2>First findings, why is it tricky?<a class="headerlink" href="#first-findings-why-is-it-tricky" title="Link to this heading">#</a></h2>
-<p>Following plot shows what happens when the system is heated at a constant 30kW power which is barely the maximum power :</p>
-<p><img alt="heat loop" src="_images/step_response1.jpg" /></p>
-<p>From this we observe :</p>
-<ul class="simple">
-<li><p>Stair-like behavior due to the recirculation of water</p></li>
-<li><p>An inlet temperature that can go close to 100°C despite an outlet temperature that is barely above 85°C</p></li>
-<li><p>A significant delay (~12 min)</p></li>
-<li><p>A coupling and an intrication between inlet and outlet temperature</p></li>
-</ul>
-<p><strong>How to model and simulate these stairs?</strong></p>
-</section>
-<section id="naive-model">
-<h2>Naive model<a class="headerlink" href="#naive-model" title="Link to this heading">#</a></h2>
-<p>Following simulation divides the pipe into small segments to model heat transfer step by step. At each time step, every segment’s
-temperature is updated based on its neighbors and the environment (using a heat loss coefficient), while the temperature at the pipe’s end is “pushed forward”
-to the start—like a wave of heat moving through. The heater at one end injects warmth, and the animation reveals how heat spreads,
-stabilizes, and flows through the system.</p>
-<p><img alt="heat loop" src="_images/pipe_simulation1.gif" /></p>
-<p>This gives a first approximation and intuition on the system to explain the stairs and the impact of losses on the heating curve.</p>
-<p>Detailed plots in Appendix show the impact of heat loss coefficient and external temperature on the curves.</p>
-</section>
-</section>
-<section id="physical-model-equations">
-<h1>Physical model equations:<a class="headerlink" href="#physical-model-equations" title="Link to this heading">#</a></h1>
-<p>The system schematic is shown below:</p>
-<p><img alt="heat loop" src="_images/heat_loop1.png" /></p>
-<p>The evolution of the temperature in the pipe is governed by the following partial differential equation (PDE) obtained by
-writing the energy balance equation of a pipe infinitesimal segment:</p>
-<div class="math notranslate nohighlight">
-\[
-\frac{\partial T}{\partial t} + u \frac{\partial T}{\partial x} = -\frac{h P_{\text{pipe}}}{\rho S c_p} \left[ T(x, t) - T_{\text{ext}} \right]
-\]</div>
-<p>All notations are detailed in Appendix.</p>
-<p>To include the heater power in the equations, we can write the energy balance of the heater using
-<span class="math notranslate nohighlight">\( \Theta_{\text{inlet}}(t) = T_{\text{inlet}} - T_{\text{ext}} \)</span> and <span class="math notranslate nohighlight">\(\Theta_{\text{outlet}}(t) = T_{\text{outlet}} - T_{\text{ext}}\)</span>.
-This allows to write the following Delayed Equations in which <span class="math notranslate nohighlight">\(\tau\)</span> is the time of travel, <span class="math notranslate nohighlight">\(P\)</span> the power of the heater, and <span class="math notranslate nohighlight">\(K&lt;1\)</span> the loss coefficient:</p>
-<div class="math notranslate nohighlight">
-\[
-\Theta_{\text{inlet}}(t) = \frac{P}{\dot{m}c_p} + K \Theta_{\text{inlet}}(t - \tau),
-\Theta_{\text{outlet}}(t) = K \left( \frac{P}{\dot{m} c_p} +  \Theta_{\text{outlet}}(t - \tau) \right).
-\]</div>
-<p>What these equations say :</p>
-<ul class="simple">
-<li><p>A pipe segment always sees the water from one turn past, which temperature is modulated by the losses</p></li>
-<li><p>From an energy point of view, the system adds to the loop the amount of energy contained by the water inside the heater</p></li>
-<li><p>Effect of the power is inversely scaled by the flow <span class="math notranslate nohighlight">\(\dot{m}\)</span> which directly affects system properties</p></li>
-</ul>
-</section>
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># Load the CSV file</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;pipe_heater_data.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract columns</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">Tinlet</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Tinlet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">Toutlet</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Toutlet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">Tambiant</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Tambiant&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">Command_Heater</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;HeaterCommand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Plot temperatures and power</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Add horizontal lines for minimum and limit temperatures</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">85</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Minimum Temp (85°C)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">95</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Limit Temp (95°C)&quot;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="mi">60</span><span class="p">,</span> <span class="n">Tinlet</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$T_</span><span class="si">{inlet}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="mi">60</span><span class="p">,</span> <span class="n">Toutlet</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$T_</span><span class="si">{outlet}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="mi">60</span><span class="p">,</span> <span class="mi">33</span><span class="o">*</span><span class="n">Command_Heater</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Power&quot;</span><span class="p">)</span>
+
+<span class="c1"># Add an arrow between 1 and 8 minutes with &quot;delay&quot; label</span>
+<span class="c1"># Add a double-headed arrow between 1 and 8 minutes with &quot;Delay&quot; text above</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+             <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+             <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;&lt;-&gt;&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">),</span>
+             <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Delay&#39;</span><span class="p">,</span>
+             <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">22</span><span class="p">))</span>
+
+<span class="c1"># Labels and legend</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [min]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Temperature [°C]/Power [kW]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Pipe Heater Temperatures for a 30kW power step on real system&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Save and show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;images/initial_problem.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3ad2ac7dadc54fccfe818ffe50eda25e095ba2993e84104e1666a90a3ccda923.png" src="_images/3ad2ac7dadc54fccfe818ffe50eda25e095ba2993e84104e1666a90a3ccda923.png" />
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -449,13 +470,7 @@ This allows to write the following Delayed Equations in which <span class="math 
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. System Description</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-findings-why-is-it-tricky">First findings, why is it tricky?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a></li>
+    <ul class="simple visible nav section-nav flex-column">
 </ul>
 
   </nav></div>

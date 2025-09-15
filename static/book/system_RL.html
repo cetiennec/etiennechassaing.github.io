@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. System Description &#8212; My sample book</title>
+    <title>3) Reinforcement Learning &#8212; My sample book</title>
   
   
   
@@ -57,9 +57,7 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'system_presentation';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'system_RL';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -232,7 +230,7 @@
       
       
       
-      <li><a href="_sources/system_presentation.md" target="_blank"
+      <li><a href="_sources/system_RL.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -303,9 +301,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -316,25 +312,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>1. System Description</h1>
+    <h1>3) Reinforcement Learning</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. System Description</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-findings-why-is-it-tricky">First findings, why is it tricky?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a></li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -344,64 +326,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="system-description">
-<h1>1. System Description<a class="headerlink" href="#system-description" title="Link to this heading">#</a></h1>
-<p>The system consists of a 300m circular pipe through which water flows continuously. A heater is connected at the entrance (<span class="math notranslate nohighlight">\(x = 0\)</span>)
-of the pipe, providing a constant power input <span class="math notranslate nohighlight">\(P\)</span> to the water. The water flows with constant velocity <span class="math notranslate nohighlight">\(u\)</span>, losing heat
-to the environment due to convection. At the outlet, the water returns to the heater, creating a closed loop.</p>
-<p><img alt="heat loop" src="_images/simple_diagram1.png" /></p>
-<p>The goal is to perform a bacteria decontamination of the loop, requiring a temperature of at least 85°C through the loop
-with a 2°C/min ascent and without creating steam in the pipe.</p>
-<p><em><strong>How to ensure <span class="math notranslate nohighlight">\(T_{outlet}\)</span>&gt;85°C and <span class="math notranslate nohighlight">\(T_{inlet}\)</span>&lt;95°C ? Can we control the heating speed precisely to 2°C/min?</strong></em></p>
-<section id="first-findings-why-is-it-tricky">
-<h2>First findings, why is it tricky?<a class="headerlink" href="#first-findings-why-is-it-tricky" title="Link to this heading">#</a></h2>
-<p>Following plot shows what happens when the system is heated at a constant 30kW power which is barely the maximum power :</p>
-<p><img alt="heat loop" src="_images/step_response1.jpg" /></p>
-<p>From this we observe :</p>
-<ul class="simple">
-<li><p>Stair-like behavior due to the recirculation of water</p></li>
-<li><p>An inlet temperature that can go close to 100°C despite an outlet temperature that is barely above 85°C</p></li>
-<li><p>A significant delay (~12 min)</p></li>
-<li><p>A coupling and an intrication between inlet and outlet temperature</p></li>
-</ul>
-<p><strong>How to model and simulate these stairs?</strong></p>
-</section>
-<section id="naive-model">
-<h2>Naive model<a class="headerlink" href="#naive-model" title="Link to this heading">#</a></h2>
-<p>Following simulation divides the pipe into small segments to model heat transfer step by step. At each time step, every segment’s
-temperature is updated based on its neighbors and the environment (using a heat loss coefficient), while the temperature at the pipe’s end is “pushed forward”
-to the start—like a wave of heat moving through. The heater at one end injects warmth, and the animation reveals how heat spreads,
-stabilizes, and flows through the system.</p>
-<p><img alt="heat loop" src="_images/pipe_simulation1.gif" /></p>
-<p>This gives a first approximation and intuition on the system to explain the stairs and the impact of losses on the heating curve.</p>
-<p>Detailed plots in Appendix show the impact of heat loss coefficient and external temperature on the curves.</p>
-</section>
-</section>
-<section id="physical-model-equations">
-<h1>Physical model equations:<a class="headerlink" href="#physical-model-equations" title="Link to this heading">#</a></h1>
-<p>The system schematic is shown below:</p>
-<p><img alt="heat loop" src="_images/heat_loop1.png" /></p>
-<p>The evolution of the temperature in the pipe is governed by the following partial differential equation (PDE) obtained by
-writing the energy balance equation of a pipe infinitesimal segment:</p>
-<div class="math notranslate nohighlight">
-\[
-\frac{\partial T}{\partial t} + u \frac{\partial T}{\partial x} = -\frac{h P_{\text{pipe}}}{\rho S c_p} \left[ T(x, t) - T_{\text{ext}} \right]
-\]</div>
-<p>All notations are detailed in Appendix.</p>
-<p>To include the heater power in the equations, we can write the energy balance of the heater using
-<span class="math notranslate nohighlight">\( \Theta_{\text{inlet}}(t) = T_{\text{inlet}} - T_{\text{ext}} \)</span> and <span class="math notranslate nohighlight">\(\Theta_{\text{outlet}}(t) = T_{\text{outlet}} - T_{\text{ext}}\)</span>.
-This allows to write the following Delayed Equations in which <span class="math notranslate nohighlight">\(\tau\)</span> is the time of travel, <span class="math notranslate nohighlight">\(P\)</span> the power of the heater, and <span class="math notranslate nohighlight">\(K&lt;1\)</span> the loss coefficient:</p>
-<div class="math notranslate nohighlight">
-\[
-\Theta_{\text{inlet}}(t) = \frac{P}{\dot{m}c_p} + K \Theta_{\text{inlet}}(t - \tau),
-\Theta_{\text{outlet}}(t) = K \left( \frac{P}{\dot{m} c_p} +  \Theta_{\text{outlet}}(t - \tau) \right).
-\]</div>
-<p>What these equations say :</p>
-<ul class="simple">
-<li><p>A pipe segment always sees the water from one turn past, which temperature is modulated by the losses</p></li>
-<li><p>From an energy point of view, the system adds to the loop the amount of energy contained by the water inside the heater</p></li>
-<li><p>Effect of the power is inversely scaled by the flow <span class="math notranslate nohighlight">\(\dot{m}\)</span> which directly affects system properties</p></li>
-</ul>
+  <section id="reinforcement-learning">
+<h1>3) Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Link to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -440,27 +366,6 @@ This allows to write the following Delayed Equations in which <span class="math 
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. System Description</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-findings-why-is-it-tricky">First findings, why is it tricky?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a></li>
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>

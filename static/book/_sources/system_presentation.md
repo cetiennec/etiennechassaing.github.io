@@ -5,7 +5,7 @@ The system consists of a 300m circular pipe through which water flows continuous
 of the pipe, providing a constant power input $P$ to the water. The water flows with constant velocity $u$, losing heat 
 to the environment due to convection. At the outlet, the water returns to the heater, creating a closed loop.
 
-![heat loop](simple_diagram.png)
+![heat loop](images/simple_diagram.png)
 
 The goal is to perform a bacteria decontamination of the loop, requiring a temperature of at least 85°C through the loop
 with a 2°C/min ascent and without creating steam in the pipe.
@@ -16,7 +16,7 @@ with a 2°C/min ascent and without creating steam in the pipe.
 
 Following plot shows what happens when the system is heated at a constant 30kW power which is barely the maximum power :
 
-![heat loop](step_response.jpg)
+![heat loop](images/step_response.jpg)
 
 From this we observe :
 - Stair-like behavior due to the recirculation of water
@@ -43,7 +43,7 @@ temperature is updated based on its neighbors and the environment (using a heat 
 to the start—like a wave of heat moving through. The heater at one end injects warmth, and the animation reveals how heat spreads, 
 stabilizes, and flows through the system.
 
-![heat loop](pipe_simulation.gif)
+![heat loop](images/pipe_simulation.gif)
 
 This gives a first approximation and intuition on the system to explain the stairs and the impact of losses on the heating curve.
 
@@ -53,7 +53,7 @@ Detailed plots in Appendix show the impact of heat loss coefficient and external
 
 The system schematic is shown below:
 
-![heat loop](heat_loop.png)
+![heat loop](images/heat_loop.png)
 
 The evolution of the temperature in the pipe is governed by the following partial differential equation (PDE) obtained by 
 writing the energy balance equation of a pipe infinitesimal segment:
