@@ -558,12 +558,13 @@ The good performance can be explained by the linearity between power input and o
 <p><strong>How to enforce constraint handling on such a controller?</strong></p>
 <p>PI controllers have no direct way to ensure constraints, especially when the constraint is defined on another variable.
 To overcome this issue, we propose a gain scheduling technique based on the inlet temperature.
-To ensure security on inlet temperature, the gains <span class="math notranslate nohighlight">\(K\)</span> are modified dynamically based on <span class="math notranslate nohighlight">\(T_{\text{inlet}}\)</span> as follows:
-$<span class="math notranslate nohighlight">\(
+To ensure security on inlet temperature, the gains <span class="math notranslate nohighlight">\(K\)</span> are modified dynamically based on <span class="math notranslate nohighlight">\(T_{\text{inlet}}\)</span> as follows:</p>
+<div class="math notranslate nohighlight">
+\[
 K = K_{\text{initial}} \left( 1 - e^{-\alpha |T_{\text{inlet}} - T_{max}|} \right),
 and ~K=0~ if ~T_{inlet}&gt;T_{max}
-\)</span>$
-where:</p>
+\]</div>
+<p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(K_{\text{initial}}\)</span> is the initial  gain,</p></li>
 <li><p><span class="math notranslate nohighlight">\(\alpha\)</span> is a tuning parameter controlling the rate of gain reduction,</p></li>
@@ -615,8 +616,8 @@ However, to employ this technique, difficulty lies in the fact that :</p>
 </ol>
 <p>For each :</p>
 <ul class="simple">
-<li><p>1 <span class="math notranslate nohighlight">\(N\)</span> is set to 20 to lighten the simulation, and could be tackled by using simplified models for <span class="math notranslate nohighlight">\(T_{inlet}\)</span> and <span class="math notranslate nohighlight">\(T_{outlet}\)</span> respectively</p></li>
-<li><p>2 is tackled by setting the controller frequency to 0.1Hz, meaning one step is 10s, and setting the horizon to 70 steps, i.e. 700s</p></li>
+<li><p>1: <span class="math notranslate nohighlight">\(N\)</span> is set to 20 to lighten the simulation, and could be tackled by using simplified models for <span class="math notranslate nohighlight">\(T_{inlet}\)</span> and <span class="math notranslate nohighlight">\(T_{outlet}\)</span> respectively</p></li>
+<li><p>2: is tackled by setting the controller frequency to 0.1Hz, meaning one step is 10s, and setting the horizon to 70 steps, i.e. 700s</p></li>
 </ul>
 <p>Results are given below:</p>
 <div class="cell docutils container">
@@ -641,15 +642,16 @@ Interestingly, a small non-zero steady state error remains.</p>
 <section id="reinforcement-learning">
 <h3>3) Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Link to this heading">#</a></h3>
 <p>Reinforcement Learning (RL) uses a generic formulation of the control problem as an environment to which is inputted an action and which outputs an observation and a reward.
-RL algorithms uses the reward to learn a policy <span class="math notranslate nohighlight">\(\pi(state)=action\)</span>. The goal of the learning process is to make this policy converging towards an optimal policy <em>\pi^</em>$ i.e. the one that maximizes the cumulative reward on an episode.</p>
+RL algorithms uses the reward to learn a policy <span class="math notranslate nohighlight">\(\pi(state)=action\)</span>. The goal of the learning process is to make this policy converging towards an optimal policy <span class="math notranslate nohighlight">\(*\pi^*\)</span> i.e. the one that maximizes the cumulative reward on an episode.</p>
 <p><img alt="RL" src="_images/Reinforcement_learning_diagram.svg" /></p>
 <p>We define our environment as follows using our simulation :</p>
 <p><strong>Action</strong></p>
-<p>At each timestep, the agent selects a continuous action
-$<span class="math notranslate nohighlight">\(
+<p>At each timestep, the agent selects a continuous action</p>
+<div class="math notranslate nohighlight">
+\[
 a \in [0, 33] kW,
-\)</span>$
-which corresponds to the heater power in kilowatts.</p>
+\]</div>
+<p>which corresponds to the heater power in kilowatts.</p>
 <p><strong>State (Observation)</strong></p>
 <p>The observation provided to the agent is a vector of five components:</p>
 <div class="math notranslate nohighlight">
@@ -659,13 +661,14 @@ obs = \big(T_{\text{inlet}},\; T_{\text{outlet}},\; T_{\text{sp}},\; T_{\text{sp
 <p><strong>Note 1</strong> : these are a bit redundant and are used for simulation simplicity, for a more general case, <span class="math notranslate nohighlight">\(T_{ext}\)</span> should also be included to allow the agent to react to fast temperature changes from the environment.</p>
 <p><strong>Note 2</strong> : For control, relative observation allows to make the developed policy independant of the setpoint value.</p>
 <p><strong>Reward</strong></p>
-<p>The reward balances setpoint tracking, smooth control, energy usage, and safety:
-$<span class="math notranslate nohighlight">\(
+<p>The reward balances setpoint tracking, smooth control, energy usage, and safety:</p>
+<div class="math notranslate nohighlight">
+\[
 r = -\lvert T_{\text{sp}} - T_{\text{out}} \rvert
     - \lambda_{\Delta P}\,|P - P_{\text{prev}}|
     + \lambda_P P
     + r_{\text{safety}}.
-\)</span>$</p>
+\]</div>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(-\lvert T_{\text{sp}} - T_{\text{out}} \rvert\)</span>: directly penalizes deviation from the outlet setpoint,</p></li>
 <li><p><span class="math notranslate nohighlight">\(-\lambda_{\Delta P}\,|P - P_{\text{prev}}|\)</span>: penalizes fast changes in heater power and incentive constant power,</p></li>
