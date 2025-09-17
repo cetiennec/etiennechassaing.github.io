@@ -176,7 +176,6 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Heated Pipe System with Heat Loss</a></li>
-
 </ul>
 
     </div>
@@ -356,7 +355,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Heated Pipe System with Heat Loss</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-description">1. System Description</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-findings-why-is-it-tricky">First findings, why is it tricky?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
@@ -381,17 +379,14 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix">Appendix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-details-impact-of-coefficients">Simulation details : Impact of coefficients:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mpc-details-model-accuracy">MPC details : Model accuracy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-on-code-and-llm-usage">Note on code and LLM usage:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix">Appendix</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-details-impact-of-coefficients">Simulation details : Impact of coefficients:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mpc-details-model-accuracy">MPC details : Model accuracy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-on-code-and-llm-usage">Note on code and LLM usage:</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -488,7 +483,7 @@ This allows to write the following Delayed Equations in which <span class="math 
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "da101d79e40c4ccda7ae26e6c978e754"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "91f8de0578de4156b47a86bc89a6339f"}</script></div>
 </div>
 </section>
 </section>
@@ -542,7 +537,7 @@ It exhibits the need to continuously add energy to the system to compensate for 
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "4ff7d44eefd341debaf69a93a85ac721"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "fc02ac5ef98041f1ba69740e863c60ce"}</script></div>
 </div>
 <p>With correct tuning of the coefficients, we obtain following behavior :</p>
 <div class="cell docutils container">
@@ -892,11 +887,10 @@ However, since MPC and RL rely on two measurements rather than one, they allow t
 </div>
 <p><strong>Which one would you have picked on a real system?</strong></p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="appendix">
-<h1>Appendix<a class="headerlink" href="#appendix" title="Link to this heading">#</a></h1>
+<section id="appendix">
+<h2>Appendix<a class="headerlink" href="#appendix" title="Link to this heading">#</a></h2>
 <section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(x\)</span>: Position along the pipe in <strong>meters (m)</strong>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(t\)</span>: Time in <strong>seconds (s)</strong>.</p></li>
@@ -914,21 +908,22 @@ However, since MPC and RL rely on two measurements rather than one, they allow t
 </ul>
 </section>
 <section id="simulation-details-impact-of-coefficients">
-<h2>Simulation details : Impact of coefficients:<a class="headerlink" href="#simulation-details-impact-of-coefficients" title="Link to this heading">#</a></h2>
+<h3>Simulation details : Impact of coefficients:<a class="headerlink" href="#simulation-details-impact-of-coefficients" title="Link to this heading">#</a></h3>
 <p>Following plots the impact of heat loss coefficient and external temperature on the curves.</p>
 <p><img alt="heat loop" src="_images/param_comparison.png" /></p>
 </section>
 <section id="mpc-details-model-accuracy">
-<h2>MPC details : Model accuracy<a class="headerlink" href="#mpc-details-model-accuracy" title="Link to this heading">#</a></h2>
+<h3>MPC details : Model accuracy<a class="headerlink" href="#mpc-details-model-accuracy" title="Link to this heading">#</a></h3>
 <p>MPC uses a simplified version of the model with 20 pipe segments and a 10s integration steps, this creates discrepancies
 in its prediction, the magnitude of the impact is show below on a 30kW input :</p>
 <p><img alt="heat loop" src="_images/MPC_vs_full_model.png" /></p>
 </section>
 <section id="note-on-code-and-llm-usage">
-<h2>Note on code and LLM usage:<a class="headerlink" href="#note-on-code-and-llm-usage" title="Link to this heading">#</a></h2>
+<h3>Note on code and LLM usage:<a class="headerlink" href="#note-on-code-and-llm-usage" title="Link to this heading">#</a></h3>
 <p>This tutorial aims to present and discuss different technique usage.
 Some slackness has sometimes been taken to simplify some aspects, without notification.
 The initial project has been made in Matlab, code has been converted to Python partly using LLMs (OpenAI and Mistral)</p>
+</section>
 </section>
 </section>
 
@@ -987,7 +982,6 @@ The initial project has been made in Matlab, code has been converted to Python p
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Heated Pipe System with Heat Loss</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-description">1. System Description</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-findings-why-is-it-tricky">First findings, why is it tricky?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
@@ -1012,17 +1006,14 @@ The initial project has been made in Matlab, code has been converted to Python p
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix">Appendix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-details-impact-of-coefficients">Simulation details : Impact of coefficients:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mpc-details-model-accuracy">MPC details : Model accuracy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note-on-code-and-llm-usage">Note on code and LLM usage:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix">Appendix</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-details-impact-of-coefficients">Simulation details : Impact of coefficients:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mpc-details-model-accuracy">MPC details : Model accuracy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-on-code-and-llm-usage">Note on code and LLM usage:</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
