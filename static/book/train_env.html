@@ -175,7 +175,6 @@
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="system_tutorial.html">Heated Pipe System with Heat Loss</a></li>
-
 </ul>
 
     </div>
@@ -475,16 +474,16 @@ Wrapping the env in a DummyVecEnv.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">PipeHeaterSafeEnvGymnasium</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Tinlet</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">Tset</span><span class="o">=</span><span class="mi">95</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">PipeHeaterSafeEnvGymnasium</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Tinlet</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">Tset</span><span class="o">=</span><span class="mi">85</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># model = SAC(&quot;MlpPolicy&quot;, env, verbose=1)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">SAC</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;sac_pipeheater_model&quot;</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">)</span>
+
 <span class="c1"># model.load(&quot;sac_pipeheater_model&quot;)</span>
-<span class="c1"># model.save(&quot;sac_pipeheater_model&quot;)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;sac_pipeheater_model&quot;</span><span class="p">)</span>
 
 
 <span class="n">obs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 <span class="n">Tin_hist</span><span class="p">,</span> <span class="n">Tout_hist</span><span class="p">,</span> <span class="n">P_hist</span><span class="p">,</span> <span class="n">R_list</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="n">T_set_list</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">last_act</span> <span class="o">=</span> <span class="mf">0.0</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span>
 
@@ -497,36 +496,58 @@ Wrapping the env in a DummyVecEnv.
     <span class="n">Tout_hist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">P_hist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">R_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
+    <span class="n">T_set_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">obs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
+<span class="c1"># Parameters</span>
+<span class="n">n_steps</span> <span class="o">=</span> <span class="mi">360</span>          <span class="c1"># number of steps</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mi">10</span>                <span class="c1"># time step [s]</span>
+<span class="n">t_total</span> <span class="o">=</span> <span class="n">n_steps</span> <span class="o">*</span> <span class="n">dt</span> <span class="c1"># total duration [s]</span>
+
+<span class="c1"># Time vector</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t_total</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>   <span class="c1"># length = 360, goes 0 → 3590</span>
+<span class="c1"># or in minutes if you prefer:</span>
+<span class="n">time_min</span> <span class="o">=</span> <span class="n">time</span> <span class="o">/</span> <span class="mi">60</span>
+<span class="c1"># Ramp parameters</span>
+<span class="n">T_start</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">T_end</span> <span class="o">=</span> <span class="mi">85</span>
+<span class="n">ramp_steps</span> <span class="o">=</span> <span class="mi">180</span>    <span class="c1"># first 30 min</span>
+<span class="c1"># Temperature vector</span>
+<span class="c1"># Build temperature profile</span>
+<span class="n">T_ramp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">T_start</span><span class="p">,</span> <span class="n">T_end</span><span class="p">,</span> <span class="n">ramp_steps</span><span class="p">)</span>
+<span class="n">T_plateau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">n_steps</span> <span class="o">-</span> <span class="n">ramp_steps</span><span class="p">,</span> <span class="n">T_end</span><span class="p">)</span>
+<span class="n">Tset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">T_ramp</span><span class="p">,</span> <span class="n">T_plateau</span><span class="p">])</span>
 <span class="c1"># Create a figure with two subplots (vertically stacked)</span>
 <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 
 <span class="c1"># --- Top subplot: Temperature ---</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tin_hist</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Tinlet&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tout_hist</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Toutlet&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">Tset</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Setpoint&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_min</span><span class="p">,</span><span class="n">T_set_list</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Setpoint&quot;</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_min</span><span class="p">,</span><span class="n">Tin_hist</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Tinlet&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_min</span><span class="p">,</span><span class="n">Tout_hist</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Toutlet&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">95</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Safety limit&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Temperature (°C)&quot;</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Timestep&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time [min]&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># --- Bottom subplot: Power and Reward ---</span>
 <span class="c1"># Left y-axis: Heater Power</span>
 <span class="n">ax3</span> <span class="o">=</span> <span class="n">ax2</span>
-<span class="n">line1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">P_hist</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Heater Power (kW)&quot;</span><span class="p">)</span>
+<span class="n">line1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_min</span><span class="p">,</span><span class="n">P_hist</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Heater Power (kW)&quot;</span><span class="p">)</span>
 <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Power (kW)&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
 <span class="n">ax3</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
 <span class="n">ax3</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Right y-axis: Reward</span>
 <span class="n">ax4</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
-<span class="n">line2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_list</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Reward&quot;</span><span class="p">)</span>
+<span class="n">line2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_min</span><span class="p">,</span><span class="n">R_list</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Reward&quot;</span><span class="p">)</span>
 <span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Reward&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">)</span>
 <span class="n">ax4</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
 
 <span class="c1"># Combine legends for the bottom subplot</span>
 <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">]</span>
@@ -537,7 +558,7 @@ Wrapping the env in a DummyVecEnv.
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 
 <span class="c1"># Save the figure</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;images/security_RL_results.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;images/ramp_RL_results.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <span class="n">time_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">Tin_hist</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mf">6.0</span>
 
@@ -549,14 +570,18 @@ Wrapping the env in a DummyVecEnv.
     <span class="s2">&quot;HeaterPower_kW&quot;</span><span class="p">:</span> <span class="n">P_hist</span><span class="p">,</span>
     <span class="s2">&quot;Reward&quot;</span><span class="p">:</span> <span class="n">R_list</span>
 <span class="p">})</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;results/security_RL_results.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;results/ramp_RL_results.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Results saved to simulation_results.csv&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a523e6304b12bd694435f02925b90f3aec37e89cc8c2c7ac40258e9cb3e97c11.png" src="_images/a523e6304b12bd694435f02925b90f3aec37e89cc8c2c7ac40258e9cb3e97c11.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wrapping the env with a `Monitor` wrapper
+Wrapping the env in a DummyVecEnv.
+</pre></div>
+</div>
+<img alt="_images/437c5b63c67087f325f7f00ffb674b5722038257f246344dee7e26ef98c81bc5.png" src="_images/437c5b63c67087f325f7f00ffb674b5722038257f246344dee7e26ef98c81bc5.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Results saved to simulation_results.csv
 </pre></div>
 </div>

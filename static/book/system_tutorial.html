@@ -408,7 +408,7 @@ boiling temperature.</p>
 <p>The system consists of a 300m circular pipe through which water flows continuously. A heater is connected at the entrance (<span class="math notranslate nohighlight">\(x = 0\)</span>)
 of the pipe, providing a constant power input <span class="math notranslate nohighlight">\(P\)</span> to the water. The water flows with constant velocity <span class="math notranslate nohighlight">\(u\)</span>, losing heat
 to the environment due to convection. At the outlet, the water returns to the heater, creating a closed loop.</p>
-<p><img alt="heat loop" src="_images/simple_diagram1.png" /></p>
+<p><img alt="heat loop" src="_images/simple_diagram.png" /></p>
 <p>The goal is to perform a bacteria decontamination of the loop, requiring a temperature of at least 85°C through the loop
 with a 2°C/min ascent and without creating steam in the pipe.</p>
 <p><em><strong>How to ensure <span class="math notranslate nohighlight">\(T_{outlet}\)</span>&gt;85°C and <span class="math notranslate nohighlight">\(T_{inlet}\)</span>&lt;95°C ? Can we control the heating speed precisely to 2°C/min?</strong></em></p>
@@ -434,7 +434,7 @@ with a 2°C/min ascent and without creating steam in the pipe.</p>
 temperature is updated based on its neighbors and the environment (using a heat loss coefficient), while the temperature at the pipe’s end is “pushed forward”
 to the start—like a wave of heat moving through. The heater at one end injects warmth, and the animation reveals how heat spreads,
 stabilizes, and flows through the system.</p>
-<p><img alt="heat loop" src="_images/pipe_simulation1.gif" /></p>
+<p><img alt="heat loop" src="_images/pipe_simulation.gif" /></p>
 <p>This gives a first approximation and intuition on the system to explain the stairs and the impact of losses on the heating curve.</p>
 <p>Detailed plots in Appendix show the impact of heat loss coefficient and external temperature on the curves.</p>
 </section>
@@ -444,7 +444,7 @@ stabilizes, and flows through the system.</p>
 <section id="physical-model-equations">
 <h3>Physical model equations:<a class="headerlink" href="#physical-model-equations" title="Link to this heading">#</a></h3>
 <p>The system schematic is shown below:</p>
-<p><img alt="heat loop" src="_images/heat_loop1.png" /></p>
+<p><img alt="heat loop" src="_images/heat_loop.png" /></p>
 <p>The evolution of the temperature in the pipe is governed by the following partial differential equation (PDE) obtained by
 writing the energy balance equation of a pipe infinitesimal segment:</p>
 <div class="math notranslate nohighlight">
@@ -483,7 +483,7 @@ This allows to write the following Delayed Equations in which <span class="math 
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "91f8de0578de4156b47a86bc89a6339f"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "d706b79791234195a9a868ccaf57b2c6"}</script></div>
 </div>
 </section>
 </section>
@@ -537,7 +537,7 @@ It exhibits the need to continuously add energy to the system to compensate for 
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "fc02ac5ef98041f1ba69740e863c60ce"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "bc4d2a4b16da43329a3d0bf47ba6b0e4"}</script></div>
 </div>
 <p>With correct tuning of the coefficients, we obtain following behavior :</p>
 <div class="cell docutils container">
@@ -550,7 +550,7 @@ It exhibits the need to continuously add energy to the system to compensate for 
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saved PI simulation results to results/PI_run_data.csv
 </pre></div>
 </div>
-<img alt="_images/c2b87eeb321d0fc247ff232bb4cabeae7d7ddd42c09733ece72b25d170129cd9.png" src="_images/c2b87eeb321d0fc247ff232bb4cabeae7d7ddd42c09733ece72b25d170129cd9.png" />
+<img alt="_images/f53b3aa1747eaa203f7f9d63c6c634b28ce21df6e391b0cb4708a14cf6756005.png" src="_images/f53b3aa1747eaa203f7f9d63c6c634b28ce21df6e391b0cb4708a14cf6756005.png" />
 </div>
 </div>
 <p><strong>How to enforce constraint handling on such a controller?</strong></p>
@@ -728,8 +728,7 @@ Despite filtering, RL controller fails tracking precisely the target temperature
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2aa4660055042ca43c979999de1a76e32158d205730929497ee29888c69cfa3f.png" src="_images/2aa4660055042ca43c979999de1a76e32158d205730929497ee29888c69cfa3f.png" />
-<img alt="_images/2e311e1d79beb8d8c00edb353a7e2064d206ab7a42589c91739d674d19ac4a56.png" src="_images/2e311e1d79beb8d8c00edb353a7e2064d206ab7a42589c91739d674d19ac4a56.png" />
+<img alt="_images/d314541c19048615cef98aeec7f11d4d3382de9548adba29d077db74f21e0a11.png" src="_images/d314541c19048615cef98aeec7f11d4d3382de9548adba29d077db74f21e0a11.png" />
 </div>
 </div>
 <p>To discriminate their capabilities, we can compare them on the tracking of a ramped temperature of 2°/min with a saturation at 85°C.
@@ -745,11 +744,15 @@ The PI controller can be fine-tuned to track the reference:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saved PI simulation results to results/ramp_PI_run_data.csv
 </pre></div>
 </div>
-<img alt="_images/d2d3ab4898ae21e8f774e2523f688df835ab323c54fd0a2223732c5cc1a7a0d5.png" src="_images/d2d3ab4898ae21e8f774e2523f688df835ab323c54fd0a2223732c5cc1a7a0d5.png" />
+<img alt="_images/062af88d1f1df4d5a732e678994e673ffb62c62420d13429b6d016a116a58a7b.png" src="_images/062af88d1f1df4d5a732e678994e673ffb62c62420d13429b6d016a116a58a7b.png" />
 </div>
 </div>
 <p>MPC and RL are run on the ramp reference with same tuning as before.
-Comparison is given below :</p>
+For the MPC controller :</p>
+<p><img alt="MPC_results_ramp" src="_images/ramp_MPC_results.png" /></p>
+<p>For the RL controller :</p>
+<p><img alt="ramp_RL_results" src="_images/ramp_RL_results.png" /></p>
+<p>Comparison is given below :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">compare_everything</span> <span class="kn">import</span> <span class="n">plot_comparison_ramp</span>
@@ -759,8 +762,7 @@ Comparison is given below :</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4525befc9d90b5c5dd3d502a32ee41ce2177bba9a5ad7b44708b4db41cf43c84.png" src="_images/4525befc9d90b5c5dd3d502a32ee41ce2177bba9a5ad7b44708b4db41cf43c84.png" />
-<img alt="_images/09340746bd46d96cafeaad1410b688a176fb1081f464fe6f7154b5abf60f610a.png" src="_images/09340746bd46d96cafeaad1410b688a176fb1081f464fe6f7154b5abf60f610a.png" />
+<img alt="_images/eb44ec7c92879d258914eeb2c9169f3c0cf2b275365193e2db145577d5aeb0a3.png" src="_images/eb44ec7c92879d258914eeb2c9169f3c0cf2b275365193e2db145577d5aeb0a3.png" />
 </div>
 </div>
 <p>The MPC controller can track the reference without fine-tuning, as it can predict to use a given input for its future output.
@@ -807,7 +809,7 @@ To mitigate the risk</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "16452a7541a44131b711b5c9381838a4"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "4af789bd93ef429a93a67cfe86399c5f"}</script></div>
 </div>
 <ul class="simple">
 <li><p>MPC controller is inherently respecting constraints, if the optimization process is correctly set up. Meaning it would get as close as possible to unfeasible points.</p></li>
