@@ -483,7 +483,7 @@ This allows to write the following Delayed Equations in which <span class="math 
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "103f0a0645344ff0b888cc7860c77226"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "80d5d663d5bc44ab84865cae59cbbfec"}</script></div>
 </div>
 </section>
 <section id="control">
@@ -530,7 +530,7 @@ It exhibits the need to continuously add energy to the system to compensate for 
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "af556810bd72486da41759ca50799b14"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "47a5479d331c4f648d1fa0def4f38117"}</script></div>
 </div>
 <p>With correct tuning of the coefficients, we obtain following behavior :</p>
 <div class="cell docutils container">
@@ -543,7 +543,7 @@ It exhibits the need to continuously add energy to the system to compensate for 
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saved PI simulation results to results/PI_run_data.csv
 </pre></div>
 </div>
-<img alt="_images/e25f54852e8a6c8043e411fc39fddacf261228d54390f44f107dcd610c193beb.png" src="_images/e25f54852e8a6c8043e411fc39fddacf261228d54390f44f107dcd610c193beb.png" />
+<img alt="_images/c2b87eeb321d0fc247ff232bb4cabeae7d7ddd42c09733ece72b25d170129cd9.png" src="_images/c2b87eeb321d0fc247ff232bb4cabeae7d7ddd42c09733ece72b25d170129cd9.png" />
 </div>
 </div>
 <p><strong>How to enforce constraint handling on such a controller?</strong></p>
@@ -650,11 +650,10 @@ However, to employ this technique, difficulty lies in the fact that :</p>
 </div>
 </div>
 </div>
-<p><img alt="MPC_main_results" src="_images/MPC_main_results_2.png" />
-<img alt="heat loop" src="_images/MPC_results_input_2.png" /></p>
-<p>From this, we can observe a much more complex behavior than the PI controller which was bounded to its linear behavior. Time of heating is reduced by .. min because the controller can leverage the full power before decreasing.
-A small error remains, indicating a better tuning could be performed.</p>
-<p>This formulation is way more flexible and allows to control each temperature with the same controller.</p>
+<p>From this, we can observe a  more complex behavior than the PI controller which was bounded to its linear behavior.
+However, this does not give any better performance since the PI controller was already leveraging the power limit to perform quick tracking.
+Interestingly, a small non-zero steady state error remains.</p>
+<p>As a strong advantage, this formulation is way more flexible and allows to control each temperature with the same controller.</p>
 </section>
 <section id="reinforcement-learning">
 <h3>3) Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Link to this heading">#</a></h3>
@@ -722,8 +721,8 @@ Despite filtering, RL controller fails tracking precisely the target temperature
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d6b24c4a7cdaa0943050f0fc732f24c292bea28b58e45730d874b73dc2697cd4.png" src="_images/d6b24c4a7cdaa0943050f0fc732f24c292bea28b58e45730d874b73dc2697cd4.png" />
-<img alt="_images/4f35b1e24df4abd74be84bcf96537f976992fab70eb47694130b1e237ed94383.png" src="_images/4f35b1e24df4abd74be84bcf96537f976992fab70eb47694130b1e237ed94383.png" />
+<img alt="_images/2aa4660055042ca43c979999de1a76e32158d205730929497ee29888c69cfa3f.png" src="_images/2aa4660055042ca43c979999de1a76e32158d205730929497ee29888c69cfa3f.png" />
+<img alt="_images/2e311e1d79beb8d8c00edb353a7e2064d206ab7a42589c91739d674d19ac4a56.png" src="_images/2e311e1d79beb8d8c00edb353a7e2064d206ab7a42589c91739d674d19ac4a56.png" />
 </div>
 </div>
 <p>To discriminate their capabilities, we can compare them on the tracking of a ramped temperature of 2°/min with a saturation at 85°C.
@@ -754,7 +753,7 @@ Comparison is given below :</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/4525befc9d90b5c5dd3d502a32ee41ce2177bba9a5ad7b44708b4db41cf43c84.png" src="_images/4525befc9d90b5c5dd3d502a32ee41ce2177bba9a5ad7b44708b4db41cf43c84.png" />
-<img alt="_images/197d217f1c00ef7fe90c1c2e7cc98b5c825fcc5f4208c567975028825597f246.png" src="_images/197d217f1c00ef7fe90c1c2e7cc98b5c825fcc5f4208c567975028825597f246.png" />
+<img alt="_images/09340746bd46d96cafeaad1410b688a176fb1081f464fe6f7154b5abf60f610a.png" src="_images/09340746bd46d96cafeaad1410b688a176fb1081f464fe6f7154b5abf60f610a.png" />
 </div>
 </div>
 <p>The MPC controller can track the reference without fine-tuning, as it can predict to use a given input for its future output.
@@ -801,7 +800,7 @@ To mitigate the risk</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "70cc3144b73c4d9eabdc36efe2ecc4ab"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "16452a7541a44131b711b5c9381838a4"}</script></div>
 </div>
 <ul class="simple">
 <li><p>MPC controller is inherently respecting constraints, if the optimization process is correctly set up. Meaning it would get as close as possible to unfeasible points.</p></li>
