@@ -472,7 +472,7 @@ This allows to write the following Delayed Equations in which <span class="math 
 Following example show the step response of the system for a given power input :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">simulation_backend</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">simulation_backend</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">fixed</span>
 <span class="n">interact</span><span class="p">(</span>
     <span class="n">simulate_and_plot</span><span class="p">,</span>
@@ -483,7 +483,7 @@ Following example show the step response of the system for a given power input :
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b40b622fa33849e3b8dc666b44521930"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "45b0d30d9ac64026abb1392eeacd7c51"}</script></div>
 </div>
 </section>
 </section>
@@ -518,7 +518,7 @@ First simulation show the result with a P controller only.
 It exhibits the need to continuously add energy to the system to compensate for the losses, hence a nonzero <span class="math notranslate nohighlight">\(K_i\)</span> :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PI_backend</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PI_backend</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="c1"># Interactive sliders for tuning Kp, Ki, and T_ext</span>
 <span class="n">interact</span><span class="p">(</span>
@@ -537,12 +537,12 @@ It exhibits the need to continuously add energy to the system to compensate for 
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "8ea2720ee82e4a9781443d01261f5ee5"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ac020bc2d1364d8c9b52cd9eb1301551"}</script></div>
 </div>
 <p>With correct tuning of the coefficients, we obtain the following behavior :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulate_PI</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="mi">1300</span><span class="p">,</span><span class="n">Ki</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span><span class="n">T_ext</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">save_csv</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">csv_filename</span><span class="o">=</span><span class="s2">&quot;results/PI_run_data.csv&quot;</span><span class="p">,</span> <span class="n">T_set</span> <span class="o">=</span> <span class="mi">85</span><span class="p">);</span>
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">simulate_PI</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="mi">1300</span><span class="p">,</span><span class="n">Ki</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span><span class="n">T_ext</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">save_csv</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">csv_filename</span><span class="o">=</span><span class="s2">&quot;results/PI_run_data.csv&quot;</span><span class="p">,</span> <span class="n">T_set</span> <span class="o">=</span> <span class="mi">85</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -550,7 +550,7 @@ It exhibits the need to continuously add energy to the system to compensate for 
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saved PI simulation results to results/PI_run_data.csv
 </pre></div>
 </div>
-<img alt="_images/f53b3aa1747eaa203f7f9d63c6c634b28ce21df6e391b0cb4708a14cf6756005.png" src="_images/f53b3aa1747eaa203f7f9d63c6c634b28ce21df6e391b0cb4708a14cf6756005.png" />
+<img alt="_images/e355722b1052f7fd03e561d593cfc2fff45bbb2d35a5ed3d77e43f6d84fbc1e0.png" src="_images/e355722b1052f7fd03e561d593cfc2fff45bbb2d35a5ed3d77e43f6d84fbc1e0.png" />
 </div>
 </div>
 <p>This shows the ability of the PI controller to precisely track an outlet setpoint temperature.
@@ -621,7 +621,7 @@ However, to employ this technique, difficulty lies in the fact that :</p>
 <p>Results are given below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">IntSlider</span>
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">IntSlider</span>
 <span class="kn">from</span> <span class="nn">MPCRun</span> <span class="kn">import</span> <span class="n">run_MPC</span>
 
 <span class="n">run_MPC</span><span class="p">(</span><span class="n">Hp</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">],</span> <span class="n">R</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">Rd</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T_set</span><span class="o">=</span><span class="p">[</span><span class="mf">92.0</span><span class="p">,</span> <span class="mf">85.0</span><span class="p">],</span> <span class="n">T_safety</span><span class="o">=</span><span class="mf">95.0</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
@@ -629,35 +629,8 @@ However, to employ this technique, difficulty lies in the fact that :</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">IntSlider</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">MPCRun</span> <span class="kn">import</span> <span class="n">run_MPC</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">run_MPC</span><span class="p">(</span><span class="n">Hp</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">],</span> <span class="n">R</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">Rd</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T_set</span><span class="o">=</span><span class="p">[</span><span class="mf">92.0</span><span class="p">,</span> <span class="mf">85.0</span><span class="p">],</span> <span class="n">T_safety</span><span class="o">=</span><span class="mf">95.0</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">PycharmProjects</span><span class="o">/</span><span class="n">NehemisControl</span><span class="o">/</span><span class="n">mybook</span><span class="o">/</span><span class="n">MPCRun</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">PipeEnv</span> <span class="kn">import</span> <span class="n">PipeHeaterSafeEnvGymnasium</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">MPCCon</span> <span class="kn">import</span> <span class="n">MPCController</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">params</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">PycharmProjects</span><span class="o">/</span><span class="n">NehemisControl</span><span class="o">/</span><span class="n">mybook</span><span class="o">/</span><span class="n">MPCCon</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># mpc_controller.py (only the MPCController class shown, replace original)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">class</span> <span class="nc">MPCController</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span><span class="sd">     Linear MPC for PipeHeaterSafeEnvGymnasium.</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span><span class="sd">     - u is heater power in kW (same units as env action); internally env multiplies by 1e3.</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span><span class="sd">     &quot;&quot;&quot;</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;cvxpy&#39;
-</pre></div>
-</div>
+<img alt="_images/b0bb9229447a62df75933aa387a34921e9b257c91802b19e01af6a0ad6ea3a00.png" src="_images/b0bb9229447a62df75933aa387a34921e9b257c91802b19e01af6a0ad6ea3a00.png" />
+<img alt="_images/6732b924316ffbf0fb104c5fbd29dfc80f7200f5df72e87014f326acbfb1a95f.png" src="_images/6732b924316ffbf0fb104c5fbd29dfc80f7200f5df72e87014f326acbfb1a95f.png" />
 </div>
 </div>
 <p>From this, we can observe a  more complex behavior than the PI controller which was bounded to its linear behavior.
@@ -726,7 +699,7 @@ Despite filtering, RL controller fails tracking precisely the target temperature
 <p>Comparison of the 3 approaches is presented below. The PI controller is the most precise one, RL controller fails maintaining a constant temperature and MPC suffers from a small steady-state error of 0.4°C.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">compare_everything</span> <span class="kn">import</span> <span class="n">plot_comparison_step</span>
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">compare_everything</span> <span class="kn">import</span> <span class="n">plot_comparison_step</span>
 
 <span class="n">plot_comparison_step</span><span class="p">()</span>
 </pre></div>
@@ -744,7 +717,7 @@ Despite filtering, RL controller fails tracking precisely the target temperature
 <p><strong>Warning, this example is a bit tricky because the PI controller has no information about the delay, the fact it is able to track it accordingly is due to a specific tuning, to use a PI controller properly on this system, a delay compensator should be integrated</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulate_PI</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="mi">1300</span><span class="p">,</span> <span class="n">Ki</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">save_csv</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">csv_filename</span><span class="o">=</span><span class="s2">&quot;results/ramp_PI_run_data.csv&quot;</span><span class="p">);</span>
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">simulate_PI</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="mi">1300</span><span class="p">,</span> <span class="n">Ki</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">save_csv</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">csv_filename</span><span class="o">=</span><span class="s2">&quot;results/ramp_PI_run_data.csv&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -763,7 +736,7 @@ For the MPC controller :</p>
 <p>Comparison is given below :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">compare_everything</span> <span class="kn">import</span> <span class="n">plot_comparison_ramp</span>
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">compare_everything</span> <span class="kn">import</span> <span class="n">plot_comparison_ramp</span>
 
 <span class="n">plot_comparison_ramp</span><span class="p">()</span>
 </pre></div>
@@ -800,7 +773,7 @@ To mitigate the risk</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PI_backend</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PI_backend</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="c1"># Interactive sliders for tuning Kp, Ki, and T_ext</span>
 <span class="n">interact</span><span class="p">(</span>
