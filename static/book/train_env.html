@@ -474,7 +474,7 @@ Wrapping the env in a DummyVecEnv.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">PipeHeaterSafeEnvGymnasium</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Tinlet</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">Tset</span><span class="o">=</span><span class="mi">85</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">PipeHeaterSafeEnvGymnasium</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Tinlet</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">Tset</span><span class="o">=</span><span class="mi">85</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">SAC</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;sac_pipeheater_model&quot;</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">)</span>
 
@@ -531,6 +531,8 @@ Wrapping the env in a DummyVecEnv.
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Temperature (°C)&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time [min]&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">105</span><span class="p">)</span>
+
 <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
@@ -581,7 +583,7 @@ Wrapping the env in a DummyVecEnv.
 Wrapping the env in a DummyVecEnv.
 </pre></div>
 </div>
-<img alt="_images/437c5b63c67087f325f7f00ffb674b5722038257f246344dee7e26ef98c81bc5.png" src="_images/437c5b63c67087f325f7f00ffb674b5722038257f246344dee7e26ef98c81bc5.png" />
+<img alt="_images/07916877121773499406cfb4872aed05bb40dfdda4058abd4fcdb09944c3c68f.png" src="_images/07916877121773499406cfb4872aed05bb40dfdda4058abd4fcdb09944c3c68f.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Results saved to simulation_results.csv
 </pre></div>
 </div>

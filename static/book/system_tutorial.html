@@ -374,6 +374,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-and-conclusion">Comparison and conclusion</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performances-constant-setpoint-tracking">Performances : Constant setpoint tracking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performances-ramp-setpoint-tracking">Performances : Ramp setpoint tracking</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity-flexibility-and-running-frequency">Complexity, Flexibility and running frequency</a></li>
 </ul>
@@ -399,13 +400,11 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="heated-pipe-system-with-heat-loss">
 <h1>Heated Pipe System with Heat Loss<a class="headerlink" href="#heated-pipe-system-with-heat-loss" title="Link to this heading">#</a></h1>
-<p>This tutorial describes the process of controlling the outlet temperature of a 300 meters heat pipe close to the
-boiling temperature.</p>
-<p>The main goal is to describe the process of solving rather than the details of the equations.</p>
+<p>This tutorial demonstrates the approach to regulating the outlet temperature of a 450-meter heat pipe near its boiling point, emphasizing the solution methodology over equation details</p>
 <hr class="docutils" />
 <section id="system-description">
 <h2>1. System Description<a class="headerlink" href="#system-description" title="Link to this heading">#</a></h2>
-<p>The system consists of a 300m circular pipe through which water flows continuously. A heater is connected at the entrance (<span class="math notranslate nohighlight">\(x = 0\)</span>)
+<p>The system consists of a 450 mm circular pipe through which water flows continuously. A heater is connected at the entrance (<span class="math notranslate nohighlight">\(x = 0\)</span>)
 of the pipe, providing a constant power input <span class="math notranslate nohighlight">\(P\)</span> to the water. The water flows with constant velocity <span class="math notranslate nohighlight">\(u\)</span>, losing heat
 to the environment due to convection. At the outlet, the water returns to the heater, creating a closed loop.</p>
 <p><img alt="heat loop" src="_images/simple_diagram.png" /></p>
@@ -430,12 +429,12 @@ with a 2°C/min ascent and without creating steam in the pipe.</p>
 </section>
 <section id="naive-model">
 <h3>Naive model<a class="headerlink" href="#naive-model" title="Link to this heading">#</a></h3>
-<p>Following simulation divides the pipe into small segments to model heat transfer step by step. At each time step, every segment’s
+<p>The following simulation divides the pipe into small segments to model heat transfer step by step. At each time step, every segment’s
 temperature is updated based on its neighbors and the environment (using a heat loss coefficient), while the temperature at the pipe’s end is “pushed forward”
 to the start—like a wave of heat moving through. The heater at one end injects warmth, and the animation reveals how heat spreads,
 stabilizes, and flows through the system.</p>
 <p><img alt="heat loop" src="_images/pipe_simulation.gif" /></p>
-<p>This gives a first approximation and intuition on the system to explain the stairs and the impact of losses on the heating curve.</p>
+<p>This gives a first approximation and intuition on the system to explain the stairs, how the heat is exchanged and the impact of losses on the heating curve.</p>
 <p>Detailed plots in Appendix show the impact of heat loss coefficient and external temperature on the curves.</p>
 </section>
 </section>
@@ -460,16 +459,17 @@ This allows to write the following Delayed Equations in which <span class="math 
 \Theta_{\text{inlet}}(t) = \frac{P}{\dot{m}c_p} + K \Theta_{\text{inlet}}(t - \tau),
 \Theta_{\text{outlet}}(t) = K \left( \frac{P}{\dot{m} c_p} +  \Theta_{\text{outlet}}(t - \tau) \right).
 \]</div>
-<p>What these equations say :</p>
+<p>These equations are teaching us that:</p>
 <ul class="simple">
-<li><p>A pipe segment always sees the water from one turn past, which temperature is modulated by the losses</p></li>
-<li><p>From an energy point of view, the system adds to the loop the amount of energy contained by the water inside the heater</p></li>
-<li><p>Effect of the power is inversely scaled by the flow <span class="math notranslate nohighlight">\(\dot{m}\)</span> which directly affects system properties</p></li>
+<li><p>A pipe segment always sees the water from one turn past, which temperature is modulated by the losses,</p></li>
+<li><p>From an energy point of view, the system adds to the loop the amount of energy contained by the water inside the heater,</p></li>
+<li><p>Effect of the power is inversely scaled by the flow <span class="math notranslate nohighlight">\(\dot{m}\)</span> which directly affects system properties.</p></li>
 </ul>
 </section>
 <section id="system-simulation">
 <h3>System Simulation<a class="headerlink" href="#system-simulation" title="Link to this heading">#</a></h3>
-<p>Following example show the step response of the system for a given power input :</p>
+<p>Previous equations are used with a ODE solver (via ODE integration) to simulate the system.
+Following example show the step response of the system for a given power input :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">simulation_backend</span> <span class="kn">import</span> <span class="o">*</span>
@@ -483,7 +483,7 @@ This allows to write the following Delayed Equations in which <span class="math 
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "d706b79791234195a9a868ccaf57b2c6"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b966d717d4eb418488c07303b6c8b101"}</script></div>
 </div>
 </section>
 </section>
@@ -491,9 +491,9 @@ This allows to write the following Delayed Equations in which <span class="math 
 <h2>3. Control<a class="headerlink" href="#control" title="Link to this heading">#</a></h2>
 <section id="control-objectives">
 <h3>Control Objectives<a class="headerlink" href="#control-objectives" title="Link to this heading">#</a></h3>
-<p>Our system should respect the following goals:</p>
+<p>Our system should respect the following requirements:</p>
 <ul class="simple">
-<li><p>Heat at a temperature of at least 85°C while respecting a 2°C/min ascent</p></li>
+<li><p>Outlet temperature of at least 85°C while respecting a 2°C/min ascent</p></li>
 <li><p>Ensure constant outlet temperature control</p></li>
 <li><p>Ensure inlet temperature remains below 95°C</p></li>
 <li><p>Be robust to external temperature changes</p></li>
@@ -537,9 +537,9 @@ It exhibits the need to continuously add energy to the system to compensate for 
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "bc4d2a4b16da43329a3d0bf47ba6b0e4"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "78a5ab91490b4e4bab37b8f6da75fe73"}</script></div>
 </div>
-<p>With correct tuning of the coefficients, we obtain following behavior :</p>
+<p>With correct tuning of the coefficients, we obtain the following behavior :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulate_PI</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="mi">1300</span><span class="p">,</span><span class="n">Ki</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span><span class="n">T_ext</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">save_csv</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">csv_filename</span><span class="o">=</span><span class="s2">&quot;results/PI_run_data.csv&quot;</span><span class="p">,</span> <span class="n">T_set</span> <span class="o">=</span> <span class="mi">85</span><span class="p">);</span>
@@ -553,8 +553,10 @@ It exhibits the need to continuously add energy to the system to compensate for 
 <img alt="_images/f53b3aa1747eaa203f7f9d63c6c634b28ce21df6e391b0cb4708a14cf6756005.png" src="_images/f53b3aa1747eaa203f7f9d63c6c634b28ce21df6e391b0cb4708a14cf6756005.png" />
 </div>
 </div>
+<p>This shows the ability of the PI controller to precisely track an outlet setpoint temperature.
+The good performance can be explained by the linearity between power input and outlet temperature for a fixed external temperature.</p>
 <p><strong>How to enforce constraint handling on such a controller?</strong></p>
-<p>PI controllers have no direct way to ensure constraints, especially when the constraint is set on another variable.
+<p>PI controllers have no direct way to ensure constraints, especially when the constraint is defined on another variable.
 To overcome this issue, we propose a gain scheduling technique based on the inlet temperature.
 To ensure security on inlet temperature, the gains <span class="math notranslate nohighlight">\(K\)</span> are modified dynamically based on <span class="math notranslate nohighlight">\(T_{\text{inlet}}\)</span> as follows:
 $<span class="math notranslate nohighlight">\(
@@ -567,16 +569,17 @@ where:</p>
 <li><p><span class="math notranslate nohighlight">\(\alpha\)</span> is a tuning parameter controlling the rate of gain reduction,</p></li>
 <li><p><span class="math notranslate nohighlight">\(T_{max}=95°C\)</span> is the limit temperature</p></li>
 </ul>
-<p>This ensures that the system is maintaining security requirements in a soft linear manner, while tracking the reference of outlet temperature.</p>
+<p>This ensures that the system is maintaining security requirements in a soft manner, while tracking the reference of outlet temperature.
+Results will be given below.</p>
 </section>
 <section id="optimal-control-via-mpc-simo-control-fashion">
 <h3>2) Optimal control via MPC, SIMO control fashion<a class="headerlink" href="#optimal-control-via-mpc-simo-control-fashion" title="Link to this heading">#</a></h3>
 <p>Since we have access to a model, we can explore optimal control via Model Predictive Control (MPC).
 MPC leverages the model to find the best input to the system based on a horizon prediction (<span class="math notranslate nohighlight">\(N_p\)</span>).
-It strength is to be able to consider both states for a single input to the system.
-At each timestep, MPC controller computes the best input sequence for the future, apply the first one, and repeat the process to ensure good predictions and response to uncertainties.
-<img alt="MPC" src="_images/MPC_principle.png" />
-[source : ETH]</p>
+Its strength is to be able to consider both states for a single input to the system.
+At each timestep, MPC controller computes the best input sequence for the future, apply the first one, and repeat the process to ensure good predictions and response to uncertainties.</p>
+<p><img alt="MPC" src="_images/MPC_principle.png" /></p>
+<p>[source : ETH]</p>
 <p>To do so, MPC uses weights to formulate the control objective and respect constraints in the optimization process.
 MPC formulation of the problem is as follows:</p>
 <div class="math notranslate nohighlight">
@@ -610,12 +613,12 @@ However, to employ this technique, difficulty lies in the fact that :</p>
 <li><p>The model is high order, <span class="math notranslate nohighlight">\(x\)</span> is (1,30) for a  30 segment pipe discretization.</p></li>
 <li><p>Horizon to control <span class="math notranslate nohighlight">\(T_{outlet}\)</span> should be 600, which implies dealing with huge matrices.</p></li>
 </ol>
-<p>For each issue :</p>
+<p>For each :</p>
 <ul class="simple">
 <li><p>1 <span class="math notranslate nohighlight">\(N\)</span> is set to 20 to lighten the simulation, and could be tackled by using simplified models for <span class="math notranslate nohighlight">\(T_{inlet}\)</span> and <span class="math notranslate nohighlight">\(T_{outlet}\)</span> respectively</p></li>
 <li><p>2 is tackled by setting the controller frequency to 0.1Hz, meaning one step is 10s, and setting the horizon to 70 steps, i.e. 700s</p></li>
 </ul>
-<p>Moreover, a secondary objective is set on <span class="math notranslate nohighlight">\(T_{inlet}=92°C\)</span> to incentive the controller to use both sensors.</p>
+<p>Results are given below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">IntSlider</span>
@@ -696,7 +699,7 @@ r = -\lvert T_{\text{sp}} - T_{\text{out}} \rvert
 <li><p><span class="math notranslate nohighlight">\(r_{\text{safety}} = -10\)</span> if <span class="math notranslate nohighlight">\(T_1 &gt; T_{\text{safety}}\)</span>, otherwise <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
 </ul>
 <p><strong>Algorithm</strong></p>
-<p>Soft Actor-Critic (SAC) is chosen for its good versatility and performances.</p>
+<p>Soft Actor-Critic <a class="reference external" href="https://stable-baselines3.readthedocs.io/en/master/modules/sac.html">SAC</a> is chosen for its good versatility and performances.</p>
 <p><strong>Results</strong></p>
 <p>To prevent noisy outputs from the RL controller, actions are filteredd with an average filter (<span class="math notranslate nohighlight">\(\alpha=0.2\)</span>) giving :</p>
 <p><img alt="filtRL" src="_images/filtered_RL_results.png" /></p>
@@ -717,8 +720,9 @@ Despite filtering, RL controller fails tracking precisely the target temperature
 <p>On the task of tracking a constant outlet temperature, all the controllers achieve similar performances. This is due to :</p>
 <ul class="simple">
 <li><p>The saturation of the input between 0 and 25 min approximately</p></li>
-<li></li>
+<li><p>The fact that the system is mainly linear, meaning that an optimal linear controller exists</p></li>
 </ul>
+<p>Comparison of the 3 approaches is presented below. The PI controller is the most precise one, RL controller fails maintaining a constant temperature and MPC suffers from a small steady-state error of 0.4°C.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">compare_everything</span> <span class="kn">import</span> <span class="n">plot_comparison_step</span>
@@ -731,8 +735,11 @@ Despite filtering, RL controller fails tracking precisely the target temperature
 <img alt="_images/d314541c19048615cef98aeec7f11d4d3382de9548adba29d077db74f21e0a11.png" src="_images/d314541c19048615cef98aeec7f11d4d3382de9548adba29d077db74f21e0a11.png" />
 </div>
 </div>
-<p>To discriminate their capabilities, we can compare them on the tracking of a ramped temperature of 2°/min with a saturation at 85°C.
-The PI controller can be fine-tuned to track the reference:</p>
+</section>
+<section id="performances-ramp-setpoint-tracking">
+<h3>Performances : Ramp setpoint tracking<a class="headerlink" href="#performances-ramp-setpoint-tracking" title="Link to this heading">#</a></h3>
+<p>To discriminate their capabilities, we can compare them on the tracking of a ramped temperature of 2°/min with a saturation at 85°C.</p>
+<p>The PI controller can be fine-tuned to track the reference:</p>
 <p><strong>Warning, this example is a bit tricky because the PI controller has no information about the delay, the fact it is able to track it accordingly is due to a specific tuning, to use a PI controller properly on this system, a delay compensator should be integrated</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -750,7 +757,7 @@ The PI controller can be fine-tuned to track the reference:</p>
 <p>MPC and RL are run on the ramp reference with same tuning as before.
 For the MPC controller :</p>
 <p><img alt="MPC_results_ramp" src="_images/ramp_MPC_results.png" /></p>
-<p>For the RL controller :</p>
+<p>And for the RL controller, we obtain :</p>
 <p><img alt="ramp_RL_results" src="_images/ramp_RL_results.png" /></p>
 <p>Comparison is given below :</p>
 <div class="cell docutils container">
@@ -766,7 +773,8 @@ For the MPC controller :</p>
 </div>
 </div>
 <p>The MPC controller can track the reference without fine-tuning, as it can predict to use a given input for its future output.
-RL has not been trained on the ramp following and exhibits its limitation on out-of-distribution example, meaning the training was not good enough for the controller to generalize.</p>
+RL has not been trained on the ramp following and exhibits its limitation on out-of-distribution example, meaning the training was not good enough for the controller to generalize.
+PI controller creates a roughly 2°C/min ramp due to a good tuning but is unable to make the outlet temperature converge to the setpoint during ramp time.</p>
 </section>
 <section id="security">
 <h3>Security<a class="headerlink" href="#security" title="Link to this heading">#</a></h3>
@@ -859,30 +867,30 @@ However, since MPC and RL rely on two measurements rather than one, they allow t
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Performance on Step</p></td>
-<td><p>Excellent with good tuning</p></td>
-<td><p>Very good, with non needed input variations</p></td>
-<td><p>Shaky, struggle to maintain constant value</p></td>
+<tr class="row-even"><td><p><strong>Performance on Step</strong></p></td>
+<td><p>✅ Excellent with good tuning</p></td>
+<td><p>✅ Very good, no unnecessary input variations</p></td>
+<td><p>❌ Shaky, struggles to maintain constant value</p></td>
 </tr>
-<tr class="row-odd"><td><p>Performance on Ramp</p></td>
-<td><p>Requires specific tuning, delay is not compensated</p></td>
-<td><p>Very good, compensate delay, no specific tuning</p></td>
-<td><p>Need dedicated training</p></td>
+<tr class="row-odd"><td><p><strong>Performance on Ramp</strong></p></td>
+<td><p>❌ Needs specific tuning, delay not compensated</p></td>
+<td><p>✅ Very good, compensates delay, no tuning needed</p></td>
+<td><p>❌ Needs dedicated training</p></td>
 </tr>
-<tr class="row-even"><td><p>Security (safety, constraints)</p></td>
-<td><p>Done via gain scheduler</p></td>
-<td><p>Inherent</p></td>
-<td><p>Has to be trained and tested on defined cases</p></td>
+<tr class="row-even"><td><p><strong>Security (safety, constraints)</strong></p></td>
+<td><p>⚠️ Done via gain scheduler</p></td>
+<td><p>✅ Inherent</p></td>
+<td><p>❌ Must be trained/tested on defined cases</p></td>
 </tr>
-<tr class="row-odd"><td><p>Complexity/Flexibility</p></td>
-<td><p>Low, simple to implement and easy to test</p></td>
-<td><p>High, requires model and optimization solver</p></td>
-<td><p>Can be easy if a good simulation is available. New task requires new reward design and retraining.</p></td>
+<tr class="row-odd"><td><p><strong>Complexity/Flexibility</strong></p></td>
+<td><p>✅ Low, simple to implement &amp; test</p></td>
+<td><p>❌ High, requires model &amp; solver</p></td>
+<td><p>⚠️ Can be easy if sim available, but new tasks = retraining</p></td>
 </tr>
-<tr class="row-even"><td><p>Running frequency</p></td>
-<td><p>1Hz, instant computation</p></td>
-<td><p>0.1Hz, optimization takes the order of a second</p></td>
-<td><p>1Hz or 0.1Hz, fast inference</p></td>
+<tr class="row-even"><td><p><strong>Running frequency</strong></p></td>
+<td><p>✅ 1Hz, instant computation</p></td>
+<td><p>❌ 0.1Hz, optimization takes ~1s</p></td>
+<td><p>✅ 1Hz or 0.1Hz, fast inference</p></td>
 </tr>
 </tbody>
 </table>
@@ -1003,6 +1011,7 @@ The initial project has been made in Matlab, code has been converted to Python p
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-and-conclusion">Comparison and conclusion</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performances-constant-setpoint-tracking">Performances : Constant setpoint tracking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performances-ramp-setpoint-tracking">Performances : Ramp setpoint tracking</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity-flexibility-and-running-frequency">Complexity, Flexibility and running frequency</a></li>
 </ul>
