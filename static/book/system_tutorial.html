@@ -483,7 +483,7 @@ Following example show the step response of the system for a given power input :
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b966d717d4eb418488c07303b6c8b101"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "dc13889a0df1492cbd34ae53ade460c5"}</script></div>
 </div>
 </section>
 </section>
@@ -537,7 +537,7 @@ It exhibits the need to continuously add energy to the system to compensate for 
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "78a5ab91490b4e4bab37b8f6da75fe73"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "cb32d9cf36bf4fb6acb9c6587c77e96c"}</script></div>
 </div>
 <p>With correct tuning of the coefficients, we obtain the following behavior :</p>
 <div class="cell docutils container">
@@ -824,9 +824,8 @@ To mitigate the risk</p>
 </ul>
 <ul class="simple">
 <li><p>RL controller has a dedicated reward to avoid high temperatures but needs to be carefully checked in simulation. Current controller is respecting contraints but fails converging to a different setpoint, meaning the learning process did not generalize properly:</p></li>
-<li></li>
 </ul>
-<p><img alt="security_RL_results" src="_images/security_RL_results.png" /></p>
+<p><img alt="security_RL_results" src="_images/security_RL_result.png" /></p>
 <p>Technically, the difference between inlet and outlet temperatures converges to a fixed value.
 Thus, no problem should occur if the outlet setpoint is chosen below a certain max value.
 However, regardless of the chosen method a security mechanism has to be implemented to stop heating if temperature goes above a certain value.
