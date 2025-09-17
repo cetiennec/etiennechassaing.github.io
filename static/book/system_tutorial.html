@@ -483,7 +483,7 @@ Following example show the step response of the system for a given power input :
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "dc13889a0df1492cbd34ae53ade460c5"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b40b622fa33849e3b8dc666b44521930"}</script></div>
 </div>
 </section>
 </section>
@@ -537,7 +537,7 @@ It exhibits the need to continuously add energy to the system to compensate for 
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "cb32d9cf36bf4fb6acb9c6587c77e96c"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "8ea2720ee82e4a9781443d01261f5ee5"}</script></div>
 </div>
 <p>With correct tuning of the coefficients, we obtain the following behavior :</p>
 <div class="cell docutils container">
@@ -678,11 +678,12 @@ a \in [0, 33] kW,
 \)</span>$
 which corresponds to the heater power in kilowatts.</p>
 <p><strong>State (Observation)</strong></p>
-<p>The observation provided to the agent is a vector of five components:
-$<span class="math notranslate nohighlight">\(
+<p>The observation provided to the agent is a vector of five components:</p>
+<div class="math notranslate nohighlight">
+\[
 obs = \big(T_{\text{inlet}},\; T_{\text{outlet}},\; T_{\text{sp}},\; T_{\text{sp}} - T_{\text{outlet}},\; T_{\text{safety}} - T_{\text{inlet}}\big),
-\)</span><span class="math notranslate nohighlight">\(
-**Note 1** : these are a bit redundant and are used for simulation simplicity, for a more general case, \)</span>T_{ext}$ should also be included to allow the agent to react to fast temperature changes from the environment.</p>
+\]</div>
+<p><strong>Note 1</strong> : these are a bit redundant and are used for simulation simplicity, for a more general case, <span class="math notranslate nohighlight">\(T_{ext}\)</span> should also be included to allow the agent to react to fast temperature changes from the environment.</p>
 <p><strong>Note 2</strong> : For control, relative observation allows to make the developed policy independant of the setpoint value.</p>
 <p><strong>Reward</strong></p>
 <p>The reward balances setpoint tracking, smooth control, energy usage, and safety:
