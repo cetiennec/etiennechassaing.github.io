@@ -25,14 +25,12 @@ from params import *
 import matplotlib.pyplot as plt
 
 params["N"] = 30
-env = PipeHeaterSafeEnvGymnasium(params, Tinlet=15.0, Tset=85.0, T_ext=10.0, dt=1.0, t_final=3600)
+env = PipeHeaterSafeEnvGymnasium(params, Tinlet=15.0, Tset= 85.0, T_ext=10.0, dt=1.0, t_final=3600)
 
 mpc_dt = 10.0
-mpc = MPCController(params, dt=mpc_dt, Hp=70, Q=[0.1, 100.0], R=1e-8, Rd=1e-1, T_set=[92.0, 85.0], T_safety=95.0)
+mpc = MPCController(params, dt=mpc_dt, Hp=80, Q=[0.0, 1e3], R=1e-5, Rd=1.0, T_set=[92.0, 90.0], T_safety=95.0, ramped = False)
 
 obs, _ = env.reset()
-
-
 ------------------
 
 
@@ -46,11 +44,16 @@ Cell [0;32mIn[1], line 3[0m
 [1;32m      5[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
 
 File [0;32m~/PycharmProjects/NehemisControl/mybook/MPCCon.py:3[0m
-[1;32m      1[0m [38;5;66;03m# mpc_controller.py[39;00m
+[1;32m      1[0m [38;5;66;03m# mpc_controller.py (only the MPCController class shown, replace original)[39;00m
 [1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
 [0;32m----> 3[0m [38;5;28;01mimport[39;00m [38;5;21;01mcvxpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mcp[39;00m
-[1;32m      4[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
-[1;32m      5[0m [38;5;28;01mfrom[39;00m [38;5;21;01mPipeEnv[39;00m [38;5;28;01mimport[39;00m PipeHeaterSafeEnvGymnasium
+[1;32m      6[0m [38;5;28;01mclass[39;00m [38;5;21;01mMPCController[39;00m:
+[1;32m      7[0m [38;5;250m    [39m[38;5;124;03m"""[39;00m
+[1;32m      8[0m [38;5;124;03m    Linear MPC for PipeHeaterSafeEnvGymnasium.[39;00m
+[1;32m      9[0m 
+[0;32m   (...)[0m
+[1;32m     15[0m [38;5;124;03m    - u is heater power in kW (same units as env action); internally env multiplies by 1e3.[39;00m
+[1;32m     16[0m [38;5;124;03m    """[39;00m
 
 [0;31mModuleNotFoundError[0m: No module named 'cvxpy'
 

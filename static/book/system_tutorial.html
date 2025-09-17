@@ -372,9 +372,9 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-and-conclusion">Comparison and conclusion</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performances-on-setpoint-tracking">Performances on setpoint tracking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performances-constant-setpoint-tracking">Performances : Constant setpoint tracking</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity">Complexity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity-flexibility-and-running-frequency">Complexity, Flexibility and running frequency</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
@@ -383,9 +383,8 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix">Appendix</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-details-impact-of-coefficients">Simulation details : Impact of coefficients:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pid-details-bode-plots">PID details : Bode plots</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mpc-details-model-accuracy">MPC details : Model accuracy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rl-details">RL details :</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-on-code-and-llm-usage">Note on code and LLM usage:</a></li>
 </ul>
 </li>
 </ul>
@@ -425,8 +424,11 @@ with a 2°C/min ascent and without creating steam in the pipe.</p>
 <li><p>An inlet temperature that can go close to 100°C despite an outlet temperature that is barely above 85°C</p></li>
 <li><p>A significant delay (~12 min)</p></li>
 <li><p>A coupling and an intrication between inlet and outlet temperature</p></li>
+<li><p>A single test is about 3 hours to consider rising time</p></li>
+<li><p><strong>Perfomances</strong> are defined on outlet temperature</p></li>
+<li><p><strong>Security</strong> is defined on inlet temperature</p></li>
 </ul>
-<p><strong>How to model and simulate these stairs?</strong></p>
+<p><strong>How to model and simulate these stairs and avoid testing on the real system?</strong></p>
 </section>
 <section id="naive-model">
 <h3>Naive model<a class="headerlink" href="#naive-model" title="Link to this heading">#</a></h3>
@@ -467,11 +469,11 @@ This allows to write the following Delayed Equations in which <span class="math 
 </section>
 <section id="system-simulation">
 <h2>2. System Simulation<a class="headerlink" href="#system-simulation" title="Link to this heading">#</a></h2>
-<p>Following example</p>
+<p>Following example show the step response of the system for a given power input :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">simulation_backend</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">interact</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">fixed</span>
 <span class="n">interact</span><span class="p">(</span>
     <span class="n">simulate_and_plot</span><span class="p">,</span>
     <span class="n">P</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">33</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Power (kW):&#39;</span><span class="p">),</span>
@@ -481,13 +483,14 @@ This allows to write the following Delayed Equations in which <span class="math 
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "0bb7f3d164554152a4172ad87b55f26a"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "103f0a0645344ff0b888cc7860c77226"}</script></div>
 </div>
 </section>
 <section id="control">
 <h2>3. Control<a class="headerlink" href="#control" title="Link to this heading">#</a></h2>
 <section id="control-objectives">
 <h3>Control Objectives<a class="headerlink" href="#control-objectives" title="Link to this heading">#</a></h3>
+<p>Our system should respect the following goals:</p>
 </section>
 <section id="traditionnal-siso-control-technique-with-tinkering">
 <h3>1) Traditionnal SISO control technique, with tinkering<a class="headerlink" href="#traditionnal-siso-control-technique-with-tinkering" title="Link to this heading">#</a></h3>
@@ -517,17 +520,22 @@ It exhibits the need to continuously add energy to the system to compensate for 
     <span class="n">Ki</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.025</span>
                    <span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Ki [W/(°C·s)]&quot;</span><span class="p">),</span>
     <span class="n">T_ext</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;T_ext (°C)&quot;</span><span class="p">),</span>
+    <span class="n">T_set</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mf">85.0</span><span class="p">),</span>
+    <span class="n">save_csv</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span>
+    <span class="n">ramped</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span>
+    <span class="n">csv_filename</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">),</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="mf">10.0</span><span class="p">),</span>
 <span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "3d927e5327be4bc1bd54fe66efecab83"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "af556810bd72486da41759ca50799b14"}</script></div>
 </div>
 <p>With correct tuning of the coefficients, we obtain following behavior :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulate_PI</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="mi">1300</span><span class="p">,</span><span class="n">Ki</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span><span class="n">T_ext</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">save_csv</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulate_PI</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="mi">1300</span><span class="p">,</span><span class="n">Ki</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span><span class="n">T_ext</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">save_csv</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">csv_filename</span><span class="o">=</span><span class="s2">&quot;results/PI_run_data.csv&quot;</span><span class="p">,</span> <span class="n">T_set</span> <span class="o">=</span> <span class="mi">85</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -535,16 +543,34 @@ It exhibits the need to continuously add energy to the system to compensate for 
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saved PI simulation results to results/PI_run_data.csv
 </pre></div>
 </div>
-<img alt="_images/f92b0450431c898360fa7fbbe1075734d170a85c7872c455142e62d49d53bef5.png" src="_images/f92b0450431c898360fa7fbbe1075734d170a85c7872c455142e62d49d53bef5.png" />
+<img alt="_images/e25f54852e8a6c8043e411fc39fddacf261228d54390f44f107dcd610c193beb.png" src="_images/e25f54852e8a6c8043e411fc39fddacf261228d54390f44f107dcd610c193beb.png" />
 </div>
 </div>
+<p><strong>How to enforce constraint handling on such a controller?</strong></p>
+<p>PI controllers have no direct way to ensure constraints, especially when the constraint is set on another variable.
+To overcome this issue, we propose a gain scheduling technique based on the inlet temperature.
+To ensure security on inlet temperature, the gains <span class="math notranslate nohighlight">\(K\)</span> are modified dynamically based on <span class="math notranslate nohighlight">\(T_{\text{inlet}}\)</span> as follows:
+$<span class="math notranslate nohighlight">\(
+K = K_{\text{initial}} \left( 1 - e^{-\alpha |T_{\text{inlet}} - T_{max}|} \right),
+and ~K=0~ if ~T_{inlet}&gt;T_{max}
+\)</span>$
+where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(K_{\text{initial}}\)</span> is the initial  gain,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> is a tuning parameter controlling the rate of gain reduction,</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{max}=95°C\)</span> is the limit temperature</p></li>
+</ul>
+<p>This ensures that the system is maintaining security requirements in a soft linear manner, while tracking the reference of outlet temperature.</p>
 </section>
 <section id="optimal-control-via-mpc-simo-control-fashion">
 <h3>2) Optimal control via MPC, SIMO control fashion<a class="headerlink" href="#optimal-control-via-mpc-simo-control-fashion" title="Link to this heading">#</a></h3>
 <p>Since we have access to a model, we can explore optimal control via Model Predictive Control (MPC).
 MPC leverages the model to find the best input to the system based on a horizon prediction (<span class="math notranslate nohighlight">\(N_p\)</span>).
 It strength is to be able to consider both states for a single input to the system.
-To do so, MPC uses weights to formulate the control objective and respect constraints in the optimization process.
+At each timestep, MPC controller computes the best input sequence for the future, apply the first one, and repeat the process to ensure good predictions and response to uncertainties.
+<img alt="MPC" src="_images/MPC_principle.png" />
+[source : ETH]</p>
+<p>To do so, MPC uses weights to formulate the control objective and respect constraints in the optimization process.
 MPC formulation of the problem is as follows:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -585,45 +611,39 @@ However, to employ this technique, difficulty lies in the fact that :</p>
 <p>Moreover, a secondary objective is set on <span class="math notranslate nohighlight">\(T_{inlet}=92°C\)</span> to incentive the controller to use both sensors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Uncomment following lines to play with the controller:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">IntSlider</span>
+<span class="kn">from</span> <span class="nn">MPCRun</span> <span class="kn">import</span> <span class="n">run_MPC</span>
 
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">IntSlider</span>
-<span class="kn">from</span> <span class="nn">MPCCon</span> <span class="kn">import</span> <span class="n">simulate_system</span>
-
-<span class="c1"># interact(</span>
-<span class="c1">#     simulate_system,</span>
-<span class="c1">#     Hp=IntSlider(min=1, max=100, step=1, value=70, description=&quot;Horizon step&quot;),</span>
-<span class="c1">#     Q0=FloatSlider(min=0.0, max=500.0, step=10.0, value=0.0, description=&quot;Q Tinlet&quot;),</span>
-<span class="c1">#     Q1=FloatSlider(min=0.0, max=2000.0, step=10.0, value=1000.0, description=&quot;Q Toutlet&quot;),</span>
-<span class="c1">#     R=FloatSlider(min=1e-8, max=1e-2, step=1e-6, value=1e-6, readout_format=&quot;.1e&quot;, description=&quot;R (u²)&quot;),</span>
-<span class="c1">#     Rd=FloatSlider(min=0.0, max=10.0, step=0.1, value=1.0, description=&quot;Rd (Δu²)&quot;),</span>
-<span class="c1">#     Tin_set=FloatSlider(min=20.0, max=120.0, step=1.0, value=92.0, description=&quot;Tinlet setpoint&quot;),</span>
-<span class="c1">#     Tout_set=FloatSlider(min=20.0, max=95.0, step=1.0, value=85.0, description=&quot;Toutlet setpoint&quot;),</span>
-<span class="c1">#     T_safety=FloatSlider(min=50.0, max=95.0, step=1.0, value=95.0, description=&quot;Safety limit&quot;),</span>
-<span class="c1"># )</span>
+<span class="n">run_MPC</span><span class="p">(</span><span class="n">Hp</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">],</span> <span class="n">R</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">Rd</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T_set</span><span class="o">=</span><span class="p">[</span><span class="mf">92.0</span><span class="p">,</span> <span class="mf">85.0</span><span class="p">],</span> <span class="n">T_safety</span><span class="o">=</span><span class="mf">95.0</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># TODO: Uncomment following lines to play with the controller:</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">IntSlider</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">MPCCon</span> <span class="kn">import</span> <span class="n">simulate_system</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># interact(</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1">#     simulate_system,</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1">#     Hp=IntSlider(min=1, max=100, step=1, value=70, description=&quot;Horizon step&quot;),</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1">#     T_safety=FloatSlider(min=50.0, max=95.0, step=1.0, value=95.0, description=&quot;Safety limit&quot;),</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="c1"># )</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">IntSlider</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">MPCRun</span> <span class="kn">import</span> <span class="n">run_MPC</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">run_MPC</span><span class="p">(</span><span class="n">Hp</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">],</span> <span class="n">R</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">Rd</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T_set</span><span class="o">=</span><span class="p">[</span><span class="mf">92.0</span><span class="p">,</span> <span class="mf">85.0</span><span class="p">],</span> <span class="n">T_safety</span><span class="o">=</span><span class="mf">95.0</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">PycharmProjects</span><span class="o">/</span><span class="n">NehemisControl</span><span class="o">/</span><span class="n">mybook</span><span class="o">/</span><span class="n">MPCRun</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">PipeEnv</span> <span class="kn">import</span> <span class="n">PipeHeaterSafeEnvGymnasium</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">MPCCon</span> <span class="kn">import</span> <span class="n">MPCController</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">params</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">File</span> <span class="o">~/</span><span class="n">PycharmProjects</span><span class="o">/</span><span class="n">NehemisControl</span><span class="o">/</span><span class="n">mybook</span><span class="o">/</span><span class="n">MPCCon</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># mpc_controller.py</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># mpc_controller.py (only the MPCController class shown, replace original)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">PipeEnv</span> <span class="kn">import</span> <span class="n">PipeHeaterSafeEnvGymnasium</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">class</span> <span class="nc">MPCController</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span><span class="sd">     Linear MPC for PipeHeaterSafeEnvGymnasium.</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span><span class="sd">     - u is heater power in kW (same units as env action); internally env multiplies by 1e3.</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span><span class="sd">     &quot;&quot;&quot;</span>
 
 <span class="ne">ModuleNotFoundError</span>: No module named &#39;cvxpy&#39;
 </pre></div>
@@ -634,9 +654,48 @@ However, to employ this technique, difficulty lies in the fact that :</p>
 <img alt="heat loop" src="_images/MPC_results_input_2.png" /></p>
 <p>From this, we can observe a much more complex behavior than the PI controller which was bounded to its linear behavior. Time of heating is reduced by .. min because the controller can leverage the full power before decreasing.
 A small error remains, indicating a better tuning could be performed.</p>
+<p>This formulation is way more flexible and allows to control each temperature with the same controller.</p>
 </section>
 <section id="reinforcement-learning">
 <h3>3) Reinforcement Learning<a class="headerlink" href="#reinforcement-learning" title="Link to this heading">#</a></h3>
+<p>Reinforcement Learning (RL) uses a generic formulation of the control problem as an environment to which is inputted an action and which outputs an observation and a reward.
+RL algorithms uses the reward to learn a policy <span class="math notranslate nohighlight">\(\pi(state)=action\)</span>. The goal of the learning process is to make this policy converging towards an optimal policy <em>\pi^</em>$ i.e. the one that maximizes the cumulative reward on an episode.</p>
+<p><img alt="RL" src="_images/Reinforcement_learning_diagram.svg" /></p>
+<p>We define our environment as follows using our simulation :</p>
+<p><strong>Action</strong></p>
+<p>At each timestep, the agent selects a continuous action
+$<span class="math notranslate nohighlight">\(
+a \in [0, 33] kW,
+\)</span>$
+which corresponds to the heater power in kilowatts.</p>
+<p><strong>State (Observation)</strong></p>
+<p>The observation provided to the agent is a vector of five components:
+$<span class="math notranslate nohighlight">\(
+obs = \big(T_{\text{inlet}},\; T_{\text{outlet}},\; T_{\text{sp}},\; T_{\text{sp}} - T_{\text{outlet}},\; T_{\text{safety}} - T_{\text{inlet}}\big),
+\)</span><span class="math notranslate nohighlight">\(
+**Note 1** : these are a bit redundant and are used for simulation simplicity, for a more general case, \)</span>T_{ext}$ should also be included to allow the agent to react to fast temperature changes from the environment.</p>
+<p><strong>Note 2</strong> : For control, relative observation allows to make the developed policy independant of the setpoint value.</p>
+<p><strong>Reward</strong></p>
+<p>The reward balances setpoint tracking, smooth control, energy usage, and safety:
+$<span class="math notranslate nohighlight">\(
+r = -\lvert T_{\text{sp}} - T_{\text{out}} \rvert
+    - \lambda_{\Delta P}\,|P - P_{\text{prev}}|
+    + \lambda_P P
+    + r_{\text{safety}}.
+\)</span>$</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(-\lvert T_{\text{sp}} - T_{\text{out}} \rvert\)</span>: directly penalizes deviation from the outlet setpoint,</p></li>
+<li><p><span class="math notranslate nohighlight">\(-\lambda_{\Delta P}\,|P - P_{\text{prev}}|\)</span>: penalizes fast changes in heater power and incentive constant power,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda_P P\)</span>: small incentive for using heater power, this helps to explore despite large delay,</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_{\text{safety}} = -10\)</span> if <span class="math notranslate nohighlight">\(T_1 &gt; T_{\text{safety}}\)</span>, otherwise <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
+</ul>
+<p><strong>Algorithm</strong></p>
+<p>Soft Actor-Critic (SAC) is chosen for its good versatility and performances.</p>
+<p><strong>Results</strong></p>
+<p>To prevent noisy outputs from the RL controller, actions are filteredd with an average filter (<span class="math notranslate nohighlight">\(\alpha=0.2\)</span>) giving :</p>
+<p><img alt="filtRL" src="_images/filtered_RL_results.png" /></p>
+<p>This problem could also be solved by discretizing the output of the RL controller, allowing for 0.5 kW steps only (for example).
+Despite filtering, RL controller fails tracking precisely the target temperature with precision.</p>
 </section>
 </section>
 <section id="comparison-and-conclusion">
@@ -647,31 +706,180 @@ A small error remains, indicating a better tuning could be performed.</p>
 <li><p>The compliance with the security criterion on inlet temperature</p></li>
 <li><p>Their complexity of validation and integration</p></li>
 </ul>
-<section id="performances-on-setpoint-tracking">
-<h3>Performances on setpoint tracking<a class="headerlink" href="#performances-on-setpoint-tracking" title="Link to this heading">#</a></h3>
+<section id="performances-constant-setpoint-tracking">
+<h3>Performances : Constant setpoint tracking<a class="headerlink" href="#performances-constant-setpoint-tracking" title="Link to this heading">#</a></h3>
+<p>On the task of tracking a constant outlet temperature, all the controllers achieve similar performances. This is due to :</p>
+<ul class="simple">
+<li><p>The saturation of the input between 0 and 25 min approximately</p></li>
+<li></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">compare_everything</span> <span class="kn">import</span> <span class="n">plot_comparison</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">compare_everything</span> <span class="kn">import</span> <span class="n">plot_comparison_step</span>
 
-<span class="n">plot_comparison</span><span class="p">()</span>
+<span class="n">plot_comparison_step</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/45e5e9cf31b5b9d0ff1b36c3b120293ce17e8c257c10ab638c8352226307f27d.png" src="_images/45e5e9cf31b5b9d0ff1b36c3b120293ce17e8c257c10ab638c8352226307f27d.png" />
-<img alt="_images/26ac7631782688565ec7ea20e2f63e6ef6824b627ecc6943049ba13b5cbf2e17.png" src="_images/26ac7631782688565ec7ea20e2f63e6ef6824b627ecc6943049ba13b5cbf2e17.png" />
+<img alt="_images/d6b24c4a7cdaa0943050f0fc732f24c292bea28b58e45730d874b73dc2697cd4.png" src="_images/d6b24c4a7cdaa0943050f0fc732f24c292bea28b58e45730d874b73dc2697cd4.png" />
+<img alt="_images/4f35b1e24df4abd74be84bcf96537f976992fab70eb47694130b1e237ed94383.png" src="_images/4f35b1e24df4abd74be84bcf96537f976992fab70eb47694130b1e237ed94383.png" />
 </div>
 </div>
+<p>To discriminate their capabilities, we can compare them on the tracking of a ramped temperature of 2°/min with a saturation at 85°C.
+The PI controller can be fine-tuned to track the reference:</p>
+<p><strong>Warning, this example is a bit tricky because the PI controller has no information about the delay, the fact it is able to track it accordingly is due to a specific tuning, to use a PI controller properly on this system, a delay compensator should be integrated</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulate_PI</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="mi">1300</span><span class="p">,</span> <span class="n">Ki</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">save_csv</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">csv_filename</span><span class="o">=</span><span class="s2">&quot;results/ramp_PI_run_data.csv&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saved PI simulation results to results/ramp_PI_run_data.csv
+</pre></div>
+</div>
+<img alt="_images/d2d3ab4898ae21e8f774e2523f688df835ab323c54fd0a2223732c5cc1a7a0d5.png" src="_images/d2d3ab4898ae21e8f774e2523f688df835ab323c54fd0a2223732c5cc1a7a0d5.png" />
+</div>
+</div>
+<p>MPC and RL are run on the ramp reference with same tuning as before.
+Comparison is given below :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">compare_everything</span> <span class="kn">import</span> <span class="n">plot_comparison_ramp</span>
+
+<span class="n">plot_comparison_ramp</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4525befc9d90b5c5dd3d502a32ee41ce2177bba9a5ad7b44708b4db41cf43c84.png" src="_images/4525befc9d90b5c5dd3d502a32ee41ce2177bba9a5ad7b44708b4db41cf43c84.png" />
+<img alt="_images/197d217f1c00ef7fe90c1c2e7cc98b5c825fcc5f4208c567975028825597f246.png" src="_images/197d217f1c00ef7fe90c1c2e7cc98b5c825fcc5f4208c567975028825597f246.png" />
+</div>
+</div>
+<p>The MPC controller can track the reference without fine-tuning, as it can predict to use a given input for its future output.
+RL has not been trained on the ramp following and exhibits its limitation on out-of-distribution example, meaning the training was not good enough for the controller to generalize.</p>
 </section>
 <section id="security">
 <h3>Security<a class="headerlink" href="#security" title="Link to this heading">#</a></h3>
+<p>The system we studied has some inherent risks which can disturb the controllers, among which :</p>
+<ol class="arabic simple">
+<li><p>Control instability</p></li>
+<li><p>Boiling water or steam at pipe inlet</p></li>
+<li><p>Rapid change in external temperature</p></li>
+<li><p>Sensor failure</p></li>
+</ol>
+<p><strong>Stability</strong></p>
+<p>The slow dynamics of the system makes it inherently stable.
+However, trying to heat quicker implies using high gains which could result in instability, for the PI controller this is handled by checking the closed loop stability via Nyquist criterion (See <a class="reference external" href="https://en.wikipedia.org/wiki/Nyquist_stability_criterion">here</a>) using Bode diagram of the PI controller:</p>
+<p><img alt="Bode" src="_images/Bode_PI.png" /></p>
+<p>Similar reasoning can be performed on the MPC controller using assumptions on cost to conclude on a Lyapunov stability.</p>
+<p>RL controller is harder to validate for stability, only multiple simulation on the learned controller can allow to evaluate its stability. On smaller observation space, the policy function could be studied in a bounded space to conclude on system stability using closed loop arguments.</p>
+<p><strong>Boiling water</strong></p>
+<p>The risk of having boiling water or steam in the system is the most dangerous risk of the system which could damage the pipes, or harm an operator.
+To mitigate the risk</p>
+<ul class="simple">
+<li><p>Gain scheduling based on inlet temperature can be used on PI controllers, the lower <span class="math notranslate nohighlight">\(\alpha\)</span> is, the stronger the security is:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PI_backend</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Interactive sliders for tuning Kp, Ki, and T_ext</span>
+<span class="n">interact</span><span class="p">(</span>
+    <span class="n">simulate_PI</span><span class="p">,</span>
+    <span class="n">Kp</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mf">1300.0</span><span class="p">),</span>
+    <span class="n">Ki</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mf">0.08</span><span class="p">),</span>
+    <span class="n">T_ext</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;T_ext (°C)&quot;</span><span class="p">),</span>
+    <span class="n">T_set</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">95</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">92</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;T_set (°C)&quot;</span><span class="p">),</span>
+    <span class="n">save_csv</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span>
+    <span class="n">ramped</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span>
+    <span class="n">csv_filename</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">),</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;alpha&quot;</span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "70cc3144b73c4d9eabdc36efe2ecc4ab"}</script></div>
+</div>
+<ul class="simple">
+<li><p>MPC controller is inherently respecting constraints, if the optimization process is correctly set up. Meaning it would get as close as possible to unfeasible points.</p></li>
+</ul>
+<ul class="simple">
+<li><p>RL controller has a dedicated reward to avoid high temperatures but needs to be carefully checked in simulation. Current controller is respecting contraints but fails converging to a different setpoint, meaning the learning process did not generalize properly:</p></li>
+<li></li>
+</ul>
+<p><img alt="security_RL_results" src="_images/security_RL_results.png" /></p>
+<p>Technically, the difference between inlet and outlet temperatures converges to a fixed value.
+Thus, no problem should occur if the outlet setpoint is chosen below a certain max value.
+However, regardless of the chosen method a security mechanism has to be implemented to stop heating if temperature goes above a certain value.
+This can be made via continuous decreasing (equivalent to scheduling) or discrete turn-off.</p>
+<p><strong>Rapid changes in external temperature</strong></p>
+<p>External temperature could be easily included in MPC model or RL observation as a disturbance.
+With this, they could learn to adapt to its variations.</p>
+<p>Only the PI controller is blind to the external temperature, however we could draw the bode diagram of <span class="math notranslate nohighlight">\(T_{ext}\)</span> -&gt; <span class="math notranslate nohighlight">\(T_{outlet}\)</span> to conclude on controller stability, offering a clear definition of the stability domain.</p>
+<p><strong>Sensor failure</strong></p>
+<p>Sensor failure has to be treated with a dedicated algorithm.
+However, since MPC and RL rely on two measurements rather than one, they allow to measure the deviation between their inherent models and the real outputs, which offers a new quantity to monitor to detect sensor failures.</p>
 </section>
-<section id="complexity">
-<h3>Complexity<a class="headerlink" href="#complexity" title="Link to this heading">#</a></h3>
+<section id="complexity-flexibility-and-running-frequency">
+<h3>Complexity, Flexibility and running frequency<a class="headerlink" href="#complexity-flexibility-and-running-frequency" title="Link to this heading">#</a></h3>
+<p><strong>Complexity/Flexibility</strong></p>
+<ul class="simple">
+<li><p><strong>PI controller</strong> is very easy to implement and the effect of the tuning of its coefficients is easy to grasp. It could adapt easily to different situations and requirements with dedicated tuning.</p></li>
+<li><p><strong>MPC controller</strong> is harder to implement, even when the model is available, bad tuning can results in non-feasible solutions, and despite long computations it might sometime reach suboptimal solutions. However, it is more flexible to changes in the reference tracking and can be easily adapted to new situations by adding a dedicated cost.</p></li>
+<li><p><strong>RL controller</strong> takes time to train but is very fast at inference. The non continuity of the generated actions makes it non directly usable on real systems. Such algorithms need to be used with safeguards. Nonetheless, if a good simulation of the system is available, without having access to a direct model, RL might be the only algorithm to be able to reach a near-optimal solution. Reward cooking might be a long process, and balancing goals a difficult task.</p></li>
+</ul>
+<p><strong>Running frequency</strong></p>
+<ol class="arabic simple">
+<li><p>PI controller can run at a very high frequency because of its low computational cost, 1 Hz frequency was chosen because the system is naturally slow.</p></li>
+<li><p>MPC requires a lot of computation, which might take more than a second to complete. Moreover, its horizon time is a function of its discretization step. For both reasons, it was run at 0.1 Hz, i.e. every 10s.</p></li>
+<li><p>RL provides very fast inference, which is compatible with a 1 Hz frequency, however for training time reduction, this controller was also trained at 0.1 Hz.</p></li>
+</ol>
 </section>
 </section>
 <section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>Following table summarizes some of our discussion:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Criteria</p></th>
+<th class="head"><p>PI (Proportional-Integral)</p></th>
+<th class="head"><p>MPC (Model Predictive Control)</p></th>
+<th class="head"><p>RL (Reinforcement Learning)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Performance on Step</p></td>
+<td><p>Excellent with good tuning</p></td>
+<td><p>Very good, with non needed input variations</p></td>
+<td><p>Shaky, struggle to maintain constant value</p></td>
+</tr>
+<tr class="row-odd"><td><p>Performance on Ramp</p></td>
+<td><p>Requires specific tuning, delay is not compensated</p></td>
+<td><p>Very good, compensate delay, no specific tuning</p></td>
+<td><p>Need dedicated training</p></td>
+</tr>
+<tr class="row-even"><td><p>Security (safety, constraints)</p></td>
+<td><p>Done via gain scheduler</p></td>
+<td><p>Inherent</p></td>
+<td><p>Has to be trained and tested on defined cases</p></td>
+</tr>
+<tr class="row-odd"><td><p>Complexity/Flexibility</p></td>
+<td><p>Low, simple to implement and easy to test</p></td>
+<td><p>High, requires model and optimization solver</p></td>
+<td><p>Can be easy if a good simulation is available. New task requires new reward design and retraining.</p></td>
+</tr>
+<tr class="row-even"><td><p>Running frequency</p></td>
+<td><p>1Hz, instant computation</p></td>
+<td><p>0.1Hz, optimization takes the order of a second</p></td>
+<td><p>1Hz or 0.1Hz, fast inference</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Which one would you have picked on a real system?</strong></p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="appendix">
@@ -699,17 +907,17 @@ A small error remains, indicating a better tuning could be performed.</p>
 <p>Following plots the impact of heat loss coefficient and external temperature on the curves.</p>
 <p><img alt="heat loop" src="_images/param_comparison.png" /></p>
 </section>
-<section id="pid-details-bode-plots">
-<h2>PID details : Bode plots<a class="headerlink" href="#pid-details-bode-plots" title="Link to this heading">#</a></h2>
-</section>
 <section id="mpc-details-model-accuracy">
 <h2>MPC details : Model accuracy<a class="headerlink" href="#mpc-details-model-accuracy" title="Link to this heading">#</a></h2>
 <p>MPC uses a simplified version of the model with 20 pipe segments and a 10s integration steps, this creates discrepancies
 in its prediction, the magnitude of the impact is show below on a 30kW input :</p>
 <p><img alt="heat loop" src="_images/MPC_vs_full_model.png" /></p>
 </section>
-<section id="rl-details">
-<h2>RL details :<a class="headerlink" href="#rl-details" title="Link to this heading">#</a></h2>
+<section id="note-on-code-and-llm-usage">
+<h2>Note on code and LLM usage:<a class="headerlink" href="#note-on-code-and-llm-usage" title="Link to this heading">#</a></h2>
+<p>This tutorial aims to present and discuss different technique usage.
+Some slackness has sometimes been taken to simplify some aspects, without notification.
+The initial project has been made in Matlab, code has been converted to Python partly using LLMs (OpenAI and Mistral)</p>
 </section>
 </section>
 
@@ -784,9 +992,9 @@ in its prediction, the magnitude of the impact is show below on a 30kW input :</
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-and-conclusion">Comparison and conclusion</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performances-on-setpoint-tracking">Performances on setpoint tracking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performances-constant-setpoint-tracking">Performances : Constant setpoint tracking</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity">Complexity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complexity-flexibility-and-running-frequency">Complexity, Flexibility and running frequency</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
@@ -795,9 +1003,8 @@ in its prediction, the magnitude of the impact is show below on a 30kW input :</
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix">Appendix</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-details-impact-of-coefficients">Simulation details : Impact of coefficients:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pid-details-bode-plots">PID details : Bode plots</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mpc-details-model-accuracy">MPC details : Model accuracy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rl-details">RL details :</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note-on-code-and-llm-usage">Note on code and LLM usage:</a></li>
 </ul>
 </li>
 </ul>

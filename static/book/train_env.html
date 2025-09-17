@@ -369,21 +369,13 @@ document.write(`
                   
   <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">stable_baselines3</span> <span class="kn">import</span> <span class="n">PPO</span>
-<span class="kn">from</span> <span class="nn">PipeEnv</span> <span class="kn">import</span> <span class="n">PipeHeaterSafeEnvGymnasium</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PipeEnv</span> <span class="kn">import</span> <span class="n">PipeHeaterSafeEnvGymnasium</span>
 <span class="kn">from</span> <span class="nn">stable_baselines3</span> <span class="kn">import</span> <span class="n">PPO</span><span class="p">,</span> <span class="n">SAC</span>
 <span class="kn">from</span> <span class="nn">params</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">params</span><span class="p">[</span><span class="s2">&quot;dt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.0</span>
-<span class="n">env</span> <span class="o">=</span> <span class="n">PipeHeaterSafeEnvGymnasium</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Tinlet</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">Tset</span><span class="o">=</span><span class="mi">85</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">PPO</span><span class="p">(</span><span class="s2">&quot;MlpPolicy&quot;</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">total_timesteps</span><span class="o">=</span><span class="mi">10_000_000</span><span class="p">)</span>  <span class="c1"># adjust for convergence</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">PipeHeaterSafeEnvGymnasium</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Tinlet</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">Tset</span><span class="o">=</span><span class="mi">85</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">SAC</span><span class="p">(</span><span class="s2">&quot;MlpPolicy&quot;</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tensorboard_log</span><span class="o">=</span><span class="s2">&quot;./tensorboard/&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -393,1293 +385,180 @@ Wrapping the env with a `Monitor` wrapper
 Wrapping the env in a DummyVecEnv.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------
-| time/              |      |
-|    fps             | 6710 |
-|    iterations      | 1    |
-|    time_elapsed    | 0    |
-|    total_timesteps | 2048 |
------------------------------
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">total_timesteps</span><span class="o">=</span><span class="mi">150_000</span><span class="p">,</span> <span class="n">tb_log_name</span><span class="o">=</span><span class="s2">&quot;SAC_pipeheater&quot;</span><span class="p">)</span>  <span class="c1"># adjust for convergence</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 4017         |
-|    iterations           | 2            |
-|    time_elapsed         | 1            |
-|    total_timesteps      | 4096         |
-| train/                  |              |
-|    approx_kl            | 7.602945e-05 |
-|    clip_fraction        | 0            |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.42        |
-|    explained_variance   | -0.000111    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.52e+05     |
-|    n_updates            | 10           |
-|    policy_gradient_loss | 0.000143     |
-|    std                  | 1            |
-|    value_loss           | 1.3e+06      |
-------------------------------------------
-</pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3764        |
-|    iterations           | 3           |
-|    time_elapsed         | 1           |
-|    total_timesteps      | 6144        |
-| train/                  |             |
-|    approx_kl            | 0.004555188 |
-|    clip_fraction        | 0.0205      |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.42       |
-|    explained_variance   | -8.94e-06   |
-|    learning_rate        | 0.0003      |
-|    loss                 | 6.33e+05    |
-|    n_updates            | 20          |
-|    policy_gradient_loss | -0.00118    |
-|    std                  | 1           |
-|    value_loss           | 1.25e+06    |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3662         |
-|    iterations           | 4            |
-|    time_elapsed         | 2            |
-|    total_timesteps      | 8192         |
-| train/                  |              |
-|    approx_kl            | 0.0045513003 |
-|    clip_fraction        | 0.024        |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.42        |
-|    explained_variance   | -6.79e-06    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.23e+05     |
-|    n_updates            | 30           |
-|    policy_gradient_loss | -0.00151     |
-|    std                  | 1            |
-|    value_loss           | 1.28e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3629         |
-|    iterations           | 5            |
-|    time_elapsed         | 2            |
-|    total_timesteps      | 10240        |
-| train/                  |              |
-|    approx_kl            | 0.0010281522 |
-|    clip_fraction        | 0.00571      |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.42        |
-|    explained_variance   | -4.41e-06    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.36e+05     |
-|    n_updates            | 40           |
-|    policy_gradient_loss | -0.000275    |
-|    std                  | 0.997        |
-|    value_loss           | 1.26e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3574         |
-|    iterations           | 6            |
-|    time_elapsed         | 3            |
-|    total_timesteps      | 12288        |
-| train/                  |              |
-|    approx_kl            | 0.0001830465 |
-|    clip_fraction        | 0            |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.41        |
-|    explained_variance   | -1.67e-06    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.27e+05     |
-|    n_updates            | 50           |
-|    policy_gradient_loss | -2.6e-05     |
-|    std                  | 0.987        |
-|    value_loss           | 1.26e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3576        |
-|    iterations           | 7           |
-|    time_elapsed         | 4           |
-|    total_timesteps      | 14336       |
-| train/                  |             |
-|    approx_kl            | 0.004701417 |
-|    clip_fraction        | 0.0346      |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.4        |
-|    explained_variance   | -2.03e-06   |
-|    learning_rate        | 0.0003      |
-|    loss                 | 6.16e+05    |
-|    n_updates            | 60          |
-|    policy_gradient_loss | -0.0023     |
-|    std                  | 0.984       |
-|    value_loss           | 1.27e+06    |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3568         |
-|    iterations           | 8            |
-|    time_elapsed         | 4            |
-|    total_timesteps      | 16384        |
-| train/                  |              |
-|    approx_kl            | 0.0065409606 |
-|    clip_fraction        | 0.0376       |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.4         |
-|    explained_variance   | -8.34e-07    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.23e+05     |
-|    n_updates            | 70           |
-|    policy_gradient_loss | -0.00185     |
-|    std                  | 0.98         |
-|    value_loss           | 1.25e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3571         |
-|    iterations           | 9            |
-|    time_elapsed         | 5            |
-|    total_timesteps      | 18432        |
-| train/                  |              |
-|    approx_kl            | 0.0023254892 |
-|    clip_fraction        | 0.00259      |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.4         |
-|    explained_variance   | -8.34e-07    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.34e+05     |
-|    n_updates            | 80           |
-|    policy_gradient_loss | -0.000103    |
-|    std                  | 0.983        |
-|    value_loss           | 1.28e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3572        |
-|    iterations           | 10          |
-|    time_elapsed         | 5           |
-|    total_timesteps      | 20480       |
-| train/                  |             |
-|    approx_kl            | 0.004930274 |
-|    clip_fraction        | 0.0301      |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.4        |
-|    explained_variance   | -2.38e-07   |
-|    learning_rate        | 0.0003      |
-|    loss                 | 6.15e+05    |
-|    n_updates            | 90          |
-|    policy_gradient_loss | -0.00158    |
-|    std                  | 0.972       |
-|    value_loss           | 1.24e+06    |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3572         |
-|    iterations           | 11           |
-|    time_elapsed         | 6            |
-|    total_timesteps      | 22528        |
-| train/                  |              |
-|    approx_kl            | 0.0024309666 |
-|    clip_fraction        | 0.00293      |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.39        |
-|    explained_variance   | -3.58e-07    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.42e+05     |
-|    n_updates            | 100          |
-|    policy_gradient_loss | -4.16e-05    |
-|    std                  | 0.969        |
-|    value_loss           | 1.28e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3570         |
-|    iterations           | 12           |
-|    time_elapsed         | 6            |
-|    total_timesteps      | 24576        |
-| train/                  |              |
-|    approx_kl            | 0.0020220373 |
-|    clip_fraction        | 0.00225      |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.39        |
-|    explained_variance   | -2.38e-07    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.03e+05     |
-|    n_updates            | 110          |
-|    policy_gradient_loss | -0.000226    |
-|    std                  | 0.976        |
-|    value_loss           | 1.24e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3571         |
-|    iterations           | 13           |
-|    time_elapsed         | 7            |
-|    total_timesteps      | 26624        |
-| train/                  |              |
-|    approx_kl            | 0.0055220914 |
-|    clip_fraction        | 0.0124       |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.39        |
-|    explained_variance   | -3.58e-07    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.26e+05     |
-|    n_updates            | 120          |
-|    policy_gradient_loss | -0.000807    |
-|    std                  | 0.973        |
-|    value_loss           | 1.25e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3571         |
-|    iterations           | 14           |
-|    time_elapsed         | 8            |
-|    total_timesteps      | 28672        |
-| train/                  |              |
-|    approx_kl            | 0.0005825744 |
-|    clip_fraction        | 0            |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.39        |
-|    explained_variance   | -3.58e-07    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.32e+05     |
-|    n_updates            | 130          |
-|    policy_gradient_loss | 0.000162     |
-|    std                  | 0.971        |
-|    value_loss           | 1.24e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3572        |
-|    iterations           | 15          |
-|    time_elapsed         | 8           |
-|    total_timesteps      | 30720       |
-| train/                  |             |
-|    approx_kl            | 0.004696845 |
-|    clip_fraction        | 0.00801     |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.39       |
-|    explained_variance   | -3.58e-07   |
-|    learning_rate        | 0.0003      |
-|    loss                 | 5.96e+05    |
-|    n_updates            | 140         |
-|    policy_gradient_loss | -0.000555   |
-|    std                  | 0.966       |
-|    value_loss           | 1.22e+06    |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3570         |
-|    iterations           | 16           |
-|    time_elapsed         | 9            |
-|    total_timesteps      | 32768        |
-| train/                  |              |
-|    approx_kl            | 0.0029905352 |
-|    clip_fraction        | 0.00532      |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.39        |
-|    explained_variance   | -1.19e-07    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.28e+05     |
-|    n_updates            | 150          |
-|    policy_gradient_loss | -0.000301    |
-|    std                  | 0.973        |
-|    value_loss           | 1.25e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3572         |
-|    iterations           | 17           |
-|    time_elapsed         | 9            |
-|    total_timesteps      | 34816        |
-| train/                  |              |
-|    approx_kl            | 0.0023182342 |
-|    clip_fraction        | 0.000879     |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.39        |
-|    explained_variance   | -2.38e-07    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.03e+05     |
-|    n_updates            | 160          |
-|    policy_gradient_loss | -0.000128    |
-|    std                  | 0.966        |
-|    value_loss           | 1.2e+06      |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3543        |
-|    iterations           | 18          |
-|    time_elapsed         | 10          |
-|    total_timesteps      | 36864       |
-| train/                  |             |
-|    approx_kl            | 0.007570092 |
-|    clip_fraction        | 0.059       |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.38       |
-|    explained_variance   | -2.38e-07   |
-|    learning_rate        | 0.0003      |
-|    loss                 | 6.26e+05    |
-|    n_updates            | 170         |
-|    policy_gradient_loss | -0.00372    |
-|    std                  | 0.961       |
-|    value_loss           | 1.25e+06    |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3546         |
-|    iterations           | 19           |
-|    time_elapsed         | 10           |
-|    total_timesteps      | 38912        |
-| train/                  |              |
-|    approx_kl            | 0.0022013825 |
-|    clip_fraction        | 0.0101       |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.38        |
-|    explained_variance   | -3.58e-07    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 5.99e+05     |
-|    n_updates            | 180          |
-|    policy_gradient_loss | -0.000771    |
-|    std                  | 0.956        |
-|    value_loss           | 1.21e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3543         |
-|    iterations           | 20           |
-|    time_elapsed         | 11           |
-|    total_timesteps      | 40960        |
-| train/                  |              |
-|    approx_kl            | 0.0035162703 |
-|    clip_fraction        | 0.0208       |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.37        |
-|    explained_variance   | 0            |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6e+05        |
-|    n_updates            | 190          |
-|    policy_gradient_loss | -0.000767    |
-|    std                  | 0.954        |
-|    value_loss           | 1.22e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------------------------------------
-| rollout/                |               |
-|    ep_len_mean          | 3.6e+03       |
-|    ep_rew_mean          | -2.45e+05     |
-| time/                   |               |
-|    fps                  | 3543          |
-|    iterations           | 21            |
-|    time_elapsed         | 12            |
-|    total_timesteps      | 43008         |
-| train/                  |               |
-|    approx_kl            | 0.00056551606 |
-|    clip_fraction        | 0             |
-|    clip_range           | 0.2           |
-|    entropy_loss         | -1.36         |
-|    explained_variance   | 0             |
-|    learning_rate        | 0.0003        |
-|    loss                 | 6e+05         |
-|    n_updates            | 200           |
-|    policy_gradient_loss | -0.00018      |
-|    std                  | 0.941         |
-|    value_loss           | 1.23e+06      |
--------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3543         |
-|    iterations           | 22           |
-|    time_elapsed         | 12           |
-|    total_timesteps      | 45056        |
-| train/                  |              |
-|    approx_kl            | 0.0008831335 |
-|    clip_fraction        | 4.88e-05     |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.36        |
-|    explained_variance   | 0            |
-|    learning_rate        | 0.0003       |
-|    loss                 | 5.94e+05     |
-|    n_updates            | 210          |
-|    policy_gradient_loss | 0.000162     |
-|    std                  | 0.946        |
-|    value_loss           | 1.21e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3545         |
-|    iterations           | 23           |
-|    time_elapsed         | 13           |
-|    total_timesteps      | 47104        |
-| train/                  |              |
-|    approx_kl            | 0.0017291859 |
-|    clip_fraction        | 0.00298      |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.36        |
-|    explained_variance   | -2.38e-07    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.15e+05     |
-|    n_updates            | 220          |
-|    policy_gradient_loss | -0.000109    |
-|    std                  | 0.948        |
-|    value_loss           | 1.24e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3548        |
-|    iterations           | 24          |
-|    time_elapsed         | 13          |
-|    total_timesteps      | 49152       |
-| train/                  |             |
-|    approx_kl            | 0.006182204 |
-|    clip_fraction        | 0.055       |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.36       |
-|    explained_variance   | 0           |
-|    learning_rate        | 0.0003      |
-|    loss                 | 5.91e+05    |
-|    n_updates            | 230         |
-|    policy_gradient_loss | -0.00293    |
-|    std                  | 0.94        |
-|    value_loss           | 1.19e+06    |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-------------------------------------------
-| rollout/                |               |
-|    ep_len_mean          | 3.6e+03       |
-|    ep_rew_mean          | -2.45e+05     |
-| time/                   |               |
-|    fps                  | 3547          |
-|    iterations           | 25            |
-|    time_elapsed         | 14            |
-|    total_timesteps      | 51200         |
-| train/                  |               |
-|    approx_kl            | 0.00024064342 |
-|    clip_fraction        | 0             |
-|    clip_range           | 0.2           |
-|    entropy_loss         | -1.35         |
-|    explained_variance   | 1.79e-07      |
-|    learning_rate        | 0.0003        |
-|    loss                 | 6.17e+05      |
-|    n_updates            | 240           |
-|    policy_gradient_loss | 3.38e-05      |
-|    std                  | 0.933         |
-|    value_loss           | 1.24e+06      |
--------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3544        |
-|    iterations           | 26          |
-|    time_elapsed         | 15          |
-|    total_timesteps      | 53248       |
-| train/                  |             |
-|    approx_kl            | 0.003749264 |
-|    clip_fraction        | 0.0109      |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.35       |
-|    explained_variance   | 0           |
-|    learning_rate        | 0.0003      |
-|    loss                 | 5.79e+05    |
-|    n_updates            | 250         |
-|    policy_gradient_loss | -0.000748   |
-|    std                  | 0.93        |
-|    value_loss           | 1.2e+06     |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3545        |
-|    iterations           | 27          |
-|    time_elapsed         | 15          |
-|    total_timesteps      | 55296       |
-| train/                  |             |
-|    approx_kl            | 0.004817238 |
-|    clip_fraction        | 0.0439      |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.34       |
-|    explained_variance   | -2.38e-07   |
-|    learning_rate        | 0.0003      |
-|    loss                 | 5.94e+05    |
-|    n_updates            | 260         |
-|    policy_gradient_loss | -0.00208    |
-|    std                  | 0.927       |
-|    value_loss           | 1.22e+06    |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3546         |
-|    iterations           | 28           |
-|    time_elapsed         | 16           |
-|    total_timesteps      | 57344        |
-| train/                  |              |
-|    approx_kl            | 0.0015572791 |
-|    clip_fraction        | 0.00083      |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.34        |
-|    explained_variance   | 0            |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.24e+05     |
-|    n_updates            | 270          |
-|    policy_gradient_loss | 8.84e-05     |
-|    std                  | 0.927        |
-|    value_loss           | 1.21e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3548         |
-|    iterations           | 29           |
-|    time_elapsed         | 16           |
-|    total_timesteps      | 59392        |
-| train/                  |              |
-|    approx_kl            | 0.0035460265 |
-|    clip_fraction        | 0.00425      |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.34        |
-|    explained_variance   | 0            |
-|    learning_rate        | 0.0003       |
-|    loss                 | 5.92e+05     |
-|    n_updates            | 280          |
-|    policy_gradient_loss | -0.000137    |
-|    std                  | 0.926        |
-|    value_loss           | 1.2e+06      |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------------------------------------
-| rollout/                |            |
-|    ep_len_mean          | 3.6e+03    |
-|    ep_rew_mean          | -2.45e+05  |
-| time/                   |            |
-|    fps                  | 3548       |
-|    iterations           | 30         |
-|    time_elapsed         | 17         |
-|    total_timesteps      | 61440      |
-| train/                  |            |
-|    approx_kl            | 0.00358123 |
-|    clip_fraction        | 0.0119     |
-|    clip_range           | 0.2        |
-|    entropy_loss         | -1.35      |
-|    explained_variance   | 1.79e-07   |
-|    learning_rate        | 0.0003     |
-|    loss                 | 6.12e+05   |
-|    n_updates            | 290        |
-|    policy_gradient_loss | -0.000587  |
-|    std                  | 0.932      |
-|    value_loss           | 1.23e+06   |
-----------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3549         |
-|    iterations           | 31           |
-|    time_elapsed         | 17           |
-|    total_timesteps      | 63488        |
-| train/                  |              |
-|    approx_kl            | 0.0011592719 |
-|    clip_fraction        | 4.88e-05     |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.35        |
-|    explained_variance   | 0            |
-|    learning_rate        | 0.0003       |
-|    loss                 | 5.89e+05     |
-|    n_updates            | 300          |
-|    policy_gradient_loss | 3.67e-05     |
-|    std                  | 0.928        |
-|    value_loss           | 1.19e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3550         |
-|    iterations           | 32           |
-|    time_elapsed         | 18           |
-|    total_timesteps      | 65536        |
-| train/                  |              |
-|    approx_kl            | 0.0035271505 |
-|    clip_fraction        | 0.00381      |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.34        |
-|    explained_variance   | 0            |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.21e+05     |
-|    n_updates            | 310          |
-|    policy_gradient_loss | -0.00019     |
-|    std                  | 0.929        |
-|    value_loss           | 1.24e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3551         |
-|    iterations           | 33           |
-|    time_elapsed         | 19           |
-|    total_timesteps      | 67584        |
-| train/                  |              |
-|    approx_kl            | 0.0003466708 |
-|    clip_fraction        | 0            |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.35        |
-|    explained_variance   | -1.19e-07    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 5.88e+05     |
-|    n_updates            | 320          |
-|    policy_gradient_loss | 0.000214     |
-|    std                  | 0.929        |
-|    value_loss           | 1.2e+06      |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3551        |
-|    iterations           | 34          |
-|    time_elapsed         | 19          |
-|    total_timesteps      | 69632       |
-| train/                  |             |
-|    approx_kl            | 0.005294214 |
-|    clip_fraction        | 0.0458      |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.34       |
-|    explained_variance   | 0           |
-|    learning_rate        | 0.0003      |
-|    loss                 | 6e+05       |
-|    n_updates            | 330         |
-|    policy_gradient_loss | -0.00255    |
-|    std                  | 0.926       |
-|    value_loss           | 1.21e+06    |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3551        |
-|    iterations           | 35          |
-|    time_elapsed         | 20          |
-|    total_timesteps      | 71680       |
-| train/                  |             |
-|    approx_kl            | 0.004199709 |
-|    clip_fraction        | 0.00937     |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.34       |
-|    explained_variance   | 0           |
-|    learning_rate        | 0.0003      |
-|    loss                 | 5.96e+05    |
-|    n_updates            | 340         |
-|    policy_gradient_loss | -0.000376   |
-|    std                  | 0.922       |
-|    value_loss           | 1.2e+06     |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3535         |
-|    iterations           | 36           |
-|    time_elapsed         | 20           |
-|    total_timesteps      | 73728        |
-| train/                  |              |
-|    approx_kl            | 0.0048398543 |
-|    clip_fraction        | 0.0296       |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.34        |
-|    explained_variance   | 2.98e-07     |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6e+05        |
-|    n_updates            | 350          |
-|    policy_gradient_loss | -0.00147     |
-|    std                  | 0.925        |
-|    value_loss           | 1.19e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3530        |
-|    iterations           | 37          |
-|    time_elapsed         | 21          |
-|    total_timesteps      | 75776       |
-| train/                  |             |
-|    approx_kl            | 0.002591794 |
-|    clip_fraction        | 0.000879    |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.34       |
-|    explained_variance   | 0           |
-|    learning_rate        | 0.0003      |
-|    loss                 | 6.01e+05    |
-|    n_updates            | 360         |
-|    policy_gradient_loss | -0.000201   |
-|    std                  | 0.921       |
-|    value_loss           | 1.21e+06    |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3531        |
-|    iterations           | 38          |
-|    time_elapsed         | 22          |
-|    total_timesteps      | 77824       |
-| train/                  |             |
-|    approx_kl            | 0.007272142 |
-|    clip_fraction        | 0.0349      |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.34       |
-|    explained_variance   | 0           |
-|    learning_rate        | 0.0003      |
-|    loss                 | 5.87e+05    |
-|    n_updates            | 370         |
-|    policy_gradient_loss | -0.00134    |
-|    std                  | 0.924       |
-|    value_loss           | 1.18e+06    |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3525         |
-|    iterations           | 39           |
-|    time_elapsed         | 22           |
-|    total_timesteps      | 79872        |
-| train/                  |              |
-|    approx_kl            | 0.0028227987 |
-|    clip_fraction        | 0.00518      |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.34        |
-|    explained_variance   | 0            |
-|    learning_rate        | 0.0003       |
-|    loss                 | 6.02e+05     |
-|    n_updates            | 380          |
-|    policy_gradient_loss | -0.000567    |
-|    std                  | 0.923        |
-|    value_loss           | 1.23e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3524         |
-|    iterations           | 40           |
-|    time_elapsed         | 23           |
-|    total_timesteps      | 81920        |
-| train/                  |              |
-|    approx_kl            | 0.0045437985 |
-|    clip_fraction        | 0.0333       |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.34        |
-|    explained_variance   | -1.19e-07    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 5.72e+05     |
-|    n_updates            | 390          |
-|    policy_gradient_loss | -0.00264     |
-|    std                  | 0.927        |
-|    value_loss           | 1.19e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3523        |
-|    iterations           | 41          |
-|    time_elapsed         | 23          |
-|    total_timesteps      | 83968       |
-| train/                  |             |
-|    approx_kl            | 0.001911737 |
-|    clip_fraction        | 0.000635    |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.34       |
-|    explained_variance   | 1.19e-07    |
-|    learning_rate        | 0.0003      |
-|    loss                 | 5.98e+05    |
-|    n_updates            | 400         |
-|    policy_gradient_loss | -0.000106   |
-|    std                  | 0.92        |
-|    value_loss           | 1.21e+06    |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3524        |
-|    iterations           | 42          |
-|    time_elapsed         | 24          |
-|    total_timesteps      | 86016       |
-| train/                  |             |
-|    approx_kl            | 0.006413694 |
-|    clip_fraction        | 0.0506      |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.33       |
-|    explained_variance   | 0           |
-|    learning_rate        | 0.0003      |
-|    loss                 | 5.7e+05     |
-|    n_updates            | 410         |
-|    policy_gradient_loss | -0.0029     |
-|    std                  | 0.911       |
-|    value_loss           | 1.19e+06    |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3523         |
-|    iterations           | 43           |
-|    time_elapsed         | 24           |
-|    total_timesteps      | 88064        |
-| train/                  |              |
-|    approx_kl            | 0.0042812168 |
-|    clip_fraction        | 0.0208       |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.32        |
-|    explained_variance   | 0            |
-|    learning_rate        | 0.0003       |
-|    loss                 | 5.89e+05     |
-|    n_updates            | 420          |
-|    policy_gradient_loss | -0.0015      |
-|    std                  | 0.901        |
-|    value_loss           | 1.19e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------
-| rollout/                |             |
-|    ep_len_mean          | 3.6e+03     |
-|    ep_rew_mean          | -2.45e+05   |
-| time/                   |             |
-|    fps                  | 3522        |
-|    iterations           | 44          |
-|    time_elapsed         | 25          |
-|    total_timesteps      | 90112       |
-| train/                  |             |
-|    approx_kl            | 0.005448709 |
-|    clip_fraction        | 0.0382      |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -1.31       |
-|    explained_variance   | 5.96e-08    |
-|    learning_rate        | 0.0003      |
-|    loss                 | 5.99e+05    |
-|    n_updates            | 430         |
-|    policy_gradient_loss | -0.00208    |
-|    std                  | 0.891       |
-|    value_loss           | 1.19e+06    |
------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3523         |
-|    iterations           | 45           |
-|    time_elapsed         | 26           |
-|    total_timesteps      | 92160        |
-| train/                  |              |
-|    approx_kl            | 0.0063607837 |
-|    clip_fraction        | 0.0521       |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.3         |
-|    explained_variance   | -1.19e-07    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 5.57e+05     |
-|    n_updates            | 440          |
-|    policy_gradient_loss | -0.00338     |
-|    std                  | 0.882        |
-|    value_loss           | 1.16e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3524         |
-|    iterations           | 46           |
-|    time_elapsed         | 26           |
-|    total_timesteps      | 94208        |
-| train/                  |              |
-|    approx_kl            | 0.0007364934 |
-|    clip_fraction        | 0            |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.29        |
-|    explained_variance   | 0            |
-|    learning_rate        | 0.0003       |
-|    loss                 | 5.99e+05     |
-|    n_updates            | 450          |
-|    policy_gradient_loss | 0.000111     |
-|    std                  | 0.88         |
-|    value_loss           | 1.21e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3524         |
-|    iterations           | 47           |
-|    time_elapsed         | 27           |
-|    total_timesteps      | 96256        |
-| train/                  |              |
-|    approx_kl            | 0.0058448585 |
-|    clip_fraction        | 0.0546       |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.29        |
-|    explained_variance   | -2.38e-07    |
-|    learning_rate        | 0.0003       |
-|    loss                 | 5.81e+05     |
-|    n_updates            | 460          |
-|    policy_gradient_loss | -0.00242     |
-|    std                  | 0.877        |
-|    value_loss           | 1.17e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3525         |
-|    iterations           | 48           |
-|    time_elapsed         | 27           |
-|    total_timesteps      | 98304        |
-| train/                  |              |
-|    approx_kl            | 0.0018015483 |
-|    clip_fraction        | 0.00674      |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.3         |
-|    explained_variance   | 0            |
-|    learning_rate        | 0.0003       |
-|    loss                 | 5.97e+05     |
-|    n_updates            | 470          |
-|    policy_gradient_loss | -0.000981    |
-|    std                  | 0.887        |
-|    value_loss           | 1.19e+06     |
-------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
-| rollout/                |              |
-|    ep_len_mean          | 3.6e+03      |
-|    ep_rew_mean          | -2.45e+05    |
-| time/                   |              |
-|    fps                  | 3526         |
-|    iterations           | 49           |
-|    time_elapsed         | 28           |
-|    total_timesteps      | 100352       |
-| train/                  |              |
-|    approx_kl            | 0.0020113345 |
-|    clip_fraction        | 0.00801      |
-|    clip_range           | 0.2          |
-|    entropy_loss         | -1.3         |
-|    explained_variance   | 0            |
-|    learning_rate        | 0.0003       |
-|    loss                 | 5.76e+05     |
-|    n_updates            | 480          |
-|    policy_gradient_loss | -0.000579    |
-|    std                  | 0.882        |
-|    value_loss           | 1.17e+06     |
-------------------------------------------
-</pre></div>
-</div>
+<div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">model</span> <span class="o">=</span> <span class="n">PPO</span><span class="p">(</span><span class="s2">&quot;MlpPolicy&quot;</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">model</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">total_timesteps</span><span class="o">=</span><span class="mi">10_000_000</span><span class="p">)</span>  <span class="c1"># adjust for convergence</span>
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">model</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">total_timesteps</span><span class="o">=</span><span class="mi">150_000</span><span class="p">,</span> <span class="n">tb_log_name</span><span class="o">=</span><span class="s2">&quot;SAC_pipeheater&quot;</span><span class="p">)</span>  <span class="c1"># adjust for convergence</span>
 
-<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/ppo/ppo.py:311,</span> in <span class="ni">PPO.learn</span><span class="nt">(self, total_timesteps, callback, log_interval, tb_log_name, reset_num_timesteps, progress_bar)</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span> <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="bp">self</span><span class="p">:</span> <span class="n">SelfPPO</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span>     <span class="n">total_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/sac/sac.py:307,</span> in <span class="ni">SAC.learn</span><span class="nt">(self, total_timesteps, callback, log_interval, tb_log_name, reset_num_timesteps, progress_bar)</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span> <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span>     <span class="bp">self</span><span class="p">:</span> <span class="n">SelfSAC</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>     <span class="n">total_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>     <span class="n">progress_bar</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SelfPPO</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">311</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span>         <span class="n">total_timesteps</span><span class="o">=</span><span class="n">total_timesteps</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span>         <span class="n">log_interval</span><span class="o">=</span><span class="n">log_interval</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span>         <span class="n">tb_log_name</span><span class="o">=</span><span class="n">tb_log_name</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">316</span>         <span class="n">reset_num_timesteps</span><span class="o">=</span><span class="n">reset_num_timesteps</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span>         <span class="n">progress_bar</span><span class="o">=</span><span class="n">progress_bar</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span>     <span class="n">progress_bar</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SelfSAC</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">307</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">308</span>         <span class="n">total_timesteps</span><span class="o">=</span><span class="n">total_timesteps</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>         <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>         <span class="n">log_interval</span><span class="o">=</span><span class="n">log_interval</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">311</span>         <span class="n">tb_log_name</span><span class="o">=</span><span class="n">tb_log_name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>         <span class="n">reset_num_timesteps</span><span class="o">=</span><span class="n">reset_num_timesteps</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="n">progress_bar</span><span class="o">=</span><span class="n">progress_bar</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span>     <span class="p">)</span>
 
-<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:323,</span> in <span class="ni">OnPolicyAlgorithm.learn</span><span class="nt">(self, total_timesteps, callback, log_interval, tb_log_name, reset_num_timesteps, progress_bar)</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span> <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_timesteps</span> <span class="o">&lt;</span> <span class="n">total_timesteps</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">323</span>     <span class="n">continue_training</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">collect_rollouts</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rollout_buffer</span><span class="p">,</span> <span class="n">n_rollout_steps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_steps</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">325</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">continue_training</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">326</span>         <span class="k">break</span>
+<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/off_policy_algorithm.py:314,</span> in <span class="ni">OffPolicyAlgorithm.learn</span><span class="nt">(self, total_timesteps, callback, log_interval, tb_log_name, reset_num_timesteps, progress_bar)</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span> <span class="k">def</span> <span class="nf">learn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span>     <span class="bp">self</span><span class="p">:</span> <span class="n">SelfOffPolicyAlgorithm</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span>     <span class="n">total_timesteps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>     <span class="n">progress_bar</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SelfOffPolicyAlgorithm</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">314</span>     <span class="n">total_timesteps</span><span class="p">,</span> <span class="n">callback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setup_learn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">315</span>         <span class="n">total_timesteps</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">316</span>         <span class="n">callback</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span>         <span class="n">reset_num_timesteps</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span>         <span class="n">tb_log_name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>         <span class="n">progress_bar</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>     <span class="n">callback</span><span class="o">.</span><span class="n">on_training_start</span><span class="p">(</span><span class="nb">locals</span><span class="p">(),</span> <span class="nb">globals</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">324</span>     <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;You must set the environment before calling learn()&quot;</span>
 
-<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/on_policy_algorithm.py:218,</span> in <span class="ni">OnPolicyAlgorithm.collect_rollouts</span><span class="nt">(self, env, callback, rollout_buffer, n_rollout_steps)</span>
-<span class="g g-Whitespace">    </span><span class="mi">213</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">214</span>         <span class="c1"># Otherwise, clip the actions to avoid out of bound error</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span>         <span class="c1"># as we are sampling from an unbounded Gaussian distribution</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span>         <span class="n">clipped_actions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">actions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">low</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">high</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">218</span> <span class="n">new_obs</span><span class="p">,</span> <span class="n">rewards</span><span class="p">,</span> <span class="n">dones</span><span class="p">,</span> <span class="n">infos</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">clipped_actions</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_timesteps</span> <span class="o">+=</span> <span class="n">env</span><span class="o">.</span><span class="n">num_envs</span>
-<span class="g g-Whitespace">    </span><span class="mi">222</span> <span class="c1"># Give access to local variables</span>
+<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/off_policy_algorithm.py:297,</span> in <span class="ni">OffPolicyAlgorithm._setup_learn</span><span class="nt">(self, total_timesteps, callback, reset_num_timesteps, tb_log_name, progress_bar)</span>
+<span class="g g-Whitespace">    </span><span class="mi">290</span> <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">291</span>     <span class="bp">self</span><span class="o">.</span><span class="n">action_noise</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">292</span>     <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">num_envs</span> <span class="o">&gt;</span> <span class="mi">1</span>
+<span class="g g-Whitespace">    </span><span class="mi">293</span>     <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action_noise</span><span class="p">,</span> <span class="n">VectorizedActionNoise</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">294</span> <span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">295</span>     <span class="bp">self</span><span class="o">.</span><span class="n">action_noise</span> <span class="o">=</span> <span class="n">VectorizedActionNoise</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action_noise</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">num_envs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">297</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_setup_learn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span>     <span class="n">total_timesteps</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span>     <span class="n">callback</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>     <span class="n">reset_num_timesteps</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="n">tb_log_name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>     <span class="n">progress_bar</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span> <span class="p">)</span>
 
-<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/vec_env/base_vec_env.py:207,</span> in <span class="ni">VecEnv.step</span><span class="nt">(self, actions)</span>
-<span class="g g-Whitespace">    </span><span class="mi">200</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span><span class="sd"> Step the environments with the given action</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span><span class="sd"> :param actions: the action</span>
-<span class="g g-Whitespace">    </span><span class="mi">204</span><span class="sd"> :return: observation, reward, done, information</span>
-<span class="g g-Whitespace">    </span><span class="mi">205</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_async</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">207</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_wait</span><span class="p">()</span>
+<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/base_class.py:432,</span> in <span class="ni">BaseAlgorithm._setup_learn</span><span class="nt">(self, total_timesteps, callback, reset_num_timesteps, tb_log_name, progress_bar)</span>
+<span class="g g-Whitespace">    </span><span class="mi">430</span> <span class="c1"># Configure logger&#39;s outputs if no logger was passed</span>
+<span class="g g-Whitespace">    </span><span class="mi">431</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_custom_logger</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">432</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">configure_logger</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tensorboard_log</span><span class="p">,</span> <span class="n">tb_log_name</span><span class="p">,</span> <span class="n">reset_num_timesteps</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">434</span> <span class="c1"># Create eval callback if needed</span>
+<span class="g g-Whitespace">    </span><span class="mi">435</span> <span class="n">callback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_callback</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">progress_bar</span><span class="p">)</span>
 
-<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py:59,</span> in <span class="ni">DummyVecEnv.step_wait</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span> <span class="k">def</span> <span class="nf">step_wait</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VecEnvStepReturn</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="c1"># Avoid circular imports</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span>     <span class="k">for</span> <span class="n">env_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_envs</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">59</span>         <span class="n">obs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buf_rews</span><span class="p">[</span><span class="n">env_idx</span><span class="p">],</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buf_infos</span><span class="p">[</span><span class="n">env_idx</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">envs</span><span class="p">[</span><span class="n">env_idx</span><span class="p">]</span><span class="o">.</span><span class="n">step</span><span class="p">(</span>  <span class="c1"># type: ignore[assignment]</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span>             <span class="bp">self</span><span class="o">.</span><span class="n">actions</span><span class="p">[</span><span class="n">env_idx</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>         <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>         <span class="c1"># convert to SB3 VecEnv api</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>         <span class="bp">self</span><span class="o">.</span><span class="n">buf_dones</span><span class="p">[</span><span class="n">env_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span>
+<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/utils.py:202,</span> in <span class="ni">configure_logger</span><span class="nt">(verbose, tensorboard_log, tb_log_name, reset_num_timesteps)</span>
+<span class="g g-Whitespace">    </span><span class="mi">199</span> <span class="n">save_path</span><span class="p">,</span> <span class="n">format_strings</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;stdout&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span> <span class="k">if</span> <span class="n">tensorboard_log</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">SummaryWriter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">202</span>     <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;Trying to log data to tensorboard but tensorboard is not installed.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span> <span class="k">if</span> <span class="n">tensorboard_log</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">SummaryWriter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span>     <span class="n">latest_run_id</span> <span class="o">=</span> <span class="n">get_latest_run_id</span><span class="p">(</span><span class="n">tensorboard_log</span><span class="p">,</span> <span class="n">tb_log_name</span><span class="p">)</span>
 
-<span class="nn">File /opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/monitor.py:94,</span> in <span class="ni">Monitor.step</span><span class="nt">(self, action)</span>
-<span class="g g-Whitespace">     </span><span class="mi">92</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">needs_reset</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">93</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Tried to step environment that needs reset&quot;</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">94</span> <span class="n">observation</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">reward</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="k">if</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span><span class="p">:</span>
-
-<span class="nn">File ~/PycharmProjects/NehemisControl/mybook/PipeEnv.py:55,</span> in <span class="ni">PipeHeaterSafeEnvGymnasium.step</span><span class="nt">(self, action)</span>
-<span class="g g-Whitespace">     </span><span class="mi">51</span> <span class="n">dT</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;u&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;Delta_x&quot;</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span>     <span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">T0</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span> <span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">T_ext</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">54</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">55</span>     <span class="n">dT</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;u&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;Delta_x&quot;</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span>         <span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">T_ext</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">dT</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="c1"># Calculate error_out</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<span class="ne">ImportError</span>: Trying to log data to tensorboard but tensorboard is not installed.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;sac_pipeheater_model&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># model = SAC(&quot;MlpPolicy&quot;, env, verbose=1, tensorboard_log=&quot;./tensorboard/&quot;)</span>
+<span class="c1"># model.load(&quot;sac_pipeheater_model&quot;)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;sac_pipeheater_model&quot;</span><span class="p">)</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">PipeHeaterSafeEnvGymnasium</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Tinlet</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">Tset</span><span class="o">=</span><span class="mi">92</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+
+
+<span class="n">obs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 <span class="n">Tin_hist</span><span class="p">,</span> <span class="n">Tout_hist</span><span class="p">,</span> <span class="n">P_hist</span><span class="p">,</span> <span class="n">R_list</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="n">last_act</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.2</span>
 
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">steps</span><span class="p">):</span>
-    <span class="n">action</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
-    <span class="c1"># action = [30]</span>
+    <span class="n">act</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">act</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="n">last_act</span>
+    <span class="n">last_act</span><span class="o">=</span> <span class="n">action</span>
     <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
     <span class="n">Tin_hist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">Tout_hist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">Tout_hist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">P_hist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">R_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tin_hist</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Tinlet&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tout_hist</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Toutlet&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">Tset</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Setpoint&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">95</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Safety limit&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Temperature (°C)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Timestep&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">P_hist</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Heater Power (kW)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Power (kW)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Timestep&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># Create a figure with two subplots (vertically stacked)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_list</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Reward&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Reward &quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Timestep&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># --- Top subplot: Temperature ---</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tin_hist</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Tinlet&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tout_hist</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Toutlet&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">Tset</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Setpoint&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">95</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Safety limit&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Temperature (°C)&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Timestep&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># --- Bottom subplot: Power and Reward ---</span>
+<span class="c1"># Left y-axis: Heater Power</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">ax2</span>
+<span class="n">line1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">P_hist</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Heater Power (kW)&quot;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Power (kW)&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Right y-axis: Reward</span>
+<span class="n">ax4</span> <span class="o">=</span> <span class="n">ax3</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">line2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R_list</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Reward&quot;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Reward&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">)</span>
+
+<span class="c1"># Combine legends for the bottom subplot</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+
+<span class="c1"># Adjust layout to prevent overlap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Save the figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;images/security_RL_results.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">time_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">Tin_hist</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mf">6.0</span>
+
+<span class="c1"># ---- save results to CSV ----</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;time_min&quot;</span><span class="p">:</span> <span class="n">time_min</span><span class="p">,</span>
+    <span class="s2">&quot;Tinlet&quot;</span><span class="p">:</span> <span class="n">Tin_hist</span><span class="p">,</span>
+    <span class="s2">&quot;Toutlet&quot;</span><span class="p">:</span> <span class="n">Tout_hist</span><span class="p">,</span>
+    <span class="s2">&quot;HeaterPower_kW&quot;</span><span class="p">:</span> <span class="n">P_hist</span><span class="p">,</span>
+    <span class="s2">&quot;Reward&quot;</span><span class="p">:</span> <span class="n">R_list</span>
+<span class="p">})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;results/security_RL_results.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Results saved to simulation_results.csv&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/91d855ec433a3f0a74cb96acc93ae9302192dbb2791cdcf4d445622bfae3071b.png" src="_images/91d855ec433a3f0a74cb96acc93ae9302192dbb2791cdcf4d445622bfae3071b.png" />
-<img alt="_images/879273f9b04708db4a8e222638245f0c766e71f197c4349f4d1ce31276192be7.png" src="_images/879273f9b04708db4a8e222638245f0c766e71f197c4349f4d1ce31276192be7.png" />
-<img alt="_images/9078f9bf84edb97eee65ba61958c9f415470740e9096c44afbcd69b54221c9d5.png" src="_images/9078f9bf84edb97eee65ba61958c9f415470740e9096c44afbcd69b54221c9d5.png" />
+<img alt="_images/861812727320f160465d53cd949d2bba1e8786fb27a3f51ce4c3eb4ed21520c8.png" src="_images/861812727320f160465d53cd949d2bba1e8786fb27a3f51ce4c3eb4ed21520c8.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Results saved to simulation_results.csv
+</pre></div>
+</div>
 </div>
 </div>
 

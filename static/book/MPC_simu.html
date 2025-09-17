@@ -376,10 +376,10 @@ document.write(`
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">params</span><span class="p">[</span><span class="s2">&quot;N&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="n">env</span> <span class="o">=</span> <span class="n">PipeHeaterSafeEnvGymnasium</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Tinlet</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span> <span class="n">Tset</span><span class="o">=</span><span class="mf">85.0</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">PipeHeaterSafeEnvGymnasium</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Tinlet</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span> <span class="n">Tset</span><span class="o">=</span> <span class="mf">85.0</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
 
 <span class="n">mpc_dt</span> <span class="o">=</span> <span class="mf">10.0</span>
-<span class="n">mpc</span> <span class="o">=</span> <span class="n">MPCController</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">mpc_dt</span><span class="p">,</span> <span class="n">Hp</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">],</span> <span class="n">R</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">Rd</span><span class="o">=</span><span class="mf">1e-1</span><span class="p">,</span> <span class="n">T_set</span><span class="o">=</span><span class="p">[</span><span class="mf">92.0</span><span class="p">,</span> <span class="mf">85.0</span><span class="p">],</span> <span class="n">T_safety</span><span class="o">=</span><span class="mf">95.0</span><span class="p">)</span>
+<span class="n">mpc</span> <span class="o">=</span> <span class="n">MPCController</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">mpc_dt</span><span class="p">,</span> <span class="n">Hp</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">],</span> <span class="n">R</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">Rd</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T_set</span><span class="o">=</span><span class="p">[</span><span class="mf">92.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">],</span> <span class="n">T_safety</span><span class="o">=</span><span class="mf">95.0</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 
 <span class="n">obs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 </pre></div>
@@ -396,11 +396,16 @@ document.write(`
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">File</span> <span class="o">~/</span><span class="n">PycharmProjects</span><span class="o">/</span><span class="n">NehemisControl</span><span class="o">/</span><span class="n">mybook</span><span class="o">/</span><span class="n">MPCCon</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># mpc_controller.py</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># mpc_controller.py (only the MPCController class shown, replace original)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">PipeEnv</span> <span class="kn">import</span> <span class="n">PipeHeaterSafeEnvGymnasium</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">class</span> <span class="nc">MPCController</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span><span class="sd">     Linear MPC for PipeHeaterSafeEnvGymnasium.</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span><span class="sd">     - u is heater power in kW (same units as env action); internally env multiplies by 1e3.</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span><span class="sd">     &quot;&quot;&quot;</span>
 
 <span class="ne">ModuleNotFoundError</span>: No module named &#39;cvxpy&#39;
 </pre></div>
@@ -414,11 +419,12 @@ document.write(`
 <span class="n">u_prev</span> <span class="o">=</span> <span class="mf">0.0</span>
 <span class="n">traj</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">mpc_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mpc</span><span class="o">.</span><span class="n">dt</span> <span class="o">/</span> <span class="n">env</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>   <span class="c1"># number of env steps per MPC update</span>
+<span class="n">setpoints</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3600</span><span class="p">):</span>
     <span class="c1"># Update MPC only every mpc_steps</span>
     <span class="k">if</span> <span class="n">step</span> <span class="o">%</span> <span class="n">mpc_steps</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">u_cmd</span> <span class="o">=</span> <span class="n">mpc</span><span class="o">.</span><span class="n">compute_action</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">u_prev</span><span class="o">=</span><span class="n">u_prev</span><span class="p">)</span>
+        <span class="n">u_cmd</span><span class="p">,</span> <span class="n">T_in_sp</span><span class="p">,</span> <span class="n">T_out_sp</span> <span class="o">=</span> <span class="n">mpc</span><span class="o">.</span><span class="n">compute_action</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">u_prev</span><span class="o">=</span><span class="n">u_prev</span><span class="p">)</span>
         <span class="n">u_prev</span> <span class="o">=</span> <span class="n">u_cmd</span>  <span class="c1"># store for move suppression, rate constraints, etc.</span>
 
     <span class="c1"># Apply the most recent MPC command</span>
@@ -428,6 +434,7 @@ document.write(`
     <span class="c1"># Save state</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">traj</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">step</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">u_cmd</span><span class="p">,</span> <span class="n">reward</span><span class="p">))</span>
+    <span class="n">setpoints</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">T_in_sp</span><span class="p">,</span> <span class="n">T_out_sp</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">terminated</span><span class="p">:</span>
         <span class="k">break</span>
@@ -441,11 +448,14 @@ document.write(`
 <span class="n">u_cmds</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">traj</span><span class="p">]</span>
 <span class="n">rewards</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">traj</span><span class="p">]</span>
 
+<span class="n">T_in_sp</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">setpoints</span><span class="p">]</span>   <span class="c1"># last element of state is outlet temperature</span>
+<span class="n">T_out_sp</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">setpoints</span><span class="p">]</span>   <span class="c1"># last element of state is outlet temperature</span>
+
 <span class="c1"># Plot outlet temperature</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">T_in</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Inlet Temperature&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">T_out</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Outlet Temperature&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">Tset</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Setpoint&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span><span class="n">T_out_sp</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Setpoint&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">mpc</span><span class="o">.</span><span class="n">T_safety</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Safety Limit&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [min]&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Temperature [°C]&quot;</span><span class="p">)</span>
@@ -463,25 +473,14 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># # Plot reward</span>
-<span class="c1"># plt.figure(figsize=(10,3))</span>
-<span class="c1"># plt.plot(steps, env.Tset - np.array(T_out), label=&quot;error&quot;)</span>
-<span class="c1"># # plt.yscale(&quot;log&quot;)</span>
-<span class="c1"># plt.ylim([0,1.0])</span>
-<span class="c1"># plt.xlabel(&quot;Time [min]&quot;)</span>
-<span class="c1"># plt.ylabel(&quot;Error&quot;)</span>
-<span class="c1"># plt.title(&quot;MPC Error Over Time&quot;)</span>
-<span class="c1"># plt.legend()</span>
-<span class="c1"># plt.grid(True)</span>
-<span class="c1"># </span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;images/MPC_results_input_2.png&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;images/MPC_security.png&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6dd9f133b4c86e7834073326e67c6dc21ad718c934957350830a12a19693859d.png" src="_images/6dd9f133b4c86e7834073326e67c6dc21ad718c934957350830a12a19693859d.png" />
-<img alt="_images/41cc4a5b724311006857e087c53ee95d29bfbd6bd3b9cd3af0307f6a8b9c8b89.png" src="_images/41cc4a5b724311006857e087c53ee95d29bfbd6bd3b9cd3af0307f6a8b9c8b89.png" />
+<img alt="_images/097ae059b5ed59f6ed6ab7a10520cd79f4039e2581bb94e5c83c0ae3b0b18cbc.png" src="_images/097ae059b5ed59f6ed6ab7a10520cd79f4039e2581bb94e5c83c0ae3b0b18cbc.png" />
+<img alt="_images/11e1747fb6dc981e521f5239fa6816eb9e58c1fa2eef898dba1269199de69c25.png" src="_images/11e1747fb6dc981e521f5239fa6816eb9e58c1fa2eef898dba1269199de69c25.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -493,12 +492,12 @@ document.write(`
     <span class="s2">&quot;time_min&quot;</span><span class="p">:</span> <span class="n">steps</span><span class="p">,</span>
     <span class="s2">&quot;Tinlet&quot;</span><span class="p">:</span> <span class="n">T_in</span><span class="p">,</span>
     <span class="s2">&quot;Toutlet&quot;</span><span class="p">:</span> <span class="n">T_out</span><span class="p">,</span>
-    <span class="s2">&quot;u_cmd&quot;</span><span class="p">:</span> <span class="n">u_cmds</span><span class="p">,</span>
+    <span class="s2">&quot;HeaterPower_kW&quot;</span><span class="p">:</span> <span class="n">u_cmds</span><span class="p">,</span>
     <span class="s2">&quot;reward&quot;</span><span class="p">:</span> <span class="n">rewards</span><span class="p">,</span>
 <span class="p">})</span>
 
 <span class="c1"># Save to CSV</span>
-<span class="n">csv_filename</span> <span class="o">=</span> <span class="s2">&quot;results/MPC_run_data.csv&quot;</span>
+<span class="n">csv_filename</span> <span class="o">=</span> <span class="s2">&quot;results/MPC_run_data_ramp.csv&quot;</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saved results to </span><span class="si">{</span><span class="n">csv_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -506,7 +505,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saved results to results/MPC_run_data.csv
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saved results to results/MPC_run_data_ramp.csv
 </pre></div>
 </div>
 </div>

@@ -18,45 +18,39 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# TODO: Uncomment following lines to play with the controller:
-
 from ipywidgets import interact, FloatSlider, IntSlider
-from MPCCon import simulate_system
+from MPCRun import run_MPC
 
-# interact(
-#     simulate_system,
-#     Hp=IntSlider(min=1, max=100, step=1, value=70, description="Horizon step"),
-#     Q0=FloatSlider(min=0.0, max=500.0, step=10.0, value=0.0, description="Q Tinlet"),
-#     Q1=FloatSlider(min=0.0, max=2000.0, step=10.0, value=1000.0, description="Q Toutlet"),
-#     R=FloatSlider(min=1e-8, max=1e-2, step=1e-6, value=1e-6, readout_format=".1e", description="R (u²)"),
-#     Rd=FloatSlider(min=0.0, max=10.0, step=0.1, value=1.0, description="Rd (Δu²)"),
-#     Tin_set=FloatSlider(min=20.0, max=120.0, step=1.0, value=92.0, description="Tinlet setpoint"),
-#     Tout_set=FloatSlider(min=20.0, max=95.0, step=1.0, value=85.0, description="Toutlet setpoint"),
-#     T_safety=FloatSlider(min=50.0, max=95.0, step=1.0, value=95.0, description="Safety limit"),
-# )
+run_MPC(Hp=80, Q=[0.0, 1e3], R=1e-5, Rd=1.0, T_set=[92.0, 85.0], T_safety=95.0, ramped = False)
 
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[4], line 4[0m
-[1;32m      1[0m [38;5;66;03m# TODO: Uncomment following lines to play with the controller:[39;00m
-[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01mipywidgets[39;00m [38;5;28;01mimport[39;00m interact, FloatSlider, IntSlider
-[0;32m----> 4[0m [38;5;28;01mfrom[39;00m [38;5;21;01mMPCCon[39;00m [38;5;28;01mimport[39;00m simulate_system
-[1;32m      6[0m [38;5;66;03m# interact([39;00m
-[1;32m      7[0m [38;5;66;03m#     simulate_system,[39;00m
-[1;32m      8[0m [38;5;66;03m#     Hp=IntSlider(min=1, max=100, step=1, value=70, description="Horizon step"),[39;00m
-[0;32m   (...)[0m
-[1;32m     15[0m [38;5;66;03m#     T_safety=FloatSlider(min=50.0, max=95.0, step=1.0, value=95.0, description="Safety limit"),[39;00m
-[1;32m     16[0m [38;5;66;03m# )[39;00m
+Cell [0;32mIn[4], line 2[0m
+[1;32m      1[0m [38;5;28;01mfrom[39;00m [38;5;21;01mipywidgets[39;00m [38;5;28;01mimport[39;00m interact, FloatSlider, IntSlider
+[0;32m----> 2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mMPCRun[39;00m [38;5;28;01mimport[39;00m run_MPC
+[1;32m      4[0m run_MPC(Hp[38;5;241m=[39m[38;5;241m80[39m, Q[38;5;241m=[39m[[38;5;241m0.0[39m, [38;5;241m1e3[39m], R[38;5;241m=[39m[38;5;241m1e-5[39m, Rd[38;5;241m=[39m[38;5;241m1.0[39m, T_set[38;5;241m=[39m[[38;5;241m92.0[39m, [38;5;241m85.0[39m], T_safety[38;5;241m=[39m[38;5;241m95.0[39m, ramped [38;5;241m=[39m [38;5;28;01mFalse[39;00m)
+
+File [0;32m~/PycharmProjects/NehemisControl/mybook/MPCRun.py:3[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;32m      2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mPipeEnv[39;00m [38;5;28;01mimport[39;00m PipeHeaterSafeEnvGymnasium
+[0;32m----> 3[0m [38;5;28;01mfrom[39;00m [38;5;21;01mMPCCon[39;00m [38;5;28;01mimport[39;00m MPCController
+[1;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01mparams[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m      5[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
 
 File [0;32m~/PycharmProjects/NehemisControl/mybook/MPCCon.py:3[0m
-[1;32m      1[0m [38;5;66;03m# mpc_controller.py[39;00m
+[1;32m      1[0m [38;5;66;03m# mpc_controller.py (only the MPCController class shown, replace original)[39;00m
 [1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
 [0;32m----> 3[0m [38;5;28;01mimport[39;00m [38;5;21;01mcvxpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mcp[39;00m
-[1;32m      4[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
-[1;32m      5[0m [38;5;28;01mfrom[39;00m [38;5;21;01mPipeEnv[39;00m [38;5;28;01mimport[39;00m PipeHeaterSafeEnvGymnasium
+[1;32m      6[0m [38;5;28;01mclass[39;00m [38;5;21;01mMPCController[39;00m:
+[1;32m      7[0m [38;5;250m    [39m[38;5;124;03m"""[39;00m
+[1;32m      8[0m [38;5;124;03m    Linear MPC for PipeHeaterSafeEnvGymnasium.[39;00m
+[1;32m      9[0m 
+[0;32m   (...)[0m
+[1;32m     15[0m [38;5;124;03m    - u is heater power in kW (same units as env action); internally env multiplies by 1e3.[39;00m
+[1;32m     16[0m [38;5;124;03m    """[39;00m
 
 [0;31mModuleNotFoundError[0m: No module named 'cvxpy'
 

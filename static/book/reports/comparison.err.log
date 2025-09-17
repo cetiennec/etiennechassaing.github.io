@@ -1,0 +1,80 @@
+Traceback (most recent call last):
+  File "/opt/miniconda3/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/miniconda3/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/opt/miniconda3/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/miniconda3/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from runRL import *
+
+run_RL(alpha=0.2)
+------------------
+
+----- stdout -----
+Using cpu device
+Wrapping the env with a `Monitor` wrapper
+Wrapping the env in a DummyVecEnv.
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[2], line 3[0m
+[1;32m      1[0m [38;5;28;01mfrom[39;00m [38;5;21;01mrunRL[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[0;32m----> 3[0m [43mrun_RL[49m[43m([49m[43malpha[49m[38;5;241;43m=[39;49m[38;5;241;43m0.2[39;49m[43m)[49m
+
+File [0;32m~/PycharmProjects/NehemisControl/mybook/runRL.py:16[0m, in [0;36mrun_RL[0;34m(alpha)[0m
+[1;32m     15[0m [38;5;28;01mdef[39;00m [38;5;21mrun_RL[39m(alpha[38;5;241m=[39m[38;5;241m1.0[39m):
+[0;32m---> 16[0m     [43mmodel[49m[38;5;241;43m.[39;49m[43mload[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43msac_pipeheater_model[39;49m[38;5;124;43m"[39;49m[43m)[49m
+[1;32m     18[0m     obs, _ [38;5;241m=[39m env[38;5;241m.[39mreset()
+[1;32m     19[0m     Tin_hist, Tout_hist, P_hist, R_list [38;5;241m=[39m [], [], [], []
+
+File [0;32m/opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/base_class.py:681[0m, in [0;36mBaseAlgorithm.load[0;34m(cls, path, env, device, custom_objects, print_system_info, force_reset, **kwargs)[0m
+[1;32m    678[0m     [38;5;28mprint[39m([38;5;124m"[39m[38;5;124m== CURRENT SYSTEM INFO ==[39m[38;5;124m"[39m)
+[1;32m    679[0m     get_system_info()
+[0;32m--> 681[0m data, params, pytorch_variables [38;5;241m=[39m [43mload_from_zip_file[49m[43m([49m
+[1;32m    682[0m [43m    [49m[43mpath[49m[43m,[49m
+[1;32m    683[0m [43m    [49m[43mdevice[49m[38;5;241;43m=[39;49m[43mdevice[49m[43m,[49m
+[1;32m    684[0m [43m    [49m[43mcustom_objects[49m[38;5;241;43m=[39;49m[43mcustom_objects[49m[43m,[49m
+[1;32m    685[0m [43m    [49m[43mprint_system_info[49m[38;5;241;43m=[39;49m[43mprint_system_info[49m[43m,[49m
+[1;32m    686[0m [43m[49m[43m)[49m
+[1;32m    688[0m [38;5;28;01massert[39;00m data [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m, [38;5;124m"[39m[38;5;124mNo data found in the saved file[39m[38;5;124m"[39m
+[1;32m    689[0m [38;5;28;01massert[39;00m params [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m, [38;5;124m"[39m[38;5;124mNo params found in the saved file[39m[38;5;124m"[39m
+
+File [0;32m/opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/save_util.py:434[0m, in [0;36mload_from_zip_file[0;34m(load_path, load_data, custom_objects, device, verbose, print_system_info)[0m
+[1;32m    430[0m [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mdata[39m[38;5;124m"[39m [38;5;129;01min[39;00m namelist [38;5;129;01mand[39;00m load_data:
+[1;32m    431[0m     [38;5;66;03m# Load class parameters that are stored[39;00m
+[1;32m    432[0m     [38;5;66;03m# with either JSON or pickle (not PyTorch variables).[39;00m
+[1;32m    433[0m     json_data [38;5;241m=[39m archive[38;5;241m.[39mread([38;5;124m"[39m[38;5;124mdata[39m[38;5;124m"[39m)[38;5;241m.[39mdecode()
+[0;32m--> 434[0m     data [38;5;241m=[39m [43mjson_to_data[49m[43m([49m[43mjson_data[49m[43m,[49m[43m [49m[43mcustom_objects[49m[38;5;241;43m=[39;49m[43mcustom_objects[49m[43m)[49m
+[1;32m    436[0m [38;5;66;03m# Check for all .pth files and load them using th.load.[39;00m
+[1;32m    437[0m [38;5;66;03m# "pytorch_variables.pth" stores PyTorch variables, and any other .pth[39;00m
+[1;32m    438[0m [38;5;66;03m# files store state_dicts of variables with custom names (e.g. policy, policy.optimizer)[39;00m
+[1;32m    439[0m pth_files [38;5;241m=[39m [file_name [38;5;28;01mfor[39;00m file_name [38;5;129;01min[39;00m namelist [38;5;28;01mif[39;00m os[38;5;241m.[39mpath[38;5;241m.[39msplitext(file_name)[[38;5;241m1[39m] [38;5;241m==[39m [38;5;124m"[39m[38;5;124m.pth[39m[38;5;124m"[39m]
+
+File [0;32m/opt/miniconda3/lib/python3.12/site-packages/stable_baselines3/common/save_util.py:165[0m, in [0;36mjson_to_data[0;34m(json_string, custom_objects)[0m
+[1;32m    163[0m [38;5;28;01mtry[39;00m:
+[1;32m    164[0m     base64_object [38;5;241m=[39m base64[38;5;241m.[39mb64decode(serialization[38;5;241m.[39mencode())
+[0;32m--> 165[0m     deserialized_object [38;5;241m=[39m [43mcloudpickle[49m[38;5;241;43m.[39;49m[43mloads[49m[43m([49m[43mbase64_object[49m[43m)[49m
+[1;32m    166[0m [38;5;28;01mexcept[39;00m ([38;5;167;01mRuntimeError[39;00m, [38;5;167;01mTypeError[39;00m, [38;5;167;01mAttributeError[39;00m) [38;5;28;01mas[39;00m e:
+[1;32m    167[0m     warnings[38;5;241m.[39mwarn(
+[1;32m    168[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mCould not deserialize object [39m[38;5;132;01m{[39;00mdata_key[38;5;132;01m}[39;00m[38;5;124m. [39m[38;5;124m"[39m
+[1;32m    169[0m         [38;5;124m"[39m[38;5;124mConsider using `custom_objects` argument to replace [39m[38;5;124m"[39m
+[1;32m    170[0m         [38;5;124m"[39m[38;5;124mthis object.[39m[38;5;130;01m\n[39;00m[38;5;124m"[39m
+[1;32m    171[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mException: [39m[38;5;132;01m{[39;00me[38;5;132;01m}[39;00m[38;5;124m"[39m
+[1;32m    172[0m     )
+
+[0;31mModuleNotFoundError[0m: No module named 'numpy._core.numeric'
+
