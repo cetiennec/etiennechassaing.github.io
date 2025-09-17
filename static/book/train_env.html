@@ -475,11 +475,12 @@ Wrapping the env in a DummyVecEnv.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># model = SAC(&quot;MlpPolicy&quot;, env, verbose=1, tensorboard_log=&quot;./tensorboard/&quot;)</span>
-<span class="c1"># model.load(&quot;sac_pipeheater_model&quot;)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;sac_pipeheater_model&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">PipeHeaterSafeEnvGymnasium</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Tinlet</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">Tset</span><span class="o">=</span><span class="mi">95</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> <span class="n">ramped</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
-<span class="n">env</span> <span class="o">=</span> <span class="n">PipeHeaterSafeEnvGymnasium</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">Tinlet</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">Tset</span><span class="o">=</span><span class="mi">92</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+<span class="c1"># model = SAC(&quot;MlpPolicy&quot;, env, verbose=1)</span>
+<span class="c1"># model.load(&quot;sac_pipeheater_model&quot;)</span>
+<span class="c1"># model.save(&quot;sac_pipeheater_model&quot;)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;sac_pipeheater_model&quot;</span><span class="p">)</span>
 
 
 <span class="n">obs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
@@ -555,7 +556,7 @@ Wrapping the env in a DummyVecEnv.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/861812727320f160465d53cd949d2bba1e8786fb27a3f51ce4c3eb4ed21520c8.png" src="_images/861812727320f160465d53cd949d2bba1e8786fb27a3f51ce4c3eb4ed21520c8.png" />
+<img alt="_images/a523e6304b12bd694435f02925b90f3aec37e89cc8c2c7ac40258e9cb3e97c11.png" src="_images/a523e6304b12bd694435f02925b90f3aec37e89cc8c2c7ac40258e9cb3e97c11.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Results saved to simulation_results.csv
 </pre></div>
 </div>

@@ -362,8 +362,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-simulation">2. System Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-modeling">2. System Modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#system-simulation">System Simulation</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control">3. Control</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-objectives">Control Objectives</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#traditionnal-siso-control-technique-with-tinkering">1) Traditionnal SISO control technique, with tinkering</a></li>
@@ -441,8 +444,10 @@ stabilizes, and flows through the system.</p>
 <p>Detailed plots in Appendix show the impact of heat loss coefficient and external temperature on the curves.</p>
 </section>
 </section>
+<section id="system-modeling">
+<h2>2. System Modeling<a class="headerlink" href="#system-modeling" title="Link to this heading">#</a></h2>
 <section id="physical-model-equations">
-<h2>Physical model equations:<a class="headerlink" href="#physical-model-equations" title="Link to this heading">#</a></h2>
+<h3>Physical model equations:<a class="headerlink" href="#physical-model-equations" title="Link to this heading">#</a></h3>
 <p>The system schematic is shown below:</p>
 <p><img alt="heat loop" src="_images/heat_loop1.png" /></p>
 <p>The evolution of the temperature in the pipe is governed by the following partial differential equation (PDE) obtained by
@@ -468,7 +473,7 @@ This allows to write the following Delayed Equations in which <span class="math 
 </ul>
 </section>
 <section id="system-simulation">
-<h2>2. System Simulation<a class="headerlink" href="#system-simulation" title="Link to this heading">#</a></h2>
+<h3>System Simulation<a class="headerlink" href="#system-simulation" title="Link to this heading">#</a></h3>
 <p>Following example show the step response of the system for a given power input :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -483,14 +488,21 @@ This allows to write the following Delayed Equations in which <span class="math 
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "80d5d663d5bc44ab84865cae59cbbfec"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "da101d79e40c4ccda7ae26e6c978e754"}</script></div>
 </div>
+</section>
 </section>
 <section id="control">
 <h2>3. Control<a class="headerlink" href="#control" title="Link to this heading">#</a></h2>
 <section id="control-objectives">
 <h3>Control Objectives<a class="headerlink" href="#control-objectives" title="Link to this heading">#</a></h3>
 <p>Our system should respect the following goals:</p>
+<ul class="simple">
+<li><p>Heat at a temperature of at least 85°C while respecting a 2°C/min ascent</p></li>
+<li><p>Ensure constant outlet temperature control</p></li>
+<li><p>Ensure inlet temperature remains below 95°C</p></li>
+<li><p>Be robust to external temperature changes</p></li>
+</ul>
 </section>
 <section id="traditionnal-siso-control-technique-with-tinkering">
 <h3>1) Traditionnal SISO control technique, with tinkering<a class="headerlink" href="#traditionnal-siso-control-technique-with-tinkering" title="Link to this heading">#</a></h3>
@@ -530,7 +542,7 @@ It exhibits the need to continuously add energy to the system to compensate for 
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "47a5479d331c4f648d1fa0def4f38117"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "4ff7d44eefd341debaf69a93a85ac721"}</script></div>
 </div>
 <p>With correct tuning of the coefficients, we obtain following behavior :</p>
 <div class="cell docutils container">
@@ -981,8 +993,11 @@ The initial project has been made in Matlab, code has been converted to Python p
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-model">Naive model</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-simulation">2. System Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-modeling">2. System Modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model-equations">Physical model equations:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#system-simulation">System Simulation</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control">3. Control</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-objectives">Control Objectives</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#traditionnal-siso-control-technique-with-tinkering">1) Traditionnal SISO control technique, with tinkering</a></li>
