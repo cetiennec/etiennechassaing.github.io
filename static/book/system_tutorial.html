@@ -60,6 +60,7 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'system_tutorial';</script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^1.0.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Project tutorials" href="index.html" />
@@ -479,11 +480,15 @@ Following example show the step response of the system for a given power input :
     <span class="n">P</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">33</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Power (kW):&#39;</span><span class="p">),</span>
     <span class="n">T_ext</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;External temperature (°C):&#39;</span><span class="p">)</span>
 <span class="p">);</span>
+
+<span class="c1"># if sliders are not working:</span>
+<span class="n">simulate_and_plot</span><span class="p">(</span><span class="n">P</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "45b0d30d9ac64026abb1392eeacd7c51"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "9ce5a54015f24ae682c8cf213ca404f6"}</script><img alt="_images/6f0bb57a4b1e83b521b7f43b3fdd45773e66d7569bf79b87b9170aeae3c718c9.png" src="_images/6f0bb57a4b1e83b521b7f43b3fdd45773e66d7569bf79b87b9170aeae3c718c9.png" />
+</div>
 </div>
 </section>
 </section>
@@ -533,11 +538,15 @@ It exhibits the need to continuously add energy to the system to compensate for 
     <span class="n">csv_filename</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">),</span>
     <span class="n">alpha</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="mf">10.0</span><span class="p">),</span>
 <span class="p">);</span>
+
+<span class="c1"># if sliders are not working:</span>
+<span class="n">simulate_PI</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="mi">1500</span><span class="p">,</span><span class="n">Ki</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">save_csv</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">T_ext</span> <span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ac020bc2d1364d8c9b52cd9eb1301551"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "a1681a06780f4907925227d7aa6d820b"}</script><img alt="_images/c3161848aba5e16660bed5b2bd909de1c270a5272b6e61e5f6622d9899880762.png" src="_images/c3161848aba5e16660bed5b2bd909de1c270a5272b6e61e5f6622d9899880762.png" />
+</div>
 </div>
 <p>With correct tuning of the coefficients, we obtain the following behavior :</p>
 <div class="cell docutils container">
@@ -731,6 +740,7 @@ Despite filtering, RL controller fails tracking precisely the target temperature
 <img alt="_images/062af88d1f1df4d5a732e678994e673ffb62c62420d13429b6d016a116a58a7b.png" src="_images/062af88d1f1df4d5a732e678994e673ffb62c62420d13429b6d016a116a58a7b.png" />
 </div>
 </div>
+<p>This shows that, with correct tuning, we can obtain a 2°C rate, but technically the temperature is not following the setpoint, meaning that this is more of a lucky behavior due to controller tuning.</p>
 <p>MPC and RL are run on the ramp reference with same tuning as before.
 For the MPC controller :</p>
 <p><img alt="MPC_results_ramp" src="_images/ramp_MPC_results.png" /></p>
@@ -746,7 +756,7 @@ For the MPC controller :</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/eb44ec7c92879d258914eeb2c9169f3c0cf2b275365193e2db145577d5aeb0a3.png" src="_images/eb44ec7c92879d258914eeb2c9169f3c0cf2b275365193e2db145577d5aeb0a3.png" />
+<img alt="_images/59ddf57fd3e5dafbc0bdefd10a3daf307e275b16385e443623aa85158d3b4169.png" src="_images/59ddf57fd3e5dafbc0bdefd10a3daf307e275b16385e443623aa85158d3b4169.png" />
 </div>
 </div>
 <p>The MPC controller can track the reference without fine-tuning, as it can predict to use a given input for its future output.
@@ -790,11 +800,15 @@ To mitigate the risk</p>
     <span class="n">csv_filename</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">),</span>
     <span class="n">alpha</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;alpha&quot;</span><span class="p">),</span>
 <span class="p">);</span>
+
+<span class="c1">#if sliders are not working :</span>
+<span class="n">simulate_PI</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="mi">1300</span><span class="p">,</span> <span class="n">Ki</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">save_csv</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">T_ext</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">T_set</span><span class="o">=</span><span class="mi">95</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "4af789bd93ef429a93a67cfe86399c5f"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "d933c038b06e40ebb41ced1b1899c039"}</script><img alt="_images/11a37bff15709235ce65c54b31d6cf35b28020a4fbb412651f313cff09e6feb3.png" src="_images/11a37bff15709235ce65c54b31d6cf35b28020a4fbb412651f313cff09e6feb3.png" />
+</div>
 </div>
 <ul class="simple">
 <li><p>MPC controller is inherently respecting constraints, if the optimization process is correctly set up. Meaning it would get as close as possible to unfeasible points.</p></li>
