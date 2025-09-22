@@ -244,24 +244,6 @@
 </a>
 </li>
       
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
   </ul>
 </div>
 
@@ -386,7 +368,7 @@ document.write(`
                   
   <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="c1"># Load the CSV file</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;pipe_heater_data.csv&quot;</span><span class="p">)</span>
@@ -396,7 +378,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract columns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract columns</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">Tinlet</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Tinlet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">Toutlet</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Toutlet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -438,7 +420,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/14c7fc7c0efb83e8f1ff3e6371f568bc2c1f088d76f04fe3e276a1de7051d58f.png" src="_images/14c7fc7c0efb83e8f1ff3e6371f568bc2c1f088d76f04fe3e276a1de7051d58f.png" />
+<img alt="_images/3ad2ac7dadc54fccfe818ffe50eda25e095ba2993e84104e1666a90a3ccda923.png" src="_images/3ad2ac7dadc54fccfe818ffe50eda25e095ba2993e84104e1666a90a3ccda923.png" />
 </div>
 </div>
 
@@ -446,7 +428,7 @@ document.write(`
     {
         requestKernel: true,
         binderOptions: {
-            repo: "executablebooks/jupyter-book",
+            repo: "binder-examples/jupyter-stacks-datascience",
             ref: "master",
         },
         codeMirrorConfig: {

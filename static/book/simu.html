@@ -244,24 +244,6 @@
 </a>
 </li>
       
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
   </ul>
 </div>
 
@@ -378,7 +360,7 @@ document.write(`
 <h1>Simulation<a class="headerlink" href="#simulation" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="k">as</span> <span class="nn">animation</span>
 <span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">Normalize</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -777,15 +759,15 @@ create_parameter_comparison()
 main_demo()
 </pre></div>
 </div>
-<img alt="_images/4915abdf3ef79f516173968a005ea72454b0ca90386cf4f757091ffcfb78e2db.png" src="_images/4915abdf3ef79f516173968a005ea72454b0ca90386cf4f757091ffcfb78e2db.png" />
+<img alt="_images/a258da881e50fa3fd1b98f09b745120cad2a77012519fa994dc9e89db89cc70a.png" src="_images/a258da881e50fa3fd1b98f09b745120cad2a77012519fa994dc9e89db89cc70a.png" />
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">line</span> <span class="mi">383</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">383</span>
 <span class="g g-Whitespace">    </span><span class="mi">380</span> <span class="c1"># create_gif_animation(save_as_gif=True)</span>
 <span class="g g-Whitespace">    </span><span class="mi">381</span> <span class="n">results</span> <span class="o">=</span> <span class="n">create_parameter_comparison</span><span class="p">()</span>
 <span class="ne">--&gt; </span><span class="mi">383</span> <span class="n">create_summary_heatmap</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 
-<span class="nn">Cell In[17], line 273,</span> in <span class="ni">create_summary_heatmap</span><span class="nt">(results_summary)</span>
+<span class="nn">Cell In[1], line 273,</span> in <span class="ni">create_summary_heatmap</span><span class="nt">(results_summary)</span>
 <span class="g g-Whitespace">    </span><span class="mi">271</span> <span class="c1"># Fill matrices</span>
 <span class="g g-Whitespace">    </span><span class="mi">272</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results_summary</span><span class="p">:</span>
 <span class="ne">--&gt; </span><span class="mi">273</span>     <span class="n">i</span> <span class="o">=</span> <span class="n">loss_coeff_values</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;loss_coeff&#39;</span><span class="p">])</span>
@@ -803,7 +785,7 @@ main_demo()
     {
         requestKernel: true,
         binderOptions: {
-            repo: "executablebooks/jupyter-book",
+            repo: "binder-examples/jupyter-stacks-datascience",
             ref: "master",
         },
         codeMirrorConfig: {
