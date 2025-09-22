@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; My sample book</title>
+    <title>&lt;no title&gt; &#8212; My tutorial book</title>
   
   
   
@@ -58,7 +58,7 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'MPC_simu';</script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^1.0.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@1.0.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -150,7 +150,7 @@
   
   
   
-    <p class="title logo__title">My sample book</p>
+    <p class="title logo__title">My tutorial book</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -369,7 +369,7 @@ document.write(`
                   
   <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">PipeEnv</span> <span class="kn">import</span> <span class="n">PipeHeaterSafeEnvGymnasium</span>
 <span class="kn">from</span> <span class="nn">MPCCon</span> <span class="kn">import</span> <span class="n">MPCController</span>
 <span class="kn">from</span> <span class="nn">params</span> <span class="kn">import</span> <span class="o">*</span>
@@ -385,10 +385,36 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">PipeEnv</span> <span class="kn">import</span> <span class="n">PipeHeaterSafeEnvGymnasium</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">MPCCon</span> <span class="kn">import</span> <span class="n">MPCController</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">params</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">PycharmProjects</span><span class="o">/</span><span class="n">NehemisControl</span><span class="o">/</span><span class="n">mybook</span><span class="o">/</span><span class="n">MPCCon</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># mpc_controller.py (only the MPCController class shown, replace original)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">class</span> <span class="nc">MPCController</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span><span class="sd">     Linear MPC for PipeHeaterSafeEnvGymnasium.</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span><span class="sd">     - u is heater power in kW (same units as env action); internally env multiplies by 1e3.</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span><span class="sd">     &quot;&quot;&quot;</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;cvxpy&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the env exposes self.T inside; we assume we can access env.T for full state (otherwise use estimator)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the env exposes self.T inside; we assume we can access env.T for full state (otherwise use estimator)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">u_prev</span> <span class="o">=</span> <span class="mf">0.0</span>
 <span class="n">traj</span> <span class="o">=</span> <span class="p">[]</span>
@@ -465,7 +491,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="c1"># Convert trajectory data to DataFrame</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
@@ -492,7 +518,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython2 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">3000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">3000</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">traj_env</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">mpc_dt</span> <span class="o">=</span> <span class="mf">10.0</span>
@@ -629,7 +655,7 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By The Jupyter Book Community
+By Etienne Chassaing
 </p>
 
   </div>
