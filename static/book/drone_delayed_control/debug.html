@@ -1,0 +1,785 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; My Projects</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'drone_delayed_control/debug';</script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@1.0.0/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Projects</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Project tutorials
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/drone_delayed_control/debug.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/drone_delayed_control/debug.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">DroneEnv</span><span class="w"> </span><span class="kn">import</span> <span class="n">DroneLandingEnv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIDCon</span><span class="w"> </span><span class="kn">import</span> <span class="n">PIDController</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PID_run</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_pid_simulation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_dt</span> <span class="o">=</span> <span class="mf">0.1</span>         <span class="c1"># simulation step (10 Hz)</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">DroneLandingEnv</span><span class="p">(</span><span class="n">render_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">sim_dt</span><span class="p">)</span>
+<span class="n">controller_dt</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># controller step (1 Hz)</span>
+
+<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">yaw_2_steps</span> <span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">states</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">run_pid_simulation</span><span class="p">(</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="p">,</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">pid</span><span class="p">,</span> <span class="n">init_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>error [-2. -2. -2. -2.]
+theta 2.0
+action [-1.9972599  5.3680491 -0.2        0.       ]
+error [-1.92933238 -1.92933238 -1.99651027 -2.        ]
+action [-1.9972599  5.3680491 -0.2        0.       ]
+error [-1.85866477 -1.85866477 -1.99302051 -2.        ]
+action [-1.9972599  5.3680491 -0.2        0.       ]
+error [-1.78799716 -1.78799716 -1.98953075 -2.        ]
+action [-1.9972599  5.3680491 -0.2        0.       ]
+error [-1.71732955 -1.71732955 -1.98604099 -2.        ]
+action [-1.9972599  5.3680491 -0.2        0.       ]
+error [-1.64666195 -1.64666194 -1.98255123 -2.        ]
+action [-1.9972599  5.3680491 -0.2        0.       ]
+error [-1.57599434 -1.57599433 -1.97906147 -2.        ]
+action [-1.9972599  5.3680491 -0.2        0.       ]
+error [-1.50532673 -1.50532672 -1.97557172 -2.        ]
+action [-1.9972599  5.3680491 -0.2        0.       ]
+error [-1.43465913 -1.43465912 -1.97208196 -2.        ]
+action [-1.9972599  5.3680491 -0.2        0.       ]
+error [-1.36399152 -1.36399151 -1.9685922  -2.        ]
+action [-1.9972599  5.3680491 -0.2        0.       ]
+error [-1.29332391 -1.2933239  -1.96510244 -2.        ]
+theta 2.0
+action [-1.3002644   3.49472972 -0.2         0.        ]
+error [-1.22271473 -1.22271472 -1.95974646 -2.        ]
+action [-1.3002644   3.49472972 -0.2         0.        ]
+error [-1.15210555 -1.15210553 -1.95439048 -2.        ]
+action [-1.3002644   3.49472972 -0.2         0.        ]
+error [-1.08149636 -1.08149635 -1.9490345  -2.        ]
+action [-1.3002644   3.49472972 -0.2         0.        ]
+error [-1.01088718 -1.01088717 -1.94367852 -2.        ]
+action [-1.3002644   3.49472972 -0.2         0.        ]
+error [-0.940278   -0.94027798 -1.93832253 -2.        ]
+action [-1.3002644   3.49472972 -0.2         0.        ]
+error [-0.86966881 -0.8696688  -1.93296655 -2.        ]
+action [-1.3002644   3.49472972 -0.2         0.        ]
+error [-0.79905963 -0.79905962 -1.92761057 -2.        ]
+action [-1.3002644   3.49472972 -0.2         0.        ]
+error [-0.72845044 -0.72845044 -1.92225459 -2.        ]
+action [-1.3002644   3.49472972 -0.2         0.        ]
+error [-0.65784126 -0.65784125 -1.91689861 -2.        ]
+action [-1.3002644   3.49472972 -0.2         0.        ]
+error [-0.58723208 -0.58723207 -1.91154263 -2.        ]
+theta 2.0
+action [-0.60384521  1.62295899 -0.2         0.        ]
+error [-0.51698835 -0.51698835 -1.90006924 -2.        ]
+action [-0.60384521  1.62295899 -0.2         0.        ]
+error [-0.44674463 -0.44674462 -1.88859586 -2.        ]
+action [-0.60384521  1.62295899 -0.2         0.        ]
+error [-0.37650091 -0.3765009  -1.87712248 -2.        ]
+action [-0.60384521  1.62295899 -0.2         0.        ]
+error [-0.30625718 -0.30625718 -1.8656491  -2.        ]
+action [-0.60384521  1.62295899 -0.2         0.        ]
+error [-0.23601346 -0.23601345 -1.85417572 -2.        ]
+action [-0.60384521  1.62295899 -0.2         0.        ]
+error [-0.16576973 -0.16576973 -1.84270234 -2.        ]
+action [-0.60384521  1.62295899 -0.2         0.        ]
+error [-0.09552601 -0.09552601 -1.83122895 -2.        ]
+action [-0.60384521  1.62295899 -0.2         0.        ]
+error [-0.02528228 -0.02528228 -1.81975557 -2.        ]
+action [-0.60384521  1.62295899 -0.2         0.        ]
+error [ 0.04496144  0.04496144 -1.80828219 -2.        ]
+action [-0.60384521  1.62295899 -0.2         0.        ]
+error [ 0.11520517  0.11520516 -1.79680881 -2.        ]
+theta 2.0
+action [ 0.09465081 -0.25439364 -0.2        -4.1       ]
+error [ 0.11053967  0.11053967 -1.79194717 -1.90033641]
+action [ 0.09465081 -0.25439364 -0.2        -4.1       ]
+error [ 0.10543312  0.10636154 -1.78708553 -1.80067282]
+action [ 0.09465081 -0.25439364 -0.2        -4.1       ]
+error [ 0.09993619  0.10271224 -1.78222389 -1.70100923]
+action [ 0.09465081 -0.25439364 -0.2        -4.1       ]
+error [ 0.09410344  0.09962798 -1.77736225 -1.60134565]
+action [ 0.09465081 -0.25439364 -0.2        -4.1       ]
+error [ 0.08799275  0.09713939 -1.77250062 -1.50168206]
+action [ 0.09465081 -0.25439364 -0.2        -4.1       ]
+error [ 0.08166478  0.09527114 -1.76763898 -1.40201847]
+action [ 0.09465081 -0.25439364 -0.2        -4.1       ]
+error [ 0.07518231  0.09404179 -1.76277734 -1.30235488]
+action [ 0.09465081 -0.25439364 -0.2        -4.1       ]
+error [ 0.0686097   0.09346354 -1.7579157  -1.20269129]
+action [ 0.09465081 -0.25439364 -0.2        -4.1       ]
+error [ 0.06201217  0.09354212 -1.75305406 -1.1030277 ]
+action [ 0.09465081 -0.25439364 -0.2        -4.1       ]
+error [ 0.05545519  0.09427676 -1.74819242 -1.00336412]
+theta 1.0033641165380418
+action [ 0.17641509  0.01997089 -0.2        -2.10672823]
+error [ 0.05178335  0.08676598 -1.73877461 -0.90416023]
+action [ 0.17641509  0.01997089 -0.2        -2.10672823]
+error [ 0.04738569  0.07965578 -1.72935679 -0.80495635]
+action [ 0.17641509  0.01997089 -0.2        -2.10672823]
+error [ 0.04230545  0.07301609 -1.71993898 -0.70575247]
+action [ 0.17641509  0.01997089 -0.2        -2.10672823]
+error [ 0.03659258  0.0669122  -1.71052116 -0.60654858]
+action [ 0.17641509  0.01997089 -0.2        -2.10672823]
+error [ 0.03030326  0.06140413 -1.70110335 -0.5073447 ]
+action [ 0.17641509  0.01997089 -0.2        -2.10672823]
+error [ 0.02349934  0.05654604 -1.69168553 -0.40814082]
+action [ 0.17641509  0.01997089 -0.2        -2.10672823]
+error [ 0.01624773  0.05238571 -1.68226772 -0.30893693]
+action [ 0.17641509  0.01997089 -0.2        -2.10672823]
+error [ 0.00861972  0.04896404 -1.6728499  -0.20973305]
+action [ 0.17641509  0.01997089 -0.2        -2.10672823]
+error [ 6.90325565e-04  4.63146872e-02 -1.66343209e+00 -1.10529168e-01]
+action [ 0.17641509  0.01997089 -0.2        -2.10672823]
+error [-0.00746247  0.04446369 -1.65401427 -0.01132529]
+theta 0.011325285125445977
+action [-0.0478736   0.06486828 -0.2        -0.12265057]
+error [ 0.01213018  0.01853563 -1.57339463  0.03811494]
+action [-0.0478736   0.06486828 -0.2        -0.12265057]
+error [ 0.03041753 -0.00832902 -1.49277498  0.08755517]
+action [-0.0478736   0.06486828 -0.2        -0.12265057]
+error [ 0.04735487 -0.03606461 -1.41215534  0.1369954 ]
+action [-0.0478736   0.06486828 -0.2        -0.12265057]
+error [ 0.06290083 -0.06460335 -1.33153569  0.18643563]
+action [-0.0478736   0.06486828 -0.2        -0.12265057]
+error [ 0.0770174  -0.09387551 -1.25091604  0.23587585]
+action [-0.0478736   0.06486828 -0.2        -0.12265057]
+error [ 0.08967009 -0.12380953 -1.1702964   0.28531608]
+action [-0.0478736   0.06486828 -0.2        -0.12265057]
+error [ 0.10082798 -0.15433228 -1.08967675  0.33475631]
+action [-0.0478736   0.06486828 -0.2        -0.12265057]
+error [ 0.1104638  -0.18536916 -1.00905711  0.38419654]
+action [-0.0478736   0.06486828 -0.2        -0.12265057]
+error [ 0.118554   -0.21684431 -0.92843746  0.43363676]
+action [-0.0478736   0.06486828 -0.2        -0.12265057]
+error [ 0.12507881 -0.24868082 -0.84781781  0.48307699]
+theta -0.48307699202260845
+action [ 0.45679081 -0.37789562 -0.2         0.96276938]
+error [ 0.10513601 -0.20105584 -0.83039941  0.39922745]
+action [ 0.45679081 -0.37789562 -0.2         0.96276938]
+error [ 0.08127463 -0.15526841 -0.812981    0.31537791]
+action [ 0.45679081 -0.37789562 -0.2         0.96276938]
+error [ 0.05366232 -0.11164027 -0.7955626   0.23152838]
+action [ 0.45679081 -0.37789562 -0.2         0.96276938]
+error [ 0.02249311 -0.07047798 -0.77814419  0.14767884]
+action [ 0.45679081 -0.37789562 -0.2         0.96276938]
+error [-0.01201399 -0.03207076 -0.76072579  0.0638293 ]
+action [ 0.45679081 -0.37789562 -0.2         0.96276938]
+error [-0.04961651  0.0033115  -0.74330738 -0.02002024]
+action [ 0.45679081 -0.37789562 -0.2         0.96276938]
+error [-0.09005023  0.03542019 -0.72588897 -0.10386978]
+action [ 0.45679081 -0.37789562 -0.2         0.96276938]
+error [-0.13303104  0.0640297  -0.70847057 -0.18771932]
+action [ 0.45679081 -0.37789562 -0.2         0.96276938]
+error [-0.17825693  0.08893899 -0.69105216 -0.27156886]
+action [ 0.45679081 -0.37789562 -0.2         0.96276938]
+error [-0.22541012  0.10997304 -0.67363376 -0.35541839]
+theta 0.3554183937396437
+action [-0.40047735  0.34221727 -0.2        -0.78530507]
+error [-0.17424474  0.09119783 -0.65294138 -0.27416926]
+action [-0.40047735  0.34221727 -0.2        -0.78530507]
+error [-0.12477196  0.06833198 -0.63224901 -0.19292012]
+action [-0.40047735  0.34221727 -0.2        -0.78530507]
+error [-0.07731816  0.04152637 -0.61155663 -0.11167099]
+action [-0.40047735  0.34221727 -0.2        -0.78530507]
+error [-0.03219644  0.01095785 -0.59086426 -0.03042186]
+action [-0.40047735  0.34221727 -0.2        -0.78530507]
+error [ 0.01029549 -0.0231719  -0.57017188  0.05082728]
+action [-0.40047735  0.34221727 -0.2        -0.78530507]
+error [ 0.04987727 -0.0606377  -0.54947951  0.13207641]
+action [-0.40047735  0.34221727 -0.2        -0.78530507]
+error [ 0.08628777 -0.10119234 -0.52878713  0.21332555]
+action [-0.40047735  0.34221727 -0.2        -0.78530507]
+error [ 0.11928675 -0.14456827 -0.50809476  0.29457468]
+action [-0.40047735  0.34221727 -0.2        -0.78530507]
+error [ 0.14865649 -0.1904793  -0.48740238  0.37582382]
+action [-0.40047735  0.34221727 -0.2        -0.78530507]
+error [ 0.17420321 -0.23862251 -0.46671001  0.45707295]
+theta -0.4570729520297677
+action [ 0.52173342 -0.33096614 -0.2         0.93109221]
+error [ 0.14582815 -0.19217735 -0.44909195  0.37505279]
+action [ 0.52173342 -0.33096614 -0.2         0.93109221]
+error [ 0.11374332 -0.14821305 -0.4314739   0.29303262]
+action [ 0.52173342 -0.33096614 -0.2         0.93109221]
+error [ 0.07816442 -0.1070252  -0.41385585  0.21101245]
+action [ 0.52173342 -0.33096614 -0.2         0.93109221]
+error [ 0.03933069 -0.06889073 -0.39623779  0.12899229]
+action [ 0.52173342 -0.33096614 -0.2         0.93109221]
+error [ 0.04159258 -0.06468486 -0.29623779  0.12899229]
+action [ 0.52173342 -0.33096614 -0.2         0.93109221]
+error [ 0.02792654 -0.06941862 -0.19623779  0.12899229]
+action [ 0.52173342 -0.33096614 -0.2         0.93109221]
+</pre></div>
+</div>
+<img alt="../_images/006ab4466e9e4f2209701ef8a52cee4e3bf6111509bbcb63c044ad69c3dc47d3.png" src="../_images/006ab4466e9e4f2209701ef8a52cee4e3bf6111509bbcb63c044ad69c3dc47d3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">R</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">0.41614681</span> <span class="p">,</span> <span class="mf">0.90929741</span> <span class="p">,</span> <span class="mf">0.</span>        <span class="p">],</span>
+ <span class="p">[</span><span class="o">-</span><span class="mf">0.90929741</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.41614681</span> <span class="p">,</span> <span class="mf">0.</span>        <span class="p">],</span>
+ <span class="p">[</span> <span class="mf">0.</span>       <span class="p">,</span>   <span class="mf">0.</span>      <span class="p">,</span>    <span class="mf">1.</span>        <span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.41614681,  0.90929741,  0.        ],
+       [-0.90929741, -0.41614681,  0.        ],
+       [ 0.        ,  0.        ,  1.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="o">.</span><span class="n">T</span><span class="nd">@R</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.99999995, 0.        , 0.        ],
+       [0.        , 0.99999995, 0.        ],
+       [0.        , 0.        , 1.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">error</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2., -2., -2., -2.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="mf">2.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+<span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+  <span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">])</span>  <span class="c1"># world-to-body rotation (transpose of body-to-world)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+
+<span class="n">body_output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+<span class="n">body_output</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">R</span> <span class="o">@</span> <span class="n">error</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>   <span class="c1"># rotate linear part</span>
+<span class="n">body_output</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">error</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>         <span class="c1"># yaw rate unchanged</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">body_output</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2. -2. -2. -2.]
+[[-0.41614684  0.90929743  0.        ]
+ [-0.90929743 -0.41614684  0.        ]
+ [ 0.          0.          1.        ]]
+[-0.98630118  2.65088853 -2.         -2.        ]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">body_output</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.98630118,  2.65088853, -2.        , -2.        ])
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./drone_delayed_control"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Etienne Chassaing
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
