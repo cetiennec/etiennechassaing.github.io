@@ -10,3 +10,8 @@ Following projects are presented:
 
 How to control the output temperature of a 450m pipe close to the boiling temperature ? 
 Check out 3 methods to do so.
+
+
+### Parrot drone precision landing
+
+Why is controlling a drone remotely still a difficult task ? Check out what type of implementation issues can affect performances.
