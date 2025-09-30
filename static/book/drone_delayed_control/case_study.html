@@ -63,7 +63,7 @@
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@1.0.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Project tutorials" href="../index.html" />
+    <link rel="prev" title="Heated Pipe System with Heat Losses" href="../heat_pipe_control/system_tutorial.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,6 +176,7 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../heat_pipe_control/system_tutorial.html">Heated Pipe System with Heat Losses</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Precision-landing of a Parrot drone</a></li>
 
 
@@ -389,19 +390,24 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-with-delay">Tuning with delay</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-control-in-real-situation-study-of-the-impact-of-delay-and-losses">3. Drone control in real situation - Study of the impact of delay and losses</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-control-in-real-situation-study-of-the-impact-of-wind-delay-and-losses">3. Drone control in real situation - Study of the impact of wind, delay and losses</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#well-that-s-done-what-could-go-wrong-in-real-life">Well that’s done, what could go wrong in real life?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#noise">Noise</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wind-effect">Wind effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensor-noise">Sensor noise</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packet-loss">Packet loss</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-fixed-delays">Non-fixed delays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-everything-together">Putting everything together</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-analysis">Stability analysis</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-criterion">Stability criterion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Results</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-takeaways">Some takeaways</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
 
             </nav>
@@ -420,38 +426,42 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="system-description">
 <h1>System description<a class="headerlink" href="#system-description" title="Link to this heading">#</a></h1>
-<p>The drone is a Parrot drone, controlled either via speed or via position command (performed using its internal controller).
+<p>The drone is a Parrot Anafi AI, controlled either via speed or via position command (performed using its internal controller).
 The drone starts a few meters above and a few meters away from the box.
-Initial strategy was to perform image recognition to locate the box, actual solution was to use a QR-code to perform quick and precise recognition of the box’s center:</p>
+Initial strategy was to perform image recognition to locate the box, but a more robust solution was to use a QR-code to perform quick and precise recognition of the box’s center:</p>
 <p><img alt="drone real" src="../_images/drone_real-min.jpg" /></p>
-<p>The difficulty lies in the fact that the computation is made on an external PC being subject to communication delays when sending commands or receiving data from the drone.
-These data are composed of the drone’s odometry and video flux from its camera.</p>
+<p>The difficulty of the project lies in the fact that the drone is remotely controlled : computation is made on an external PC. The overall system is subject to communication delays when sending commands or receiving data from the drone.
+The data that are shared are the drone’s odometry and the video flux from its camera.</p>
 <p><img alt="simple diagram" src="../_images/simple_diagramm.jpg" /></p>
+<p>Drone’s internal odometry is noisy and subject to disturbances in some specific area, this motivated the choice of using the camera for a consistant robust pose estimation.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="qr-code-detection">
 <h1>1. QR code detection<a class="headerlink" href="#qr-code-detection" title="Link to this heading">#</a></h1>
 <section id="qr-code-selection">
 <h2>QR code selection<a class="headerlink" href="#qr-code-selection" title="Link to this heading">#</a></h2>
-<p>In this project, we propose to detect the target based on one of multiple QR-codes attached to it. To do so, we will leverage open source Aruco markers which can be detected by cv2 library in ~10ms (See <a class="reference external" href="https://docs.opencv.org/4.x/d5/dae/tutorial_aruco_detection.html">Open CV</a> documentation). Each marker is member of a dictionary set and is storing an ID (See <a class="reference external" href="https://chev.me/arucogen/">Aruco generator</a>) which allow recognizing them precisely.</p>
+<p>In this project, we propose to detect the target based on one or multiple QR-codes attached to it. To do so, we will leverage open source Aruco markers which can be detected by the cv2 library in ~10ms (See <a class="reference external" href="https://docs.opencv.org/4.x/d5/dae/tutorial_aruco_detection.html">Open CV</a> documentation). Each marker is member of a dictionary set and is storing an ID (See <a class="reference external" href="https://chev.me/arucogen/">Aruco generator</a>) which allow recognizing and discriminating them precisely.</p>
 <p><img alt="qr example" src="../_images/qr_example.svg" /></p>
+<p>Example of a marker of ID 0.</p>
 <section id="qr-code-size">
 <h3>QR code size<a class="headerlink" href="#qr-code-size" title="Link to this heading">#</a></h3>
-<p>Choosing the QR code size has to be made upon following the following parameters :</p>
+<p>Putting the right QR-code dimension on the target for robust detection is a problem in itself.
+Choosing the QR code size was made upon following the following parameters :</p>
 <ul class="simple">
-<li><p>Drone’s range of altitude : 0 to 10 m height</p></li>
-<li><p>Drone’s camera Field Of View (FOV) : 68° in video mode</p></li>
+<li><p>Drone’s range of altitude before landing : 0 to 10 m height</p></li>
+<li><p>Drone’s camera Field Of View (FOV) : 68° in video mode from Parrot specifications</p></li>
 <li><p>Minimum number of pixels for Aruco detection : This is a bit unclear, <a class="reference external" href="https://github.com/zsiki/Find-GCP#:~:text=The%203x3%20or%204x4%20ArUco%20markers%20on%20the%20image%20should,50%20m%20above%20the%20ground.">forums</a> state 20 to 100 pixels of width for good recognition</p></li>
-<li><p>Camera resolution : 1920*1080 pixels</p></li>
+<li><p>Camera resolution : 1920*1080 pixels from Parrot specifications</p></li>
 </ul>
 <p>For instance, if drone is at 10 meters, it sees</p>
 <div class="math notranslate nohighlight">
 \[
 \text{Scene width} = 2 \cdot \tan\left(\frac{68^\circ}{2}\right) \cdot 10 \approx 13.49,\text{m}
 \]</div>
-<p>That means <strong>13.49 meters are projected into 1920 pixels</strong>. Said differently, the drone sees roughly the same width as its altitude.</p>
+<p>As a rule of thumb, the drone sees roughly the same width as its altitude. If we want to find the right QR code size for this altitude, we use the fact that  <strong>13.49 meters are projected into 1920 pixels</strong>, meaning that a pixel is:</p>
 <div class="math notranslate nohighlight">
 \[
-\text{Pixel size} = \frac{13.49,\text{m}}{1920} \approx 7.02,\text{mm/pixel}\]</div>
+\text{Pixel size} = \frac{13.49,\text{m}}{1920} \approx 7.02,\text{mm/pixel}
+\]</div>
 <p>To be reliably detected, a marker should be at least <strong>20 pixels wide</strong>, more for robust detection and pose estimation:</p>
 <p><strong>Minimum (20 px)</strong>:
 $<span class="math notranslate nohighlight">\(
@@ -461,9 +471,9 @@ $<span class="math notranslate nohighlight">\(
 $<span class="math notranslate nohighlight">\(
 100 \times 7.02 = 702,\text{mm} \approx \textbf{70.2 cm}
 \)</span>$</p>
-<p>From this small example, we can already grasp the fact that it is really hard to use the same QR-code for all the landing process. Indeed, a 0.7m is optimal for higher heights, but won’t be appropriate when the drone is below one meter.
-Final choice was thus to select not one but three QR-codes of complementary sizes to cover all the required altitude range:</p>
-<p><strong>✅ Conclusion (Full HD at 10 m):</strong></p>
+<p>From this example, we can already grasp the fact that it is really hard to use the same QR-code for all the landing process from a random position. Indeed, a 0.7m is optimal for higher heights, but won’t be appropriate when the drone is below one meter.
+Final choice was thus to select not one but <strong>3 QR-codes of complementary sizes</strong> to cover all the required altitude range:</p>
+<p><strong>Conclusion (Full HD below 10 m):</strong></p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Detection</p></th>
@@ -495,26 +505,16 @@ Final choice was thus to select not one but three QR-codes of complementary size
 </section>
 <section id="qr-code-recognition">
 <h2>QR code recognition<a class="headerlink" href="#qr-code-recognition" title="Link to this heading">#</a></h2>
+<p>Let’s now see how we can leverage information from cv2, corner positions and marker orientation in order to compute the relative position of our drone to the target.</p>
 </section>
 <section id="relative-positioning-based-on-markers-only">
 <h2>Relative positioning based on markers only<a class="headerlink" href="#relative-positioning-based-on-markers-only" title="Link to this heading">#</a></h2>
-<p>Here’s a clean <strong>Markdown explanation</strong> of your QR code computation with paragraph-style descriptions and included equations:</p>
-<p>This system estimates the position of a reference QR code (ID = 0) using detections of one or more other QR codes in the environment. The method combines geometric projection based on known distances between QR codes with distance estimation from the QR code’s apparent size in the camera image.</p>
-<hr class="docutils" />
-<p><strong>1. Estimating the Reference QR Code Position</strong></p>
-<p>When a QR code is detected, its center coordinates (<span class="math notranslate nohighlight">\((x, y)\)</span>) and rotation angle (<span class="math notranslate nohighlight">\(\theta\)</span>) are available from cv2. If the detected QR code is <strong>QR 0 itself</strong>, its position is used directly. Otherwise, the position of QR 0 is computed by projecting backward along the line defined by the detected QR code’s orientation and the known distance (d) between the QR codes:</p>
-<div class="math notranslate nohighlight">
-\[
-\Delta x = -d \cos(\theta), \quad \Delta y = -d \sin(\theta)
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-x_0 = y_{\text{detected}} + \Delta x, \quad y_0 = x_{\text{detected}} + \Delta y
-\]</div>
-<p>Here, the coordinates are swapped to align with the reference frame convention used in the system. This projection allows the system to estimate the position of QR 0 even when it is not directly visible.</p>
-<p><strong>2. Estimating Distance from QR Code Size</strong></p>
-<p>The distance from the camera to a detected QR code is estimated using the apparent size of the QR in the image. Let (A_{\text{px}}) be the pixel area of the QR code, (<span class="math notranslate nohighlight">\(W_{\text{real}}\)</span>) its real-world width, (<span class="math notranslate nohighlight">\(W_{\text{img}}\)</span>) the image width in pixels, and (<span class="math notranslate nohighlight">\(\text{FOV}\)</span>) the horizontal field of view of the camera.</p>
-<p>First, compute the QR code width in pixels:</p>
+<p><strong>1. Estimating relative position in pixel:</strong></p>
+<p>When a QR code is detected, its corners coordinates and rotation angle (<span class="math notranslate nohighlight">\(\theta\)</span>) are available from cv2 in pixels. Marker center coordinates is obtained by averaging the corner positions and expressed relatively to the image center.</p>
+<p><strong>2. Estimating distance to the QR-code</strong></p>
+<p>Knowing each QR-code size in cm, the distance from the camera to a detected QR code is estimated using the apparent area of the QR in the image. Area is chosen because it is more reliable than working with the width only (geometric mean of the uncertainty).
+Let (A_{\text{px}}) be the pixel area of the QR code, (<span class="math notranslate nohighlight">\(W_{\text{real}}\)</span>) its real-world width of the marker, (<span class="math notranslate nohighlight">\(W_{\text{img}}\)</span>) the image width in pixels, and (<span class="math notranslate nohighlight">\(\text{FOV}\)</span>) the horizontal field of view of the camera.</p>
+<p>First, estimate the QR code width in pixels from the area:</p>
 <div class="math notranslate nohighlight">
 \[
 W_{\text{px}} = \sqrt{A_{\text{px}}}
@@ -524,14 +524,29 @@ W_{\text{px}} = \sqrt{A_{\text{px}}}
 \[
 f = \frac{W_{\text{img}}}{2 \tan(\text{FOV} / 2)}
 \]</div>
-<p>Finally, the distance to the QR code is estimated using the pinhole camera model:</p>
+<p>Finally, the distance to the QR code, in our case the drone’s altitude, is estimated using the <a class="reference external" href="https://en.wikipedia.org/wiki/Pinhole_camera">pinhole</a> camera model:</p>
 <div class="math notranslate nohighlight">
 \[
 D = \frac{W_{\text{real}} \cdot f}{W_{\text{px}}}
 \]</div>
-<p>This provides the distance in the same units as the QR code width (converted to meters if necessary).</p>
-<hr class="docutils" />
-<p><strong>3. Handling Multiple QR Codes of Different Sizes</strong></p>
+<p>This provides the distance in cm to the marker.</p>
+<p><strong>3. Estimating relative position to the QR-code in meters</strong></p>
+<p>Knowing the distance to the QR code, we can compute the number of meters per pixel meters/pixels:</p>
+<div class="math notranslate nohighlight">
+\[
+meters/pixel = 2 \cdot \tan\left(\frac{FOV}{2}\right) \cdot \frac{D}{\text{Scene width in pixel}}
+\]</div>
+<p>: (<span class="math notranslate nohighlight">\((x, y)\)</span>)
+Target position can be expressed in pixel from camera frame to world frame using the following :</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta x = -d \cos(\theta), \quad \Delta y = -d \sin(\theta)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+x_{0, pixel} = y_{\text{detected}} + \Delta x, \quad y_{0, pixel} = x_{\text{detected}} + \Delta y
+\]</div>
+<p><strong>4. Handling Multiple QR Codes of Different Sizes</strong></p>
 <p>The system can detect multiple QR codes with different physical sizes. A dictionary defines the real-world sizes and relative distances between QR codes:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">QR_code_sizes</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="mf">27.5</span><span class="p">,</span> <span class="s2">&quot;02&quot;</span><span class="p">:</span> <span class="mf">17.5</span><span class="p">,</span> <span class="s2">&quot;01&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">11</span><span class="p">}</span>  <span class="c1"># cm</span>
 </pre></div>
@@ -566,10 +581,10 @@ D = \frac{W_{\text{real}} \cdot f}{W_{\text{px}}}
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="drone-control-in-ideal-case">
 <h1>2. Drone control in ideal case<a class="headerlink" href="#drone-control-in-ideal-case" title="Link to this heading">#</a></h1>
-<p>Let’s start to design of our controller in an ideal case, i.e. the controller is having perfect information from the environment, perfect camera reading and perfect communication.</p>
+<p>Let’s start to design of our controller in an ideal case, i.e. when the controller is having perfect information from the environment, perfect camera reading and perfect communication.</p>
 <section id="the-basics-pid-control">
 <h2>The basics : PID control<a class="headerlink" href="#the-basics-pid-control" title="Link to this heading">#</a></h2>
-<p>We will control our drone based on the relative position with the target, which is :
+<p>We will control our drone based on the relative position to the target, which is :
 $<span class="math notranslate nohighlight">\(
 (x_{drone}-x_{target},y_{drone}-y_{target},z_{drone}-z_{target},\theta_{drone}-\theta_{target})
 \)</span>$</p>
@@ -584,13 +599,13 @@ u(t) = K_p \, e(t) + K_i \int_0^t e(\tau) \, d\tau + K_d \frac{de}{dt},\\where:
 - $K_d$ is the derivative gain,
 - e(t) is the error between the target and the drone.
 \end{aligned}\end{align} \]</div>
-<p>For sake of simplicity and visual behavior, z-axis will be treated with a constant descent speed which helps to avoid small oscillations.</p>
+<p>For sake of simplicity and visual behavior, z-axis will be treated with a **constant descent speed which prevents the drone from oscillating because of a non-constant z speed.</p>
 </section>
 <section id="drone-model">
 <h2>Drone model<a class="headerlink" href="#drone-model" title="Link to this heading">#</a></h2>
 <section id="linear-model">
 <h3>Linear model<a class="headerlink" href="#linear-model" title="Link to this heading">#</a></h3>
-<p>Parrot Drone has position or stick control modes. Position control ensures the drone reaches the correct position, but creates a-coup, where stick is giving a constant speed to the motors, resulting in a drone speed that depends on the environment.</p>
+<p>Parrot Drone has position-control or stick-control modes. Position control ensures the drone reaches the correct position, but at a cost of non-constant speed, at the opposite, stick is giving a constant speed to the motors, resulting in smooth movement, which is though more subject to environmental forces such as wind.</p>
 <p>Mathematically, a stick-control drone can be seen as “pure-integrator”, it integrates the commands to give drone’s position :</p>
 <div class="math notranslate nohighlight">
 \[
@@ -600,17 +615,19 @@ x(t) = \int_0^t u(\tau) d\tau
 </section>
 <section id="landing-phase">
 <h3>Landing phase<a class="headerlink" href="#landing-phase" title="Link to this heading">#</a></h3>
-<p>Finally, Parrot Drones can’t be landed using z-command only, it has to be sent to LANDING-MODE, resulting in a direct descent to the ground, without <span class="math notranslate nohighlight">\(x/y/\theta\)</span> control. The mode is activated in the simulation when the drone is below 40cm. Moreover, this landing phase in not precise due to the fact that air from drone’s rotors is pushed back to itself when approaching the ground resulting in jitterings. These are simulated by adding a random normal noise to the speed vector during the landing phase :</p>
+<p>Parrot Drones can’t be landed using z-speed only, it has to be put to LANDING-MODE, resulting in a direct descent to the ground, without <span class="math notranslate nohighlight">\(x/y/\theta\)</span> control. This LANDING mode is activated in the simulation when the drone is below 40cm.
+Moreover, this landing phase in not always precise due to the fact that air from drone’s rotors is pushed back to the drone itself when approaching the ground resulting in wobbles. This is simulated by adding a random normal noise to the speed vector during the landing phase :</p>
 <div class="math notranslate nohighlight">
 \[
-\tilde{u(k)} = u(k) + \sim \mathcal{N}(0, \sigma^2)
+\tilde{u(k)} = u(k) + \epsilon,~\epsilon\sim \mathcal{N}(0, \sigma^2)
 \]</div>
-<p>We set <span class="math notranslate nohighlight">\(\sigma =0.2\)</span> meaning the drone can suffer from high, non-negligible variations during this phase.</p>
+<p>We set <span class="math notranslate nohighlight">\(\sigma =0.1\)</span> meaning the drone can suffer from non-negligible variations during this phase.</p>
 </section>
 </section>
 <section id="first-example">
 <h2>First example<a class="headerlink" href="#first-example" title="Link to this heading">#</a></h2>
-<p>PID will take the shortest x/y path and generate straight lines in absence of yaw errors, z speed is set to constant -0.2m/s. The effect of the LANDING-MODE activated at 40cm above the ground shows the difficulty to reach the center at the right time.</p>
+<p>PID will take the shortest x/y path and generate straight lines in absence of yaw errors, z speed is set to constant -0.2m/s. The effect of the LANDING-MODE activated at 40cm above the ground shows the difficulty to perfectly reach the center at the right time.
+In this example, only <span class="math notranslate nohighlight">\(K_p\)</span> coefficients are non zero:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">DroneEnv</span><span class="w"> </span><span class="kn">import</span> <span class="n">DroneLandingEnv</span>
@@ -621,7 +638,7 @@ x(t) = \int_0^t u(\tau) d\tau
 <span class="n">env</span> <span class="o">=</span> <span class="n">DroneLandingEnv</span><span class="p">(</span><span class="n">render_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">sim_dt</span><span class="p">)</span>
 <span class="n">controller_dt</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># controller step (1 Hz)</span>
 
-<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> 
+<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> 
                     <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> 
                     <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> 
                     <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> 
@@ -637,24 +654,7 @@ x(t) = \int_0^t u(\tau) d\tau
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bd98e8d0afd1517def6eddc1dc7c38ada1f3855ae1d92ad44e8ec03e786dc496.png" src="../_images/bd98e8d0afd1517def6eddc1dc7c38ada1f3855ae1d92ad44e8ec03e786dc496.png" />
-</div>
-</div>
-<p>A small integral contributions helps to reach the center with more precision (up to the precision of the drone landing sequence):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_dt</span> <span class="o">=</span> <span class="mf">0.1</span>         <span class="c1"># simulation step (10 Hz)</span>
-<span class="n">env</span> <span class="o">=</span> <span class="n">DroneLandingEnv</span><span class="p">(</span><span class="n">render_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">sim_dt</span><span class="p">)</span>
-<span class="n">controller_dt</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># controller step (1 Hz)</span>
-
-<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">)</span>
-
-<span class="n">states</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">run_pid_simulation</span><span class="p">(</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="p">,</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">pid</span><span class="p">,</span> <span class="n">init_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/efbf2e6cfff6fabe45bf36ee5a09a510af1c21d1a78041ad60be9d9ee9a795b3.png" src="../_images/efbf2e6cfff6fabe45bf36ee5a09a510af1c21d1a78041ad60be9d9ee9a795b3.png" />
+<img alt="../_images/9e1f8cd67c59fcbfd61b377808b9ad9d596dae915fb0453d23b2cfdde1962411.png" src="../_images/9e1f8cd67c59fcbfd61b377808b9ad9d596dae915fb0453d23b2cfdde1962411.png" />
 </div>
 </div>
 </section>
@@ -667,43 +667,49 @@ x(t) = \int_0^t u(\tau) d\tau
 <span class="n">env</span> <span class="o">=</span> <span class="n">DroneLandingEnv</span><span class="p">(</span><span class="n">render_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">sim_dt</span><span class="p">)</span>
 <span class="n">controller_dt</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># controller step (1 Hz)</span>
 
-<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">)</span>
 
 <span class="n">states</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">run_pid_simulation</span><span class="p">(</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="p">,</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">pid</span><span class="p">,</span> <span class="n">init_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/54a9c2da1efdd4ed9a7593a66e0dfb8b507fbe07bf311cb022efcb369751073e.png" src="../_images/54a9c2da1efdd4ed9a7593a66e0dfb8b507fbe07bf311cb022efcb369751073e.png" />
+<img alt="../_images/75128a8f5001432868ecf8d5e74a5c59453e003087b812be7a9606043e5dc1a8.png" src="../_images/75128a8f5001432868ecf8d5e74a5c59453e003087b812be7a9606043e5dc1a8.png" />
 </div>
 </div>
 </section>
 <section id="tuning-with-delay">
 <h2>Tuning with delay<a class="headerlink" href="#tuning-with-delay" title="Link to this heading">#</a></h2>
-<p>Even in the ideal case, there is something we forgot, we did not take into account that the there is a computation+communication delay between the drone and the computer. This means that the controller is at fixed lower frequency than the drone (10 Hz simulation here). Following</p>
+<p>Something we did not consider is the computation+communication delay between the drone and the computer. This means that the controller acts as a fixed lower frequency than the drone (10 Hz simulation here). Thus, we now set the controller frequency to 1 Hz, meaning that drone actions are updated 10 times slower than the simulation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_dt</span> <span class="o">=</span> <span class="mf">0.1</span>         <span class="c1"># simulation step (10 Hz)</span>
 <span class="n">env</span> <span class="o">=</span> <span class="n">DroneLandingEnv</span><span class="p">(</span><span class="n">render_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">sim_dt</span><span class="p">)</span>
 <span class="n">controller_dt</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># controller step (1 Hz)</span>
 
-<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">)</span>
 
 <span class="n">states</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">run_pid_simulation</span><span class="p">(</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="p">,</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">pid</span><span class="p">,</span> <span class="n">init_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8cd216582f48864fed640ecdfe939b11a073146dc441c05b1b5f4c7dee1c0d42.png" src="../_images/8cd216582f48864fed640ecdfe939b11a073146dc441c05b1b5f4c7dee1c0d42.png" />
+<img alt="../_images/2736f45be41aa00ae1d1069248d49b66a3a9da66cb979cc962d53fc117714968.png" src="../_images/2736f45be41aa00ae1d1069248d49b66a3a9da66cb979cc962d53fc117714968.png" />
 </div>
 </div>
-<p>Delay introduction shows 2 things:</p>
+<p>When introducing delays, the drone oscillates around the target in a non-intended way. More specifically, delay introduction :</p>
 <ul class="simple">
-<li><p>It makes the drone turning around itself which causes a deviation from the target</p></li>
-<li><p>It makes the drone oscillates around the target in every direction</p></li>
+<li><ol class="arabic simple">
+<li><p>makes the drone turning around itself which causes a deviation from the target</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>makes the drone oscillates around the target in <span class="math notranslate nohighlight">\(x/y\)</span> direction</p></li>
+</ol>
+</li>
 </ul>
-<p>The drone is bounded-stable, no more asymptotically stable.
-To solve the first issue, we will treat the yaw axis in 2-steps:</p>
+<p>Because od the introduction of the delay, the stability of the controller is reduced, it manages to keep the drone in a bounded area around the target but fails making it slowly converging to it.</p>
+<p>To solve the first issue, we will treat the yaw (<span class="math notranslate nohighlight">\(\theta\)</span>) axis in 2-steps:</p>
 <ul class="simple">
 <li><p>No yaw movement if the drone is more than 0.3m away of the target</p></li>
 <li><p>Yaw + x/y axis if the drone is 0.3m close to the target</p></li>
@@ -721,81 +727,40 @@ To solve the first issue, we will treat the yaw axis in 2-steps:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/747d68b51d8bae43a22cf87594e79cd395a2ba30548b4c9adb178214f14af151.png" src="../_images/747d68b51d8bae43a22cf87594e79cd395a2ba30548b4c9adb178214f14af151.png" />
+<img alt="../_images/2b055754ebf5e2f90c675cb6fa62d7f0bac389051b3fa9b45fd32bcf927b178c.png" src="../_images/2b055754ebf5e2f90c675cb6fa62d7f0bac389051b3fa9b45fd32bcf927b178c.png" />
 </div>
 </div>
-<p>Second issue can be treated with smoother control (lower coefficients) when being closer to the target: coefficients are divided by 2 when being above the target.</p>
+<p>And the second issue can be treated with smoother control (lower coefficients) when being closer to the target: coefficients are divided by 2 when being above the target.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_dt</span> <span class="o">=</span> <span class="mf">0.1</span>         <span class="c1"># simulation step (10 Hz)</span>
 <span class="n">env</span> <span class="o">=</span> <span class="n">DroneLandingEnv</span><span class="p">(</span><span class="n">render_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">sim_dt</span><span class="p">)</span>
 <span class="n">controller_dt</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># controller step (1 Hz)</span>
 
-<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">yaw_2_steps</span> <span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">finer_gains</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">yaw_2_steps</span> <span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">finer_gains</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">states</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">run_pid_simulation</span><span class="p">(</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="p">,</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">pid</span><span class="p">,</span> <span class="n">init_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/446f25736385eec211c96d7abe91436559b80c6f97a1f5f15784388b139de9bf.png" src="../_images/446f25736385eec211c96d7abe91436559b80c6f97a1f5f15784388b139de9bf.png" />
+<img alt="../_images/b0a4a443e4e2b9f8a12eea15b0419b982e7b795d45c6886ef2c36a3975cbd98a.png" src="../_images/b0a4a443e4e2b9f8a12eea15b0419b982e7b795d45c6886ef2c36a3975cbd98a.png" />
 </div>
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="drone-control-in-real-situation-study-of-the-impact-of-delay-and-losses">
-<h1>3. Drone control in real situation - Study of the impact of delay and losses<a class="headerlink" href="#drone-control-in-real-situation-study-of-the-impact-of-delay-and-losses" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="drone-control-in-real-situation-study-of-the-impact-of-wind-delay-and-losses">
+<h1>3. Drone control in real situation - Study of the impact of wind, delay and losses<a class="headerlink" href="#drone-control-in-real-situation-study-of-the-impact-of-wind-delay-and-losses" title="Link to this heading">#</a></h1>
 <section id="well-that-s-done-what-could-go-wrong-in-real-life">
 <h2>Well that’s done, what could go wrong in real life?<a class="headerlink" href="#well-that-s-done-what-could-go-wrong-in-real-life" title="Link to this heading">#</a></h2>
+<p>In a real setup, such a system faces the following issues :</p>
+<ul class="simple">
+<li><p>External unknown wind</p></li>
+<li><p>Measurement noises</p></li>
+<li><p>Packet loss</p></li>
+<li><p>Non-fixed communication delays</p></li>
+</ul>
 <p><img alt="complex diagram" src="../_images/complex_diagram.jpg" /></p>
-</section>
-<section id="noise">
-<h2>Noise<a class="headerlink" href="#noise" title="Link to this heading">#</a></h2>
-<p>As with every sensing devices, our control loop is subject to various noises, among which :</p>
-<ul class="simple">
-<li><p>GPS accuracy</p></li>
-<li><p>Accelerometer and gyroscope noises</p></li>
-<li><p>Camera pixel accuracy</p></li>
-</ul>
-<p>All data coming from drone sensors are fused using a Kalman filter in an optimal way. However, GPS can be disturbed easily, especially when being close to the ground. And relying on the homemade drone estimation that we don’t control (especially on altitude estimation) can be risky for our target level of precision.
-During the project, decision was taken to focus on the camera for directly estimating the relative position to the target.
-Camera is not really subject to noise, but to model the pixel’s accuracy, small noise is added before the controller, of the following form :</p>
-<p>We model sensor noise by applying a multiplicative Gaussian perturbation on the error signal. For each controller step <span class="math notranslate nohighlight">\((k)\)</span>, the noisy error is</p>
-<div class="math notranslate nohighlight">
-\[
-\tilde{e}_k = e_k \cdot \left( 1 + \eta_k \right),
-\]</div>
-<p>with</p>
-<div class="math notranslate nohighlight">
-\[
-\eta_k \sim \mathcal{N}(0, \sigma^2),
-\]</div>
-<p>where</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(e_k \in \mathbb{R}^4\)</span> is the true error vector (position and yaw),</p></li>
-<li><p><span class="math notranslate nohighlight">\(\tilde{e}_k\)</span> is the noisy estimate of the error,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigma \)</span> is the standard deviation of the noise (here (<span class="math notranslate nohighlight">\(\sigma = 0.01\)</span>)).</p></li>
-</ul>
-<p>This corresponds to an estimation precision of a few percent, which is too small to significantly degrade controller performance, but still reflects the imperfect sensing conditions.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">PID_run</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_noisy_pid_simulation</span>
-<span class="n">sim_dt</span> <span class="o">=</span> <span class="mf">0.1</span>         <span class="c1"># simulation step (10 Hz)</span>
-<span class="n">env</span> <span class="o">=</span> <span class="n">DroneLandingEnv</span><span class="p">(</span><span class="n">render_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">sim_dt</span><span class="p">)</span>
-<span class="n">controller_dt</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># controller step (1 Hz)</span>
-
-<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">yaw_2_steps</span> <span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">finer_gains</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.02</span>
-
-<span class="n">states</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">run_noisy_pid_simulation</span><span class="p">(</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="p">,</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">pid</span><span class="p">,</span> <span class="n">init_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">],</span> <span class="n">max_delay_steps</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p_loss</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">wind_std</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">noise_std</span> <span class="o">=</span> <span class="n">noise_std</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/9a2042b1fd8035ad30a0f95b0d3aec0861a3e5a6e31f3a6eb2815ca6c96145ea.png" src="../_images/9a2042b1fd8035ad30a0f95b0d3aec0861a3e5a6e31f3a6eb2815ca6c96145ea.png" />
-</div>
-</div>
 </section>
 <section id="wind-effect">
 <h2>Wind effect<a class="headerlink" href="#wind-effect" title="Link to this heading">#</a></h2>
@@ -826,40 +791,86 @@ v_{k+1} = u_k +  w_k,
 <span class="n">env</span> <span class="o">=</span> <span class="n">DroneLandingEnv</span><span class="p">(</span><span class="n">render_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">sim_dt</span><span class="p">)</span>
 <span class="n">controller_dt</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># controller step (1 Hz)</span>
 
-<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">yaw_2_steps</span> <span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">finer_gains</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">yaw_2_steps</span> <span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">finer_gains</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Delay and packet loss parameters</span>
 <span class="n">wind_std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
-<span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.02</span>
 
-<span class="n">states</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">run_noisy_pid_simulation</span><span class="p">(</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="p">,</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">pid</span><span class="p">,</span> <span class="n">init_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">],</span> <span class="n">max_delay_steps</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p_loss</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">wind_std</span> <span class="o">=</span> <span class="n">wind_std</span><span class="p">,</span> <span class="n">noise_std</span> <span class="o">=</span> <span class="n">noise_std</span><span class="p">)</span>
+<span class="n">states</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">run_noisy_pid_simulation</span><span class="p">(</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="p">,</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">pid</span><span class="p">,</span> <span class="n">init_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">],</span> <span class="n">max_delay_steps</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p_loss</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">wind_std</span> <span class="o">=</span> <span class="n">wind_std</span><span class="p">,</span> <span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1f2d2622a54a911c5b01960551dc47022fc9659ed936566e1bd5a07c25e2d22a.png" src="../_images/1f2d2622a54a911c5b01960551dc47022fc9659ed936566e1bd5a07c25e2d22a.png" />
+<img alt="../_images/d173e1fab00a306df59ac25d55a6f6445ce73e569a546fe51c75ed8368589408.png" src="../_images/d173e1fab00a306df59ac25d55a6f6445ce73e569a546fe51c75ed8368589408.png" />
 </div>
 </div>
+<p>In this case, the drone has to counteract the constant wind by learning which speed to produce. This is the role of the integral contribution of the PID controller. Here, small <span class="math notranslate nohighlight">\(K_i\)</span> coefficients helps to reach the center with more precision (up to the precision of the drone landing sequence):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_dt</span> <span class="o">=</span> <span class="mf">0.1</span>         <span class="c1"># simulation step (10 Hz)</span>
 <span class="n">env</span> <span class="o">=</span> <span class="n">DroneLandingEnv</span><span class="p">(</span><span class="n">render_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">sim_dt</span><span class="p">)</span>
 <span class="n">controller_dt</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># controller step (1 Hz)</span>
 
-<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">yaw_2_steps</span> <span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">finer_gains</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">yaw_2_steps</span> <span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">finer_gains</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Delay and packet loss parameters</span>
-<span class="n">max_delay_steps</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># 1 or 2 sim steps additional delay</span>
-<span class="n">p_loss</span> <span class="o">=</span> <span class="mf">0.15</span>      <span class="c1"># packet loss probability</span>
-<span class="n">wind_std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span>
-<span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.02</span>
+<span class="n">wind_std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
 
-<span class="n">states</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">run_noisy_pid_simulation</span><span class="p">(</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="p">,</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">pid</span><span class="p">,</span> <span class="n">init_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">],</span> <span class="n">max_delay_steps</span> <span class="o">=</span> <span class="n">max_delay_steps</span><span class="p">,</span> <span class="n">p_loss</span> <span class="o">=</span> <span class="n">p_loss</span><span class="p">,</span> <span class="n">wind_std</span> <span class="o">=</span> <span class="n">wind_std</span><span class="p">,</span> <span class="n">noise_std</span> <span class="o">=</span> <span class="n">noise_std</span><span class="p">)</span>
+<span class="n">states</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">run_noisy_pid_simulation</span><span class="p">(</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="p">,</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">pid</span><span class="p">,</span> <span class="n">init_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">],</span> <span class="n">max_delay_steps</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p_loss</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">wind_std</span> <span class="o">=</span> <span class="n">wind_std</span><span class="p">,</span> <span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/031056363c2b7d5f92d50589cb1bf394ab4d6551768852a6107f76903f5dc411.png" src="../_images/031056363c2b7d5f92d50589cb1bf394ab4d6551768852a6107f76903f5dc411.png" />
+<img alt="../_images/0ee2a6581bfa37213dfe05806a2fc1bcf7babc75b4ef2d13adaa207109b47a3a.png" src="../_images/0ee2a6581bfa37213dfe05806a2fc1bcf7babc75b4ef2d13adaa207109b47a3a.png" />
+</div>
+</div>
+<p><strong>Note</strong> : Derivative contribution of PID helps to react to quick changes in the system. As it is harder to tune, its use is not presented here.</p>
+</section>
+<section id="sensor-noise">
+<h2>Sensor noise<a class="headerlink" href="#sensor-noise" title="Link to this heading">#</a></h2>
+<p>As with every sensing devices, our control loop is subject to various noises, among which :</p>
+<ul class="simple">
+<li><p>GPS accuracy</p></li>
+<li><p>Accelerometer and gyroscope noises</p></li>
+<li><p>Camera pixel accuracy</p></li>
+</ul>
+<p>All data coming from the drone’s sensors are fused internally using a Kalman filter. However, GPS can be disturbed easily, especially when being close to the ground. And relying on the homemade drone estimation that we don’t control (especially on altitude estimation) can be risky for our target level of precision.
+During the project, decision was taken to focus on the camera for directly estimating the relative position to the target.
+Camera is not really subject to noise, but to model the pixel’s accuracy, small noise is added before the controller, of the following form :</p>
+<p>We model sensor noise by applying a multiplicative Gaussian perturbation directly on the error signal. For each controller step <span class="math notranslate nohighlight">\((k)\)</span>, the noisy error is</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{e}_k = e_k \cdot \left( 1 + \eta_k \right),
+\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[
+\eta_k \sim \mathcal{N}(0, \sigma^2),
+\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(e_k \in \mathbb{R}^4\)</span> is the true error vector (position and yaw),</p></li>
+<li><p><span class="math notranslate nohighlight">\(\tilde{e}_k\)</span> is the noisy estimate of the error,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma \)</span> is the standard deviation of the noise (here (<span class="math notranslate nohighlight">\(\sigma = 0.01\)</span>)).</p></li>
+</ul>
+<p>This corresponds to an estimation precision of a few percent, which is too small to significantly degrade controller performance, but still reflects the imperfect sensing conditions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_dt</span> <span class="o">=</span> <span class="mf">0.1</span>         <span class="c1"># simulation step (10 Hz)</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">DroneLandingEnv</span><span class="p">(</span><span class="n">render_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">sim_dt</span><span class="p">)</span>
+<span class="n">controller_dt</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># controller step (1 Hz)</span>
+
+<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">yaw_2_steps</span> <span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">finer_gains</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">wind_std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+
+<span class="n">states</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">run_noisy_pid_simulation</span><span class="p">(</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="p">,</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">pid</span><span class="p">,</span> <span class="n">init_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">],</span> <span class="n">max_delay_steps</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p_loss</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">wind_std</span> <span class="o">=</span> <span class="n">wind_std</span><span class="p">,</span> <span class="n">noise_std</span> <span class="o">=</span> <span class="n">noise_std</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/af8283e4185a38f4daac7d678a9a07b6c42c5c8c6c7a44eadae4edacc05ad3f6.png" src="../_images/af8283e4185a38f4daac7d678a9a07b6c42c5c8c6c7a44eadae4edacc05ad3f6.png" />
 </div>
 </div>
 </section>
@@ -893,14 +904,14 @@ u_k^{\text{applied}} = X_k , u_k + (1 - X_k) , u_{k-1}^{\text{applied}},
 <span class="n">p_loss</span> <span class="o">=</span> <span class="mf">0.3</span>      <span class="c1"># packet loss probability</span>
 <span class="n">max_delay_steps</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># 1 or 2 sim steps additional delay</span>
 <span class="n">wind_std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span>
-<span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.02</span>
+<span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.01</span>
 
 <span class="n">states</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">run_noisy_pid_simulation</span><span class="p">(</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="p">,</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">pid</span><span class="p">,</span> <span class="n">init_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">],</span> <span class="n">max_delay_steps</span> <span class="o">=</span> <span class="n">max_delay_steps</span><span class="p">,</span> <span class="n">p_loss</span> <span class="o">=</span> <span class="n">p_loss</span><span class="p">,</span> <span class="n">wind_std</span> <span class="o">=</span> <span class="n">wind_std</span><span class="p">,</span> <span class="n">noise_std</span> <span class="o">=</span> <span class="n">noise_std</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/70d3c161c2e562dbfef4cad1be2d6ba4bb5595b35f4dca248035af8f461cd65f.png" src="../_images/70d3c161c2e562dbfef4cad1be2d6ba4bb5595b35f4dca248035af8f461cd65f.png" />
+<img alt="../_images/86bed106307541f2be457fed2ea046f87158efaaf0cebee38694add766d73106.png" src="../_images/86bed106307541f2be457fed2ea046f87158efaaf0cebee38694add766d73106.png" />
 </div>
 </div>
 </section>
@@ -921,6 +932,31 @@ u_j, &amp; \text{if packet } j \text{ arrives at } k.
 \end{cases}
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is a simulation step.</p>
+</section>
+<section id="putting-everything-together">
+<h2>Putting everything together<a class="headerlink" href="#putting-everything-together" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_dt</span> <span class="o">=</span> <span class="mf">0.1</span>         <span class="c1"># simulation step (10 Hz)</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">DroneLandingEnv</span><span class="p">(</span><span class="n">render_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">sim_dt</span><span class="p">)</span>
+<span class="n">controller_dt</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># controller step (1 Hz)</span>
+
+<span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="n">Ki</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span> <span class="n">Kd</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">dt</span><span class="o">=</span><span class="n">controller_dt</span><span class="p">,</span> <span class="n">integral_limit</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">z_fixed_speed</span><span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">yaw_2_steps</span> <span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">finer_gains</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Delay and packet loss parameters</span>
+<span class="n">max_delay_steps</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># 1 or 2 sim steps additional delay</span>
+<span class="n">p_loss</span> <span class="o">=</span> <span class="mf">0.15</span>      <span class="c1"># packet loss probability</span>
+<span class="n">wind_std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span>
+<span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="n">states</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">run_noisy_pid_simulation</span><span class="p">(</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span><span class="p">,</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">pid</span><span class="p">,</span> <span class="n">init_mode</span><span class="o">=</span><span class="s1">&#39;fixed&#39;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">init_pos</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">],</span> <span class="n">max_delay_steps</span> <span class="o">=</span> <span class="n">max_delay_steps</span><span class="p">,</span> <span class="n">p_loss</span> <span class="o">=</span> <span class="n">p_loss</span><span class="p">,</span> <span class="n">wind_std</span> <span class="o">=</span> <span class="n">wind_std</span><span class="p">,</span> <span class="n">noise_std</span> <span class="o">=</span> <span class="n">noise_std</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d93389ff26d88e1f951ba2e7897271ce236abeebcd9cba4183e3245785d133a4.png" src="../_images/d93389ff26d88e1f951ba2e7897271ce236abeebcd9cba4183e3245785d133a4.png" />
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_dt</span> <span class="o">=</span> <span class="mf">0.1</span>         <span class="c1"># simulation step (10 Hz)</span>
@@ -929,7 +965,7 @@ u_j, &amp; \text{if packet } j \text{ arrives at } k.
 <span class="n">max_delay_steps</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># 1 or 2 sim steps additional delay</span>
 <span class="n">p_loss</span> <span class="o">=</span> <span class="mf">0.15</span>      <span class="c1"># packet loss probability</span>
 <span class="n">wind_std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span>
-<span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.02</span>
+<span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.01</span>
 
 <span class="n">stables</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -950,46 +986,110 @@ u_j, &amp; \text{if packet } j \text{ arrives at } k.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/38992ccd5acd418f92f1ccbaade0a82d61f3c4c8b2f8326f6d0cf3669a2b6938.png" src="../_images/38992ccd5acd418f92f1ccbaade0a82d61f3c4c8b2f8326f6d0cf3669a2b6938.png" />
-<img alt="../_images/78108f205ee64be72e4522af80c3b5506591758f9e383ec6da3c34f56ed04181.png" src="../_images/78108f205ee64be72e4522af80c3b5506591758f9e383ec6da3c34f56ed04181.png" />
-<img alt="../_images/25a0cb88845367c260bb18404e1473e8917d0a41df68e2bdfefa495f8d8cdef6.png" src="../_images/25a0cb88845367c260bb18404e1473e8917d0a41df68e2bdfefa495f8d8cdef6.png" />
+<img alt="../_images/9f0dfc32acbdb9bea55097bf8bfc812c0c189e6d4d1d878b2603d59424d7da53.png" src="../_images/9f0dfc32acbdb9bea55097bf8bfc812c0c189e6d4d1d878b2603d59424d7da53.png" />
+<img alt="../_images/03656ecc5dd0d6554403581946643d201ad62e063a81d72e3d4c0d1697ef9f42.png" src="../_images/03656ecc5dd0d6554403581946643d201ad62e063a81d72e3d4c0d1697ef9f42.png" />
+<img alt="../_images/29c79309cc2c500e8db28b0be62d0ffd5c702b81970cefa13cc72cf81aca3120.png" src="../_images/29c79309cc2c500e8db28b0be62d0ffd5c702b81970cefa13cc72cf81aca3120.png" />
 </div>
 </div>
-</section>
-<section id="stability-analysis">
-<h2>Stability analysis<a class="headerlink" href="#stability-analysis" title="Link to this heading">#</a></h2>
-<section id="stability-criterion">
-<h3>Stability criterion<a class="headerlink" href="#stability-criterion" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">PidEval</span><span class="w"> </span><span class="kn">import</span> <span class="n">sweep_parameters</span><span class="p">,</span> <span class="n">plot_stability_volume</span>
-
-<span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.02</span>
-
-<span class="c1"># Three wind scenarios</span>
-<span class="n">wind_scenarios</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;Low wind&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-    <span class="s2">&quot;Mid wind&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">],</span>
-    <span class="s2">&quot;High wind&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span>
-<span class="p">}</span>
-
-<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">wind_std</span> <span class="ow">in</span> <span class="n">wind_scenarios</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">sweep_parameters</span><span class="p">(</span><span class="n">wind_std</span><span class="p">,</span> <span class="n">noise_std</span><span class="p">)</span>
-    <span class="n">plot_stability_volume</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Stability volume (</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/2198034e5c22afe24c858427a225e5008498cd2a6f7ab171af47df9d9a935334.png" src="../_images/2198034e5c22afe24c858427a225e5008498cd2a6f7ab171af47df9d9a935334.png" />
-<img alt="../_images/015fe74f74160bffeaa4b9065a52ce4b87aaac337010cd90e25d92930427f188.png" src="../_images/015fe74f74160bffeaa4b9065a52ce4b87aaac337010cd90e25d92930427f188.png" />
-<img alt="../_images/2d4877f3186db4adef15b2b7043a4618875e34dd59d3949a06bcc189febf5530.png" src="../_images/2d4877f3186db4adef15b2b7043a4618875e34dd59d3949a06bcc189febf5530.png" />
-</div>
-</div>
-</section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="conclusion">
 <h1>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h1>
+<section id="stability-analysis">
+<h2>Stability analysis<a class="headerlink" href="#stability-analysis" title="Link to this heading">#</a></h2>
+<p>We assess our controller stability and performance on a large range of random trials.</p>
+<section id="stability-criterion">
+<h3>Stability criterion<a class="headerlink" href="#stability-criterion" title="Link to this heading">#</a></h3>
+<p>We define and use the two followings criterion of stability.</p>
+<p><em><strong>Weakly stable</strong></em></p>
+<p>The system is said to be <strong>weakly stable</strong> if the center of the drone is within the target area at the final time <span class="math notranslate nohighlight">\(t_f\)</span>. This can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[
+\left | x_{drone}(t_f)-x_{target} \right | &lt;0.3m , ~ \left | y_{drone}(t_f)-y_{target} \right | &lt;0.3m
+\]</div>
+<p>Where <span class="math notranslate nohighlight">\(t_f\)</span> is the final time.</p>
+<p><em><strong>Strongly stable</strong></em></p>
+<p>The system is said to be <strong>strongly stable</strong> if <strong>all four corners of the drone</strong> are within the target area at the final time <span class="math notranslate nohighlight">\(t_f\)</span>. This can be expressed as:</p>
+<div class="math notranslate nohighlight">
+\[
+\bigl| x_{c_i}(t_f) - x_{\text{target}} \bigr| &lt; 0.3 ; \text{m},
+\quad
+\bigl| y_{c_i}(t_f) - y_{\text{target}} \bigr| &lt; 0.3 ; \text{m},
+\quad \forall i \in {1,2,3,4}
+\]</div>
+<p>Where <span class="math notranslate nohighlight">\(t_f\)</span> is the final time and <span class="math notranslate nohighlight">\(c_i\)</span> a corner number.</p>
+<p>Weak stability indicates a bounded stability, strong stability might indicate an asymptotic stability (See <a class="reference external" href="https://en.wikipedia.org/wiki/Lyapunov_stability">here</a> for the mathematical definitions.</p>
+</section>
+<section id="id1">
+<h3>Results<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">PidEval</span><span class="w"> </span><span class="kn">import</span> <span class="n">sweep_parameters</span><span class="p">,</span> <span class="n">plot_stability_volume</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="c1"># Three wind scenarios</span>
+<span class="n">wind_scenarios</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;No wind&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+    <span class="s2">&quot;Mid wind&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">],</span>
+    <span class="s2">&quot;High wind&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span>
+<span class="p">}</span>
+
+
+<span class="c1"># Create 1×3 subplot grid</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">wind_scenarios</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="s2">&quot;3d&quot;</span><span class="p">})</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">wind_std</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">wind_scenarios</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">sweep_parameters</span><span class="p">(</span><span class="n">wind_std</span><span class="p">,</span> <span class="n">noise_std</span><span class="p">)</span>
+    <span class="n">sc</span> <span class="o">=</span> <span class="n">plot_stability_volume</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1"># Add one shared colorbar for all subplots</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Stable fraction (0–1)&quot;</span><span class="p">)</span>
+<span class="c1"># plt.tight_layout()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/996bee9950c9fd785b5f2561710cb80542ead8a0b4feae1ed944e62bff612443.png" src="../_images/996bee9950c9fd785b5f2561710cb80542ead8a0b4feae1ed944e62bff612443.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">noise_std</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+<span class="c1"># Three wind scenarios</span>
+<span class="n">wind_scenarios</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;No wind&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+    <span class="s2">&quot;Mid wind&quot;</span><span class="p">:</span>  <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">],</span>
+    <span class="s2">&quot;High wind&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span>
+<span class="p">}</span>
+
+
+<span class="c1"># Create 1×3 subplot grid</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">wind_scenarios</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="s2">&quot;3d&quot;</span><span class="p">})</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">wind_std</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">wind_scenarios</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">sweep_parameters</span><span class="p">(</span><span class="n">wind_std</span><span class="p">,</span> <span class="n">noise_std</span><span class="p">)</span>
+    <span class="n">sc</span> <span class="o">=</span> <span class="n">plot_stability_volume</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">weak_stability</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Add one shared colorbar for all subplots</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Stable fraction (0–1)&quot;</span><span class="p">)</span>
+<span class="c1"># plt.tight_layout()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/08675a4e93e544d92a34341240c74a503cc025dd394135932654adcfefd92796.png" src="../_images/08675a4e93e544d92a34341240c74a503cc025dd394135932654adcfefd92796.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="some-takeaways">
+<h2>Some takeaways<a class="headerlink" href="#some-takeaways" title="Link to this heading">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1023,12 +1123,12 @@ u_j, &amp; \text{if packet } j \text{ arrives at } k.
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../index.html"
+       href="../heat_pipe_control/system_tutorial.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Project tutorials</p>
+        <p class="prev-next-title">Heated Pipe System with Heat Losses</p>
       </div>
     </a>
 </div>
@@ -1075,19 +1175,24 @@ u_j, &amp; \text{if packet } j \text{ arrives at } k.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-with-delay">Tuning with delay</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-control-in-real-situation-study-of-the-impact-of-delay-and-losses">3. Drone control in real situation - Study of the impact of delay and losses</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#drone-control-in-real-situation-study-of-the-impact-of-wind-delay-and-losses">3. Drone control in real situation - Study of the impact of wind, delay and losses</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#well-that-s-done-what-could-go-wrong-in-real-life">Well that’s done, what could go wrong in real life?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#noise">Noise</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wind-effect">Wind effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensor-noise">Sensor noise</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packet-loss">Packet loss</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-fixed-delays">Non-fixed delays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-everything-together">Putting everything together</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-analysis">Stability analysis</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-criterion">Stability criterion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Results</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-takeaways">Some takeaways</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
 
   </nav></div>
