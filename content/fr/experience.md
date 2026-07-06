@@ -1,5 +1,5 @@
 ---
-title: 'Experience'
+title: 'CV'
 date: 2023-10-24
 type: landing
 
@@ -10,13 +10,6 @@ design:
 
 # Page sections
 sections:
-  - block: resume-skills
-    content:
-      title: Compétences 
-      id: 1
-      username: admin_fr
-    design:
-      columns: '1'
   - block: cta-button-list
     content:
       # Need a custom icon?
@@ -38,11 +31,7 @@ sections:
     content:
       title: Récompenses
       username: admin_fr
-  - block: 'github.cetiennec.language_block'
-    content:
-      title: Langues
-      text: Langues
-    
+
   - block: features
     content:
       title: Activités sportives
@@ -55,7 +44,11 @@ sections:
       design:
         columns: '2'
 
-
-
-
+  - block: resume-skills
+    content:
+      title: Compétences 
+      id: 1
+      username: admin_fr
+    design:
+      columns: '1'
 ---
