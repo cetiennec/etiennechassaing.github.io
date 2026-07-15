@@ -11,6 +11,8 @@ tags:
 
 ### Projet : Interception de drones chez Stryx AI
 
+![Trajectoire optimale d'interception](featured.jpg)
+
 **Contexte**
 Dans le cadre d'une mission de 6 mois (octobre 2025 - mars 2026) chez Stryx AI, j'ai travaillé sur l'interception de drones, en développant des algorithmes de contrôle dédiés à cette tâche.
 

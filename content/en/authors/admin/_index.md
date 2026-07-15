@@ -95,6 +95,17 @@ Education:
       - Investigated how to detect secure grasps by measuring the stiffness of the recipient's grasp. See publication below.
 
 work:
+  - position: Independent Consultant in Applied AI and Systems Control
+    company_name: ''
+    company_url: ''
+    company_logo: ''
+    date_start: 2024-02-01
+    date_end: ''
+    location: France
+    summary: |
+      Responsibilities include:
+      - Supporting companies (startups and industrial players) on projects involving dynamic-systems modeling, control, and artificial intelligence: filtering, Reinforcement Learning, computer vision, MPC.
+
   - position: Master-Thesis intern on Physics-Informed Deep-Learning
     company_name: Schindler Lab
     company_url: ''
@@ -207,6 +218,17 @@ awards:
     awarder: IEEExCentraleSupélec
     summary: |
       Finalist in the IEEExCentraleSupélec Innovation Challenge, awarded 3rd prize. The project was associated with CS³ - Centre Spatial de CentraleSupélec for CubeSats.
+  - title: 'Patent: Systems and Methods for Tactile Gesture Interpretation'
+    date: '2022-01-01'
+    url: https://patents.google.com/patent/US20230173669A1/en
+    awarder: USPTO
+    summary: |
+      Patent on tactile gesture interpretation for human grasp detection, resulting from research conducted at Stanford University.
+  - title: Certified Independent Consultant — Innovation Tax Credit (CII)
+    date: '2024-10-01'
+    awarder: DRIEETS
+    summary: |
+      Certification valid from October 2024 to October 2028.
 
 ---
 

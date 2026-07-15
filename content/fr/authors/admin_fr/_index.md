@@ -96,6 +96,18 @@ Education:
       Détection de la préhension humaine avec précision. Voir publication ci-dessous.
 
 work:
+  - position: Consultant indépendant en IA appliquée et contrôle de systèmes
+    company_name: ''
+    company_url: ''
+    company_logo: ''
+    date_start: 2024-02-01
+    date_end: ''
+    location: France
+    summary: |
+      Responsabilités :
+      - Accompagnement d'entreprises (startups et industriels) sur des projets de modélisation, contrôle de systèmes dynamiques et intelligence artificielle : filtrage, Reinforcement Learning, computer vision, MPC.
+      - Détail des missions réalisées sur la page Portfolio.
+
   - position: Thèse de Master en Computer-Vision
     company_name: Schindler Lab
     company_url: ''
@@ -220,6 +232,17 @@ Awards:
     awarder: IEEExCentraleSupélec
     summary: |
       Finaliste de l'IEEExCentraleSupélec Innovation Challenge, 3e prix. Le projet a été associé au CS³ - Centre Spatial de CentraleSupélec pour les CubeSats.
+  - title: 'Brevet : Systems and Methods for Tactile Gesture Interpretation'
+    date: '2022-01-01'
+    url: https://patents.google.com/patent/US20230173669A1/en
+    awarder: USPTO
+    summary: |
+      Brevet déposé sur l'interprétation de gestes tactiles pour la détection de préhension humaine, issu des travaux de recherche menés à Stanford University.
+  - title: Consultant Indépendant agréé Crédit Impôt Innovation (CII)
+    date: '2024-10-01'
+    awarder: DRIEETS
+    summary: |
+      Agrément valable d'octobre 2024 à octobre 2028.
 
 
 ---

@@ -1,0 +1,562 @@
+%-------------------------
+% Résumé en Latex
+% Auteur : Etienne Chassaing
+% Basé sur : https://github.com/sb2nov/resume
+% Licence : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[french]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+%----------OPTIONS DE POLICE----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+\pagestyle{fancy}
+\fancyhf{} % efface tous les champs d'en-tête et de pied de page
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Ajuster les marges
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Format des sections
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Assurez-vous que le pdf généré est lisible par machine / analysable par ATS
+\pdfgentounicode=1
+
+%-------------------------
+% Commandes personnalisées
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-7pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-3pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-5.3pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-50pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-15pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-3pt}}
+
+%-------------------------------------------
+%%%%%%  LE CV COMMENCE ICI  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------ENTÊTE----------
+\begin{center}
+    \textbf{\Huge \scshape Etienne Chassaing} \\ \vspace{3pt}
+    \small +33 6 13 21 73 50  $|$ \href{mailto:etienne.chassaing@proton.me}{etienne.chassaing@proton.me}
+    \\
+    \href{https://www.linkedin.com/in/etienne-chassaing1/?locale=en_US}{Cliquez pour le profil Linkedin,} \href{https://scholar.google.com/citations?user=TYvGzyUAAAAJ&hl=fr&oi=ao}{ Cliquez pour le profil Google Scholar,} \href{https://etiennechassaing.com/fr/}{ Cliquez pour voir mon site.}
+
+
+\begin{center}
+{\large{\textbf{Après deux ans en tant que consultant et formateur indépendant, en robotique/IA appliquée, en modélisation et en contrôle de systèmes dynamiques, je cherche mon prochain projet temps plein en contrôle.\\ Page 1 : Qualifications,  \hyperlink{enseignements}{Page 2 : Brevets/Publications/Enseignements} , \hyperlink{portfolio}{Page 3 : Portfolio}}}}
+\end{center}
+
+\end{center}
+
+\vspace{-12pt}
+
+%-----------ÉDUCATION-----------
+\section{Diplômes}
+  \resumeSubHeadingListStart
+        \resumeSubheading
+      {EPFL, Master en Robotique, double diplôme avec CentraleSupélec}{Sep 2022 -- Août 2024}{EPFL, Lausanne}{\textbf{Grade: 5.76/6.0, A+}}
+      \vspace{-2pt}
+
+    {Cours suivis : Analyse de données et statistiques, Machine Learning Avancé, Optimisation, Maintenance Prédictive par ML, Conception robotique, Contrôle prédictif, Robotique mobile. Projets de semestre : 1. Contrôle optimal d'un nouveau drone basé sur ROS (Voir publication ci-dessous) 2. Conception et contrôle d'une plateforme robotique pour des tâches de biologie utilisant de l'IA et de la Computer Vision.}
+    \vspace{-2pt}
+    \resumeSubheading
+      {CentraleSupélec, Diplôme d'ingénieur en Control Engineering}{Sep 2017 -- Août 2024}{Université Paris-Saclay, France}{\textbf{Grade: 4.05/4.33, A+}}
+      \vspace{-2pt}
+   
+    {Cours suivis :}
+      {Mathématiques théoriques et appliquées, Statistiques et Apprentissages, Optimisation, Robotique, Automatique, Génie mécanique, Génie électrique, Mécanique des fluides, Transfert thermique, Systèmes multi-agents.
+      Classes préparatoires \textbf{MPSI-PSI*} au Collège Stanislas.}
+      \vspace{-2pt}
+\resumeSubHeadingListEnd
+
+\vspace{6pt}
+
+\section{Recherche académique}
+\resumeSubHeadingListStart
+\resumeSubheading
+          {Thèse de Master en Computer-Vision, \underline{Schindler Lab}}{Fév 2024 -- Août 2024}{Schindler Lab, Lausanne, Suisse}{}
+          \vspace{1pt}
+    \resumeItemListStart
+          \resumeItem{Développement d’un algorithme de génération de modèles thermiques de bâtiments à partir d'image RGB et thermique. Ce modèle permet de prévoir le besoin futur de  rénovation thermique d'un bâtiment. Voir \href{https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://infoscience.epfl.ch/bitstreams/cefd4e2b-0102-4370-bac1-9738c96f71af/download&ved=2ahUKEwiOqo7X4seVAxX6LPsDHZZYI40QFnoECCEQAQ&usg=AOvVaw2_Dc2q6XfrFiIe2RLmKYUd}{publication}.}
+            \vspace{6pt}
+         \resumeItem{Intégration d'à priori physiques pour garantir un modèle conforme aux lois de transfert de chaleur.}
+          \vspace{6pt}
+    \resumeItemListEnd
+
+\resumeSubheading
+      {Chercheur invité à l’Université de \underline{Stanford}}{Sep 2021 -- Fév 2022}{Stanford Artificial Intelligence Lab, supervision de Prof. J. Kenneth Salisbury, Université de Stanford}{}
+      \vspace{1pt}
+      \resumeItemListStart
+      \resumeItem{Projet visant à effectuer des dons d'objets entre un robot et un humain.}
+      \vspace{6pt}
+      \resumeItem{Détection de la préhension humaine avec précision. Voir \href{https://ieeexplore.ieee.org/document/10224405}{publication}.}
+      \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\vspace{8pt}
+      
+%-----------EXPÉRIENCE-----------
+\section{Expériences}
+  \resumeSubHeadingListStart
+
+ \resumeSubheading
+          {Consultant indépendant en IA appliquée et contrôle de systèmes}{Fév 2024 -- Aujourd'hui}{France}{}
+          \vspace{1pt}
+          \resumeItemListStart
+          \resumeItem{Accompagnement d'entreprises (startups et industriels) sur des projets de modélisation, contrôle de systèmes dynamiques et intelligence artificielle : filtrage, Reinforcement Learning, computer vision, MPC.}
+          \vspace{5pt}
+          \resumeItem{Détail des enseignements universitaires et formations dispensés en \hyperlink{enseignements}{page 2}, portfolio des missions réalisées en \hyperlink{portfolio}{page 3}.}
+          \vspace{6pt}
+\resumeItemListEnd
+
+\vspace{-12pt}
+
+ \resumeSubheading
+          {Stage en Reinforcement Learning chez \underline{Airbus Group} \vspace{-2pt}}{Mar 2022 -- Juil 2022}{Airbus Group, Le Plessis Robinson}{}
+
+          \resumeItemListStart
+          \resumeItem{ Développement de stratégies de contrôle multi-drones en utilisant le Deep Reinforcement Learning (DRL).}
+        \vspace{5pt}
+         \resumeItem{Conception d’une structure de contrôle dédiée basée sur l’état de l’art existant.}
+          \vspace{6pt}
+    \resumeItemListEnd
+
+\resumeSubheading
+{Intervenant chez \underline{Junior CentraleSupélec} \vspace{-2pt}}{Jan 2020 -- Juil 2024}{Junior CentraleSupélec}{}
+
+\resumeItemListStart
+    \resumeItem{14 missions de conception avec des startups de leurs projets robotiques et mécatroniques.
+Conseil sur les aspects de contrôle. Ex: Développement d'un système de caméra autonome pour surveiller des bactéries pour \underline{MSF}.}
+    \vspace{6pt}
+%     \resumeItem{Développement d'un système de caméra autonome pour surveiller des bactéries pour \underline{Médecins Sans Frontières}.}
+%        \vspace{5pt}
+%    \resumeItem{Conception d'un POC de robot agricole autonome.}
+%       \vspace{6pt}
+\resumeItemListEnd
+      
+\resumeSubheading
+      {Projet universitaire "Cubesat" parrainé par \underline{Thales Alenia Space} \vspace{-2pt}}{Sep 2019 -- Juil 2021}{Centre Spatial CentraleSupélec "CS3"}{}
+      
+      \resumeItemListStart
+      \resumeItem {Conception et réalisation d'un banc mécatronique de test et de TP unique pour les algorithmes de contrôle et d'estimation d'attitude.
+      Le projet a été soutenu devant le \underline{CNES} et \underline{Thales Alenia Space} et a reçu le \textbf{2e prix du challenge d'innovation IEEE de l'université}.}
+  %    \vspace{5pt}
+ %   \resumeItem{Ajouts de capteurs, mise en place d'estimateur optimaux de l'orientation et d'un contrôleur pour le satellite.}
+    \vspace{6pt}
+\resumeItemListEnd
+    
+      \resumeSubheading
+      {Projets personnels et réalisations}{}{}{}
+        \vspace{-15pt}
+      \resumeItemListStart
+        \resumeItem{Randonnées sur le sentier "GR20", traversant la Corse du nord au sud. Grimpeur en falaise et en grande voie.}
+          \vspace{4pt}
+        \resumeItem{Construction de ma propre imprimante 3D RepRap au lycée. Conception d'un robot sphérique "BB8" pour le concours des grandes écoles.}
+       \vspace{4pt}
+       \resumeItem{Ancien Vice-Président de Symposium CS, organisant des conférences sur le campus (François Hollande...)}
+
+      \resumeItemListEnd
+      \vspace{2pt}
+      
+  \resumeSubHeadingListEnd
+
+
+\newpage
+%-----------COMPÉTENCES DIVERSES-----------
+\section{Brevets}
+\begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+    \href{https://patents.google.com/patent/US20230173669A1/en}{"Systems and Methods for Tactile Gesture Interpretation", 2022}
+    }}
+\end{itemize}
+\vspace{-10pt}
+
+\section{Publications}
+\begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+    \href{https://arxiv.org/abs/2504.04448}{"Thermoxels: a voxel-based method to generate simulation-ready 3D thermal models", CISBAT 2025} \\
+    \href{https://ieeexplore.ieee.org/document/10224405}{"Identifying Human Grasp Properties During Robot-to-Human Handovers", IEEE WHC 2023} \\
+    \href{https://arxiv.org/pdf/2405.09405}{"On identifying the non-linear dynamics of a hovercraft using an end-to-end deep learning approach", SYSID 2024}
+    }}
+\end{itemize}
+\vspace{-10pt}
+
+\section{Certifications :}
+\resumeSubHeadingListStart
+    \resumeSubheading
+  {Consultant Indépendant agréé Crédit Impôt Innovation (CII)}{Oct 2024 -- Oct 2028}{DRIEETS}{}
+  \vspace{2pt}
+\resumeSubHeadingListEnd
+
+\section{Autres}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+    \textbf{Langues:}{ Français, Anglais Courant, Allemand Intermédiaire, nombreuses prises de parole en public }\\
+   \textbf{Récompenses:}{ 2e prix du concours d'innovation IEEExCentraleSupélec, Bourse de recherche du centre France-Stanford, Nomination au prix de la meilleure thèse de master de l'EPFL}\\
+  \textbf{Programmation:}{ Python, bases de ROS, Git, C/C++ (medium), Matlab/Simulink, Fusion360, AzureML, Latex} \\
+    }}
+\end{itemize}
+\vspace{-10pt}
+
+\hypertarget{enseignements}{}
+\section{Enseignements :}
+
+\begingroup
+\renewcommand{\resumeItem}[1]{\item\small{#1}}
+
+\resumeSubHeadingListStart
+
+\resumeSubheading
+  {Enseignant vacataire à CentraleSupélec}{ 2026 -- 2027}{CentraleSupélec, Gif-sur-Yvette}{}
+  \vspace{1pt}
+  \resumeItemListStart
+    \resumeItem{\textbf{Cours électif de Robotique } (avr. 2027) : conception du cours \textit{Robotics Systems, from Motion to Embodied AI} -- cf. \href{https://myschool.centralesupelec.fr/syllabus/2024-2025/2EL1120/fr/full.pdf}{ancien syllabus 2EL1120} --
+    socle en cinématique, modèle dynamique, planification de trajectoire et contrôle en couple ;
+    locomotion biomimétique vs. apprise, apprentissage, garanties formelles ; Projet Python MuJoCo.}
+%    \vspace{3pt}
+    \resumeItem{\textbf{Cours de Reinforcement Learning} (fin 2026, au sein du cours \textit{Data-Driven Control}) : MDP, Q-learning, méthodes Actor-Critic, Deep RL.}
+%    \vspace{3pt}
+    \resumeItem{\textbf{Suivi de projet de 2\textsuperscript{e} année} Pôle Projet Robotique: encadrement de projets en robotique/apprentissage.}
+  \resumeItemListEnd
+%  \vspace{6pt}
+
+\resumeSubheading
+  {Enseignant vacataire à l'ECE Paris}{2\textsuperscript{e} sem. 2026}{ECE Paris}{}
+  \vspace{1pt}
+  \resumeItemListStart
+    \resumeItem{\textbf{Systèmes bouclés} (cours magistral promo de 500 élèves) : modélisation, domaine de Laplace, transformée en Z,
+        discrétisation, PID échantillonné, stabilité (critère du disque unité), filtre de Kalman ; conception des supports, QCM et examens; correction du partiel final.}
+%    \vspace{3pt}
+    \resumeItem{\textbf{Suivi de projet technique Véhicule Autonome} : encadrement de projet incluant perception, contrôle et implémentation d'un algorithme SLAM sous ROS, suivi de trajectoire.}
+  \resumeItemListEnd
+%  \vspace{6pt}
+
+\resumeSubheading
+  {Chargé de TD à l'EPFL}{Sep 2023 -- Fév 2024}{EPFL, Lausanne}{}
+  \vspace{1pt}
+  \resumeItemListStart
+    \resumeItem{\textbf{Foundations of Artificial Intelligence} (\href{https://edu.epfl.ch/coursebook/en/foundations-of-artificial-intelligence-ME-390}{ME-390}) : apprentissage supervisé/non supervisé, Deep-Learning, RL.}
+%    \vspace{3pt}
+    \resumeItem{\textbf{Legged-Robots} (\href{https://edu.epfl.ch/coursebook/en/legged-robots-MICRO-507}{MICRO-507}) : contrôle de robots à pattes (PID, MPC, RL) ; projets bipède (optimisation convexe) et quadrupède (RL).}
+   % \vspace{3pt}
+    \resumeItem{\textbf{Optimisation et Contrôle Optimal} (\href{https://edu.epfl.ch/coursebook/en/model-predictive-control-ME-425}{ME-425}) : optimisation convexe, contrôle prédictif, stabilité des systèmes non-linéaires.}
+  \resumeItemListEnd
+%  \vspace{6pt}
+
+\resumeSubheading
+  {Colleur et chargé de TD (prépa \& licence)}{Jan 2020 -- Juil 2024}{Marcelin Berthelot, Université Gustave Eiffel}{}
+  \vspace{1pt}
+  \resumeItemListStart
+    \resumeItem{\textbf{Classe préparatoire Marcelin Berthelot} --- colles hebdomadaires notées pour préparer les concours.}
+%    \vspace{3pt}
+    \resumeItem{\textbf{Université Gustave Eiffel} --- Accompagnement d'un étudiant en statistiques, probabilités et bases de l'algèbre.}
+  \resumeItemListEnd
+%  \vspace{6pt}
+
+\resumeSubHeadingListEnd
+
+\section{Formations en entreprise:}
+
+\resumeSubHeadingListStart
+
+\resumeSubheading
+  {Introduction à l'apprentissage par renforcement RL en simulation}{Mar 2025}{Geomatys}{}
+  \vspace{1pt}
+  \resumeItemListStart
+    \resumeItem{Formation des équipes à l'utilisation du Reinforcement Learning en simulation avec Open AI Gym et SB3.}
+   % \vspace{3pt}
+    \resumeItem{Bases théoriques du RL, théorie des jeux, Greedy/Optimal policies, conception du reward, Q-learning, Actor-Critic.}
+  \resumeItemListEnd
+%  \vspace{6pt}
+
+\resumeSubheading
+  {Contrôle, Optimisation des systèmes et bases du Model Predictive Control}{Fév 2025}{Nehemis}{}
+  \vspace{1pt}
+  \resumeItemListStart
+    \resumeItem{Maîtrise des principes des contrôleurs PID pour des systèmes dynamiques pour les équipes software.}
+   % \vspace{3pt}
+    \resumeItem{Introduction au Model Predictive Control (MPC) et ses applications pratiques.}
+  \resumeItemListEnd
+%  \vspace{6pt}
+
+\resumeSubHeadingListEnd
+\endgroup
+
+\clearpage
+\hypertarget{portfolio}{}
+\begin{center}
+{\Huge \textbf{Portfolio :}}
+\end{center}
+\section{Missions réalisées :}
+\small{\textit{Missions de conseil réalisées en tant que consultant indépendant, spécialisé en IA appliquée et en contrôle de systèmes dynamiques.}}
+\vspace{4pt}
+\resumeSubHeadingListStart
+
+\begin{comment}
+    
+\resumeSubheading
+  {Reconception mécatronique d'une vanne motorisée}{Mai 2025 -- En cours}{Nehemis}{}
+  
+  \resumeItemListStart
+    \resumeItem{Choix de la bande passante mécanique pour répondre aux exigences de contrôle.}
+    \vspace{4pt}
+    \resumeItem{Sélection et intégration de nouveaux capteurs pour améliorer les performances.}
+    \vspace{4pt}
+    \resumeItem{Amélioration de la loi de contrôle interne pour une meilleure réactivité.}
+  \resumeItemListEnd
+\end{comment}
+
+
+\resumeSubheading
+  {Membre du jury technique, startups IA/robotique}{Juin 2026 -- Aujourd'hui}{Incubateur 21st, CentraleSupélec}{}
+
+  \resumeItemListStart
+    \resumeItem{Évaluation technique de startups en IA et robotique (faisabilité, choix technologiques, roadmap produit).}
+  \resumeItemListEnd
+  \vspace{6pt}
+
+\resumeSubheading
+  {Direction de projet deeptech}{Mai 2026 -- Juil 2026}{Nehemis}{}
+
+  \resumeItemListStart
+    \resumeItem{Prise en charge de la gestion opérationnelle du projet: pilotage technique et développement commercial.}
+%    \resumeItem{Conception de l'architecture de filtrage numérique pour capteur de conductivité (IIR, FIR, Kalman) et rédaction de la documentation technique associée.}
+\vspace{4pt}
+\resumeItem{Prospection commerciale et structuration de la stratégie de financement (BPI, CIR/CII, EIC Accelerator) auprès d'acteurs pharmaceutiques et biotech.}
+  \resumeItemListEnd
+  \vspace{6pt}
+\resumeSubheading
+  {Interception vidéo et contrôle pour drone d'interception}{Oct 2025 -- Mar 2026}{Stryx AI}{}
+
+  \resumeItemListStart
+    \resumeItem{Développement d'algorithmes d'interception sur flux vidéo (détection et suivi de cible en temps réel).}
+    \vspace{4pt}
+    \resumeItem{Conception des lois de contrôle pour la manœuvre d'interception (MPC, trajectoires optimales).}
+    \vspace{4pt}
+    \resumeItem{Portage et déploiement embarqué sur Raspberry Pi.}
+  \resumeItemListEnd
+  \vspace{6pt}
+
+
+\resumeSubheading
+  {Contrôle et Optimisation d'un système Multi Input-Multi Output hydraulique}{Jan 2025 -- Août 2025}{Nehemis}{}
+
+  \resumeItemListStart
+    \resumeItem{Conception d'un contrôleur garantissant la stabilité du système et le rejet des perturbations.}
+%    \vspace{4pt}
+%    \resumeItem{Respect des contraintes de pression sur chaque composant et identification de l'électrovanne.}
+    \vspace{4pt}
+    \resumeItem{Respect des contraintes de pression et validation des performances du système pour la FDA.}
+  \resumeItemListEnd
+  \vspace{6pt}
+
+
+\resumeSubheading
+  {Filtrage et apprentissage automatique pour fusion de données capteurs}{Mar 2025 -- Juin 2025}{Nehemis}{}
+  
+  \resumeItemListStart
+    \resumeItem{Mise en œuvre d’un filtre de Kalman pour la fusion de données issues de capteurs hétérogènes.}
+    \vspace{4pt}
+    \resumeItem{Détection de pannes capteurs et ajustement adaptatif du modèle.}
+  \resumeItemListEnd
+  \vspace{6pt}
+
+  
+\resumeSubheading
+  {Atterrissage de drone via IA et computer vision \href{https://etiennechassaing.com/book/drone_delayed_control/case_study.html}{\small[lien]}}{Mar 2025 -- Juin 2025}{Grand groupe automobile}{}
+  
+  \resumeItemListStart
+    \resumeItem{Développement d'un système d'atterrissage précis sur une cible de 60x60 cm.}
+    \vspace{4pt}
+    \resumeItem{Utilisation exclusive de la caméra du drone pour la navigation et l'atterrissage.}
+    \vspace{4pt}
+    \resumeItem{Tests et validation en simulation et conditions réelles pour démonstration plein air.}
+  \resumeItemListEnd
+  \vspace{6pt}
+
+
+\resumeSubheading
+  {Contrôle de systèmes multi-agents par RL}{Mar 2025 -- Avr 2025}{Geomatys}{}
+  
+  \resumeItemListStart
+    \resumeItem{Conception d’algorithmes de contrôle multi-agents par apprentissage par renforcement (RL et MARL).}
+    \vspace{4pt}
+    \resumeItem{Simulation sous ROS et environnement OpenAI Gym pour validation des politiques apprises.}
+%    \vspace{4pt}
+%    \resumeItem{Analyse des performances et transfert vers des applications industrielles réelles.}
+  \resumeItemListEnd
+  \vspace{6pt}
+
+
+\resumeSubheading
+  {Apprentissage et Optimisation d’une boucle de chauffe thermique \href{https://etiennechassaing.com/book/heat_pipe_control/system_tutorial.html}{\small[lien]}}{Déc 2024 -- Jan 2025}{Nehemis}{}
+  
+  \resumeItemListStart
+    \resumeItem{Apprentissage d’un modèle dynamique du système à partir de données expérimentales et simulation physique.}
+    \vspace{4pt}
+    \resumeItem{Contrôleur optimal via l'écriture d'un problème quadratique.}
+    \vspace{4pt}
+    \resumeItem{Validation des performances et de la robustesse du modèle et du contrôleur sur le système réel.}
+  \resumeItemListEnd
+  \vspace{6pt}
+
+\resumeSubheading
+  {Conception et fabrication d'une plateforme de bras robotique B2C}{Oct 2024 -- Mai 2025}{Phospho AI}{}
+  
+  \resumeItemListStart
+    \resumeItem{Fabrication des robots, reconception de pièces, ajout d'une caméra et développement des lois de contrôle.}
+    \vspace{4pt}
+    \resumeItem{Développement de l'API et intégration de différents robots dans le pipeline existant.}
+    \vspace{4pt}
+    \resumeItem{Développement du premier kit robotique de l'entreprise et contrôle du robot depuis un casque VR.}
+%    \vspace{4pt}
+%    \resumeItem{Développement du premier kit robotique de l'entreprise.}
+  \resumeItemListEnd
+  \vspace{6pt}
+
+
+\resumeSubheading
+  {Déploiement d’algorithmes IA de vision et suivi sur flux vidéo temps réel}{Oct 2024 -- Déc 2024}{Neode Systems}{}
+  
+  \resumeItemListStart
+    \resumeItem{Sélection et entraînement de modèles de Computer Vision (tracking, détection d’objets) adaptés au vol drone.}
+    \vspace{4pt}
+    \resumeItem{Génération automatique de trajectoires via IA et intégration dans le protocole Mavlink.}
+    \vspace{4pt}
+    \resumeItem{Déploiement sur site dans des environnements contraints, via containers Docker et pipelines CI/CD.}
+  \resumeItemListEnd
+  \vspace{6pt}
+
+
+\resumeSubheading
+  {Analyse prédictive et valorisation de données industrielles IoT}{Juin 2024 -- Sep 2024}{Eurofins Hydrologie IDF}{}
+  
+  \resumeItemListStart
+    \resumeItem{Collecte et modélisation de données de fonctionnement à partir d’un réseau de capteurs connectés.}
+    \vspace{4pt}
+    \resumeItem{Exploration de cas d’usage IA pour la maintenance prédictive et la détection d’anomalies.}
+%    \vspace{4pt}
+%    \resumeItem{Mise en place d’un pipeline de données sécurisé pour l’analyse continue des performances machines.}
+  \resumeItemListEnd
+  \vspace{6pt}
+
+\resumeSubheading
+  {Étude et POC sur le Multi-Agent Reinforcement Learning (MARL)}{Fév 2024 -- Avr 2024}{Geomatys}{}
+  
+  \resumeItemListStart
+    \resumeItem{Formalisation scientifique d’un problème métier en apprentissage multi-agent.}
+    \vspace{4pt}
+    \resumeItem{Développement d’un POC basé sur l’environnement OpenAI Gym et l’algorithme Soft Actor-Critic.}
+    \vspace{4pt}
+    \resumeItem{Formation des décideurs à la compréhension et à l’exploitation des approches MARL.}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+
+\begin{comment}
+\resumeSubheading
+{Conception d'un robot agricole intelligent utilisant de l'IA}{Février 2023 -- Avril 2023}{Dataland via Junior CentraleSupélec}{}
+
+    \resumeItemListStart
+        \resumeItem{Reformulation du besoin et du problème métier (effarouchage d'oiseaux).}
+        \vspace{6pt}
+        \resumeItem{Diagnostic des robots existants (Quadripède, Rover, Buggy, ...).}
+        \vspace{6pt}
+        \resumeItem{Diagnostic sur l'utilisation d'IA pour la tâche à effectuer.}
+        \vspace{6pt}
+        \resumeItem{Conception d'un robot innovant et autonome.}
+        \vspace{6pt}
+        \resumeItem{Conception d'une stratégie de contrôle utilisant de l'IA pour que le robot apprennent les comportements à adopter.}
+        \vspace{6pt}
+\resumeItemListEnd
+
+\vspace{-12pt}
+
+\resumeSubheading
+{Etat de l'art sur la calibration intelligente de bras robotique}{Janvier 2023 -- Février 2023}{Dynergie via Junior CentraleSupélec}{}
+
+\resumeItemListStart
+      \resumeItem{Etat de l'art sur l'optimisation de la position des bras robotiques.}
+    \vspace{6pt}
+    \resumeItem{Etat de l'art sur l'utilisation d'IA pour l'apprentissage de la calibration optimale.}
+    \vspace{6pt}
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\end{comment}
+
+
+
+
+%-------------------------------------------
+\end{document}
