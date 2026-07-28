@@ -7,7 +7,7 @@ type: docs
 Deux ensembles de documents techniques : des **études de cas** détaillées, sous forme de
 notebooks exécutables, et les **supports de cours** que j'utilise en enseignement.
 
-## 📘 [Études de cas](/fr/book/case-studies/)
+## 📘 [Études de cas](/book/case-studies/)
 
 Un Jupyter Book de tutoriels d'ingénierie de la commande, du modèle physique jusqu'à
 la loi de commande, code à l'appui :
