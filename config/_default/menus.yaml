@@ -16,7 +16,7 @@ main:
   - name: News
     url: /#news
     weight: 13
-  - name: Case Studies
+  - name: Case Studies and Classes
     url: /book/
     weight: 15
   - name: Experience

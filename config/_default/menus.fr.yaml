@@ -13,8 +13,8 @@ main:
   - name: Portfolio
     url: projects/
     weight: 11
-  - name: Études de cas
-    url: https://etiennechassaing.com/book/
+  - name: Études de cas et cours
+    url: /fr/book/
     weight: 12
   - name: Formations et enseignements
     url: teaching/
