@@ -13,18 +13,21 @@ main:
   - name: Portfolio
     url: projects/
     weight: 11
-  - name: Études de cas et cours
-    url: /fr/book/
+  # The theme runs every menu URL through relLangURL, so a FR entry always lands under
+  # /fr/. The Jupyter Book itself is language-agnostic static HTML at /book/case-studies/;
+  # /fr/book/case-studies/ is a French landing page that links into it.
+  - name: Études de cas
+    url: /book/case-studies/
     weight: 12
+  - name: Cours
+    url: /fr/book/classes/
+    weight: 13
   - name: Formations et enseignements
     url: teaching/
-    weight: 13
-  - name: Blog
-    url: post/
-    weight: 15
+    weight: 14
   - name: CV
     url: experience/
-    weight: 14
+    weight: 15
   - name: Publications
     url: publication
     weight: 16

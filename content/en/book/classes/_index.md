@@ -3,6 +3,7 @@ title: Classes
 summary: "Lecture material, exams and quizzes handed out to students — LaTeX sources and PDFs."
 type: docs
 math: true
+toc: false
 ---
 
 ## Sampled Control Systems — ECE Paris (2025-2026)

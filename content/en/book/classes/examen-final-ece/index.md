@@ -2,8 +2,8 @@
 title: "Final exam — Altitude control of a drone"
 summary: "A running case study: modelling, closed-loop control, discretisation and filtering of an observation drone. Final exam of the Sampled Control Systems course (ECE Paris, 2025-2026)."
 date: 2026-06-11
-type: docs
 math: true
+toc: false
 tags:
   - 'Control/Systèmes Bouclés'
   - PID

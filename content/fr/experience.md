@@ -17,7 +17,7 @@ sections:
       buttons:
         - text: Téléchargez mon CV
           icon: custom/download
-          url: https://drive.google.com/file/d/1MMlh1rtOdCdeIpU9QKK-XQv2tei8wmIu/view?usp=share_link
+          url: https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/personnel/cv/diffusion/CV_etienne_chassaing_juillet_2026.pdf
 
   - block: resume-experience
     content:

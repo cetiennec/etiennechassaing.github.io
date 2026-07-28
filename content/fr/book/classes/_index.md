@@ -3,6 +3,7 @@ title: Cours
 summary: "Supports de cours, examens et QCM diffusés aux étudiants — sources LaTeX et PDF."
 type: docs
 math: true
+toc: false
 ---
 
 ## Systèmes Bouclés — ECE Paris (2025-2026)
