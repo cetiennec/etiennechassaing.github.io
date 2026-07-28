@@ -17,8 +17,10 @@ image:
 
 From April to June 2026, control systems course at ECE Paris, taught to the full cohort of 500 students.
 
-The course covers digital control: $z$-transform, discretisation, sampled PID, filtering
-and Kalman estimation.
+I taught the **second half of the course** — sessions 5 to 9, covering digital control:
+$z$-transform, discretisation, sampled PID, filtering and Kalman estimation — along with
+its assessments. The first half, on continuous-time systems, was taught by another
+lecturer.
 
 ## Course material
 

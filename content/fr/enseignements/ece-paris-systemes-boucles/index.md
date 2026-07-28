@@ -17,8 +17,10 @@ image:
 
 D'avril à juin 2026, cours de Systèmes Bouclés à l'ECE Paris, dispensé en promotion complète devant 500 élèves.
 
-Le cours porte sur la régulation numérique : transformée en $z$, discrétisation, PID
-échantillonné, filtrage et filtre de Kalman.
+J'ai assuré la **deuxième partie du cours** — les séances 5 à 9, consacrées à la
+régulation numérique : transformée en $z$, discrétisation, PID échantillonné, filtrage
+et filtre de Kalman — ainsi que les évaluations correspondantes. La première partie, sur
+les systèmes continus, était assurée par un autre intervenant.
 
 ## Supports de cours
 

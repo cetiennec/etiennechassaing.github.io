@@ -3,13 +3,17 @@ title: Cours
 summary: "Supports de cours, examens et QCM diffusés aux étudiants — sources LaTeX et PDF."
 type: docs
 math: true
-toc: false
 ---
 
 ## Systèmes Bouclés — ECE Paris (2025-2026)
 
 Cours de régulation numérique dispensé en promotion complète (500 élèves) d'avril à
 juin 2026 : transformée en $z$, discrétisation, PID échantillonné, filtrage et Kalman.
+
+**J'ai assuré la deuxième partie du cours** — les séances 5 à 9, la régulation numérique
+proprement dite — ainsi que les évaluations qui s'y rapportent. La première partie, sur
+les systèmes continus, était assurée par un autre intervenant.
+
 Les documents ci-dessous sont ceux réellement distribués aux étudiants.
 Voir aussi la [présentation du cours](/fr/enseignements/ece-paris-systemes-boucles/).
 
@@ -37,18 +41,12 @@ drone d'observation — modélisation, asservissement, discrétisation et filtra
 - [Sujet (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final.pdf)
 - [Feuille réponse (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final_feuille_reponse.pdf)
 
-### QCM final
+### QCM de mi-parcours
 
-14 sujets individualisés générés avec [auto-multiple-choice](https://www.auto-multiple-choice.net/),
-un tirage aléatoire différent par groupe.
+QCM d'une page sur les systèmes échantillonnés et le filtrage, en 20 minutes. Chaque
+étudiant reçoit un **sujet individualisé** : les sujets sont générés avec
+[auto-multiple-choice](https://www.auto-multiple-choice.net/) avec un tirage aléatoire
+différent par groupe, puis corrigés par lecture optique.
 
-- [Tous les sujets (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/qcm-final/diffusion/TOUS_SUJETS.pdf)
-- [Tous les corrigés (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/qcm-final/diffusion/TOUS_CORRIGES.pdf)
-
-### Rattrapage
-
-- [Sujet (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/rattrapage/diffusion/rattrapage_sujet.pdf)
-- [QCM (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/rattrapage/diffusion/rattrapage_qcm.pdf)
-- [Feuille réponse (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/rattrapage/diffusion/rattrapage_feuille_reponse.pdf)
-- [Corrigé (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/rattrapage/diffusion/rattrapage_correc.pdf)
+- [Exemple de sujet (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/qcm-final/diffusion/qcm_midterm_exemple.pdf)
 

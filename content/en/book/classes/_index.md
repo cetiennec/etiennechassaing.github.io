@@ -3,13 +3,17 @@ title: Classes
 summary: "Lecture material, exams and quizzes handed out to students — LaTeX sources and PDFs."
 type: docs
 math: true
-toc: false
 ---
 
 ## Sampled Control Systems — ECE Paris (2025-2026)
 
 A digital-control course taught to the full year group (500 students) from April to
 June 2026: $z$-transform, discretisation, sampled PID, filtering and Kalman estimation.
+
+**I taught the second half of the course** — sessions 5 to 9, digital control proper —
+along with its assessments. The first half, on continuous-time systems, was taught by
+another lecturer.
+
 The documents below are the ones actually handed out to students. The course is taught
 in French, so the material is in French.
 See also the [course overview](/teaching/ece-paris-control-systems/).
@@ -38,18 +42,12 @@ observation drone — modelling, closed-loop control, discretisation and filteri
 - [Exam paper (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final.pdf)
 - [Answer sheet (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final_feuille_reponse.pdf)
 
-### Final quiz
+### Midterm quiz
 
-14 individualised papers generated with [auto-multiple-choice](https://www.auto-multiple-choice.net/),
-each group getting a different random draw.
+A one-page, 20-minute quiz on sampled systems and filtering. Every student gets an
+**individualised paper**: papers are generated with
+[auto-multiple-choice](https://www.auto-multiple-choice.net/) with a different random
+draw per group, then marked by optical recognition.
 
-- [All papers (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/qcm-final/diffusion/TOUS_SUJETS.pdf)
-- [All solutions (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/qcm-final/diffusion/TOUS_CORRIGES.pdf)
-
-### Resit exam
-
-- [Paper (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/rattrapage/diffusion/rattrapage_sujet.pdf)
-- [Quiz (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/rattrapage/diffusion/rattrapage_qcm.pdf)
-- [Answer sheet (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/rattrapage/diffusion/rattrapage_feuille_reponse.pdf)
-- [Solutions (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/rattrapage/diffusion/rattrapage_correc.pdf)
+- [Sample paper (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/qcm-final/diffusion/qcm_midterm_exemple.pdf)
 
