@@ -25,9 +25,9 @@ les systèmes continus, était assurée par un autre intervenant.
 ## Supports de cours
 
 Tous les documents distribués aux étudiants sont publiés sur ce site — six diaporamas de
-cours, l'examen final, les QCM individualisés et le rattrapage :
+cours, l'examen final et un exemple de QCM individualisé :
 
-**[→ Supports de cours et évaluations](/fr/book/classes/)**
+**[→ Supports de cours et évaluations](/fr/book/classes/ece/)**
 
 L'examen final est construit comme une étude de cas filée sur le contrôle en altitude d'un
-drone d'observation, et est [transcrit intégralement ici](/fr/book/classes/examen-final-ece/).
+drone d'observation, et est [transcrit intégralement ici](/fr/book/classes/ece/examen-final/).

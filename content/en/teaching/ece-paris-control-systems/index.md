@@ -25,9 +25,9 @@ lecturer.
 ## Course material
 
 All the documents handed out to students are published on this site — six lecture decks,
-the final exam, the individualised quiz papers and the resit:
+the final exam and a sample individualised quiz paper:
 
-**[→ Course material and exams](/book/classes/)**
+**[→ Course material and exams](/book/classes/ece/)**
 
 The final exam is built as a single running case study on the altitude control of an
-observation drone, and is [presented in full here](/book/classes/examen-final-ece/).
+observation drone, and is [presented in full here](/book/classes/ece/examen-final/).
