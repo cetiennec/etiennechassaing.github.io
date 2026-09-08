@@ -1,32 +1,48 @@
 ---
 title: CentraleSupélec — Apprentissage par renforcement
-summary: "Refonte du cours PARL : quatre cours et quatre TD, des MDP au contrôle sans modèle. Supports en préparation."
+summary: "Refonte du cours PARL : quatre cours et des TD écrits, des MDP au contrôle sans modèle."
 type: docs
 math: true
 ---
 
 ## Apprentissage par renforcement — CentraleSupélec
 
-Refonte du cours PARL, structurée en **quatre séances de cours** et **quatre TD** sous
-forme de notebooks, chaque TD reprenant le sujet du cours qui le précède.
+Refonte du cours PARL, structurée en **quatre séances de cours**, chacune suivie d'une
+feuille de TD écrite qui reprend le sujet du cours précédent.
 
-> **Supports en préparation.** Les diaporamas et les notebooks ne sont pas encore
-> diffusés publiquement ; ils seront ajoutés ici au fur et à mesure.
+Les sources LaTeX vivent dans un dépôt privé ; les PDF diffusés sont publiés sur
+[github.com/cetiennec/cours-pdf](https://github.com/cetiennec/cours-pdf) et servis
+directement depuis GitHub — cliquez un titre pour un aperçu en ligne, ou « open » pour
+le PDF en plein écran.
 
 ### Cours
 
-| # | Séance | Contenu |
-| - | ------ | ------- |
-| 1 | Introduction et MDP | Processus de décision markoviens, retour, fonctions de valeur, équations de Bellman |
-| 2 | Programmation dynamique | Évaluation de politique, itération sur la politique, itération sur la valeur |
-| 3 | Prédiction sans modèle | Méthodes de Monte-Carlo, différences temporelles TD(0) |
-| 4 | Contrôle sans modèle | Monte-Carlo control, SARSA, Q-Learning |
+{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/01-introduction-mdp/diffusion/01-introduction-mdp.pdf"
+    title="1 — Introduction et MDP" >}}
 
-### Travaux dirigés
+{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/02-programmation-dynamique/diffusion/02-programmation-dynamique.pdf"
+    title="2 — Programmation dynamique" >}}
 
-Quatre notebooks, alignés sur les quatre cours : programmation dynamique, itération sur
-la valeur, Monte-Carlo, différences temporelles. Ils partagent une bibliothèque commune
-d'environnements et de tracés.
+{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/03-model-free-learning/diffusion/03-model-free-learning.pdf"
+    title="3 — Prédiction sans modèle" >}}
+
+{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/04-deep-rl-applications/diffusion/04-deep-rl-applications.pdf"
+    title="4 — Contrôle sans modèle et deep RL" >}}
+
+Séance 1 : processus de décision markoviens, retour, fonctions de valeur, équations de
+Bellman. Séance 2 : évaluation de politique, itération sur la politique, itération sur
+la valeur. Séance 3 : méthodes de Monte-Carlo, différences temporelles TD(0). Séance 4 :
+Monte-Carlo control, SARSA, Q-Learning, et une ouverture sur le deep RL.
+
+### TD écrits
+
+{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/TD-2026-2027/01-introduction-mdp/diffusion/exercises.pdf"
+    title="TD — Introduction et MDP" >}}
+
+{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/TD-2026-2027/02-programmation-dynamique/diffusion/exercises.pdf"
+    title="TD — Programmation dynamique" >}}
+
+> Les feuilles de TD des séances 3 et 4, ainsi que les notebooks, sont en préparation.
 
 ---
 

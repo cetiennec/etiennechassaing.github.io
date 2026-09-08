@@ -17,5 +17,11 @@ decks, the final exam and the midterm quiz.
 
 ## [CentraleSupélec — Reinforcement Learning](centralesupelec/)
 
-A rework of the PARL course: four lectures and four notebook tutorials, from MDPs to
-model-free control. *Material in preparation.*
+A rework of the PARL course: four lectures and written exercises, from MDPs to
+model-free control.
+
+## [AlbertSchool — Mathematics Foundations](albertschool/)
+
+The linear algebra and calculus behind machine learning: vectors and cosine similarity,
+matrices and the forward pass, derivatives and the chain rule, gradient descent. Four
+sessions, taught in English.

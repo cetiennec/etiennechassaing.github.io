@@ -17,5 +17,11 @@ Six diaporamas, l'examen final et le QCM de mi-parcours.
 
 ## [CentraleSupélec — Apprentissage par renforcement](centralesupelec/)
 
-Refonte du cours PARL : quatre séances de cours et quatre TD en notebooks, des MDP au
-contrôle sans modèle. *Supports en préparation.*
+Refonte du cours PARL : quatre séances de cours et des TD écrits, des MDP au contrôle
+sans modèle.
+
+## [AlbertSchool — Mathematics Foundations](albertschool/)
+
+L'algèbre linéaire et l'analyse derrière le machine learning : vecteurs et similarité
+cosinus, matrices et passe avant, dérivées et règle de la chaîne, descente de gradient.
+Quatre séances, dispensées en anglais.

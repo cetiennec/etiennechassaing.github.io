@@ -1,0 +1,32 @@
+{{/*
+  pdf shortcode — a collapsible PDF preview card.
+
+  Renders closed by default (so a page listing many decks stays light: no
+  iframe is fetched until the reader opens it) with a lazy-loaded inline
+  viewer and a direct "open" link for readers who'd rather download/view
+  full-screen.
+
+  Params:
+    src    (required) PDF URL, e.g. a jsDelivr link into cetiennec/cours-pdf
+    title  (required) label shown in the summary row
+    pages  (optional) page count, shown next to the title
+    open   (optional) "true" to render expanded by default
+*/}}
+{{ $src := .Get "src" }}
+{{ $title := .Get "title" }}
+{{ $pages := .Get "pages" }}
+{{ $open := eq (.Get "open") "true" }}
+<details class="pdf-card"{{ if $open }} open{{ end }}
+  style="margin:0.4rem 0;border:1px solid var(--color-border,#d4d4d8);border-radius:8px;overflow:hidden;">
+  <summary style="cursor:pointer;list-style:none;padding:0.65rem 1rem;display:flex;align-items:center;gap:0.6rem;">
+    <span style="flex:1 1 auto;font-weight:600;">{{ $title }}</span>
+    {{ with $pages }}<span style="opacity:0.6;font-size:0.85em;white-space:nowrap;">{{ . }} p.</span>{{ end }}
+    <a href="{{ $src }}" target="_blank" rel="noopener" onclick="event.stopPropagation()"
+       style="font-weight:400;font-size:0.85em;white-space:nowrap;">open ↗</a>
+  </summary>
+  <div style="position:relative;padding-top:129%;border-top:1px solid var(--color-border,#d4d4d8);">
+    <iframe loading="lazy" src="{{ $src }}"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+      title="{{ $title }}"></iframe>
+  </div>
+</details>
