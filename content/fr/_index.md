@@ -37,36 +37,22 @@ sections:
 
   - block: markdown
     content:
-      title: "Je vous accompagne pour définir une utilisation raisonnée de l'IA pour votre entreprise :"
+      title: ''
       subtitle: ''
       text: |-
         <div style="font-size: smaller; line-height: 1.4; text-align: justify;">
-          <h3>Mon approche</h3>
-          En partant de votre besoin métier, je vous accompagne dans votre projet d'explorer des solutions innovantes d'IA, de Data ou de Robotique. J'apporte une attention particulière à vous aider à formuler le problème de façon scientifique et générique en combinant une approche d'ingénieur métier et système.
-
-           ![Image alt](ma_vision.svg)
-
-          Vous pouvez retrouver mes différents projets dans l'onglet <a href="https://cetiennec.github.io/etiennechassaing.github.io/fr/projects/">**Portfolio**</a>.
-
-          <h3>Ma spécificité</h3>
-          ➡️ J'offre à mes clients une approche de conseil et de formations sur-mesure, en prenant le temps de collaborer en personne avec vous et vos équipes. Grâce à ma formation diversifiée et à mes expériences pluridisciplinaires, je suis en mesure de dialoguer avec les ingénieurs métiers et les responsables de votre entreprise. Une fois le problème clairement défini et correctement formulé, mes compétences en recherche me permettent de vous guider vers des solutions <b>innovantes</b>, aux frontières de l'état de l'art.
-
-          ➡️ Tout au long de ce processus, je m'engage à vous fournir les clés pour comprendre les dernières avancées technologiques, que vous soyez décideur ou ingénieur. En définissant ensemble les métriques clés pour votre projet, je m'assure de livrer une solution à la fois <b>fonctionnelle</b> et parfaitement <b>compréhensible</b> par vos équipes.
-          <br>
-          <h3>Certifications:</h3>
-          - Consultant agréé Crédit Impôt Innovation (CII)
+          Ce site regroupe mon CV, mes cours et supports d'enseignement, mes projets et mes publications.
 
         <div style="display: flex; gap: 10px; margin-top: 10px;">
           <div style="flex: 1;">
             <ul style="list-style: none; padding: 0; margin: 0; font-size: 22px;"> <!-- Adjust font-size as needed -->
-              <li><a href="https://calendly.com/etienne-chassaing-conseil/30min">👉 Discutons de votre projet: réservez un créneau de 30 min</a></li>
-              <li><a href="https://drive.google.com/uc?export=download&id=10lQgXFLiJlWgz_djM01LyL9eDMaK0xiB">📞 Ajoutez moi en contact</a></li>
-              <li><a href="mailto:etienne.chassaing.conseil@gmail.com">✉️ Contactez moi par mail</a></li>
-              <li><a href="https://www.linkedin.com/in/etienne-chassaing1/">🤝 Contactez moi sur Linkedin</a></li>
+              <li><a href="/fr/book/classes/">📚 Voir mes cours</a></li>
+              <li><a href="/fr/projects/">🛠️ Voir mes projets</a></li>
+              <li><a href="/fr/publication/">📄 Voir mes publications</a></li>
             </ul>
           </div>
         </div>
-        
+
         <h3>Ils m'ont fait confiance :</h3>
         <div class="trusted-companies">
           <img src="assets/nehemis.png" alt="Company 6" class="company-logo">
@@ -83,14 +69,6 @@ sections:
       design:
         columns: 1
         style: "margin-bottom: 1px;"  # Adjust the margin here
-          # Voici un exemple type :
-
-          # - Un client identifie le besoin de détecter des pannes sur son parc machine
-          # - Le client peut avoir une idée de technologie pour mener ce projet
-          # - Nous formulons ensemble le problème comme un problème de détection d'anomalies, courant en Machine-Learning
-          # - Une fois le problème formulé, nous travaillons ensemble pour éclaircir ce domaine et la ou les technologies envisagés
-          # - J'établis une feuille de route pour identifier les technologies les moins risquées, par exemple une famille d'algorithme 
-          # - Je vous propose un plan pour réaliser une preuve de concept de la solution et former vos équipes sur cette technologie
 
     
 

@@ -96,12 +96,39 @@ Education:
       Détection de la préhension humaine avec précision. Voir publication ci-dessous.
 
 work:
+  - position: 🤗🤖 ML Engineer en Robotique
+    company_name: Hugging Face
+    company_url: 'https://huggingface.co'
+    company_logo: ''
+    date_start: 2026-09-01
+    date_end: ''
+    location: France
+    summary: |
+      Responsabilités :
+      - Démonstration des capacités de la librairie LeRobot sur des humanoïdes.
+      - Maintenance du cours de robotique de Hugging Face.
+
+  - position: Enseignant vacataire
+    company_name: CentraleSupélec, ECE Paris & AlbertSchool
+    company_url: ''
+    company_logo: ''
+    date_start: 2026-01-01
+    date_end: ''
+    location: France
+    summary: |
+      Responsabilités :
+      - CentraleSupélec — Cours électif de Robotique (avr. 2027) : conception du cours "Robotics Systems, from Motion to Embodied AI" — cinématique, modèle dynamique, planification de trajectoire et contrôle en couple ; locomotion biomimétique vs. apprise, apprentissage, garanties formelles ; projet Python MuJoCo.
+      - CentraleSupélec — Cours de Reinforcement Learning (fin 2026, au sein du cours "Data-Driven Control") : MDP, Q-learning, méthodes Actor-Critic, Deep RL. Suivi de projet de 2e année, Pôle Projet Robotique : encadrement de projets en robotique/apprentissage.
+      - ECE Paris — Systèmes bouclés (cours magistral, promo de 500 élèves) : modélisation, domaine de Laplace, transformée en Z, discrétisation, PID échantillonné, stabilité (critère du disque unité), filtre de Kalman ; conception des supports, QCM et examens ; correction du partiel final. Suivi de projet technique Véhicule Autonome : perception, contrôle et implémentation d'un algorithme SLAM sous ROS, suivi de trajectoire.
+      - AlbertSchool — Enseignement de "Mathematics Foundations", quatre séances de 3h couvrant l'algèbre linéaire et l'analyse à la base du Machine-Learning : vecteurs et similarité cosinus, matrices comme transformations, dérivées et règle de la chaîne comme rétropropagation, et descente de gradient.
+      - Enseignement de "Mathematics Foundations", quatre séances de 3h couvrant l'algèbre linéaire et l'analyse à la base du Machine-Learning : vecteurs et similarité cosinus, matrices comme transformations, dérivées et règle de la chaîne comme rétropropagation, et descente de gradient.
+
   - position: Consultant indépendant en IA appliquée et contrôle de systèmes
     company_name: ''
     company_url: ''
     company_logo: ''
     date_start: 2024-02-01
-    date_end: ''
+    date_end: 2026-08-31
     location: France
     summary: |
       Responsabilités :
@@ -172,7 +199,7 @@ work:
     date_start: ''
     date_end: ''
     summary: |
-      - Randonnées sur le sentier "GR20", traversant la Corse du nord au sud. Grimpeur en falaise et en grande voie.
+      - Randonnées sur le GR20, traversant la Corse du nord au sud. Grimpeur en falaise et en grande voie.
       - Construction de ma propre imprimante 3D RepRap au lycée. Conception d'un robot sphérique "BB8" pour le concours des grandes écoles.
       - Ancien Vice-Président de Symposium CS, organisant des conférences sur le campus (François Hollande...).
 
@@ -198,7 +225,7 @@ skills:
         description: 'Connaissances de bases, programmation en Arduino'
         icon: circle-stack
       - name: "Optimisation quadratique et linéaire"
-        description: "Formulation et résolution de problèmes d\'optimisation"
+        description: "Formulation et résolution de problèmes d'optimisation"
         icon: check
       - name: 'Modélisation Physique et Mathématiques'
         description: 'Modélisation de problèmes concrets en équation'
@@ -207,7 +234,7 @@ skills:
         description: 'Conception et mise en place de réseaux de capteurs'
         icon: link
       - name: 'Impression 3D'
-        description: "Maîtrise avancée des techniques d\'impressions 3D, conception et montage d\'imprimantes"
+        description: "Maîtrise avancée des techniques d'impressions 3D, conception et montage d'imprimantes"
         icon: printer
       - name: 'Conception 3D'
         description: 'Utilisation de Fusion360 et Solidworks'
@@ -249,4 +276,4 @@ Awards:
 
 ## Mon profil
 
-Diplômé de CentraleSupélec et de l'EPFL en Robotique et Contrôle et fort d'expériences de recherches à Stanford University et à l'EPFL, j'accompagne votre PME souhaitant explorer des sujet d'IA, de Robotique ou de Machine-Learning pour répondre à vos problèmes métiers. 
+Diplômé de CentraleSupélec et de l'EPFL en Robotique et Contrôle et fort d'expériences de recherches à Stanford University et à l'EPFL. Après deux ans à accompagner des PMEs souhaitant explorer des sujet d'IA appliquée et de Robotique, je suis maintenant Ml Engineer en robotique à HuggingFace 🤗🤖

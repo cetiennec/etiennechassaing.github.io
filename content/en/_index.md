@@ -32,13 +32,20 @@ sections:
           parallax: false
   - block: markdown
     content:
-      title: '📚 My Research'
+      title: ''
       subtitle: ''
       text: |-
-        I conducted research in the following fields:
-          - Robotics and Human-Robot interactions 
-          - Optimal control and system identification
-          - Machine-Learning based on physics prior
+        This site gathers my CV, my classes and teaching material, my case studies, and my publications.
+
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+          <div style="flex: 1;">
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 22px;">
+              <li><a href="/book/classes/">📚 See my classes</a></li>
+              <li><a href="/book/case-studies/">🛠️ See my case studies</a></li>
+              <li><a href="/publication/">📄 See my publications</a></li>
+            </ul>
+          </div>
+        </div>
     design:
       columns: '1'
   # - block: collection

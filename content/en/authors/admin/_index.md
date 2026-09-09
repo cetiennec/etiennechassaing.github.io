@@ -95,12 +95,38 @@ Education:
       - Investigated how to detect secure grasps by measuring the stiffness of the recipient's grasp. See publication below.
 
 work:
+  - position: 🤗🤖 ML Engineer in Robotics
+    company_name: Hugging Face
+    company_url: 'https://huggingface.co'
+    company_logo: ''
+    date_start: 2026-09-01
+    date_end: ''
+    location: France
+    summary: |
+      Responsibilities include:
+      - Deploying LeRobot on real hardware, specifically humanoids.
+      - WOrking on HF robotics course.
+      
+  - position: Adjunct Lecturer
+    company_name: CentraleSupélec, ECE Paris & AlbertSchool
+    company_url: ''
+    company_logo: ''
+    date_start: 2026-01-01
+    date_end: ''
+    location: France
+    summary: |
+      Responsibilities include:
+      - CentraleSupélec — Elective Robotics course (Apr 2027): designed the course "Robotics Systems, from Motion to Embodied AI" — kinematics, dynamic modeling, trajectory planning and torque control; biomimetic vs. learned locomotion, learning, formal guarantees; Python/MuJoCo project.
+      - CentraleSupélec — Reinforcement Learning course (late 2026, within "Data-Driven Control"): MDPs, Q-learning, Actor-Critic methods, Deep RL. Supervised 2nd-year Robotics Project Pole projects on robotics and learning.
+      - ECE Paris — Taught "Systèmes bouclés" (lecture course, 500-student cohort): modeling, Laplace domain, Z-transform, discretization, sampled PID, stability (unit-disk criterion), Kalman filtering; designed course materials, quizzes and exams; graded the final exam. Supervised an Autonomous Vehicle technical project: perception, control, and SLAM implementation under ROS, trajectory tracking.
+      - AlbertSchool — Taught "Mathematics Foundations," four 3-hour sessions covering the linear algebra and calculus behind machine learning: vectors and cosine similarity, matrices as transformations, derivatives and the chain rule as backpropagation, and gradient descent.
+
   - position: Independent Consultant in Applied AI and Systems Control
     company_name: ''
     company_url: ''
     company_logo: ''
     date_start: 2024-02-01
-    date_end: ''
+    date_end: 2026-08-31
     location: France
     summary: |
       Responsibilities include:
@@ -234,4 +260,4 @@ awards:
 
 ## About me
 
-After graduating from CentraleSupélec and EPFL in Robotics and Control, and gaining research experience at Stanford University, I work with small and medium-sized businesses wishing to explore AI, Robotics or Machine-Learning to solve their business problems.
+After graduating from CentraleSupélec and EPFL in Robotics and Control, and gaining research experience at Stanford University, I worked with small and medium-sized businesses wishing to explore AI, Robotics or Machine-Learning to solve their business problems. Now a ML Engineer in Robotics @HuggingFace 🤗🤖
