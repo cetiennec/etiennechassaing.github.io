@@ -57,8 +57,8 @@ sections:
 
         <h3>Ils m'ont fait confiance :</h3>
         <div class="trusted-companies">
-          <img src="assets/huggingface.png" alt="Hugging Face" class="company-logo">
-          <img src="assets/stryx.jpeg" alt="Stryx" class="company-logo">
+          <img src="assets/huggingface.png" alt="Hugging Face" class="company-logo-small">
+          <img src="assets/stryx.jpeg" alt="Stryx" class="company-logo-small">
           <img src="assets/nehemis.png" alt="Company 6" class="company-logo">
           <img src="assets/phospho.svg" alt="Company 6" class="company-logo">
           <img src="assets/neodesystems_logo.jpeg" alt="Company 4" class="company-logo">

@@ -23,6 +23,11 @@
   margin: 10px;
 }
 
+.company-logo-small {
+  max-width: 105px;
+  margin: 10px;
+}
+
 .school-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
