@@ -23,7 +23,7 @@
 <style>
 .sorting-arm{
   --sa-bot:#3A8FCB; --sa-bot-dk:#1E5B8A; --sa-bot-lt:#9BD6F2;
-  --sa-amber:#F5A63C; --sa-amber-dk:#DE8A1E; --sa-blush:#F08B98; --sa-mint:#6FCBB0;
+  --sa-amber:#F5A63C; --sa-amber-dk:#DE8A1E;
   --sa-ink:#10222A; --sa-mut:#4B6068; --sa-stage:#E4EFF5; --sa-stage-2:#D3E6F0;
   --sa-chip:#FFFFFF; --sa-rule:rgba(16,34,42,.12);
   position:relative; margin:1.25rem 0 1.75rem;
@@ -32,7 +32,7 @@
 }
 .dark .sorting-arm{
   --sa-bot:#4B9DD6; --sa-bot-dk:#2A6FA3; --sa-bot-lt:#A8DAF5;
-  --sa-amber:#F3AE52; --sa-amber-dk:#D6901F; --sa-blush:#E8828F; --sa-mint:#5FBFA4;
+  --sa-amber:#F3AE52; --sa-amber-dk:#D6901F;
   --sa-ink:#E8EFEC; --sa-mut:#93A8AD; --sa-stage:#132229; --sa-stage-2:#1A2F38;
   --sa-chip:#F4F7F6; --sa-rule:rgba(232,239,236,.14);
 }
@@ -44,7 +44,6 @@
 .sorting-arm .s-bot{fill:var(--sa-bot)} .sorting-arm .s-botdk{fill:var(--sa-bot-dk)}
 .sorting-arm .s-botlt{fill:var(--sa-bot-lt)}
 .sorting-arm .s-amber{fill:var(--sa-amber)} .sorting-arm .s-amberdk{fill:var(--sa-amber-dk)}
-.sorting-arm .s-blush{fill:var(--sa-blush)} .sorting-arm .s-mint{fill:var(--sa-mint)}
 .sorting-arm .sa-btn{
   position:absolute; right:10px; bottom:10px; z-index:2;
   width:30px; height:30px; padding:0; display:grid; place-items:center;
@@ -77,7 +76,7 @@
   var W = 660, H = 302;
   var BX = 330, BY = 210, FLOOR = 266;
   var L1 = 108, L2 = 94, REACH = L1 + L2 - 1.5;
-  var HOLD = 28;
+  var HOLD = 30;
   var PICK = {x:215, y:198}, PITCH = 52;
   var BINX = [376, 436, 496], BIN_TOP = 216, BIN_FLOOR = 260, DROP_Y = 168;
   var CHIP_W = 46, CHIP_H = 31;
@@ -180,45 +179,17 @@
   el("circle", {r:16, class:"s-botdk"}, link2);
   el("circle", {r:7.5, class:"s-amber"}, link2);
   var wrist = el("g", {transform:"translate("+L2+",0)"}, link2);
-  var head = el("g", null, wrist);
-
-  var clawL = el("g", {transform:"translate(-8,10)"}, head);
-  var clawR = el("g", {transform:"translate(8,10)"}, head);
-  el("path", {d:"M0 0 V13 l-5 5", fill:"none", stroke:"var(--sa-bot-dk)", "stroke-width":6,
+  el("circle", {r:13, class:"s-botdk"}, wrist);
+  el("circle", {r:6, class:"s-amber"}, wrist);
+  var head = el("g", null, wrist);            // parallelogram wrist: gripper stays level
+  var clawL = el("g", {transform:"translate(-9,12)"}, head);
+  var clawR = el("g", {transform:"translate(9,12)"}, head);
+  el("path", {d:"M0 0 V11 l-4 4", fill:"none", stroke:"var(--sa-bot-dk)", "stroke-width":5.5,
               "stroke-linecap":"round", "stroke-linejoin":"round"}, clawL);
-  el("path", {d:"M0 0 V13 l5 5", fill:"none", stroke:"var(--sa-bot-dk)", "stroke-width":6,
+  el("path", {d:"M0 0 V11 l4 4", fill:"none", stroke:"var(--sa-bot-dk)", "stroke-width":5.5,
               "stroke-linecap":"round", "stroke-linejoin":"round"}, clawR);
-  el("rect", {x:-13, y:4, width:26, height:10, rx:5, class:"s-botdk"}, head);
-
-  var ant = el("g", {transform:"translate(0,-19)"}, head);
-  el("path", {d:"M0 0 V-13", stroke:"var(--sa-bot-dk)", "stroke-width":3.4, "stroke-linecap":"round"}, ant);
-  el("circle", {cx:0, cy:-17, r:5.4, class:"s-amber"}, ant);
-  el("circle", {cx:-1.6, cy:-18.6, r:1.8, fill:"#fff", opacity:.6}, ant);
-
-  var face = el("g", null, head);
-  el("rect", {x:-19, y:-21, width:38, height:34, rx:13, class:"s-bot"}, face);
-  el("rect", {x:-23, y:-11, width:6, height:12, rx:3, class:"s-amber"}, face);
-  el("rect", {x:17, y:-11, width:6, height:12, rx:3, class:"s-amber"}, face);
-  el("rect", {x:-15, y:-17, width:30, height:22, rx:10, class:"s-botdk"}, face);
-  el("ellipse", {cx:-15, cy:5, rx:4.5, ry:2.8, class:"s-blush", opacity:.75}, face);
-  el("ellipse", {cx:15, cy:5, rx:4.5, ry:2.8, class:"s-blush", opacity:.75}, face);
-  var eyeL = el("g", {transform:"translate(-7,-7)"}, face);
-  var eyeR = el("g", {transform:"translate(7,-7)"}, face);
-  [eyeL, eyeR].forEach(function(g){
-    el("circle", {r:6.2, fill:"#fff"}, g);
-    g.pupil = el("circle", {r:3, class:"s-ink"}, g);
-    el("circle", {cx:-1.6, cy:-2, r:1.3, fill:"#fff", opacity:.9}, g);
-  });
-  var squint = el("g", {opacity:0}, face);
-  el("path", {d:"M-12 -5 q5 -6 10 0", fill:"none", stroke:"#fff", "stroke-width":2.6,
-              "stroke-linecap":"round"}, squint);
-  el("path", {d:"M2 -5 q5 -6 10 0", fill:"none", stroke:"#fff", "stroke-width":2.6,
-              "stroke-linecap":"round"}, squint);
-  var smile = el("path", {d:"M-4 8 q4 4 8 0", fill:"none", stroke:"var(--sa-bot-dk)",
-                          "stroke-width":2.2, "stroke-linecap":"round", opacity:.9}, face);
-
-  var topLayer = el("g", null, svg);
-  var fxLayer = el("g", null, svg);
+  el("rect", {x:-14, y:3, width:28, height:13, rx:6, class:"s-bot"}, head);
+  el("rect", {x:-8, y:6.5, width:16, height:5, rx:2.5, class:"s-botlt", opacity:.5}, head);
 
   var chips = SRC.map(function(src){
     var g = el("g", null, chipLayer), inner = el("g", null, g);
@@ -234,29 +205,8 @@
     return {el:g, inner:inner, x:0, y:PICK.y, vy:0, rot:0, rotv:0, pop:1, state:"queue", fade:1};
   });
 
-  var STAR = "M0 -7 Q1.2 -1.2 7 0 Q1.2 1.2 0 7 Q-1.2 1.2 -7 0 Q-1.2 -1.2 0 -7 Z";
-  var fx = [];
-  for (var s = 0; s < 14; s++){
-    fx.push({el: el("path", {d:STAR, class:"s-amber", opacity:0}, fxLayer),
-             x:0, y:0, vx:0, vy:0, life:0, max:1});
-  }
-  function spark(x, y, n, mint){
-    var made = 0;
-    for (var i = 0; i < fx.length && made < n; i++){
-      var p = fx[i];
-      if (p.life > 0) continue;
-      var a = -Math.PI/2 + (Math.random()-0.5)*2.4, sp = 40 + Math.random()*70;
-      p.x = x + (Math.random()-0.5)*26; p.y = y + (Math.random()-0.5)*12;
-      p.vx = Math.cos(a)*sp; p.vy = Math.sin(a)*sp;
-      p.max = 0.5 + Math.random()*0.35; p.life = p.max;
-      p.el.setAttribute("class", mint && (made % 2) ? "s-mint" : "s-amber");
-      made++;
-    }
-  }
-
   var S = {t1:0, t2:0, w1:0, w2:0, r1:0, r2:0, grip:0, gripRef:0,
-           q:0, step:0, timer:0, setp:{x:0,y:0}, look:{x:0,y:0},
-           blink:2.5, blinking:0, happy:0, antA:0, antV:0, prevW:null, clock:0};
+           q:0, step:0, timer:0, setp:{x:0,y:0}, prevW:null, clock:0};
 
   var STEPS = [
     {k:"approach", pt:function(){ return {x:PICK.x, y:PICK.y - HOLD - 46}; }},
@@ -273,22 +223,14 @@
     if (st.pt){ var p = st.pt(); S.setp = p; var k = ik(p.x, p.y); S.r1 = k.t1; S.r2 = k.t2; }
     if (st.grip !== undefined) S.gripRef = st.grip;
   }
-  function interest(){
-    if (S.q >= 3) return {x:BX, y:150};
-    var st = STEPS[S.step].k;
-    if (st === "transfer" || st === "open") return {x:BINX[S.q], y:BIN_TOP + 6};
-    if (st === "retract") return {x:PICK.x - PITCH, y:PICK.y};
-    return {x:chips[S.q].x, y:chips[S.q].y};
-  }
   function reset(){
-    S.q = 0; S.step = 0; S.timer = 0; S.grip = S.gripRef = 0; S.happy = 0;
+    S.q = 0; S.step = 0; S.timer = 0; S.grip = S.gripRef = 0;
     chips.forEach(function(c, i){
       c.state = "queue"; c.vy = 0; c.fade = 1; c.rot = c.rotv = 0; c.pop = 1;
       c.x = PICK.x - PITCH*i; c.y = PICK.y;
       chipLayer.appendChild(c.el);
     });
     var h = ik(320, 118); S.t1 = S.r1 = h.t1; S.t2 = S.r2 = h.t2; S.w1 = S.w2 = 0;
-    fx.forEach(function(p){ p.life = 0; p.el.setAttribute("opacity", 0); });
     setGoal(); draw();
   }
   function still(){
@@ -298,7 +240,6 @@
     var p = wristAt(S.t1, S.t2);
     chips[0].state = "placed"; chips[0].x = BINX[0]; chips[0].y = BIN_FLOOR - CHIP_H/2 - 3;
     chips[1].state = "held"; chips[1].x = p.x; chips[1].y = p.y + HOLD;
-    topLayer.appendChild(chips[1].el);
     chips[2].x = PICK.x; chips[2].y = PICK.y;
     draw();
   }
@@ -306,7 +247,7 @@
     S.step++;
     if (S.step >= STEPS.length){
       S.step = 0; S.q++;
-      if (S.q >= 3){ S.q = 3; S.timer = -1.4; S.happy = 2.6; spark(BX, 96, 8, true); }
+      if (S.q >= 3){ S.q = 3; S.timer = -1.4; }
     }
     if (S.q < 3) setGoal();
   }
@@ -322,10 +263,10 @@
     if (st.dwell !== undefined){
       S.timer += dt;
       if (st.k === "close" && S.timer > .17 && chips[S.q].state === "queue"){
-        chips[S.q].state = "held"; chips[S.q].pop = 1.09; topLayer.appendChild(chips[S.q].el);
+        chips[S.q].state = "held"; chips[S.q].pop = 1.09;
       }
       if (st.k === "open" && S.timer > .12 && chips[S.q].state === "held"){
-        chips[S.q].state = "falling"; chips[S.q].vy = 0; chipLayer.appendChild(chips[S.q].el);
+        chips[S.q].state = "falling"; chips[S.q].vy = 0;
       }
       if (S.timer >= st.dwell){ S.timer = 0; advance(); }
     } else {
@@ -348,18 +289,6 @@
     var p = wristAt(S.t1, S.t2);
     var vx = S.prevW ? (p.x - S.prevW.x)/Math.max(dt, 1e-3) : 0;
     S.prevW = {x:p.x, y:p.y};
-    S.antV += (-vx*0.055 - S.antA)*dt*34 - S.antV*dt*7;
-    S.antA = clamp(S.antA + S.antV*dt, -26, 26);
-
-    var want = interest(), hx = p.x, hy = p.y - 7;
-    var dx = want.x - hx, dy = want.y - hy, d = Math.hypot(dx, dy) || 1;
-    S.look.x += (clamp(dx/d, -1, 1)*2.7 - S.look.x)*Math.min(1, dt*7);
-    S.look.y += (clamp(dy/d, -1, 1)*2.2 - S.look.y)*Math.min(1, dt*7);
-
-    S.blink -= dt;
-    if (S.blinking > 0){ S.blinking -= dt; }
-    else if (S.blink <= 0){ S.blinking = .13; S.blink = 2.2 + Math.random()*3.2; }
-    if (S.happy > 0) S.happy -= dt;
 
     chips.forEach(function(c, i){
       if (c.state === "held"){
@@ -373,7 +302,7 @@
         if (c.y >= rest){
           c.y = rest;
           if (Math.abs(c.vy) > 45){
-            if (c.vy > 190){ spark(c.x, c.y - 6, 5, false); c.pop = 0.86; S.happy = Math.max(S.happy, 1.0); }
+            if (c.vy > 190) c.pop = 0.86;
             c.vy *= -0.24;
           } else { c.vy = 0; c.state = "placed"; }
         }
@@ -382,15 +311,6 @@
         c.rot += (0 - c.rot)*Math.min(1, dt*6);
       }
       c.pop += (1 - c.pop)*Math.min(1, dt*9);
-    });
-
-    fx.forEach(function(f){
-      if (f.life <= 0) return;
-      f.life -= dt; f.vy += 150*dt; f.x += f.vx*dt; f.y += f.vy*dt;
-      if (f.life <= 0){ f.el.setAttribute("opacity", 0); return; }
-      var k = f.life/f.max;
-      f.el.setAttribute("opacity", (k*0.95).toFixed(2));
-      f.el.setAttribute("transform", "translate("+f.x.toFixed(1)+","+f.y.toFixed(1)+") scale("+(0.35+0.55*k).toFixed(2)+")");
     });
 
     var br = 1 + Math.sin(S.clock*1.7)*0.012;
@@ -406,19 +326,9 @@
     link1.setAttribute("transform", "rotate(" + (S.t1*DEG).toFixed(2) + ")");
     link2.setAttribute("transform", "rotate(" + (S.t2*DEG).toFixed(2) + ")");
     head.setAttribute("transform", "rotate(" + (-(S.t1 + S.t2)*DEG).toFixed(2) + ")");
-    ant.setAttribute("transform", "translate(0,-19) rotate(" + S.antA.toFixed(2) + ")");
     var a = 20 - S.grip*16;
-    clawL.setAttribute("transform", "translate(-8,10) rotate(" + (-a).toFixed(1) + ")");
-    clawR.setAttribute("transform", "translate(8,10) rotate(" + a.toFixed(1) + ")");
-    var open = S.blinking > 0 ? 0.08 : 1, glad = S.happy > 0;
-    squint.setAttribute("opacity", glad ? 1 : 0);
-    [eyeL, eyeR].forEach(function(g, i){
-      var cx = i ? 7 : -7;
-      g.setAttribute("opacity", glad ? 0 : 1);
-      g.setAttribute("transform", "translate("+(cx + S.look.x).toFixed(2)+","+(-7 + S.look.y*0.5).toFixed(2)+") scale(1,"+open+")");
-      g.pupil.setAttribute("transform", "translate("+(S.look.x*0.9).toFixed(2)+","+(S.look.y*0.9).toFixed(2)+")");
-    });
-    smile.setAttribute("d", glad ? "M-5 7 q5 6 10 0" : "M-4 8 q4 4 8 0");
+    clawL.setAttribute("transform", "translate(-9,12) rotate(" + (-a).toFixed(1) + ")");
+    clawR.setAttribute("transform", "translate(9,12) rotate(" + a.toFixed(1) + ")");
     chips.forEach(function(c){
       c.el.setAttribute("transform", "translate("+c.x.toFixed(1)+","+c.y.toFixed(1)+")");
       c.el.setAttribute("opacity", c.fade.toFixed(2));
