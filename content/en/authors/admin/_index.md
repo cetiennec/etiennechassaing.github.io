@@ -262,4 +262,4 @@ awards:
 
 After graduating from CentraleSupélec and EPFL in Robotics and Control, and gaining research experience at Stanford University, I worked with small and medium-sized businesses wishing to explore AI, Robotics or Machine-Learning to solve their business problems. Now a ML Engineer in Robotics @HuggingFace 🤗🤖
 
-Alongside this, I build two side projects: [CragDiary](https://cragdiary.com), a free climbing logbook to share your outings your way, with no performance tracking, and [The Future With AI](https://thefuturewithai.org), a place to write down your bets on how AI will shape the future and revisit them years later.
+Alongside this, I build two side projects: [Cragdiary](https://cragdiary.com), a free climbing logbook to share your outings your way, with no performance tracking, and [The Future With AI](https://thefuturewithai.org), a place to write down your bets on how AI will shape the future and revisit them years later.

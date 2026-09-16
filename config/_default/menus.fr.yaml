@@ -31,7 +31,7 @@ main:
   - name: Publications
     url: publication
     weight: 16
-  - name: CragDiary
+  - name: Cragdiary
     url: https://cragdiary.com
     weight: 17
   - name: The Future With AI

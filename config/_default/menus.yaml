@@ -25,7 +25,7 @@ main:
   - name: Teaching
     url: teaching/
     weight: 40
-  - name: CragDiary
+  - name: Cragdiary
     url: https://cragdiary.com
     weight: 50
   - name: The Future With AI

@@ -49,7 +49,7 @@ sections:
               <li><a href="/fr/book/classes/">📚 Voir mes cours</a></li>
               <li><a href="/fr/projects/">🛠️ Voir mes projets</a></li>
               <li><a href="/fr/publication/">📄 Voir mes publications</a></li>
-              <li><a href="https://cragdiary.com" target="_blank" rel="noopener">🧗 CragDiary : votre carnet de grande voie</a></li>
+              <li><a href="https://cragdiary.com" target="_blank" rel="noopener">🧗 Cragdiary : votre carnet de grande voie</a></li>
               <li><a href="https://thefuturewithai.org" target="_blank" rel="noopener">🔮 The Future With AI : partagez vos paris sur le futur</a></li>
             </ul>
           </div>

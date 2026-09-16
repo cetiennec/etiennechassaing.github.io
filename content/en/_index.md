@@ -43,7 +43,7 @@ sections:
               <li><a href="/book/classes/">📚 See my classes</a></li>
               <li><a href="/book/case-studies/">🛠️ See my case studies</a></li>
               <li><a href="/publication/">📄 See my publications</a></li>
-              <li><a href="https://cragdiary.com" target="_blank" rel="noopener">🧗 CragDiary: your multi-pitch climbing logbook</a></li>
+              <li><a href="https://cragdiary.com" target="_blank" rel="noopener">🧗 Cragdiary: your multi-pitch climbing logbook</a></li>
               <li><a href="https://thefuturewithai.org" target="_blank" rel="noopener">🔮 The Future With AI: share your bets on the future</a></li>
             </ul>
           </div>
@@ -65,6 +65,7 @@ sections:
     content:
       title: Publications
       text: ""
+      count: 0
       filters:
         folders:
           - publication

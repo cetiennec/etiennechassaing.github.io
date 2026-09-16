@@ -14,6 +14,7 @@ sections:
     id: Enseignements
     content:
       title: Enseignements
+      count: 0
       filters:
         folders:
           - enseignements
@@ -25,6 +26,7 @@ sections:
     id: Formations
     content:
       title: Formations
+      count: 0
       filters:
         folders:
           - formations

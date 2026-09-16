@@ -26,6 +26,7 @@ sections:
     content:
       title: Projets de recherche
       text: Voici les projets de recherches et les projets universitaires auxquels j'ai participé.
+      count: 0
       filters:
         folders:
           - projets-recherche
