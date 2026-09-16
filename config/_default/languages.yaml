@@ -15,6 +15,9 @@ fr:
  title: Etienne Chassaing
  params:
    description: Etienne Chassaing
+   marketing:
+     seo:
+       description: 'Etienne Chassaing — Ingénieur ML & Robotique. CV, enseignements et projets.'
 #  menu:
 #    main:
 #      - name: 传
