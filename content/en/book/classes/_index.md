@@ -1,5 +1,5 @@
 ---
-title: Classes
+title: Courses
 summary: "Lecture material, exam papers and tutorials, by school."
 type: docs
 ---

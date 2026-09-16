@@ -1,5 +1,5 @@
 ---
-title: Case Studies and Classes
+title: Case Studies and Courses
 summary: "Control-engineering tutorials and teaching material."
 type: docs
 ---
@@ -17,7 +17,7 @@ control law, with the code:
 - **Precision landing of a Parrot drone** — control of a delayed system
 - **Fishing boat** — a reinforcement-learning environment
 
-## 🎓 [Classes](/book/classes/)
+## 🎓 [Courses](/book/classes/)
 
 Exam papers, quizzes and handouts distributed to students — currently the **Sampled
 Control Systems** course at ECE Paris, whose final exam is transcribed in full on

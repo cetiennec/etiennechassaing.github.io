@@ -4,30 +4,27 @@
   #   The weight parameter defines the order that the links will appear in.
 
 main:
-  - name: Bio
-    url: /
-    weight: 10
-  - name: Papers
-    url: /publication
-    weight: 11
   # - name: Talks
   #   url: /#talks
   #   weight: 12
   - name: Case Studies
     url: /book/case-studies/
-    weight: 15
-  - name: Classes
+    weight: 11
+  - name: Courses
     url: /book/classes/
-    weight: 16
-  - name: Experience
-    url: experience/
-    weight: 20
+    weight: 12
   - name: Teaching
     url: teaching/
-    weight: 40
+    weight: 13
+  - name: Experience
+    url: experience/
+    weight: 14
+  - name: Papers
+    url: /publication
+    weight: 15
   - name: Cragdiary
     url: https://cragdiary.com
-    weight: 50
+    weight: 16
   - name: The Future With AI
     url: https://thefuturewithai.org
-    weight: 51
+    weight: 17
