@@ -49,12 +49,16 @@ sections:
               <li><a href="/fr/book/classes/">📚 Voir mes cours</a></li>
               <li><a href="/fr/projects/">🛠️ Voir mes projets</a></li>
               <li><a href="/fr/publication/">📄 Voir mes publications</a></li>
+              <li><a href="https://cragdiary.com" target="_blank" rel="noopener">🧗 CragDiary</a></li>
+              <li><a href="https://thefuturewithai.org" target="_blank" rel="noopener">🔮 The Future With AI</a></li>
             </ul>
           </div>
         </div>
 
         <h3>Ils m'ont fait confiance :</h3>
         <div class="trusted-companies">
+          <img src="assets/huggingface.png" alt="Hugging Face" class="company-logo">
+          <img src="assets/stryx.jpeg" alt="Stryx" class="company-logo">
           <img src="assets/nehemis.png" alt="Company 6" class="company-logo">
           <img src="assets/phospho.svg" alt="Company 6" class="company-logo">
           <img src="assets/neodesystems_logo.jpeg" alt="Company 4" class="company-logo">

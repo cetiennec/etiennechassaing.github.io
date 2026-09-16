@@ -43,6 +43,8 @@ sections:
               <li><a href="/book/classes/">📚 See my classes</a></li>
               <li><a href="/book/case-studies/">🛠️ See my case studies</a></li>
               <li><a href="/publication/">📄 See my publications</a></li>
+              <li><a href="https://cragdiary.com" target="_blank" rel="noopener">🧗 CragDiary</a></li>
+              <li><a href="https://thefuturewithai.org" target="_blank" rel="noopener">🔮 The Future With AI</a></li>
             </ul>
           </div>
         </div>
