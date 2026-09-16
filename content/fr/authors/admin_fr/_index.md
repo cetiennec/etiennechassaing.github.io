@@ -276,4 +276,4 @@ Awards:
 
 ## Mon profil
 
-Diplômé de CentraleSupélec et de l'EPFL en Robotique et Contrôle et fort d'expériences de recherches à Stanford University et à l'EPFL. Après deux ans à accompagner des PMEs souhaitant explorer des sujet d'IA appliquée et de Robotique, je suis maintenant Ml Engineer en robotique à HuggingFace 🤗🤖
+Diplômé de CentraleSupélec et de l'EPFL en Robotique et Contrôle et fort d'expériences de recherches à Stanford University et à l'EPFL. Après deux ans à accompagner des PMEs souhaitant explorer des sujet d'IA appliquée et de Robotique, je suis maintenant ML Engineer en robotique à HuggingFace 🤗🤖
