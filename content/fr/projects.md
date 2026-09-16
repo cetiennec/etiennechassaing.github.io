@@ -20,7 +20,7 @@ sections:
     design:
       view: article-grid
       fill_image: false
-      columns: 3
+      columns: 4
       limit: 9
   - block: collection
     content:
@@ -32,5 +32,5 @@ sections:
     design:
       view: article-grid
       fill_image: false
-      columns: 3
+      columns: 4
 ---

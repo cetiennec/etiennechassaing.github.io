@@ -9,16 +9,38 @@ dans un dépôt privé ; les PDF réellement distribués aux étudiants sont pub
 [github.com/cetiennec/cours-pdf](https://github.com/cetiennec/cours-pdf) et servis
 directement depuis GitHub.
 
-## [ECE Paris — Systèmes Bouclés](ece/)
+<div class="school-cards">
 
-Régulation numérique en promotion complète (500 élèves), d'avril à juin 2026 :
-transformée en $z$, discrétisation, PID échantillonné, filtrage et filtre de Kalman.
-Six diaporamas, l'examen final et le QCM de mi-parcours.
+<a class="school-card" href="centralesupelec/">
+  <div class="school-logo"><img src="assets/logo-centralesupelec.png" alt="CentraleSupélec"></div>
+  <div class="school-card-name">CentraleSupélec</div>
+  <div class="school-card-desc">Apprentissage par renforcement</div>
+</a>
+
+<a class="school-card" href="ece/">
+  <div class="school-logo"><img src="assets/logo-ece.webp" alt="ECE Paris"></div>
+  <div class="school-card-name">ECE Paris</div>
+  <div class="school-card-desc">Systèmes Bouclés</div>
+</a>
+
+<a class="school-card" href="albertschool/">
+  <div class="school-logo"><img src="assets/logo-albertschool.png" alt="AlbertSchool"></div>
+  <div class="school-card-name">AlbertSchool</div>
+  <div class="school-card-desc">Mathematics Foundations</div>
+</a>
+
+</div>
 
 ## [CentraleSupélec — Apprentissage par renforcement](centralesupelec/)
 
 Refonte du cours PARL : quatre séances de cours et des TD écrits, des MDP au contrôle
 sans modèle.
+
+## [ECE Paris — Systèmes Bouclés](ece/)
+
+Régulation numérique en promotion complète (500 élèves), d'avril à juin 2026 :
+transformée en $z$, discrétisation, PID échantillonné, filtrage et filtre de Kalman.
+Six diaporamas, l'examen final et le QCM de mi-parcours.
 
 ## [AlbertSchool — Mathematics Foundations](albertschool/)
 

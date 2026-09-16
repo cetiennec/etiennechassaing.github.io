@@ -19,7 +19,7 @@ sections:
           - enseignements
     design:
       view: article-grid
-      columns: 2
+      columns: 3
 
   - block: collection
     id: Formations
@@ -30,5 +30,5 @@ sections:
           - formations
     design:
       view: article-grid
-      columns: 2
+      columns: 3
 ---
