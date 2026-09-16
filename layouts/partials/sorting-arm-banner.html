@@ -77,11 +77,11 @@
   function clamp(v,a,b){ return v<a?a:(v>b?b:v); }
 
   var W = 660, H = 302;
-  var BX = 330, BY = 210, FLOOR = 266;
+  var BX = 370, BY = 210, FLOOR = 266;
   var L1 = 108, L2 = 94, REACH = L1 + L2 - 1.5;
   var HOLD = 31;
   var PICK = {x:215, y:198}, PITCH = 52;
-  var BINX = [370, 440, 510], BIN_TOP = 216, BIN_FLOOR = 260, DROP_Y = 168;
+  var BINX = [410, 480, 550], BIN_TOP = 216, BIN_FLOOR = 260, DROP_Y = 168;
   var CHIP_W = 46, CHIP_H = 31;
 
   var SRC = (host.dataset.logos || "").split("|");
@@ -228,7 +228,7 @@
     {k:"lift",     pt:function(){ return {x:PICK.x, y:PICK.y - HOLD - 30}; }},
     {k:"transfer", pt:function(){ return {x:BINX[S.q], y:DROP_Y - HOLD}; }},
     {k:"open",     grip:0, dwell:.28},
-    {k:"retract",  pt:function(){ return {x:340, y:120}; }}
+    {k:"retract",  pt:function(){ return {x:380, y:120}; }}
   ];
 
   function setGoal(){
@@ -243,7 +243,7 @@
       c.x = PICK.x - PITCH*i; c.y = PICK.y;
       chipLayer.appendChild(c.el);
     });
-    var h = ik(320, 118); S.t1 = S.r1 = h.t1; S.t2 = S.r2 = h.t2; S.w1 = S.w2 = 0;
+    var h = ik(360, 118); S.t1 = S.r1 = h.t1; S.t2 = S.r2 = h.t2; S.w1 = S.w2 = 0;
     setGoal(); draw();
   }
   function still(){
