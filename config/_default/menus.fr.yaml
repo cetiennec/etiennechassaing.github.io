@@ -22,7 +22,7 @@ main:
   - name: Cours
     url: /fr/book/classes/
     weight: 13
-  - name: Formations et enseignements
+  - name: Formations
     url: teaching/
     weight: 14
   - name: CV

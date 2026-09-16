@@ -1,5 +1,5 @@
 ---
-title: Formations et enseignements
+title: Formations
 summary: Mes expériences d'enseignements
 type: landing
 
