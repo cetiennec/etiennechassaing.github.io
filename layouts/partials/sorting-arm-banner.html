@@ -81,7 +81,7 @@
   var L1 = 108, L2 = 94, REACH = L1 + L2 - 1.5;
   var HOLD = 31;
   var PICK = {x:215, y:198}, PITCH = 52;
-  var BINX = [376, 436, 496], BIN_TOP = 216, BIN_FLOOR = 260, DROP_Y = 168;
+  var BINX = [370, 440, 510], BIN_TOP = 216, BIN_FLOOR = 260, DROP_Y = 168;
   var CHIP_W = 46, CHIP_H = 31;
 
   var SRC = (host.dataset.logos || "").split("|");
@@ -151,7 +151,7 @@
                          "letter-spacing":.45, class:"s-ink", opacity:.7}, plate);
     t1.textContent = lab[0];
     var t2 = el("text", {x:0, y:15.8, "text-anchor":"middle", "font-size":7.6,
-                         "letter-spacing":.3, class:"s-mut"}, plate);
+                         "letter-spacing":.2, class:"s-mut"}, plate);
     t2.textContent = lab[1];
   }
 
