@@ -28,6 +28,12 @@
   margin: 10px;
 }
 
+.nav-link[href="https://cragdiary.com"] {
+  border-left: 1px solid rgba(128, 128, 128, 0.4);
+  padding-left: 16px !important;
+  margin-left: 4px;
+}
+
 .nav-link[href="https://cragdiary.com"]::before,
 .nav-link[href="https://thefuturewithai.org"]::before {
   content: "";
