@@ -18,7 +18,7 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: Graduate in Robotics, ML and AI
+role: ML Engineer in Robotics
 
 # Organizations/Affiliations to display in Biography blox
 organizations:

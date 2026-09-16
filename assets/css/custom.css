@@ -28,6 +28,27 @@
   margin: 10px;
 }
 
+.nav-link[href="https://cragdiary.com"]::before,
+.nav-link[href="https://thefuturewithai.org"]::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  vertical-align: -3px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 3px;
+}
+
+.nav-link[href="https://cragdiary.com"]::before {
+  background-image: url(/media/cragdiary-icon.png);
+}
+
+.nav-link[href="https://thefuturewithai.org"]::before {
+  background-image: url(/media/tfwai-icon.svg);
+}
+
 .school-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

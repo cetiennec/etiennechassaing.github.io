@@ -49,8 +49,8 @@ sections:
               <li><a href="/fr/book/classes/">📚 Voir mes cours</a></li>
               <li><a href="/fr/projects/">🛠️ Voir mes projets</a></li>
               <li><a href="/fr/publication/">📄 Voir mes publications</a></li>
-              <li><a href="https://cragdiary.com" target="_blank" rel="noopener">🧗 CragDiary</a></li>
-              <li><a href="https://thefuturewithai.org" target="_blank" rel="noopener">🔮 The Future With AI</a></li>
+              <li><a href="https://cragdiary.com" target="_blank" rel="noopener">🧗 CragDiary : votre carnet de grande voie</a></li>
+              <li><a href="https://thefuturewithai.org" target="_blank" rel="noopener">🔮 The Future With AI : partagez vos paris sur le futur</a></li>
             </ul>
           </div>
         </div>
@@ -59,14 +59,14 @@ sections:
         <div class="trusted-companies">
           <img src="assets/huggingface.png" alt="Hugging Face" class="company-logo-small">
           <img src="assets/stryx.jpeg" alt="Stryx" class="company-logo-small">
-          <img src="assets/nehemis.png" alt="Company 6" class="company-logo">
-          <img src="assets/phospho.svg" alt="Company 6" class="company-logo">
-          <img src="assets/neodesystems_logo.jpeg" alt="Company 4" class="company-logo">
-          <img src="assets/geomatys.jpeg" alt="Company 2" class="company-logo">
-          <img src="assets/logo-eurofins.jpg" alt="Company 3" class="company-logo">
-          <img src="assets/JCS.png" alt="Company 1" class="company-logo">
-          <img src="assets/schindler.png" alt="Company 5" class="company-logo">
-          <img src="assets/airbus-group.png" alt="Company 6" class="company-logo">
+          <img src="assets/nehemis.png" alt="Nehemis" class="company-logo">
+          <img src="assets/phospho.svg" alt="Phospho" class="company-logo">
+          <img src="assets/neodesystems_logo.jpeg" alt="Neodesystems" class="company-logo">
+          <img src="assets/geomatys.jpeg" alt="Geomatys" class="company-logo">
+          <img src="assets/logo-eurofins.jpg" alt="Eurofins" class="company-logo">
+          <img src="assets/JCS.png" alt="JCS" class="company-logo">
+          <img src="assets/schindler.png" alt="Schindler" class="company-logo">
+          <img src="assets/airbus-group.png" alt="Airbus Group" class="company-logo">
         </div>
         </div>
 
@@ -124,7 +124,8 @@ sections:
       count: 9 
       filters:
         folders:
-          - project
+          - projets
+          - projets-recherche
           - publication
           - formations
         featured_only: false

@@ -18,7 +18,7 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: Consultant en IA, ML et Robotique
+role: ML Engineer en Robotique
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
