@@ -60,7 +60,7 @@ long-term drift.
 The exam is written in French, as the course is taught in French. A **full transcription
 with all figures and formulas** is available on the French side of this site:
 
-📄 **[Read the full transcription (French)](/fr/book/classes/ece/examen-final/)**
+📄 **[Read the full transcription (French)](/fr/classes/ece/examen-final/)**
 
 Solutions are not published.
 

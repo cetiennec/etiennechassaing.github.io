@@ -46,7 +46,7 @@ sections:
         <div style="display: flex; gap: 10px; margin-top: 10px;">
           <div style="flex: 1;">
             <ul style="list-style: none; padding: 0; margin: 0; font-size: 22px;"> <!-- Adjust font-size as needed -->
-              <li><a href="/fr/book/classes/">📚 Voir mes cours</a></li>
+              <li><a href="/fr/classes/">📚 Voir mes cours</a></li>
               <li><a href="/fr/projects/">🛠️ Voir mes projets</a></li>
               <li><a href="/fr/publication/">📄 Voir mes publications</a></li>
               <li><a href="https://cragdiary.com" target="_blank" rel="noopener">🧗 Cragdiary : votre carnet de grande voie</a></li>

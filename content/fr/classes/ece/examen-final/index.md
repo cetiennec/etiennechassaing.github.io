@@ -32,4 +32,4 @@ Le corrigé n'est pas diffusé publiquement.
 **Documents liés :**
 [sujet](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final.pdf) ·
 [feuille réponse](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final_feuille_reponse.pdf) ·
-[tous les documents du cours](/fr/book/classes/ece/)
+[tous les documents du cours](/fr/classes/ece/)

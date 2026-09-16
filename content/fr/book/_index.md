@@ -17,7 +17,7 @@ la loi de commande, code à l'appui :
 - **Atterrissage de précision d'un drone Parrot** — commande d'un système retardé
 - **Bateau de pêche** — environnement d'apprentissage par renforcement
 
-## 🎓 [Cours](/fr/book/classes/)
+## 🎓 [Cours](/fr/classes/)
 
 Sujets d'examen, QCM et supports diffusés aux étudiants — actuellement le cours de
 **Systèmes Bouclés** à l'ECE Paris, dont l'examen final est transcrit intégralement

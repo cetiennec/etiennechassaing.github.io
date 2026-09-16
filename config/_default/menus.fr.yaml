@@ -20,7 +20,7 @@ main:
     url: /book/case-studies/
     weight: 12
   - name: Cours
-    url: /fr/book/classes/
+    url: /fr/classes/
     weight: 13
   - name: Formations
     url: teaching/

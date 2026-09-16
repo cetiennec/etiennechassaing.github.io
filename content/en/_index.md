@@ -40,7 +40,7 @@ sections:
         <div style="display: flex; gap: 10px; margin-top: 10px;">
           <div style="flex: 1;">
             <ul style="list-style: none; padding: 0; margin: 0; font-size: 22px;">
-              <li><a href="/book/classes/">📚 See my courses</a></li>
+              <li><a href="/classes/">📚 See my courses</a></li>
               <li><a href="/book/case-studies/">🛠️ See my case studies</a></li>
               <li><a href="/publication/">📄 See my publications</a></li>
               <li><a href="https://cragdiary.com" target="_blank" rel="noopener">🧗 Cragdiary: your multi-pitch climbing logbook</a></li>
