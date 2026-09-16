@@ -372,7 +372,7 @@
     requestAnimationFrame(frame);
     if (!running || !visible){ last = now; return; }
     if (!last) last = now;
-    var dt = Math.min(0.05, (now - last)/1000);
+    var dt = Math.min(0.05, (now - last)/1000) * 0.9;   // 10% slower
     last = now;
     tick(dt);
   }
