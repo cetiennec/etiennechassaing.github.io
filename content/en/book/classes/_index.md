@@ -9,8 +9,6 @@ repository; the PDFs actually handed out to students are published to
 [github.com/cetiennec/cours-pdf](https://github.com/cetiennec/cours-pdf) and served
 straight from GitHub.
 
-{{< sorting-arm bins="CENTRALE/RL|ECE/CONTROL|ALBERT/MATHS" >}}
-
 <div class="school-cards">
 
 <a class="school-card" href="centralesupelec/">

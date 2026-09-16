@@ -10,6 +10,11 @@ cascade:
       show_breadcrumb: true
 
 sections:
+  - block: sorting-arm
+    id: sorting-arm
+    content:
+      bins: "CENTRALE/RL|ECE/SYS. BOUCLÉS|ALBERT/MATHS"
+
   - block: collection
     id: Enseignements
     content:

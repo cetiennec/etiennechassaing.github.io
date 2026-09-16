@@ -9,8 +9,6 @@ dans un dépôt privé ; les PDF réellement distribués aux étudiants sont pub
 [github.com/cetiennec/cours-pdf](https://github.com/cetiennec/cours-pdf) et servis
 directement depuis GitHub.
 
-{{< sorting-arm bins="CENTRALE/RL|ECE/SYS. BOUCLÉS|ALBERT/MATHS" >}}
-
 <div class="school-cards">
 
 <a class="school-card" href="centralesupelec/">

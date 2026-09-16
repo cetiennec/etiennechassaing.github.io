@@ -10,6 +10,11 @@ cascade:
       show_breadcrumb: true
 
 sections:
+  - block: sorting-arm
+    id: sorting-arm
+    content:
+      bins: "CENTRALE/RL|ECE/CONTROL|ALBERT/MATHS"
+
   - block: collection
     id: teaching
     content:

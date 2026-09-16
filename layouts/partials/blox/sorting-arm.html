@@ -1,0 +1,21 @@
+{{/*
+  Hugo Blox block: sorting-arm — the pick-and-place banner on a landing page.
+
+  sections:
+    - block: sorting-arm
+      id: sorting-arm
+      content:
+        bins: "CENTRALE/RL|ECE/CONTROL|ALBERT/MATHS"
+        logos: "/a.png|/b.png|/c.png"   # optional
+      design:
+        height: 300                      # optional
+*/}}
+{{ $block := .wcBlock }}
+{{ $height := "" }}
+{{ with $block.design }}{{ $height = .height }}{{ end }}
+<div class="mx-auto max-w-4xl px-4">
+  {{ partial "sorting-arm-banner" (dict
+       "bins" $block.content.bins
+       "logos" $block.content.logos
+       "height" $height) }}
+</div>
