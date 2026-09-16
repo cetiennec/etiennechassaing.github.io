@@ -76,12 +76,12 @@
   var DEG = 180/Math.PI;
   function clamp(v,a,b){ return v<a?a:(v>b?b:v); }
 
-  var W = 740, H = 302;
+  var W = 660, H = 302;
   var BX = 310, BY = 210, FLOOR = 266;
-  var L1 = 175, L2 = 155, REACH = L1 + L2 - 1.5;
+  var L1 = 108, L2 = 94, REACH = L1 + L2 - 1.5;
   var HOLD = 31;
   var PICK = {x:215, y:198}, PITCH = 52;
-  var BINX = [480, 550, 620], BIN_TOP = 216, BIN_FLOOR = 260, DROP_Y = 168;
+  var BINX = [350, 420, 490], BIN_TOP = 216, BIN_FLOOR = 260, DROP_Y = 168;
   var CHIP_W = 46, CHIP_H = 31;
 
   var SRC = (host.dataset.logos || "").split("|");
@@ -228,7 +228,7 @@
     {k:"lift",     pt:function(){ return {x:PICK.x, y:PICK.y - HOLD - 30}; }},
     {k:"transfer", pt:function(){ return {x:BINX[S.q], y:DROP_Y - HOLD}; }},
     {k:"open",     grip:0, dwell:.28},
-    {k:"retract",  pt:function(){ return {x:350, y:120}; }}
+    {k:"retract",  pt:function(){ return {x:320, y:120}; }}
   ];
 
   function setGoal(){
