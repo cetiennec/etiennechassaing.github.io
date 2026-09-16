@@ -76,7 +76,7 @@
   var W = 660, H = 302;
   var BX = 330, BY = 210, FLOOR = 266;
   var L1 = 108, L2 = 94, REACH = L1 + L2 - 1.5;
-  var HOLD = 30;
+  var HOLD = 31;
   var PICK = {x:215, y:198}, PITCH = 52;
   var BINX = [376, 436, 496], BIN_TOP = 216, BIN_FLOOR = 260, DROP_Y = 168;
   var CHIP_W = 46, CHIP_H = 31;
@@ -155,41 +155,51 @@
   var chipLayer = el("g", null, svg);
 
   var bot = el("g", null, svg);
-  el("ellipse", {cx:BX, cy:FLOOR+1, rx:46, ry:6, class:"s-ink", opacity:.12}, bot);
+  el("ellipse", {cx:BX, cy:FLOOR+1, rx:54, ry:6, class:"s-ink", opacity:.12}, bot);
   var body = el("g", {transform:"translate("+BX+","+FLOOR+")"}, bot);
-  el("rect", {x:-30, y:-8, width:18, height:10, rx:5, class:"s-botdk"}, body);
-  el("rect", {x:12, y:-8, width:18, height:10, rx:5, class:"s-botdk"}, body);
-  el("circle", {cx:-27, cy:-30, r:9, class:"s-amber"}, body);
-  el("circle", {cx:27, cy:-30, r:9, class:"s-amber"}, body);
-  el("rect", {x:-25, y:-58, width:50, height:58, rx:18, class:"s-bot"}, body);
-  el("rect", {x:-15, y:-46, width:30, height:30, rx:11, class:"s-botlt", opacity:.55}, body);
-  var belly = el("circle", {cx:0, cy:-31, r:5, class:"s-amberdk"}, body);
+  el("rect", {x:-48, y:-12, width:96, height:12, rx:3, class:"s-botdk"}, body);
+  el("rect", {x:-48, y:-5, width:96, height:5, rx:2, class:"s-amberdk", opacity:.9}, body);
+  el("circle", {cx:-38, cy:-7.5, r:2.3, class:"s-stage2", opacity:.75}, body);
+  el("circle", {cx:38, cy:-7.5, r:2.3, class:"s-stage2", opacity:.75}, body);
+  el("path", {d:"M-32 -12 L-24 -50 H24 L32 -12 Z", class:"s-bot"}, body);
+  el("path", {d:"M-14 -44 H14 V-22 H-14 Z", class:"s-botlt", opacity:.4}, body);
+  var belly = el("circle", {cx:0, cy:-16, r:3.4, class:"s-amber"}, body);
+  el("rect", {x:-26, y:-67, width:52, height:23, rx:8, class:"s-bot"}, body);
+  el("rect", {x:-19, y:-63, width:38, height:8, rx:4, class:"s-botlt", opacity:.4}, body);
 
   var shoulder = el("g", {transform:"translate("+BX+","+BY+")"}, bot);
   var link1 = el("g", null, shoulder);
-  el("rect", {x:-5, y:-15, width:L1+10, height:30, rx:15, class:"s-bot"}, link1);
-  el("rect", {x:14, y:-7, width:L1-28, height:14, rx:7, class:"s-botlt", opacity:.5}, link1);
+  el("path", {d:"M0 -17 L"+(L1-4)+" -12 a12 12 0 0 1 0 24 L0 17 Z", class:"s-bot"}, link1);
+  el("path", {d:"M20 -8 L"+(L1-14)+" -5.5 L"+(L1-14)+" 5.5 L20 8 Z", class:"s-botlt", opacity:.42}, link1);
+  el("circle", {cx:22, cy:0, r:2.2, class:"s-botdk", opacity:.45}, link1);
+  el("circle", {cx:L1-22, cy:0, r:2.2, class:"s-botdk", opacity:.45}, link1);
   el("circle", {r:20, class:"s-botdk"}, link1);
   el("circle", {r:9, class:"s-amber"}, link1);
-  el("circle", {cx:-3, cy:-3, r:3, fill:"#fff", opacity:.55}, link1);
+  el("circle", {cx:-3.5, cy:-3.5, r:3, fill:"#fff", opacity:.5}, link1);
+
   var elbow = el("g", {transform:"translate("+L1+",0)"}, link1);
   var link2 = el("g", null, elbow);
-  el("rect", {x:-5, y:-13, width:L2+10, height:26, rx:13, class:"s-bot"}, link2);
-  el("rect", {x:12, y:-6, width:L2-26, height:12, rx:6, class:"s-botlt", opacity:.5}, link2);
-  el("circle", {r:16, class:"s-botdk"}, link2);
+  el("path", {d:"M0 -13 L"+(L2-3)+" -9.5 a9.5 9.5 0 0 1 0 19 L0 13 Z", class:"s-bot"}, link2);
+  el("path", {d:"M16 -6 L"+(L2-12)+" -4.5 L"+(L2-12)+" 4.5 L16 6 Z", class:"s-botlt", opacity:.42}, link2);
+  el("circle", {r:17, class:"s-botdk"}, link2);
   el("circle", {r:7.5, class:"s-amber"}, link2);
+
   var wrist = el("g", {transform:"translate("+L2+",0)"}, link2);
-  el("circle", {r:13, class:"s-botdk"}, wrist);
-  el("circle", {r:6, class:"s-amber"}, wrist);
-  var head = el("g", null, wrist);            // parallelogram wrist: gripper stays level
-  var clawL = el("g", {transform:"translate(-9,12)"}, head);
-  var clawR = el("g", {transform:"translate(9,12)"}, head);
-  el("path", {d:"M0 0 V11 l-4 4", fill:"none", stroke:"var(--sa-bot-dk)", "stroke-width":5.5,
-              "stroke-linecap":"round", "stroke-linejoin":"round"}, clawL);
-  el("path", {d:"M0 0 V11 l4 4", fill:"none", stroke:"var(--sa-bot-dk)", "stroke-width":5.5,
-              "stroke-linecap":"round", "stroke-linejoin":"round"}, clawR);
-  el("rect", {x:-14, y:3, width:28, height:13, rx:6, class:"s-bot"}, head);
-  el("rect", {x:-8, y:6.5, width:16, height:5, rx:2.5, class:"s-botlt", opacity:.5}, head);
+  el("circle", {r:12, class:"s-botdk"}, wrist);
+  el("circle", {r:5.5, class:"s-amber"}, wrist);
+  var head = el("g", null, wrist);            // parallelogram wrist: the tool stays level
+  el("rect", {x:-8, y:0, width:16, height:6, rx:2, class:"s-botdk"}, head);
+  el("rect", {x:-17, y:5, width:34, height:11, rx:3.5, class:"s-bot"}, head);
+  el("rect", {x:-11, y:8, width:22, height:4.5, rx:2, class:"s-botlt", opacity:.45}, head);
+  el("rect", {x:-27, y:13, width:54, height:5.5, rx:2.75, class:"s-botdk"}, head);
+  var clawL = el("g", {transform:"translate(-23,16)"}, head);
+  var clawR = el("g", {transform:"translate(23,16)"}, head);
+  el("path", {d:"M0 0 V22", fill:"none", stroke:"var(--sa-bot-dk)", "stroke-width":5.5,
+              "stroke-linecap":"round"}, clawL);
+  el("path", {d:"M0 0 V22", fill:"none", stroke:"var(--sa-bot-dk)", "stroke-width":5.5,
+              "stroke-linecap":"round"}, clawR);
+  el("rect", {x:-4.5, y:-4, width:9, height:7, rx:2, class:"s-amber"}, clawL);
+  el("rect", {x:-4.5, y:-4, width:9, height:7, rx:2, class:"s-amber"}, clawR);
 
   var chips = SRC.map(function(src){
     var g = el("g", null, chipLayer), inner = el("g", null, g);
@@ -313,8 +323,6 @@
       c.pop += (1 - c.pop)*Math.min(1, dt*9);
     });
 
-    var br = 1 + Math.sin(S.clock*1.7)*0.012;
-    body.setAttribute("transform", "translate("+BX+","+FLOOR+") scale(1,"+br.toFixed(4)+")");
     belly.setAttribute("opacity", (0.55 + 0.45*Math.abs(Math.sin(S.clock*1.7))).toFixed(2));
     var spin = (S.clock*46) % 360;
     rollers.forEach(function(g, i){
@@ -326,9 +334,9 @@
     link1.setAttribute("transform", "rotate(" + (S.t1*DEG).toFixed(2) + ")");
     link2.setAttribute("transform", "rotate(" + (S.t2*DEG).toFixed(2) + ")");
     head.setAttribute("transform", "rotate(" + (-(S.t1 + S.t2)*DEG).toFixed(2) + ")");
-    var a = 20 - S.grip*16;
-    clawL.setAttribute("transform", "translate(-9,12) rotate(" + (-a).toFixed(1) + ")");
-    clawR.setAttribute("transform", "translate(9,12) rotate(" + a.toFixed(1) + ")");
+    var jaw = 23 + (1 - S.grip)*7;
+    clawL.setAttribute("transform", "translate(" + (-jaw).toFixed(1) + ",16)");
+    clawR.setAttribute("transform", "translate(" + jaw.toFixed(1) + ",16)");
     chips.forEach(function(c){
       c.el.setAttribute("transform", "translate("+c.x.toFixed(1)+","+c.y.toFixed(1)+")");
       c.el.setAttribute("opacity", c.fade.toFixed(2));
