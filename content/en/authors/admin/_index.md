@@ -33,6 +33,8 @@ profiles:
     label: E-mail Me
   - icon: brands/github
     url: https://github.com/cetiennec
+  - icon: brands/huggingface
+    url: https://huggingface.co/cetiennec
   - icon: brands/linkedin
     url: https://www.linkedin.com/in/etienne-chassaing1/
   - icon: academicons/google-scholar
@@ -116,10 +118,10 @@ work:
     location: France
     summary: |
       Responsibilities include:
-      - CentraleSupélec — Elective Robotics course (Apr 2027): designed the course "Robotics Systems, from Motion to Embodied AI" — kinematics, dynamic modeling, trajectory planning and torque control; biomimetic vs. learned locomotion, learning, formal guarantees; Python/MuJoCo project.
-      - CentraleSupélec — Reinforcement Learning course (late 2026, within "Data-Driven Control"): MDPs, Q-learning, Actor-Critic methods, Deep RL. Supervised 2nd-year Robotics Project Pole projects on robotics and learning.
-      - ECE Paris — Taught "Systèmes bouclés" (lecture course, 500-student cohort): modeling, Laplace domain, Z-transform, discretization, sampled PID, stability (unit-disk criterion), Kalman filtering; designed course materials, quizzes and exams; graded the final exam. Supervised an Autonomous Vehicle technical project: perception, control, and SLAM implementation under ROS, trajectory tracking.
-      - AlbertSchool — Taught "Mathematics Foundations," four 3-hour sessions covering the linear algebra and calculus behind machine learning: vectors and cosine similarity, matrices as transformations, derivatives and the chain rule as backpropagation, and gradient descent.
+      - CentraleSupélec, Elective Robotics course (Apr 2027): designed the course "Robotics Systems, from Motion to Embodied AI", covering kinematics, dynamic modeling, trajectory planning and torque control; biomimetic vs. learned locomotion, learning, formal guarantees; Python/MuJoCo project.
+      - CentraleSupélec, Reinforcement Learning course (late 2026, within "Data-Driven Control"): MDPs, Q-learning, Actor-Critic methods, Deep RL. Supervised 2nd-year Robotics Project Pole projects on robotics and learning.
+      - ECE Paris, taught "Systèmes bouclés" (lecture course, 500-student cohort): modeling, Laplace domain, Z-transform, discretization, sampled PID, stability (unit-disk criterion), Kalman filtering; designed course materials, quizzes and exams; graded the final exam. Supervised an Autonomous Vehicle technical project: perception, control, and SLAM implementation under ROS, trajectory tracking.
+      - AlbertSchool, taught "Mathematics Foundations," four 3-hour sessions covering the linear algebra and calculus behind machine learning: vectors and cosine similarity, matrices as transformations, derivatives and the chain rule as backpropagation, and gradient descent.
 
   - position: Independent Consultant in Applied AI and Systems Control
     company_name: ''
@@ -250,7 +252,7 @@ awards:
     awarder: USPTO
     summary: |
       Patent on tactile gesture interpretation for human grasp detection, resulting from research conducted at Stanford University.
-  - title: Certified Independent Consultant — Innovation Tax Credit (CII)
+  - title: "Certified Independent Consultant: Innovation Tax Credit (CII)"
     date: '2024-10-01'
     awarder: DRIEETS
     summary: |

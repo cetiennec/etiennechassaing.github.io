@@ -1,9 +1,9 @@
 {{/*
-  sorting-arm shortcode — the pick-and-place banner, for ordinary markdown pages.
+  sorting-arm shortcode: the pick-and-place banner, for ordinary markdown pages.
   Landing pages (type: landing) use the `sorting-arm` blox block instead; both
   render `partials/sorting-arm-banner.html`.
 
-  Params: bins, logos, height — see that partial.
+  Params: bins, logos, height: see that partial.
 */}}
 {{ partial "sorting-arm-banner" (dict
      "bins" (.Get "bins")

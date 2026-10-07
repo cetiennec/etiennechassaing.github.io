@@ -127,7 +127,6 @@ sections:
           - projets
           - projets-recherche
           - publication
-          - formations
         featured_only: false
     design:
       view: article-grid

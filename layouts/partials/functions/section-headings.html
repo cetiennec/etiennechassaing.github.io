@@ -1,0 +1,17 @@
+{{/*
+  Returns the level-3 (###) headings of a page, in order, as a slice of
+  dict "id" "title". Walks the nested .Fragments.Headings tree recursively.
+  Used by the sidebar override (partials/components/sidebar.html).
+*/}}
+{{- $out := slice -}}
+{{- range .headings -}}
+  {{- if eq .Level 3 -}}
+    {{- $out = $out | append (dict "id" .ID "title" (.Title | plainify)) -}}
+  {{- end -}}
+  {{- with .Headings -}}
+    {{- range partial "functions/section-headings" (dict "headings" .) -}}
+      {{- $out = $out | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

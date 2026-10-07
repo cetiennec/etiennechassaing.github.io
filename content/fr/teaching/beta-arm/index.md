@@ -1,5 +1,5 @@
 ---
-title: "Bras trieur — bêta"
+title: "Bras trieur : bêta"
 summary: "Aperçu non listé de la bannière animée proposée pour la page Cours."
 type: docs
 math: true
@@ -15,7 +15,7 @@ Cette page n'est liée nulle part et reste hors des moteurs de recherche : elle 
 regarder la bannière dans le vrai site, avec le vrai thème, les vrais logos et le bouton
 mode sombre de la navbar. Rien n'a changé sur la page Cours en ligne.
 
-### Option 1 — les trois écoles
+### Option 1 : les trois écoles
 
 {{< sorting-arm bins="CENTRALE/RL|ECE/SYS. BOUCLÉS|ALBERT/MATHS" >}}
 
@@ -44,7 +44,7 @@ cartes :
 
 </div>
 
-### Option 2 — une école, trois séances
+### Option 2 : une école, trois séances
 
 La même machine triant trois exemplaires du logo ECE vers les trois blocs du cours de
 régulation numérique, pour la [page ECE](../ece/) plutôt que pour la page Cours.
@@ -55,7 +55,7 @@ régulation numérique, pour la [page ECE](../ece/) plutôt que pour la page Cou
 
 Tout est simulé plutôt qu'interpolé : cinématique inverse à deux bras en forme close
 (branche coude en haut), chaque articulation suivie par une loi PD à $k_p = 70$,
-$k_d = 13{,}5$ — soit $\omega_n \approx 8{,}4$ rad/s et $\zeta \approx 0{,}81$. Le léger
+$k_d = 13{,}5$, soit $\omega_n \approx 8{,}4$ rad/s et $\zeta \approx 0{,}81$. Le léger
 dépassement à l'arrivée de la pince, c'est le correcteur qui converge. Un poignet à
 parallélogramme garde la tête droite, la pince s'ouvre au-dessus du bac et le logo tombe
 en chute libre, et les yeux anticipent le mouvement vers la cible suivante.

@@ -1,30 +1,33 @@
 ---
 title: Enseignement
-summary: "Les cours que je donne, avec leurs supports et examens, et mes autres expériences d'enseignement."
+summary: "Tout ce que j'enseigne, classé par école : cours avec leurs supports et examens, TD, encadrement de projets et formations en entreprise."
 type: docs
 ---
 
-Les cours que je donne, classés par école, avec les supports distribués aux étudiants —
-puis mes [autres expériences d'enseignement](#autres-expériences-denseignement) et les
-[formations](#formations-professionnelles) que j'ai animées. Les sources LaTeX vivent dans
-un dépôt privé ; les PDF sont publiés sur
-[github.com/cetiennec/cours-pdf](https://github.com/cetiennec/cours-pdf) et servis
-directement depuis GitHub.
+J'enseigne depuis 10 ans : des cours en amphi devant 500 élèves, des TD en petits groupes,
+des projets étudiants que j'encadre et des formations en entreprise. Vous trouverez tout ici,
+école par école. Pour les cours que j'ai créés, les supports sont en
+[accès libre](https://github.com/cetiennec/cours-pdf) : ce sont exactement ceux que je
+distribue à mes étudiants.
 
 {{< sorting-arm bins="CENTRALE/RL|ECE/SYS. BOUCLÉS|ALBERT/MATHS" >}}
+
+## Cours que j'ai créés
+
+Cours dont j'ai rédigé les supports distribués aux étudiants.
 
 <div class="school-cards">
 
 <a class="school-card" href="centralesupelec/">
   <div class="school-logo"><img src="assets/logo-centralesupelec.png" alt="CentraleSupélec"></div>
   <div class="school-card-name">CentraleSupélec</div>
-  <div class="school-card-desc">Apprentissage par renforcement</div>
+  <div class="school-card-desc">Apprentissage par renforcement, électif de robotique, projets</div>
 </a>
 
 <a class="school-card" href="ece/">
   <div class="school-logo"><img src="assets/logo-ece.webp" alt="ECE Paris"></div>
   <div class="school-card-name">ECE Paris</div>
-  <div class="school-card-desc">Systèmes Bouclés</div>
+  <div class="school-card-desc">Systèmes Bouclés, projet voiture autonome</div>
 </a>
 
 <a class="school-card" href="albertschool/">
@@ -35,29 +38,30 @@ directement depuis GitHub.
 
 </div>
 
-## [CentraleSupélec — Apprentissage par renforcement](centralesupelec/)
+## Formations
 
-Refonte du cours PARL : quatre séances de cours et des TD écrits, des MDP au contrôle
-sans modèle.
+Formations que je conçois et anime pour les équipes techniques en entreprise.
 
-## [ECE Paris — Systèmes Bouclés](ece/)
+<div class="school-cards">
 
-Régulation numérique en promotion complète (500 élèves), d'avril à juin 2026 :
-transformée en $z$, discrétisation, PID échantillonné, filtrage et filtre de Kalman.
-Six diaporamas, l'examen final et le QCM de mi-parcours.
+<a class="school-card" href="companies/">
+  <div class="school-logo school-logo-icon" aria-hidden="true">🏢</div>
+  <div class="school-card-name">Entreprises</div>
+  <div class="school-card-desc">Deep RL, PID et MPC</div>
+</a>
 
-## [AlbertSchool — Mathematics Foundations](albertschool/)
+</div>
 
-L'algèbre linéaire et l'analyse derrière le machine learning : vecteurs et similarité
-cosinus, matrices et passe avant, dérivées et règle de la chaîne, descente de gradient.
-Quatre séances, dispensées en anglais.
+## Autres enseignements
 
-## Autres expériences d'enseignement
+Postes de chargé de TD.
 
-Postes de chargé de TD et encadrement de projets.
+<div class="school-cards">
 
-{{< teaching-list section="enseignements" >}}
+<a class="school-card" href="epfl/">
+  <div class="school-logo"><img src="assets/logo-epfl.svg" alt="EPFL"></div>
+  <div class="school-card-name">EPFL</div>
+  <div class="school-card-desc">Chargé de TD : MPC, robots à pattes, IA</div>
+</a>
 
-## Formations professionnelles
-
-{{< teaching-list section="formations" >}}
+</div>

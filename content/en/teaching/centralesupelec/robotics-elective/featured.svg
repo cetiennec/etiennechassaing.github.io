@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540" role="img" aria-label="Robotics Systems, from Motion to Embodied AI: placeholder illustration with a robot arm and a legged robot">
+  <!-- Placeholder card image for the Robotics elective, styled like the course slides. -->
+  <rect width="960" height="540" fill="#ffffff"/>
+  <rect width="960" height="62" fill="#14213d"/>
+  <text x="32" y="42" font-family="Fira Sans, Helvetica, Arial, sans-serif" font-size="28" font-weight="600" fill="#ffffff">Robotics Systems, from Motion to Embodied AI</text>
+  <rect x="60" y="78" width="868" height="3" fill="#e07a2f"/>
+
+  <!-- floor -->
+  <line x1="60" y1="440" x2="900" y2="440" stroke="#14213d" stroke-width="3"/>
+  <g stroke="#14213d" stroke-width="2" opacity="0.35">
+    <line x1="80" y1="440" x2="64" y2="456"/><line x1="130" y1="440" x2="114" y2="456"/><line x1="180" y1="440" x2="164" y2="456"/>
+    <line x1="230" y1="440" x2="214" y2="456"/><line x1="280" y1="440" x2="264" y2="456"/><line x1="330" y1="440" x2="314" y2="456"/>
+    <line x1="380" y1="440" x2="364" y2="456"/><line x1="430" y1="440" x2="414" y2="456"/>
+    <line x1="560" y1="440" x2="544" y2="456"/><line x1="610" y1="440" x2="594" y2="456"/><line x1="660" y1="440" x2="644" y2="456"/>
+    <line x1="710" y1="440" x2="694" y2="456"/><line x1="760" y1="440" x2="744" y2="456"/><line x1="810" y1="440" x2="794" y2="456"/>
+    <line x1="860" y1="440" x2="844" y2="456"/>
+  </g>
+
+  <!-- robot arm: pedestal, two links, gripper -->
+  <rect x="150" y="400" width="100" height="40" rx="6" fill="#14213d"/>
+  <line x1="200" y1="395" x2="300" y2="250" stroke="#2a9fd6" stroke-width="22" stroke-linecap="round"/>
+  <line x1="300" y1="250" x2="430" y2="300" stroke="#2a9fd6" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="200" cy="395" r="16" fill="#ffffff" stroke="#14213d" stroke-width="5"/>
+  <circle cx="300" cy="250" r="14" fill="#ffffff" stroke="#14213d" stroke-width="5"/>
+  <circle cx="430" cy="300" r="10" fill="#14213d"/>
+  <path d="M 430 300 L 448 290 M 430 300 L 444 318" stroke="#14213d" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <!-- joint angles and planned trajectory -->
+  <path d="M 232 395 A 32 32 0 0 0 218 369" stroke="#e07a2f" stroke-width="3" fill="none"/>
+  <text x="240" y="380" font-family="Helvetica, Arial, sans-serif" font-style="italic" font-size="22" fill="#e07a2f">q₁</text>
+  <path d="M 326 260 A 28 28 0 0 0 318 228" stroke="#e07a2f" stroke-width="3" fill="none"/>
+  <text x="330" y="236" font-family="Helvetica, Arial, sans-serif" font-style="italic" font-size="22" fill="#e07a2f">q₂</text>
+  <path d="M 448 296 C 470 230, 420 150, 330 150" stroke="#e07a2f" stroke-width="3" stroke-dasharray="8 8" fill="none"/>
+  <circle cx="330" cy="150" r="6" fill="#e07a2f"/>
+
+  <!-- quadruped: body, head, four two-segment legs -->
+  <rect x="600" y="300" width="200" height="56" rx="14" fill="#2a9fd6"/>
+  <rect x="790" y="282" width="50" height="38" rx="10" fill="#14213d"/>
+  <circle cx="826" cy="298" r="5" fill="#ffffff"/>
+  <g stroke="#14213d" stroke-width="10" stroke-linecap="round" fill="none">
+    <path d="M 625 352 L 600 395 L 618 438"/>
+    <path d="M 665 352 L 650 397 L 676 438"/>
+    <path d="M 740 352 L 718 396 L 736 438"/>
+    <path d="M 778 352 L 770 398 L 798 438"/>
+  </g>
+  <g fill="#ffffff" stroke="#14213d" stroke-width="4">
+    <circle cx="600" cy="395" r="7"/><circle cx="650" cy="397" r="7"/><circle cx="718" cy="396" r="7"/><circle cx="770" cy="398" r="7"/>
+  </g>
+  <!-- learning loop over the legged robot -->
+  <path d="M 640 250 C 660 200, 760 200, 780 250" stroke="#e07a2f" stroke-width="3" fill="none"/>
+  <path d="M 772 238 L 780 252 L 790 238" stroke="#e07a2f" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <text x="664" y="196" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#e07a2f">π(a | s)</text>
+
+  <text x="480" y="505" text-anchor="middle" font-family="Fira Sans, Helvetica, Arial, sans-serif" font-size="22" fill="#14213d" opacity="0.7">CentraleSupélec · 2027</text>
+</svg>

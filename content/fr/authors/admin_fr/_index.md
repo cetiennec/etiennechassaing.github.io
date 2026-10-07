@@ -33,6 +33,8 @@ profiles:
     label: E-mail Me
   - icon: brands/github
     url: https://github.com/cetiennec
+  - icon: brands/huggingface
+    url: https://huggingface.co/cetiennec
   - icon: brands/linkedin
     url: https://www.linkedin.com/in/etienne-chassaing1/
   - icon: academicons/google-scholar
@@ -117,10 +119,10 @@ work:
     location: France
     summary: |
       Responsabilités :
-      - CentraleSupélec — Cours électif de Robotique (avr. 2027) : conception du cours "Robotics Systems, from Motion to Embodied AI" — cinématique, modèle dynamique, planification de trajectoire et contrôle en couple ; locomotion biomimétique vs. apprise, apprentissage, garanties formelles ; projet Python MuJoCo.
-      - CentraleSupélec — Cours de Reinforcement Learning (fin 2026, au sein du cours "Data-Driven Control") : MDP, Q-learning, méthodes Actor-Critic, Deep RL. Suivi de projet de 2e année, Pôle Projet Robotique : encadrement de projets en robotique/apprentissage.
-      - ECE Paris — Systèmes bouclés (cours magistral, promo de 500 élèves) : modélisation, domaine de Laplace, transformée en Z, discrétisation, PID échantillonné, stabilité (critère du disque unité), filtre de Kalman ; conception des supports, QCM et examens ; correction du partiel final. Suivi de projet technique Véhicule Autonome : perception, contrôle et implémentation d'un algorithme SLAM sous ROS, suivi de trajectoire.
-      - AlbertSchool — Enseignement de "Mathematics Foundations", quatre séances de 3h couvrant l'algèbre linéaire et l'analyse à la base du Machine-Learning : vecteurs et similarité cosinus, matrices comme transformations, dérivées et règle de la chaîne comme rétropropagation, et descente de gradient.
+      - CentraleSupélec, cours électif de Robotique (avr. 2027) : conception du cours "Robotics Systems, from Motion to Embodied AI", couvrant cinématique, modèle dynamique, planification de trajectoire et contrôle en couple ; locomotion biomimétique vs. apprise, apprentissage, garanties formelles ; projet Python MuJoCo.
+      - CentraleSupélec, cours de Reinforcement Learning (fin 2026, au sein du cours "Data-Driven Control") : MDP, Q-learning, méthodes Actor-Critic, Deep RL. Suivi de projet de 2e année, Pôle Projet Robotique : encadrement de projets en robotique/apprentissage.
+      - ECE Paris, Systèmes bouclés (cours magistral, promo de 500 élèves) : modélisation, domaine de Laplace, transformée en Z, discrétisation, PID échantillonné, stabilité (critère du disque unité), filtre de Kalman ; conception des supports, QCM et examens ; correction du partiel final. Suivi de projet technique Véhicule Autonome : perception, contrôle et implémentation d'un algorithme SLAM sous ROS, suivi de trajectoire.
+      - AlbertSchool, enseignement de "Mathematics Foundations", quatre séances de 3h couvrant l'algèbre linéaire et l'analyse à la base du Machine-Learning : vecteurs et similarité cosinus, matrices comme transformations, dérivées et règle de la chaîne comme rétropropagation, et descente de gradient.
       - Enseignement de "Mathematics Foundations", quatre séances de 3h couvrant l'algèbre linéaire et l'analyse à la base du Machine-Learning : vecteurs et similarité cosinus, matrices comme transformations, dérivées et règle de la chaîne comme rétropropagation, et descente de gradient.
 
   - position: Consultant indépendant en IA appliquée et contrôle de systèmes

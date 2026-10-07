@@ -12,13 +12,13 @@ notebooks, and the **teaching material** I use in the classroom.
 A Jupyter Book of control-engineering tutorials, from the physical model down to the
 control law, with the code:
 
-- **Heated pipe with heat losses** — modelling a delayed system and model-predictive
+- **Heated pipe with heat losses**: modelling a delayed system and model-predictive
   control (MPC)
-- **Precision landing of a Parrot drone** — control of a delayed system
-- **Fishing boat** — a reinforcement-learning environment
+- **Precision landing of a Parrot drone**: control of a delayed system
+- **Fishing boat**: a reinforcement-learning environment
 
 ## 🎓 [Courses](/teaching/)
 
-Exam papers, quizzes and handouts distributed to students — currently the **Sampled
+Exam papers, quizzes and handouts distributed to students: currently the **Sampled
 Control Systems** course at ECE Paris, whose final exam is transcribed in full on
 this site.

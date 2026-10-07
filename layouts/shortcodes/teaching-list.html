@@ -1,23 +1,32 @@
 {{/*
-  teaching-list shortcode — cards for every page of a content section, newest first.
-  Used at the bottom of the Teaching page (/teaching/) to list past teaching experience.
+  teaching-list shortcode: cards for the pages and sub-sections of a section, by weight then newest first.
+  Used on the school pages under /teaching/ to list each school's classes.
 
-  Params: section — the section to list (e.g. "teaching", "enseignements", "formations").
-  A page with `teaching_list: false` in its front matter is left out (used when the
-  experience already has its own course page above).
+  Params: section (optional): path of the section to list, e.g. "teaching/epfl".
+  Defaults to the section of the page the shortcode is on.
+  A page with `teaching_list: false` in its front matter is left out (e.g. the ECE
+  final exam, which is linked from its course page).
 */}}
-{{ $section := site.GetPage (.Get "section") }}
-{{ with $section }}
+{{ $section := .Page }}
+{{ with .Get "section" }}
+  {{ $section = site.GetPage . }}
+  {{ if not $section }}{{ errorf "teaching-list: section %q not found" . }}{{ end }}
+{{ end }}
 <div class="teaching-cards">
-  {{ range .RegularPages.ByDate.Reverse }}
+  {{ range $section.Pages.ByWeight }}
     {{ if ne .Params.teaching_list false }}
     <a class="teaching-card" href="{{ .RelPermalink }}">
       {{ with .Resources.GetMatch "featured*" }}
-        {{ $img := .Fill "480x270 Center webp" }}
-        <img src="{{ $img.RelPermalink }}" alt="" loading="lazy" width="480" height="270">
+        {{ if eq .MediaType.SubType "svg" }}
+          {{/* SVGs can't be resized by Hugo; use as is (CSS crops to 16:9) */}}
+          <img src="{{ .RelPermalink }}" alt="" loading="lazy" width="480" height="270">
+        {{ else }}
+          {{ $img := .Fill "480x270 Center webp" }}
+          <img src="{{ $img.RelPermalink }}" alt="" loading="lazy" width="480" height="270">
+        {{ end }}
       {{ end }}
       <div class="teaching-card-body">
-        <div class="teaching-card-date">{{ .Date.Year }}</div>
+        {{ if not .Date.IsZero }}<div class="teaching-card-date">{{ .Date.Year }}</div>{{ end }}
         <div class="teaching-card-title">{{ .Title }}</div>
         <div class="teaching-card-desc">{{ .Summary | plainify }}</div>
       </div>
@@ -25,6 +34,3 @@
     {{ end }}
   {{ end }}
 </div>
-{{ else }}
-  {{ errorf "teaching-list: section %q not found" (.Get "section") }}
-{{ end }}

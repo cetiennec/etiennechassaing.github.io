@@ -1,5 +1,5 @@
 ---
-title: "Sorting arm — beta"
+title: "Sorting arm: beta"
 summary: "Unlisted preview of the animated banner proposed for the Courses page."
 type: docs
 math: true
@@ -11,11 +11,11 @@ _build:
 
 ## Beta preview
 
-Not linked from anywhere and kept out of search engines — it exists so the banner can be
+Not linked from anywhere and kept out of search engines; it exists so the banner can be
 looked at inside the real site, with the real theme, the real logos and the dark-mode
 toggle in the navbar. Nothing on the live Courses page has changed.
 
-### Option 1 — the three schools
+### Option 1: the three schools
 
 {{< sorting-arm bins="CENTRALE/RL|ECE/CONTROL|ALBERT/MATHS" >}}
 
@@ -44,7 +44,7 @@ cards:
 
 </div>
 
-### Option 2 — one school, three topics
+### Option 2: one school, three topics
 
 The same machine sorting three copies of the ECE logo into the three blocks of the
 Sampled Control course, for the [ECE page](../ece/) rather than the Courses hub.
@@ -54,7 +54,7 @@ Sampled Control course, for the [ECE page](../ece/) rather than the Courses hub.
 ### Notes
 
 Everything is simulated rather than keyframed: closed-form two-link inverse kinematics on
-the elbow-up branch, each joint tracked by a PD law at $k_p = 70$, $k_d = 13.5$ — so
+the elbow-up branch, each joint tracked by a PD law at $k_p = 70$, $k_d = 13.5$, so
 $\omega_n \approx 8.4$ rad/s and $\zeta \approx 0.81$, and the small overshoot as the claw
 arrives is the controller settling. A parallelogram wrist keeps the head level, the claw
 opens above the bin and the logo falls under gravity, and the eyes lead the motion toward

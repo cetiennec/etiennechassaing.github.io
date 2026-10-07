@@ -1,34 +1,32 @@
 ---
 title: Teaching
-summary: "Courses I teach, with their lecture material and exams, and my other teaching experience."
+summary: "Everything I teach, sorted by school: courses with their lecture material and exams, teaching assistant positions, project supervision and company training."
 type: docs
-cascade:
-  - _target:
-      kind: page
-    params:
-      show_breadcrumb: true
 ---
 
-The courses I teach, sorted by school, with the material handed out to students —
-followed by my [other teaching experience](#other-teaching-experience). LaTeX sources
-live in a private repository; the PDFs are published to
-[github.com/cetiennec/cours-pdf](https://github.com/cetiennec/cours-pdf) and served
-straight from GitHub.
+I have been teaching for 10 years: lectures in front of 500 students, small-group tutorials,
+student projects I supervise and training for companies. It's all here, school by school.
+For the courses I created, the material is [freely available](https://github.com/cetiennec/cours-pdf):
+exactly what I hand out to my students.
 
 {{< sorting-arm bins="CENTRALE/RL|ECE/CONTROL|ALBERT/MATHS" >}}
+
+## Courses I created
+
+Courses where I wrote the material handed out to students.
 
 <div class="school-cards">
 
 <a class="school-card" href="centralesupelec/">
   <div class="school-logo"><img src="assets/logo-centralesupelec.png" alt="CentraleSupélec"></div>
   <div class="school-card-name">CentraleSupélec</div>
-  <div class="school-card-desc">Reinforcement Learning</div>
+  <div class="school-card-desc">Reinforcement Learning, Robotics elective, robotics projects</div>
 </a>
 
 <a class="school-card" href="ece/">
   <div class="school-logo"><img src="assets/logo-ece.webp" alt="ECE Paris"></div>
   <div class="school-card-name">ECE Paris</div>
-  <div class="school-card-desc">Sampled Control Systems</div>
+  <div class="school-card-desc">Sampled Control Systems, autonomous car project</div>
 </a>
 
 <a class="school-card" href="albertschool/">
@@ -39,25 +37,30 @@ straight from GitHub.
 
 </div>
 
-## [CentraleSupélec — Reinforcement Learning](centralesupelec/)
+## Corporate training
 
-A rework of the PARL course: four lectures and written exercises, from MDPs to
-model-free control.
+Training I design and deliver for engineering teams in companies.
 
-## [ECE Paris — Sampled Control Systems](ece/)
+<div class="school-cards">
 
-Digital control taught to the full year group (500 students), April to June 2026:
-$z$-transform, discretisation, sampled PID, filtering and Kalman estimation. Six lecture
-decks, the final exam and the midterm quiz.
+<a class="school-card" href="companies/">
+  <div class="school-logo school-logo-icon" aria-hidden="true">🏢</div>
+  <div class="school-card-name">Companies</div>
+  <div class="school-card-desc">Deep RL, PID and MPC</div>
+</a>
 
-## [AlbertSchool — Mathematics Foundations](albertschool/)
+</div>
 
-The linear algebra and calculus behind machine learning: vectors and cosine similarity,
-matrices and the forward pass, derivatives and the chain rule, gradient descent. Four
-sessions, taught in English.
+## Other teaching
 
-## Other teaching experience
+Teaching assistant positions.
 
-Teaching assistant positions and project supervision.
+<div class="school-cards">
 
-{{< teaching-list section="teaching" >}}
+<a class="school-card" href="epfl/">
+  <div class="school-logo"><img src="assets/logo-epfl.svg" alt="EPFL"></div>
+  <div class="school-card-name">EPFL</div>
+  <div class="school-card-desc">Teaching assistant: MPC, legged robots, AI</div>
+</a>
+
+</div>
