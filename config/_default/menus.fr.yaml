@@ -19,12 +19,11 @@ main:
   - name: Études de cas
     url: /book/case-studies/
     weight: 12
-  - name: Cours
-    url: /fr/classes/
+  # Cours, expériences d'enseignement et formations sur une seule page ;
+  # les anciennes URL /fr/classes/ redirigent ici.
+  - name: Enseignement
+    url: /fr/teaching/
     weight: 13
-  - name: Formations
-    url: teaching/
-    weight: 14
   - name: CV
     url: experience/
     weight: 15

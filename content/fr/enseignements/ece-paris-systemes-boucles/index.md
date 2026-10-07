@@ -3,6 +3,7 @@ title: Systèmes Bouclés (ECE Paris)
 summary: Cours de Systèmes Bouclés en promotion complète (500 élèves), d'avril à juin 2026
 date: 2026-04-01
 type: docs
+teaching_list: false  # has its own course page at /teaching/ece/
 math: true
 tags:
   - 'Control/Systèmes Bouclés'
@@ -27,7 +28,7 @@ les systèmes continus, était assurée par un autre intervenant.
 Tous les documents distribués aux étudiants sont publiés sur ce site — six diaporamas de
 cours, l'examen final et un exemple de QCM individualisé :
 
-**[→ Supports de cours et évaluations](/fr/classes/ece/)**
+**[→ Supports de cours et évaluations](/fr/teaching/ece/)**
 
 L'examen final est construit comme une étude de cas filée sur le contrôle en altitude d'un
-drone d'observation, et est [transcrit intégralement ici](/fr/classes/ece/examen-final/).
+drone d'observation, et est [transcrit intégralement ici](/fr/teaching/ece/examen-final/).

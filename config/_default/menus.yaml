@@ -10,12 +10,10 @@ main:
   - name: Case Studies
     url: /book/case-studies/
     weight: 11
-  - name: Courses
-    url: /classes/
-    weight: 12
+  # Courses and past teaching experience share one page; old /classes/ URLs redirect here.
   - name: Teaching
-    url: teaching/
-    weight: 13
+    url: /teaching/
+    weight: 12
   - name: Experience
     url: experience/
     weight: 14

@@ -17,7 +17,7 @@ control law, with the code:
 - **Precision landing of a Parrot drone** — control of a delayed system
 - **Fishing boat** — a reinforcement-learning environment
 
-## 🎓 [Courses](/classes/)
+## 🎓 [Courses](/teaching/)
 
 Exam papers, quizzes and handouts distributed to students — currently the **Sampled
 Control Systems** course at ECE Paris, whose final exam is transcribed in full on

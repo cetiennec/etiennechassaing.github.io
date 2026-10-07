@@ -3,6 +3,7 @@ title: Control Systems (ECE Paris)
 summary: Control systems course for the full cohort (500 students), from April to June 2026
 date: 2026-04-01
 type: docs
+teaching_list: false  # has its own course page at /teaching/ece/
 math: true
 tags:
   - 'Control/Systems'
@@ -27,7 +28,7 @@ lecturer.
 All the documents handed out to students are published on this site — six lecture decks,
 the final exam and a sample individualised quiz paper:
 
-**[→ Course material and exams](/classes/ece/)**
+**[→ Course material and exams](/teaching/ece/)**
 
 The final exam is built as a single running case study on the altitude control of an
-observation drone, and is [presented in full here](/classes/ece/examen-final/).
+observation drone, and is [presented in full here](/teaching/ece/examen-final/).
