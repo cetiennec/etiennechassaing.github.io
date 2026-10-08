@@ -1,20 +1,19 @@
 ---
 title: Enseignement
-summary: "Tout ce que j'enseigne, classé par école : cours avec leurs supports et examens, TD, encadrement de projets et formations en entreprise."
+summary: "Tout les cours et les formatiosns que je donne et que j'ai donné, classé par école ou entreprises."
 type: docs
 ---
 
-J'enseigne depuis 10 ans : des cours en amphi devant 500 élèves, des TD en petits groupes,
-des projets étudiants que j'encadre et des formations en entreprise. Vous trouverez tout ici,
-école par école. Pour les cours que j'ai créés, les supports sont en
-[accès libre](https://github.com/cetiennec/cours-pdf) : ce sont exactement ceux que je
-distribue à mes étudiants.
+J'enseigne depuis 10 ans dans des formats différents, cours particuliers, colleur, chargé de TD, cours en amphi devant 150 élèves, des TD en petits groupes, des projets étudiants que j'encadre et maintenant des formations en entreprise. Tout le contenu que j'ai conçu est ici.
+
+Les supports sont en accès livre sur ce GitHUb :
+[accès libre](https://github.com/cetiennec/cours-pdf).
 
 {{< sorting-arm bins="CENTRALE/RL|ECE/SYS. BOUCLÉS|ALBERT/MATHS" >}}
 
-## Cours que j'ai créés
+## Cours que j'ai conçus
 
-Cours dont j'ai rédigé les supports distribués aux étudiants.
+Cours dont j'ai rédigé les supports et/ou conçu le format.
 
 <div class="school-cards">
 
@@ -40,7 +39,7 @@ Cours dont j'ai rédigé les supports distribués aux étudiants.
 
 ## Formations
 
-Formations que je conçois et anime pour les équipes techniques en entreprise.
+Formations que je conçois et anime pour des équipes techniques en entreprise.
 
 <div class="school-cards">
 

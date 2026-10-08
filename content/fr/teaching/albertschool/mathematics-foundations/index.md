@@ -1,6 +1,6 @@
 ---
 title: Mathematics Foundations
-summary: "Vecteurs, matrices, dérivées et descente de gradient, construits vers les notions de machine learning qui s'en servent."
+summary: "Vecteurs, matrices, dérivées et descente de gradient, pour aborder le Machine Learning sereinement."
 type: docs
 sidebar:
   sections: true
@@ -9,12 +9,10 @@ math: true
 ---
 
 Quatre séances de 3 heures sur l'algèbre linéaire et l'analyse derrière le machine
-learning : vecteurs et similarité cosinus, matrices comme transformations et passe
-avant, dérivées et règle de la chaîne comme rétropropagation, et descente de gradient.
+learning : vecteurs et similarité cosinus, matrices comme transformations et forward-pass, dérivées et règle de la chaîne comme rétropropagation, et descente de gradient.
 Le cours est dispensé en anglais.
 
-Les diapositives sont construites à partir de mes notes manuscrites, prises en direct sur
-iPad pendant le cours.
+Les diapositives sont construites à partir de mes notes manuscrites, prises en direct pendant le cours.
 
 ### Séances
 
@@ -30,8 +28,10 @@ iPad pendant le cours.
 {{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/albertschool/mathematics-foundations/cours/04-gradients-gradient-descent-assessment/diffusion/04-gradients-gradient-descent-assessment.pdf"
     title="Séance 4 : Gradients, Gradient Descent & Assessment" >}}
 
-Séance 1 : addition de vecteurs et produit scalaire, similarité cosinus sur des données
-réelles. Séance 2 : matrices comme transformations linéaires, passe avant, vecteurs
-propres et ACP. Séance 3 : dérivées, règles de dérivation, règle de la chaîne comme
-rétropropagation. Séance 4 : gradient, descente de gradient, minima, et un contrôle
-appliqué.
+- Séance 1 : addition de vecteurs et produit scalaire, similarité cosinus sur des données
+réelles. 
+- Séance 2 : matrices comme transformations linéaires, forward pass, vecteurs
+propres et PCA. 
+- Séance 3 : dérivées, règles de dérivation, règle de la chaîne comme
+rétropropagation. 
+- Séance 4 : gradient, descente de gradient, minimum local et global

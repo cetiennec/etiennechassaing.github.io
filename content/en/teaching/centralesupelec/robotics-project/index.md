@@ -16,4 +16,4 @@ image:
 
 ## Summary
 
-Since January 2026, supervision of robotics projects for CentraleSupélec students.
+Since January 2026, I supervise robotics projects for CentraleSupélec students.

@@ -1,6 +1,6 @@
 ---
 title: Reinforcement Learning
-summary: "A rework of the PARL course: four lectures and written exercises, from MDPs to model-free control."
+summary: "Introductory course on Reinforcement Learning: four lectures and written exercises, from MDPs to model-free control."
 type: docs
 sidebar:
   sections: true
@@ -8,8 +8,7 @@ weight: 1
 math: true
 ---
 
-A rework of the PARL course, structured as **four lectures**, each followed by a
-written-exercise sheet picking up the topic of the lecture before it.
+An introductory course on Reinforcement Learning, structured as **four lectures**, each followed by a tutorial.
 
 ### Lectures
 
@@ -25,10 +24,10 @@ written-exercise sheet picking up the topic of the lecture before it.
 {{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/04-deep-rl-applications/diffusion/04-deep-rl-applications.pdf"
     title="Lecture 4: Model-Free Control & Deep RL Applications" >}}
 
-Session 1: Markov decision processes, return, value functions, Bellman equations.
-Session 2: policy evaluation, policy iteration, value iteration. Session 3: Monte-Carlo
-methods, temporal differences TD(0). Session 4: Monte-Carlo control, SARSA, Q-learning,
-and a look at deep RL.
+- Session 1: Markov decision processes, return, value functions, Bellman equations.
+- Session 2: policy evaluation, policy iteration, value iteration.
+- Session 3: Monte-Carlo methods, temporal differences TD(0).
+- Session 4: Monte-Carlo control, SARSA, Q-learning, and a look at deep RL.
 
 ### Written exercises
 
@@ -40,6 +39,6 @@ and a look at deep RL.
 
 > Exercise sheets for sessions 3 and 4, and the notebook tutorials, are in preparation.
 
-See also the [Deep Reinforcement Learning training](/teaching/companies/drl/) I run for
-companies: same fundamentals, geared towards hands-on practice with Stable-Baselines3
+See also the [Deep Reinforcement Learning training](/teaching/companies/drl/) I delivered
+in companies: same fundamentals, geared towards hands-on practice with Stable-Baselines3
 and Gym.

@@ -1,19 +1,18 @@
 ---
 title: Teaching
-summary: "Everything I teach, sorted by school: courses with their lecture material and exams, teaching assistant positions, project supervision and company training."
+summary: "All the courses and training I give and have given, sorted by school or company."
 type: docs
 ---
 
-I have been teaching for 10 years: lectures in front of 500 students, small-group tutorials,
-student projects I supervise and training for companies. It's all here, school by school.
-For the courses I created, the material is [freely available](https://github.com/cetiennec/cours-pdf):
-exactly what I hand out to my students.
+I have been teaching for 10 years in many formats: private tutoring, oral exams (colles), teaching assistant sessions, lectures in front of 150 students, student projects I supervise and, now, training for companies. All the content I designed is here.
+
+The material is [freely available](https://github.com/cetiennec/cours-pdf) on this GitHub.
 
 {{< sorting-arm bins="CENTRALE/RL|ECE/CONTROL|ALBERT/MATHS" >}}
 
-## Courses I created
+## Courses I designed
 
-Courses where I wrote the material handed out to students.
+Courses where I wrote the material and/or designed the format.
 
 <div class="school-cards">
 

@@ -5,7 +5,11 @@ summary: "Reinforcement learning, a robotics elective and robotics project super
 type: docs
 ---
 
-I teach reinforcement learning within the *Data-Driven Control* course, designed the robotics
-elective *Robotics Systems, from Motion to Embodied AI*, and supervise robotics projects.
+At CentraleSupélec I teach the following courses (2026-2027):
+
+- Introduction to reinforcement learning, within the *Data-Driven Control* course
+- The elective *Robotics Systems, from Motion to Embodied AI*
+
+I also supervise robotics projects.
 
 {{< teaching-list >}}

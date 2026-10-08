@@ -16,4 +16,4 @@ image:
 
 ## Résumé
 
-Depuis janvier 2026, encadrement (suivi de projet) de projets robotique pour les étudiants de CentraleSupélec.
+Depuis janvier 2026, j'encadre des projets robotique pour les étudiants de CentraleSupélec.

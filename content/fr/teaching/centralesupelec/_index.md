@@ -5,8 +5,11 @@ summary: "Apprentissage par renforcement, un électif de robotique et le suivi d
 type: docs
 ---
 
-J'enseigne l'apprentissage par renforcement dans le cours *Data-Driven Control*, j'ai conçu
-l'électif de robotique *Robotics Systems, from Motion to Embodied AI*, et je suis des projets
-de robotique.
+J'enseigne à CentraleSupélec les cours suivants (2026-2027):
+
+- Introduction à l'apprentissage par renforcement dans le cours *Data-Driven Control*
+- Cours électif *Robotics Systems, from Motion to Embodied AI*
+
+Je supervise également des projets de robotique.
 
 {{< teaching-list >}}
