@@ -14,7 +14,7 @@ marketing:
     site_type: Person
     local_business_type: ''
     org_name: 'Etienne Chassaing'
-    description: 'Etienne Chassaing, Control and Robotics Engineer. CV, teaching, and projects.'
+    description: 'Etienne Chassaing, Robotics and Control Engineer and Teacher. Resume, teaching, case studies and publications.'
     twitter: ''
   analytics:
     google_analytics: ''
@@ -45,9 +45,9 @@ header:
 # Site footer
 footer:
   copyright:
-    notice: '© 2024 Me. This work is licensed under MIT License'
+    notice: '© {year} Etienne Chassaing'
     license:
-      enable: true
+      enable: false
       allow_derivatives: false
       share_alike: true
       allow_commercial: false

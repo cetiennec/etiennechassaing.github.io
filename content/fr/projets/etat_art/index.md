@@ -12,7 +12,6 @@ tags:
 
 ## Contexte de la Mission
 Durée : **1 mois et 4 jours**  
-Facturation : **4 jours**
 
 ### Objectifs :
 L'objectif principal de cette mission était d'**identifier un verrou technologique** dans un domaine spécifique de la robotique, en réalisant une analyse approfondie de l'état de l'art. Cette analyse devait justifier la pertinence de l'innovation et de l'orientation stratégique dans le cadre de la recherche et développement (R&D) du client.

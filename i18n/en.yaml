@@ -3,3 +3,7 @@
   translation: Download my CV (PDF)
 - id: cv_courses
   translation: Courses
+
+# Footer attribution (the theme requires {hugoblox})
+- id: published_with
+  translation: Published with {hugoblox}.

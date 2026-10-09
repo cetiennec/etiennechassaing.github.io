@@ -1,6 +1,6 @@
 ---
 title: Enseignement
-summary: "Tout les cours et les formatiosns que je donne et que j'ai donné, classé par école ou entreprises."
+summary: "Tous les cours et formations que je donne et que j'ai donnés, classés par école ou entreprise."
 type: docs
 ---
 

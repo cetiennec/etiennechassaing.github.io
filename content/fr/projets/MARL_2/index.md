@@ -13,7 +13,6 @@ tags:
 
 ## Contexte de la Mission  
 Durée : **Prestation ponctuelle en février 2025**  
-Facturation : 5 jours
 
 
 ### Objectifs :  

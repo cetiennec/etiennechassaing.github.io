@@ -20,7 +20,6 @@ tags:
 
 ## Contexte de la Mission  
 Durée : **Prestation de dix jours**  
-Facturation : **10 jours**
 
 
 ### Objectifs :  

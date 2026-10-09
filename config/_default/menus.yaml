@@ -17,7 +17,7 @@ main:
   - name: Resume
     url: experience/
     weight: 14
-  - name: Papers
+  - name: Publications
     url: /publication
     weight: 15
   - name: Cragdiary

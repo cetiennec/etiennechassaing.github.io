@@ -42,7 +42,7 @@ profiles:
 
 
 interests:
-  - Intelligence Articielle et Optimisation
+  - Intelligence Artificielle et Optimisation
   - Robotique et Contrôle
   - Machine-Learning et Reinforcement-Learning
   

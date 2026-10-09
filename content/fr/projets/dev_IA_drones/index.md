@@ -14,7 +14,6 @@ tags:
 
 ## Contexte de la Mission
 Durée : **Prestation de deux semaines**  
-Facturation : **9 jours**
 
 ![Image alt](neodesystems_logo.jpeg)
 
