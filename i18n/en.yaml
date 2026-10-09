@@ -1,0 +1,5 @@
+# Site-specific strings, merged with the theme's translations.
+- id: cv_download
+  translation: Download my CV (PDF)
+- id: cv_courses
+  translation: Courses

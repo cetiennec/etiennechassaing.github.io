@@ -14,7 +14,7 @@ main:
   - name: Teaching
     url: /teaching/
     weight: 12
-  - name: Experience
+  - name: Resume
     url: experience/
     weight: 14
   - name: Papers

@@ -1,0 +1,25 @@
+{{/* One entry of the CV timeline (used by resume-experience for both work and education).
+     Params: page, title, org, org_url, location, start, end, summary, courses, format. */}}
+{{ $fmt := .format | default "Jan 2006" }}
+{{ $current := and .start (not .end) }}
+<li class="cv-item{{ if $current }} cv-current{{ end }}">
+  <div class="cv-when">
+    {{- if .start -}}
+      {{ time.Format $fmt (time .start) }} – {{ if .end }}{{ time.Format $fmt (time .end) }}{{ else }}{{ i18n "present" | default "Present" }}{{ end }}
+    {{- else if .end -}}
+      {{ time.Format $fmt (time .end) }}
+    {{- end -}}
+    {{ with .location }}<span class="cv-location">{{ . }}</span>{{ end }}
+  </div>
+  <div class="cv-body">
+    <h3 class="cv-title">{{ .title | markdownify | emojify }}</h3>
+    {{ with .org }}
+    <div class="cv-org">{{ with $.org_url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}{{ . }}{{ if $.org_url }}</a>{{ end }}</div>
+    {{ end }}
+    {{ with .summary }}<div class="cv-summary">{{ . | $.page.RenderString }}</div>{{ end }}
+    {{ with .courses }}
+    <div class="cv-courses-label">{{ i18n "cv_courses" }}</div>
+    <ul class="cv-chips">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+    {{ end }}
+  </div>
+</li>

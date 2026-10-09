@@ -1,0 +1,36 @@
+{{/* Local override of the theme's Skills block: each skill group is a grid of small
+     cards (icon, name, description, optional `url` + `url_label` link), styled by the `cv-` rules in custom.css.
+     `percent` is shown as a thin bar unless design.show_skill_percentage is false. */}}
+
+{{ $block := .wcBlock }}
+{{ $author := $block.content.username | default "admin" }}
+{{ $person_page_path := (printf "/authors/%s" $author) }}
+{{ $person_page := site.GetPage $person_page_path }}
+{{ if not $person_page }}
+{{ errorf "Could not find an author page at `%s`." $person_page_path }}
+{{ end }}
+{{ $show_percent := $block.design.show_skill_percentage | default true }}
+{{ $groups := $person_page.Params.skills | default slice }}
+
+<section class="cv-wrap cv-section" id="cv-skills">
+  {{ with $block.content.title }}<h2 class="cv-heading">{{ . | markdownify | emojify }}</h2>{{ end }}
+  {{ with $block.content.text }}<p>{{ . | markdownify | emojify }}</p>{{ end }}
+  {{ range $groups }}
+  {{ if gt (len $groups) 1 }}<h3 class="cv-subheading">{{ .name | markdownify | emojify }}</h3>{{ end }}
+  <div class="cv-skills">
+    {{ range .items }}
+    <div class="cv-skill">
+      {{ with .icon }}<span class="cv-skill-icon">{{ partial "functions/get_icon" (dict "name" . "attributes" "style=\"height: 1.15rem;\"") }}</span>{{ end }}
+      <div>
+        <div class="cv-skill-name">{{ strings.TrimRight ": " .name | markdownify | emojify }}</div>
+        {{ with .description }}<div class="cv-skill-desc">{{ . | markdownify | emojify }}</div>{{ end }}
+        {{/* A plain `url` field rather than a Markdown link: in blocks, Markdown links go
+             through the theme's backlinks render hook and come out empty. */}}
+        {{ if .url }}<a class="cv-skill-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .url_label | default .url }} →</a>{{ end }}
+        {{ if and $show_percent .percent }}<div class="cv-bar"><span style="width: {{ .percent }}%"></span></div>{{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
+</section>

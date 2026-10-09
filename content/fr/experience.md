@@ -4,27 +4,24 @@ date: 2023-10-24
 type: landing
 
 design:
-  spacing: '5rem'
+  spacing: '3rem'
 
 # Note: `username` refers to the user's folder name in `content/authors/`
 
 # Page sections
 sections:
-  - block: cta-button-list
+  # Name, role, links and PDF download (layouts/partials/blox/cv-header.html)
+  - block: cv-header
     content:
-      # Need a custom icon?
-      # Add an SVG image to the `assets/media/icons/` folder and reference it in the `icon` field below
-      buttons:
-        - text: Téléchargez mon CV
-          icon: custom/download
-          url: https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/personnel/cv/diffusion/CV_etienne_chassaing_juillet_2026.pdf
+      username: admin_fr
+      pdf: https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/personnel/cv/diffusion/CV_etienne_chassaing_juillet_2026.pdf
 
   - block: resume-experience
     content:
       username: admin_fr
     design:
       # Hugo date format
-      date_format: 'January 2006'
+      date_format: 'Jan 2006'
       # Education or Experience section first?
       is_education_first: false
   - block: resume-awards
@@ -32,21 +29,9 @@ sections:
       title: Récompenses
       username: admin_fr
 
-  - block: features
-    content:
-      title: Activités sportives
-      subtitle: Mes activités sportives
-      items:
-        - name: 🧗🏻‍♂️ Escalade sportive 
-          description: Falaise et grandes voies
-        - name: 🏔️ Randonnée et trekking
-          description: GR 20, GR70 et treks en autonomie 
-      design:
-        columns: '2'
-
   - block: resume-skills
     content:
-      title: Compétences 
+      title: Compétences et loisirs
       id: 1
       username: admin_fr
     design:

@@ -266,3 +266,11 @@
 
 - id: published_with
   translation: Publié avec {hugoblox}.
+
+# CV page
+
+- id: cv_download
+  translation: Télécharger mon CV (PDF)
+
+- id: cv_courses
+  translation: Cours suivis

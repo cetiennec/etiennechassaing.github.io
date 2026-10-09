@@ -1,0 +1,40 @@
+{{/* CV page header: avatar, name, role, profile links and PDF download button.
+     Params: content.username, content.pdf, and content.role (defaults to the author's `role`). */}}
+
+{{ $block := .wcBlock }}
+{{ $author := $block.content.username | default "admin" }}
+{{ $person_page_path := (printf "/authors/%s" $author) }}
+{{ $person_page := site.GetPage $person_page_path }}
+{{ if not $person_page }}
+{{ errorf "Could not find an author page at `%s`." $person_page_path }}
+{{ end }}
+{{ $person := $person_page.Params }}
+{{ $avatar := ($person_page.Resources.ByType "image").GetMatch "*avatar*" }}
+
+<div class="cv-header">
+  {{ with $avatar }}
+  {{ $img := .Fill "300x300 Center webp" }}
+  <img class="cv-avatar" src="{{ $img.RelPermalink }}" alt="{{ $person_page.Title }}" width="112" height="112">
+  {{ end }}
+  <div class="cv-header-text">
+    <h1 class="cv-name">{{ $person_page.Title }}</h1>
+    {{ with $block.content.role | default $person.role }}<div class="cv-role">{{ . | markdownify | emojify }}</div>{{ end }}
+    <ul class="cv-profiles">
+      {{ range $person.profiles }}
+      {{ $link := .url | default .link }}
+      {{ $external := in (slice "http" "https") (urls.Parse $link).Scheme }}
+      <li>
+        <a href="{{ $link | safeURL }}"{{ if $external }} target="_blank" rel="noopener"{{ end }} aria-label="{{ .label | default .icon }}">
+          {{ partial "functions/get_icon" (dict "name" .icon "attributes" "style=\"height: 1.25rem;\"") }}
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ with $block.content.pdf }}
+  <a class="cv-download" href="{{ . }}" target="_blank" rel="noopener">
+    <svg aria-hidden="true" viewBox="0 0 20 20" fill="currentColor"><path d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z"/><path d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>
+    {{ i18n "cv_download" }}
+  </a>
+  {{ end }}
+</div>

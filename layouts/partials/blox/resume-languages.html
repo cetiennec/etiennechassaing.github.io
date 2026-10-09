@@ -1,0 +1,24 @@
+{{/* Local override of the theme's Languages block: one row per language with a thin
+     level bar, styled by the `cv-` rules in custom.css. */}}
+
+{{ $block := .wcBlock }}
+{{ $author := $block.content.username | default "admin" }}
+{{ $person_page_path := (printf "/authors/%s" $author) }}
+{{ $person_page := site.GetPage $person_page_path }}
+{{ if not $person_page }}
+{{ errorf "Could not find an author page at `%s`." $person_page_path }}
+{{ end }}
+
+<section class="cv-wrap cv-section" id="cv-languages">
+  {{ with $block.content.title }}<h2 class="cv-heading">{{ . | markdownify | emojify }}</h2>{{ end }}
+  <div class="cv-skills">
+    {{ range $person_page.Params.languages }}
+    <div class="cv-skill">
+      <div>
+        <div class="cv-skill-name">{{ .name }}</div>
+        {{ with .percent }}<div class="cv-bar"><span style="width: {{ . }}%"></span></div>{{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>

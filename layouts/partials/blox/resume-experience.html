@@ -1,0 +1,45 @@
+{{/* Local override of the theme's Experience block: a compact two-column timeline
+     (dates on the left, entry on the right) styled by the `cv-` rules in custom.css.
+     Education entries may list `courses:`, shown as chips. */}}
+
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+
+{{ $author := $block.content.username | default "admin" }}
+{{ $person_page_path := (printf "/authors/%s" $author) }}
+{{ $person_page := site.GetPage $person_page_path }}
+{{ if not $person_page }}
+{{ errorf "Could not find an author page at `%s`." $person_page_path }}
+{{ end }}
+{{ $person := $person_page.Params }}
+{{ $fmt := $block.design.date_format | default "Jan 2006" }}
+
+<div class="cv-wrap{{ if $block.design.is_education_first }} cv-education-first{{ end }}">
+
+{{ with $person.work }}
+<section class="cv-section" id="cv-experience">
+  <h2 class="cv-heading">{{ i18n "experience" | default "Experience" }}</h2>
+  <ol class="cv-timeline">
+    {{ range . }}
+    {{ partial "cv/item.html" (dict "page" $page "format" $fmt
+         "title" .position "org" .company_name "org_url" .company_url "location" .location
+         "start" .date_start "end" .date_end "summary" .summary) }}
+    {{ end }}
+  </ol>
+</section>
+{{ end }}
+
+{{ with $person.education }}
+<section class="cv-section" id="cv-education">
+  <h2 class="cv-heading">{{ i18n "education" | default "Education" }}</h2>
+  <ol class="cv-timeline">
+    {{ range . }}
+    {{ partial "cv/item.html" (dict "page" $page "format" $fmt
+         "title" .area "org" .institution "location" .location
+         "start" .date_start "end" .date_end "summary" .summary "courses" .courses) }}
+    {{ end }}
+  </ol>
+</section>
+{{ end }}
+
+</div>

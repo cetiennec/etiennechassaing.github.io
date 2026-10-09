@@ -18,7 +18,7 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: ML Engineer en Robotique
+role: Robotics and Control Engineer and Teacher
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
@@ -51,17 +51,9 @@ Education:
     institution: EPFL, Lausanne
     date_start: 2022-09-01
     date_end: 2024-07-31
+    courses: [Contrôle, Conception robotique, Applied Machine Learning, Reinforcement Learning, Contrôle prédictif (MPC), Robotique mobile, Analyse de données]
     summary: |
       GPA: 5.76/6.0, A+
-
-      Cours suivis :
-      - Contrôle
-      - Conception robotique
-      - Applied Machinel-Learning
-      - Reinforcement Learning
-      - Contrôle prédictif de modèle
-      - Robotique mobile
-      - Analyse de données
 
       Projets de semestre :
       - Contrôle optimal d'un nouveau drone basé sur ROS (Voir publication ci-dessous)
@@ -71,18 +63,9 @@ Education:
     institution: CentraleSupélec, University Paris-Saclay
     date_start: 2017-09-01
     date_end: 2023-08-31
+    courses: [Robotique, Ingénierie du contrôle, Mathématiques théoriques et appliquées, Génie mécanique, Génie électrique, Mécanique des fluides, Transfert de chaleur, Contrôle multi-agents]
     summary: |
       GPA: 4.05/4.33, A+
-
-      Cours suivis :
-      - Robotique
-      - Ingénierie du contrôle
-      - Mathématiques théoriques et appliquées
-      - Génie mécanique
-      - Génie électrique
-      - Mécanique des fluides
-      - Transfert de chaleur
-      - Contrôle multi-agents
 
       Classes préparatoires:
       - MPSI-PSI* at Collège Stanislas
@@ -106,7 +89,6 @@ work:
     date_end: ''
     location: France
     summary: |
-      Responsabilités :
       - Démonstration des capacités de la librairie LeRobot sur des humanoïdes.
       - Maintenance du cours de robotique de Hugging Face.
 
@@ -118,12 +100,9 @@ work:
     date_end: ''
     location: France
     summary: |
-      Responsabilités :
-      - CentraleSupélec, cours électif de Robotique (avr. 2027) : conception du cours "Robotics Systems, from Motion to Embodied AI", couvrant cinématique, modèle dynamique, planification de trajectoire et contrôle en couple ; locomotion biomimétique vs. apprise, apprentissage, garanties formelles ; projet Python MuJoCo.
-      - CentraleSupélec, cours de Reinforcement Learning (fin 2026, au sein du cours "Data-Driven Control") : MDP, Q-learning, méthodes Actor-Critic, Deep RL. Suivi de projet de 2e année, Pôle Projet Robotique : encadrement de projets en robotique/apprentissage.
-      - ECE Paris, Systèmes bouclés (cours magistral, promo de 500 élèves) : modélisation, domaine de Laplace, transformée en Z, discrétisation, PID échantillonné, stabilité (critère du disque unité), filtre de Kalman ; conception des supports, QCM et examens ; correction du partiel final. Suivi de projet technique Véhicule Autonome : perception, contrôle et implémentation d'un algorithme SLAM sous ROS, suivi de trajectoire.
-      - AlbertSchool, enseignement de "Mathematics Foundations", quatre séances de 3h couvrant l'algèbre linéaire et l'analyse à la base du Machine-Learning : vecteurs et similarité cosinus, matrices comme transformations, dérivées et règle de la chaîne comme rétropropagation, et descente de gradient.
-      - Enseignement de "Mathematics Foundations", quatre séances de 3h couvrant l'algèbre linéaire et l'analyse à la base du Machine-Learning : vecteurs et similarité cosinus, matrices comme transformations, dérivées et règle de la chaîne comme rétropropagation, et descente de gradient.
+      - CentraleSupélec : "Reinforcement Learning", "Robotics Systems, from Motion to Embodied AI", projets de robotique.
+      - ECE Paris : "Systèmes bouclés", projet Véhicule Autonome.
+      - AlbertSchool : "Mathematics Foundations".
 
   - position: Consultant indépendant en IA appliquée et contrôle de systèmes
     company_name: ''
@@ -133,7 +112,6 @@ work:
     date_end: 2026-08-31
     location: France
     summary: |
-      Responsabilités :
       - Accompagnement d'entreprises (startups et industriels) sur des projets de modélisation, contrôle de systèmes dynamiques et intelligence artificielle : filtrage, Reinforcement Learning, computer vision, MPC.
       - Détail des missions réalisées sur la page Portfolio.
 
@@ -145,7 +123,6 @@ work:
     date_end: 2024-08-31
     location: Lausanne, Suisse
     summary: |
-      Responsabilités :
       - Développement d’un algorithme multimodal de génération de modèles thermiques de bâtiments. Ce modèle permet de prévoir le besoin futur de rénovation thermique d'un bâtiment.
       - Intégration d'à priori physiques pour garantir un modèle conforme aux lois de transfert de chaleur.
 
@@ -157,7 +134,6 @@ work:
     date_end: 2022-07-31
     location: Le Plessis Robinson, France
     summary: |
-      Responsabilités :
       - Développement de stratégies de contrôle multi-drones en utilisant le Deep Reinforcement Learning (DRL).
       - Conception d’une structure de contrôle dédiée basée sur l’état de l’art existant.
 
@@ -168,7 +144,6 @@ work:
     date_start: 2020-01-01
     date_end: 2024-07-31
     summary: |
-      Responsabilités :
       - Oraux hebdomadaires notés pour préparer les étudiants aux concours d’entrée des Grandes Écoles.
       - Enseignement des statistiques, des probabilités et des bases de l'algèbre à des étudiants de licence.
       - Chargé de TD des cours "Legged Robots" (Master) et "Foundations of Artificial Intelligence" (Bachelor) à l'EPFL.
@@ -180,7 +155,6 @@ work:
     date_start: 2020-01-01
     date_end: 2024-07-31
     summary: |
-      Responsabilités :
       - Conception avec des startups de leurs projets robotiques. Conseil sur les aspects de contrôle.
       - Développement d'un système de caméra autonome pour surveiller des bactéries pour Médecins Sans Frontières.
 
@@ -191,7 +165,6 @@ work:
     date_start: 2019-09-01
     date_end: 2021-07-31
     summary: |
-      Responsabilités :
       - Conception d'un banc de test et de TP unique pour les algorithmes de contrôle d'attitude. Le projet a été soutenu devant le CNES et Thales Alenia Space.
 
   - position: Projets personnels, réalisations et activités sportives
@@ -208,40 +181,34 @@ work:
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
 skills:
-  - name: Compétences techniques
-    color: '#eeac02'
-    color_border: '#f0bf23'
+  - name: Mécatronique
     items:
-      - name: 'Python: '
-        description: 'Librairies utilisées : OpenCV, Pytorch, AzureML'
-        percent: 90
-        icon: python
-      - name: 'Data Science: ' 
-        description: 'Librairies utilisées : Pandas, Seaborn, Scikit-Learn'
-        percent: 80
-        icon: chart-bar
-      - name: 'Contrôle: ' 
-        description: 'Systèmes linéaires, State-Feedback control, PID et MPC'
-        icon: arrow-trending-down
-      - name: 'C/C++'
-        description: 'Connaissances de bases, programmation en Arduino'
-        icon: circle-stack
-      - name: "Optimisation quadratique et linéaire"
-        description: "Formulation et résolution de problèmes d'optimisation"
-        icon: check
-      - name: 'Modélisation Physique et Mathématiques'
-        description: 'Modélisation de problèmes concrets en équation'
-        icon: calculator
-      - name: IoT
-        description: 'Conception et mise en place de réseaux de capteurs'
-        icon: link
-      - name: 'Impression 3D'
-        description: "Maîtrise avancée des techniques d'impressions 3D, conception et montage d'imprimantes"
-        icon: printer
-      - name: 'Conception 3D'
-        description: 'Utilisation de Fusion360 et Solidworks'
+      - name: Mécanique et CAO
+        description: Fusion360, SolidWorks, impression 3D (conception et montage d'imprimantes)
         icon: cube
-
+      - name: Électronique et embarqué
+        description: C/C++, Arduino, capteurs et réseaux IoT
+        icon: cpu-chip
+      - name: Contrôle
+        description: PID, retour d'état, MPC, filtre de Kalman, systèmes échantillonnés
+        icon: adjustments-horizontal
+      - name: Robotique et IA
+        description: ROS, MuJoCo, LeRobot, Reinforcement Learning, PyTorch
+        icon: sparkles
+      - name: Modélisation et optimisation
+        description: Modélisation physique, optimisation linéaire et quadratique
+        icon: calculator
+      - name: Python et data
+        description: NumPy, Pandas, Scikit-learn, OpenCV
+        icon: command-line
+  - name: Activités sportives
+    items:
+      - name: 🧗🏻‍♂️ Escalade
+        description: Falaise et grandes voies
+        url: https://cragdiary.com
+        url_label: Mes sorties sur Cragdiary
+      - name: 🏔️ Randonnée et trekking
+        description: GR 20, GR70 et treks en autonomie
 
 
 # Awards.

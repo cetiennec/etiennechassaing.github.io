@@ -18,7 +18,7 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: ML Engineer in Robotics
+role: Robotics and Control Engineer and Teacher
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
@@ -51,16 +51,9 @@ Education:
     institution: EPFL, Lausanne
     date_start: 2022-09-01
     date_end: 2024-07-31
+    courses: [Control, Robotics Design, Machine Learning, Model Predictive Control, Mobile Robotics, Data Analysis]
     summary: |
       GPA: 5.76/6.0, A+
-
-      Courses included:
-      - Control
-      - Robotics Design
-      - Machine Learning
-      - Model Predictive Control
-      - Mobile Robotics
-      - Data Analysis
 
       Semester Projects:
       - Optimal control of a new UAV drone based on ROS (See publication below)
@@ -70,20 +63,11 @@ Education:
     institution: CentraleSupélec, University Paris-Saclay
     date_start: 2017-09-01
     date_end: 2023-08-31
+    courses: [Robotics, Control Engineering, Theoretical and Applied Mathematics, Mechanical Engineering, Electrical Engineering, Fluid Mechanics, Heat Transfer, Swarm Robotics Control]
     summary: |
       GPA: 4.05/4.33, A+
 
-      Courses included:
-      - Robotics
-      - Control Engineering
-      - Theoretical and Applied Mathematics
-      - Mechanical Engineering
-      - Electrical Engineering
-      - Fluid Mechanics
-      - Heat Transfer
-      - Swarm Robotics Control
-
-      Préparatoires:
+      Preparatory classes:
       - MPSI-PSI* at Collège Stanislas
 
   - area: Visiting Student Researcher
@@ -105,9 +89,8 @@ work:
     date_end: ''
     location: France
     summary: |
-      Responsibilities include:
       - Deploying LeRobot on real hardware, specifically humanoids.
-      - WOrking on HF robotics course.
+      - Working on the Hugging Face robotics course.
       
   - position: Adjunct Lecturer
     company_name: CentraleSupélec, ECE Paris & AlbertSchool
@@ -117,11 +100,9 @@ work:
     date_end: ''
     location: France
     summary: |
-      Responsibilities include:
-      - CentraleSupélec, Elective Robotics course (Apr 2027): designed the course "Robotics Systems, from Motion to Embodied AI", covering kinematics, dynamic modeling, trajectory planning and torque control; biomimetic vs. learned locomotion, learning, formal guarantees; Python/MuJoCo project.
-      - CentraleSupélec, Reinforcement Learning course (late 2026, within "Data-Driven Control"): MDPs, Q-learning, Actor-Critic methods, Deep RL. Supervised 2nd-year Robotics Project Pole projects on robotics and learning.
-      - ECE Paris, taught "Systèmes bouclés" (lecture course, 500-student cohort): modeling, Laplace domain, Z-transform, discretization, sampled PID, stability (unit-disk criterion), Kalman filtering; designed course materials, quizzes and exams; graded the final exam. Supervised an Autonomous Vehicle technical project: perception, control, and SLAM implementation under ROS, trajectory tracking.
-      - AlbertSchool, taught "Mathematics Foundations," four 3-hour sessions covering the linear algebra and calculus behind machine learning: vectors and cosine similarity, matrices as transformations, derivatives and the chain rule as backpropagation, and gradient descent.
+      - CentraleSupélec: "Reinforcement Learning", "Robotics Systems, from Motion to Embodied AI", robotics projects.
+      - ECE Paris: "Sampled Control Systems", autonomous vehicle project.
+      - AlbertSchool: "Mathematics Foundations".
 
   - position: Independent Consultant in Applied AI and Systems Control
     company_name: ''
@@ -131,7 +112,6 @@ work:
     date_end: 2026-08-31
     location: France
     summary: |
-      Responsibilities include:
       - Supporting companies (startups and industrial players) on projects involving dynamic-systems modeling, control, and artificial intelligence: filtering, Reinforcement Learning, computer vision, MPC.
 
   - position: Master-Thesis intern on Physics-Informed Deep-Learning
@@ -142,7 +122,6 @@ work:
     date_end: 2024-08-31
     location: Lausanne, Switzerland
     summary: |
-      Responsibilities include:
       - Develop a cross-modality model to generate thermal models of buildings.
       - Integrate physics priors to obtain a model consistent with heat transfer laws.
 
@@ -154,7 +133,6 @@ work:
     date_end: 2022-07-31
     location: Le Plessis Robinson, France
     summary: |
-      Responsibilities include:
       - Developed multi-UAVs control strategies using Deep Reinforcement Learning (DRL).
       - Designed a novel dedicated control structure based on existing state of the art.
 
@@ -165,7 +143,6 @@ work:
     date_start: 2020-01-01
     date_end: 2024-07-31
     summary: |
-      Responsibilities include:
       - Organized weekly graded tutorial classes to prepare students' oral exams for Grandes écoles ("Colleur").
       - Taught statistics, probabilities, and basic Data-Science to a master student.
       - Teaching Assistant at EPFL for "Legged Robots" (Master) and "Foundations of Artificial Intelligence" (Bachelor).
@@ -177,7 +154,6 @@ work:
     date_start: 2020-01-01
     date_end: 2024-07-31
     summary: |
-      Responsibilities include:
       - Helped startups design their robotics projects and advised on design and control aspects.
       - Developed an autonomous camera system to monitor bacteria in micro cavities for Doctors Without Borders.
 
@@ -188,7 +164,6 @@ work:
     date_start: 2019-09-01
     date_end: 2021-07-31
     summary: |
-      Responsibilities include:
       - Designed a unique TestBed for ADCS (Attitude) control algorithms, now used as a tutorial workbench to predict Cubesat attitude-behavior in space.
       - The project was defended to CNES and Thales Alenia Space.
 
@@ -196,28 +171,34 @@ work:
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
 skills:
-  - name: Technical Skills
+  - name: Mechatronics
     items:
-      - name: Python
-        description: ''
-        percent: 80
-        icon: code-bracket
-      - name: Data Science
-        description: ''
-        percent: 100
-        icon: chart-bar
-      - name: SQL
-        description: ''
-        percent: 40
-        icon: circle-stack
-  - name: Hobbies
-    color: '#eeac02'
-    color_border: '#f0bf23'
+      - name: Mechanics and CAD
+        description: Fusion360, SolidWorks, 3D printing (designed and built printers)
+        icon: cube
+      - name: Electronics and embedded
+        description: C/C++, Arduino, sensors and IoT networks
+        icon: cpu-chip
+      - name: Control
+        description: PID, state feedback, MPC, Kalman filtering, sampled systems
+        icon: adjustments-horizontal
+      - name: Robotics and AI
+        description: ROS, MuJoCo, LeRobot, Reinforcement Learning, PyTorch
+        icon: sparkles
+      - name: Modelling and optimisation
+        description: Physical modelling, linear and quadratic optimisation
+        icon: calculator
+      - name: Python and data
+        description: NumPy, Pandas, Scikit-learn, OpenCV
+        icon: command-line
+  - name: Sports
     items:
-      - name: CLimbing, Hiking and trekking
-        description: ''
-        percent: 100
-        icon: person-simple-walk
+      - name: 🧗🏻‍♂️ Climbing
+        description: Crags and multi-pitch routes
+        url: https://cragdiary.com
+        url_label: My climbs on Cragdiary
+      - name: 🏔️ Hiking and trekking
+        description: GR 20, GR70 and self-supported treks
 
 
 languages:

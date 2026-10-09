@@ -1,0 +1,29 @@
+{{/* Local override of the theme's Awards block: compact cards in a two-column grid,
+     styled by the `cv-` rules in custom.css. */}}
+
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $author := $block.content.username | default "admin" }}
+{{ $person_page_path := (printf "/authors/%s" $author) }}
+{{ $person_page := site.GetPage $person_page_path }}
+{{ if not $person_page }}
+{{ errorf "Could not find an author page at `%s`." $person_page_path }}
+{{ end }}
+{{ $fmt := $block.design.date_format | default "Jan 2006" }}
+
+<section class="cv-wrap cv-section" id="cv-awards">
+  {{ with $block.content.title }}<h2 class="cv-heading">{{ . | markdownify | emojify }}</h2>{{ end }}
+  {{ with $block.content.text }}<p>{{ . | markdownify | emojify }}</p>{{ end }}
+  <div class="cv-grid">
+    {{ range sort ($person_page.Params.awards | default slice) "date" "desc" }}
+    <div class="cv-card">
+      <div class="cv-card-meta">{{ .awarder }}{{ with .date }} · {{ time.Format $fmt (time .) }}{{ end }}</div>
+      <h3 class="cv-card-title">
+        {{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}{{ .title | markdownify | emojify }}{{ if .url }}</a>{{ end }}
+      </h3>
+      {{ with .summary }}<div class="cv-card-text">{{ . | markdownify | emojify }}</div>{{ end }}
+      {{ with .certificate_url }}<a class="cv-card-link" href="{{ . }}" target="_blank" rel="noopener">{{ i18n "see_certificate" | default "See certificate" }} →</a>{{ end }}
+    </div>
+    {{ end }}
+  </div>
+</section>
