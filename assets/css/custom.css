@@ -1258,20 +1258,3 @@
   opacity: 0.85;
 }
 
-/* Homepage contact button */
-.home-contact {
-  display: inline-block;
-  margin-top: 1.25rem;
-  padding: 0.6rem 1.1rem;
-  border-radius: 0.6rem;
-  font-weight: 600;
-  font-size: 1rem;
-  color: #fff !important;
-  background: rgb(var(--color-primary-600));
-  text-decoration: none !important;
-  transition: background 0.15s ease;
-}
-
-.home-contact:hover {
-  background: rgb(var(--color-primary-700));
-}

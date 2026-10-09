@@ -1,0 +1,8 @@
+{{/* GoatCounter analytics (the theme has no built-in support). Set
+     params.marketing.analytics.goatcounter to the site code, i.e. the `xxx` in
+     https://xxx.goatcounter.com. Only loaded in production builds. */}}
+{{ with site.Params.marketing.analytics.goatcounter }}
+{{ if hugo.IsProduction }}
+<script data-goatcounter="https://{{ . }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+{{ end }}
+{{ end }}

@@ -19,9 +19,11 @@ marketing:
   analytics:
     google_analytics: ''
     baidu_tongji: ''
-    plausible: 'etiennechassaing.com'
+    plausible: ''
     fathom: ''
     pirsch: ''
+    # GoatCounter site code (https://<code>.goatcounter.com), loaded by layouts/partials/hooks/head-end/goatcounter.html
+    goatcounter: 'etiennechassaing'
   verification:
     google: ''
     baidu: ''
