@@ -14,7 +14,7 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: Robotics and Control Engineer and Teacher
+role: Robotics Engineer, Robotics and Control Engineering Teacher
 
 # Organizations/Affiliations to display in Biography blox
 organizations:

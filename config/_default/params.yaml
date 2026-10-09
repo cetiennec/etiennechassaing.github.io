@@ -46,6 +46,7 @@ header:
 
 # Site footer
 footer:
+  text: '<a href="mailto:contact@etiennechassaing.com">contact@etiennechassaing.com</a>'
   copyright:
     notice: '© {year} Etienne Chassaing'
     license:

@@ -14,7 +14,7 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: Robotics and Control Engineer and Teacher
+role: Robotics Engineer, Robotics and Control Engineering Teacher
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
@@ -38,10 +38,10 @@ profiles:
     label: Google Scholar
 
 
-Domaines:
-  - Artificial Intelligence
-  - Robotics and Control Engineering
-  - Machine Learning
+interests:
+  - Artificial Intelligence and Optimisation
+  - Robotics and Control
+  - Machine Learning and Reinforcement Learning
   
 Education:
   - area: Master's in Robotics (Double Degree with CentraleSupélec)

@@ -1,0 +1,43 @@
+{{/* Homepage hero: avatar, name, role, one-line pitch, action buttons and
+     profile icons. The background photo comes from the block's design.background.
+     Params: content.username, content.pitch, content.bio (true: show the author
+     page's body, the long bio, instead of the pitch), content.buttons [{text, url, primary}]. */}}
+
+{{ $block := .wcBlock }}
+{{ $author := $block.content.username | default "admin" }}
+{{ $person_page := site.GetPage (printf "/authors/%s" $author) }}
+{{ if not $person_page }}{{ errorf "Could not find author page for `%s`." $author }}{{ end }}
+{{ $person := $person_page.Params }}
+{{ $avatar := ($person_page.Resources.ByType "image").GetMatch "*avatar*" }}
+
+<div class="hh">
+  {{ with $avatar }}
+  {{ $img := .Fill "360x360 Center webp" }}
+  <img class="hh-avatar" src="{{ $img.RelPermalink }}" alt="{{ $person_page.Title }}" width="150" height="150">
+  {{ end }}
+  <div class="hh-text">
+    <h1 class="hh-name">{{ $person_page.Title }}</h1>
+    {{ with $person.role }}<div class="hh-role">{{ . }}</div>{{ end }}
+    {{ if $block.content.bio }}
+    {{/* The bio starts with its own "## About me" heading; drop it in the hero. */}}
+    <div class="hh-bio">{{ replaceRE `(?s)^\s*<h2[^>]*>.*?</h2>` "" $person_page.Content | safeHTML }}</div>
+    {{ else }}
+    {{ with $block.content.pitch }}<p class="hh-pitch">{{ . }}</p>{{ end }}
+    {{ end }}
+    <div class="hh-actions">
+      {{ range $block.content.buttons }}
+      <a class="hh-btn{{ if .primary }} hh-btn-primary{{ end }}" href="{{ .url }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener"{{ end }}>{{ .text }}</a>
+      {{ end }}
+      <ul class="hh-profiles">
+        {{ range $person.profiles }}
+        {{ $link := .url | default .link }}
+        <li><a href="{{ $link | safeURL }}"{{ if hasPrefix $link "http" }} target="_blank" rel="noopener"{{ end }} aria-label="{{ .label | default .icon }}" title="{{ .label | default .icon }}">
+          {{ partial "functions/get_icon" (dict "name" .icon "attributes" "style=\"height: 1.3rem;\"") }}
+        </a></li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{{ partial "home-robot.html" . }}

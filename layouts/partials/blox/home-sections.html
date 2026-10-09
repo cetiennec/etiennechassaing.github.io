@@ -1,0 +1,105 @@
+{{/* Homepage body: "what I do" cards, selected work, client logos and side
+     projects, all driven by the block's content (one copy per language).
+     content.about    {title, username}: the author page's body (the long bio)
+     content.statement {title, text}: one centred sentence, shown first
+     content.what     {title, items: [{icon, title, text, url, link}]}
+     content.selected {title, items: [{page} | {url, title, text, image, kind}]}
+     content.logos    {title, items: [{name, img, url}]}
+     content.side     {title, items: [{title, text, url, icon}]}
+     Styled by the `hs-` rules in custom.css. */}}
+
+{{ $block := .wcBlock }}
+{{ $c := $block.content }}
+
+<div class="hs">
+
+  {{ with $c.statement }}
+  <p class="hs-statement"><strong>{{ .title }}</strong> {{ .text }}</p>
+  {{ end }}
+
+  {{ with $c.about }}
+  {{ with site.GetPage (printf "/authors/%s" (.username | default "admin")) }}
+  <section class="hs-section hs-about">
+    <h2 class="hs-heading">{{ $c.about.title }}</h2>
+    {{/* The bio starts with its own "## About me" heading; drop it, the section has one. */}}
+    <div class="hs-about-text">{{ replaceRE `(?s)^\s*<h2[^>]*>.*?</h2>` "" .Content | safeHTML }}</div>
+  </section>
+  {{ end }}
+  {{ end }}
+
+  {{ with $c.what }}
+  <section class="hs-section">
+    <h2 class="hs-heading">{{ .title }}</h2>
+    <div class="hs-what">
+      {{ range .items }}
+      <a class="hs-what-card" href="{{ .url }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener"{{ end }}>
+        <div class="hs-what-icon">{{ .icon }}</div>
+        <h3>{{ .title }}</h3>
+        <p>{{ .text }}</p>
+        <span class="hs-more">{{ .link }} →</span>
+      </a>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ with $c.selected }}
+  <section class="hs-section">
+    <h2 class="hs-heading">{{ .title }}</h2>
+    <div class="hs-selected">
+      {{ range .items }}
+      {{ $url := .url }}{{ $title := .title }}{{ $text := .text }}{{ $img := .image }}{{ $kind := .kind }}
+      {{ with .page }}
+        {{ with site.GetPage . }}
+          {{ $url = .RelPermalink }}
+          {{ $title = $title | default .Title }}
+          {{ $text = $text | default .Params.summary }}
+          {{ with partial "functions/get_featured_image.html" . }}{{ $img = ((.Fit "640x400").Process "webp").RelPermalink }}{{ end }}
+        {{ else }}
+          {{ errorf "home-sections: page %q not found" . }}
+        {{ end }}
+      {{ end }}
+      <a class="hs-sel-card" href="{{ $url }}">
+        {{ with $img }}<div class="hs-sel-thumb"><img src="{{ . }}" alt="" loading="lazy"></div>{{ end }}
+        <div class="hs-sel-body">
+          {{ with $kind }}<span class="hs-kind">{{ . }}</span>{{ end }}
+          <h3>{{ $title }}</h3>
+          {{ with $text }}<p>{{ . }}</p>{{ end }}
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ with $c.logos }}
+  <section class="hs-section">
+    <h2 class="hs-heading">{{ .title }}</h2>
+    <div class="hs-logos">
+      {{ range .items }}
+      {{ if .url }}<a href="{{ .url }}" title="{{ .name }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener"{{ end }}>{{ else }}<span title="{{ .name }}">{{ end }}
+        <img src="{{ .img }}" alt="{{ .name }}" loading="lazy">
+      {{ if .url }}</a>{{ else }}</span>{{ end }}
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ with $c.side }}
+  <section class="hs-section">
+    <h2 class="hs-heading">{{ .title }}</h2>
+    <div class="hs-side">
+      {{ range .items }}
+      <a class="hs-side-card" href="{{ .url }}" target="_blank" rel="noopener">
+        {{ with .icon }}<img src="{{ . }}" alt="" width="40" height="40">{{ end }}
+        <div>
+          <h3>{{ .title }}</h3>
+          <p>{{ .text }}</p>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+</div>

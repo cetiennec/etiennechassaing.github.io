@@ -5,29 +5,29 @@ date: 2024-10-04
 type: landing
 
 design:
-  # Default section spacing
-  spacing: "6rem"
+  spacing: "4rem"
 
+# Homepage: home-hero and home-sections blocks (layouts/partials/blox/)
 sections:
-  - block: resume-biography-3
+  - block: home-hero
     content:
-      # Choose a user profile to display (a folder name within `content/authors/`)
       username: admin_fr
-      text: ""
-      # Show a call-to-action button under your biography? (optional)
-      # button:
-      #   text: Download CV
-      #   url: https://drive.google.com/file/d/1MMlh1rtOdCdeIpU9QKK-XQv2tei8wmIu/view?usp=share_link
-      #   css_class: small-button  # Use a custom class for smaller buttons
+      pitch: "Je conçois des contrôleurs et des systèmes d'apprentissage pour des robots et des drones, et je les enseigne."
+      # Show the long bio (the author page body) over the photo instead of the pitch
+      bio: true
+      buttons:
+        - text: Mon CV
+          url: /fr/experience/
+          primary: true
+        - text: Portfolio
+          url: /fr/projects/
+        - text: Contact
+          url: mailto:contact@etiennechassaing.com
     design:
       css_class: dark
-      columns: 2
-      biography:
-        style: 'padding: 10px 0;'  # Adjust the padding values to your preference
       background:
         color: black
         image:
-          # Add your image background to `assets/media/`.
           filename: mountain-cover.jpg
           filters:
             brightness: 0.45
@@ -35,128 +35,80 @@ sections:
           position: center
           parallax: false
 
-  - block: markdown
+  - block: home-sections
     content:
-      title: ''
-      subtitle: ''
-      text: |-
-        <div style="font-size: smaller; line-height: 1.4; text-align: justify;">
-          Ce site regroupe mon CV, mes cours et supports d'enseignement, mes projets et mes publications.
-
-        <div style="display: flex; gap: 10px; margin-top: 10px;">
-          <div style="flex: 1;">
-            <ul style="list-style: none; padding: 0; margin: 0; font-size: 22px;"> <!-- Adjust font-size as needed -->
-              <li><a href="/fr/teaching/">📚 Voir mes enseignements</a></li>
-              <li><a href="/fr/projects/">🛠️ Voir mes projets</a></li>
-              <li><a href="/fr/publication/">📄 Voir mes publications</a></li>
-              <li><a href="/fr/experience/">📋 Voir mon CV</a></li>
-              <li><a href="mailto:contact@etiennechassaing.com">✉️ Me contacter : contact@etiennechassaing.com</a></li>
-            </ul>
-            <p style="margin: 14px 0 6px;">Je développe et maintiens aussi les deux sites suivants :</p>
-            <ul style="list-style: none; padding: 0; margin: 0; font-size: 22px;">
-              <li><a href="https://cragdiary.com" target="_blank" rel="noopener">🧗 Cragdiary : votre carnet de grande voie</a></li>
-              <li><a href="https://thefuturewithai.org" target="_blank" rel="noopener">🔮 The Future With AI : partagez vos paris sur le futur</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <h3>Ils m'ont fait confiance :</h3>
-        <div class="trusted-companies">
-          <a class="company-link" href="https://huggingface.co" title="Hugging Face" target="_blank" rel="noopener"><img src="assets/huggingface.png" alt="Hugging Face" class="company-logo-small"></a>
-          <a class="company-link" href="/fr/projets/stryx-ai-drone-interception/" title="Voir le projet Stryx"><img src="assets/stryx.jpeg" alt="Stryx" class="company-logo-small"></a>
-          <img src="assets/nehemis.png" alt="Nehemis" class="company-logo">
-          <a class="company-link" href="/fr/projets/phospho/" title="Voir le projet Phospho"><img src="assets/phospho.svg" alt="Phospho" class="company-logo"></a>
-          <a class="company-link" href="/fr/projets/dev_ia_drones/" title="Voir le projet Neodesystems"><img src="assets/neodesystems_logo.jpeg" alt="Neodesystems" class="company-logo"></a>
-          <a class="company-link" href="/fr/projets/marl/" title="Voir le projet Geomatys"><img src="assets/geomatys.jpeg" alt="Geomatys" class="company-logo"></a>
-          <img src="assets/logo-eurofins.jpg" alt="Eurofins" class="company-logo">
-          <img src="assets/JCS.png" alt="JCS" class="company-logo">
-          <a class="company-link" href="/fr/projets-recherche/insulated/" title="Voir le projet Schindler"><img src="assets/schindler.png" alt="Schindler" class="company-logo"></a>
-          <a class="company-link" href="/fr/projets-recherche/airbus-rl/" title="Voir le projet Airbus Group"><img src="assets/airbus-group.png" alt="Airbus Group" class="company-logo"></a>
-        </div>
-        </div>
-
-      design:
-        columns: 1
-        style: "margin-bottom: 1px;"  # Adjust the margin here
-
-    
-
-  # - block: cta-card
-  #   demo: false # Only display this section in the Hugo Blox Builder demo site
-  #   content:
-  #     title: 👉 Discutons de votre projet
-  #     text: |- 
-  #       Cliquez sur le lien ci-dessous pour réserver un créneau de 30 min et discuter de votre projet.
-
-  #     button:
-  #       text: Prendre rendez-vous
-  #       url: https://calendly.com/etienne-chassaing-conseil/30min
-  #   design:
-  #     card:
-  #       # Card background color (CSS class)
-  #       css_class: "bg-primary-700"
-  #       css_style: ""
-  #     spacing:
-  #       padding: ["0", "30px", "30px", "30px"]  # Adjust padding as needed
-  #       margin: ["50px", "0", "40px", "0"]  # Reduces top and bottom margins to 5px, 0 on sides
-  #       size: 0.1
-  
-  # - block: cta-button-list
-  #   content:
-  #     # Need a custom icon?
-  #     # Add an SVG image to the `assets/media/icons/` folder and reference it in the `icon` field below
-  #     buttons:
-  #       - text: 👉 Discutons de votre projet (créneaux de 30 min)
-  #         icon: custom/contact
-  #         url: https://calendly.com/etienne-chassaing-conseil/30min
-  #       - text: Ajoutez moi en contact
-  #         icon: custom/contact
-  #         url: https://drive.google.com/uc?export=download&id=1JciEvEQxkVXFb69l4v_F1Mw5LEy27DTY
-  #       - text: Contactez moi par mail
-  #         icon: at-symbol
-  #         url: mailto:etienne.chassaing.conseil@gmail.com
-  #       - text: Contactez moi sur Linkedin
-  #         icon: brands/linkedin
-  #         url: https://www.linkedin.com/in/etienne-chassaing1/
-
-
-  - block: collection
-    id: papers
-    content:
-      title: Projets récents
-      sort_by: 'Date'
-      # Choose how many pages you would like to display (0 = all pages)
-      count: 9 
-      filters:
-        folders:
-          - projets
-          - projets-recherche
-          - publication
-        featured_only: false
-    design:
-      view: article-grid
-      columns: 3
-      style: "margin-top: 1px;"  # Adjust the margin here
-
-  # - block: collection
-  #   id: talks
-  #   content:
-  #     title: Recent & Upcoming Talks
-  #     filters:
-  #       folders:
-  #         - event
-  #   design:
-  #     view: article-grid
-  #     columns: 1
-  # - block: collection
-  #   content:
-  #     title: Publications
-  #     text: ""
-  #     filters:
-  #       folders:
-  #         - publication
-  #       exclude_featured: false
-  #   design:
-  #     view: citation
-
+      # One-sentence statement between the hero and "What I do"
+      statement:
+        title: "Au croisement du contrôle et de l'IA,"
+        text: "je m'intéresse aux méthodes permettant de garantir de façon formelle l'apprentissage de contrôleurs robustes sur des systèmes physiques."
+      what:
+        title: Ce que je fais
+        items:
+          - icon: 🤗
+            title: ML Engineer chez Hugging Face
+            text: "LeRobot sur des humanoïdes et le cours de robotique de Hugging Face."
+            url: https://huggingface.co/cetiennec
+            link: Mon profil Hugging Face
+          - icon: 🎓
+            title: Enseignement
+            text: "Cours à CentraleSupélec, ECE Paris et AlbertSchool, avec tous les supports en accès libre."
+            url: /fr/teaching/
+            link: Voir les cours
+          - icon: 🛠️
+            title: Missions et recherche
+            text: "13 projets : drones, Reinforcement Learning, robotique, thermique."
+            url: /fr/projects/
+            link: Voir le portfolio
+      selected:
+        title: Travaux choisis
+        items:
+          - page: /publication/chassaing-thermoxels-2025
+            kind: Publication
+          - page: /projets/drone-precision-landing
+            kind: Étude de cas
+          - page: /teaching/centralesupelec/reinforcement-learning
+            kind: Cours
+      logos:
+        title: Ils m'ont fait confiance
+        items:
+          - name: Hugging Face
+            img: /fr/assets/huggingface.png
+            url: https://huggingface.co
+          - name: Airbus Group
+            img: /fr/assets/airbus-group.png
+            url: /fr/projets-recherche/airbus-rl/
+          - name: Schindler
+            img: /fr/assets/schindler.png
+            url: /fr/projets-recherche/insulated/
+          - name: Stryx
+            img: /fr/assets/stryx.jpeg
+            url: /fr/projets/stryx-ai-drone-interception/
+          - name: Eurofins
+            img: /fr/assets/logo-eurofins.jpg
+          - name: Geomatys
+            img: /fr/assets/geomatys.jpeg
+            url: /fr/projets/marl/
+          - name: phospho
+            img: /fr/assets/phospho.svg
+            url: /fr/projets/phospho/
+          - name: Neode Systems
+            img: /fr/assets/neodesystems_logo.jpeg
+            url: /fr/projets/dev_ia_drones/
+          - name: Nehemis
+            img: /fr/assets/nehemis.png
+          - name: Junior CentraleSupélec
+            img: /fr/assets/JCS.png
+          - name: Software République
+            img: /fr/assets/software-republique.webp
+      side:
+        title: Projets personnels
+        items:
+          - title: Cragdiary
+            text: "Un carnet de grande voie pour raconter vos sorties, sans suivi de performance."
+            url: https://cragdiary.com
+            icon: /media/cragdiary-icon.png
+          - title: The Future With AI
+            text: "Écrivez vos paris sur le futur de l'IA et relisez-les dans quelques années."
+            url: https://thefuturewithai.org
+            icon: /media/tfwai-icon.svg
 ---
