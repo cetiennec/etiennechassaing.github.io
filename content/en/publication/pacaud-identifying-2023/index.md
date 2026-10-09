@@ -12,6 +12,7 @@ publication_types:
 - paper-conference
 publication: '*2023 IEEE World Haptics Conference (WHC)*'
 doi: 10.1109/WHC56415.2023.10224405
+summary: "Using only the robot's own force and motion sensors to measure how firmly a person grasps an object during a handover, so it knows when to let go."
 abstract: One of the most important challenges in HumanRobot Interaction (HRI) is
   the perception of the human state. When a robot physically engages with a human,
   such as during physical interaction and assistance, it is vital that the robot perceives

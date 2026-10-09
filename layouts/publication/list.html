@@ -1,0 +1,35 @@
+{{/* Publication list: one card per paper (figure, title, authors, venue, summary,
+     link buttons), grouped by year. Styled by the `pub-` rules in custom.css. */}}
+{{ define "main" }}
+<div class="pub-wrap">
+  <h1 class="pub-page-title">{{ .Title }}</h1>
+  {{ with .Content }}<div class="pub-intro">{{ . }}</div>{{ end }}
+
+  {{ range .Pages.GroupByDate "2006" }}
+  <section class="pub-year">
+    <h2 class="pub-year-label">{{ .Key }}</h2>
+    {{ range .Pages }}
+    <article class="pub-card">
+      {{ with partial "functions/get_featured_image.html" . }}
+      {{ $img := (.Fit "600x400").Process "webp" }}
+      <a class="pub-thumb" href="{{ $.RelPermalink }}" tabindex="-1" aria-hidden="true">
+        <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="" loading="lazy">
+      </a>
+      {{ end }}
+      <div class="pub-body">
+        <div class="pub-meta">
+          {{ with partial "pub/type.html" . }}<span class="pub-type">{{ . }}</span>{{ end }}
+          <span class="pub-venue">{{ (.Params.publication_short | default .Params.publication) | markdownify }}</span>
+        </div>
+        <h3 class="pub-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        {{ partial "pub/authors.html" . }}
+        {{ with .Params.summary }}<p class="pub-summary">{{ . | markdownify }}</p>{{ end }}
+        {{ partial "pub/links.html" . }}
+      </div>
+    </article>
+    {{ end }}
+  </section>
+  {{ end }}
+</div>
+{{ partial "pub/cite-script.html" . }}
+{{ end }}

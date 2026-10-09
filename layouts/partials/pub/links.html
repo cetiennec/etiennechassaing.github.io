@@ -1,0 +1,27 @@
+{{/* Link buttons of a publication: its `links` (URL named after the host), code,
+     DOI and Cite. Cite copies cite.bib to the clipboard (see the script in
+     publication/list.html and single.html) and falls back to opening the file. */}}
+{{ $page := . }}
+<div class="pub-links">
+  {{ range .Params.links }}
+    {{ $label := .name }}
+    {{ if eq .name "URL" }}
+      {{ $host := (urls.Parse .url).Host }}
+      {{ if in $host "arxiv.org" }}{{ $label = "arXiv" }}
+      {{ else if in $host "ieee" }}{{ $label = "IEEE" }}
+      {{ else }}{{ $label = "Paper" }}{{ end }}
+    {{ end }}
+    <a class="pub-btn" href="{{ .url }}" target="_blank" rel="noopener">
+      {{ partial "functions/get_icon" (dict "name" (cond (eq .name "Code") "code-bracket" "document-text") "attributes" "style=\"height: 1em\"") }}{{ $label }}
+    </a>
+  {{ end }}
+  {{ with .Params.url_code }}
+    <a class="pub-btn" href="{{ . }}" target="_blank" rel="noopener">{{ partial "functions/get_icon" (dict "name" "code-bracket" "attributes" "style=\"height: 1em\"") }}Code</a>
+  {{ end }}
+  {{ with .Params.doi }}
+    <a class="pub-btn" href="https://doi.org/{{ . }}" target="_blank" rel="noopener">{{ partial "functions/get_icon" (dict "name" "link" "attributes" "style=\"height: 1em\"") }}DOI</a>
+  {{ end }}
+  {{ with $page.Resources.GetMatch "cite.bib" }}
+    <a class="pub-btn pub-cite" href="{{ .RelPermalink }}" target="_blank" data-copied="{{ i18n "btn_copied" | default "Copied" }}">{{ partial "functions/get_icon" (dict "name" "document-duplicate" "attributes" "style=\"height: 1em\"") }}<span>{{ i18n "btn_cite" | default "Cite" }}</span></a>
+  {{ end }}
+</div>

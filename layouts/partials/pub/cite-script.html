@@ -1,0 +1,18 @@
+<script>
+  // "Cite" buttons copy the BibTeX file to the clipboard instead of opening it.
+  document.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.pub-cite');
+    if (!btn || !navigator.clipboard) return;
+    e.preventDefault();
+    try {
+      const bib = await (await fetch(btn.href)).text();
+      await navigator.clipboard.writeText(bib.trim());
+      const label = btn.querySelector('span');
+      const text = label.textContent;
+      label.textContent = btn.dataset.copied;
+      setTimeout(() => { label.textContent = text; }, 1500);
+    } catch (err) {
+      window.open(btn.href, '_blank');
+    }
+  });
+</script>

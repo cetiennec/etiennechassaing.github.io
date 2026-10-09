@@ -13,6 +13,7 @@ publication_types:
 publication: '*Journal of Physics: Conference Series* (CISBAT 2025), vol. 3140,
   042003'
 doi: 10.1088/1742-6596/3140/4/042003
+summary: "Transformer quelques photos RGB et thermiques d'un bâtiment en un modèle 3D directement exploitable par une simulation thermique par éléments finis."
 abstract: In the European Union, buildings account for 42% of energy use and 35%
   of greenhouse gas emissions. Since most existing buildings will still be in use
   by 2050, retrofitting is crucial for emissions reduction. However, current building

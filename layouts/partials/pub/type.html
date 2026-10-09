@@ -1,0 +1,9 @@
+{{/* Display label for a publication's first `publication_types` entry. `manuscript`
+     (how arXiv preprints are imported) is shown as a preprint. */}}
+{{ $label := "" }}
+{{ with .Params.publication_types }}
+  {{ $t := index . 0 }}
+  {{ if eq $t "manuscript" }}{{ $t = "article" }}{{ end }}
+  {{ $label = i18n (printf "pub_%s" (strings.Replace $t "-" "_")) | default (strings.Title $t) }}
+{{ end }}
+{{ return $label }}

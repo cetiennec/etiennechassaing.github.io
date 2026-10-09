@@ -10,8 +10,11 @@ authors:
 date: '2024-05-15'
 publishDate: '2024-10-02T13:46:03.663214Z'
 publication_types:
-- manuscript
-publication: '*arXiv*'
+- paper-conference
+publication: '*IFAC-PapersOnLine*, vol. 58, no. 15, pp. 289-294'
+publication_short: '*IFAC-PapersOnLine*, vol. 58'
+doi: 10.1016/j.ifacol.2024.08.543
+summary: "Apprendre, à partir de données, un modèle dynamique non linéaire inspiré de la physique d'un aéroglisseur à hélices de drone, assez précis pour le contrôler en boucle fermée."
 abstract: We present the identification of the non-linear dynamics of a novel hovercraft
   design, employing end-to-end deep learning techniques. Our experimental setup consists
   of a hovercraft propelled by racing drone propellers mounted on a lightweight foam
@@ -26,6 +29,8 @@ tags:
 - Mathematics - Dynamical Systems
 - Mathematics - Optimization and Control
 links:
-- name: URL
-  url: http://arxiv.org/abs/2405.09405
+- name: ScienceDirect
+  url: https://www.sciencedirect.com/science/article/pii/S2405896324013235
+- name: arXiv
+  url: https://arxiv.org/abs/2405.09405
 ---

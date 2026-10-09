@@ -1,0 +1,9 @@
+{{/* Author list of a publication, with the site owner (the `superuser` author) in bold. */}}
+{{ $me := "" }}
+{{ range (site.GetPage "/authors").Pages }}{{ if .Params.superuser }}{{ $me = .Title }}{{ end }}{{ end }}
+<span class="pub-authors">
+  {{- range $i, $a := .Params.authors -}}
+    {{- if $i }}, {{ end -}}
+    {{- if eq $a $me }}<strong>{{ $a }}</strong>{{ else }}{{ $a }}{{ end -}}
+  {{- end -}}
+</span>

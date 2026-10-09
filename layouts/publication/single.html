@@ -1,0 +1,37 @@
+{{/* Publication page: title, authors, venue and link buttons, figure, TL;DR
+     (front matter `summary`), then the abstract at full width. Replaces the theme's
+     generic single.html for this section; styled by the `pub-` rules in custom.css. */}}
+{{ define "main" }}
+<article class="pub-wrap pub-single">
+  <div class="pub-meta">
+    {{ with partial "pub/type.html" . }}<span class="pub-type">{{ . }}</span>{{ end }}
+    <span class="pub-venue">{{ .Params.publication | markdownify }}</span>
+    <span class="pub-date">{{ .Date | time.Format ":date_long" }}</span>
+  </div>
+  <h1 class="pub-single-title">{{ .Title }}</h1>
+  {{ partial "pub/authors.html" . }}
+  {{ partial "pub/links.html" . }}
+
+  {{ with partial "functions/get_featured_image.html" . }}
+  {{ $img := (.Fit "1600x1200").Process "webp" }}
+  <figure class="pub-figure">
+    <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ $.Params.image.alt_text | default $.Title }}">
+    {{ with $.Params.image.caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+  </figure>
+  {{ end }}
+
+  {{ with .Params.summary }}
+  <div class="pub-tldr"><span>TL;DR</span>{{ . | markdownify }}</div>
+  {{ end }}
+
+  {{ with .Params.abstract }}
+  <h2 class="pub-section-title">{{ i18n "abstract" }}</h2>
+  <div class="pub-abstract">{{ . | markdownify }}</div>
+  {{ end }}
+
+  {{ with .Content }}<div class="prose prose-slate dark:prose-invert max-w-none mt-8">{{ . }}</div>{{ end }}
+
+  <a class="pub-back" href="{{ .Parent.RelPermalink }}">← {{ .Parent.Title }}</a>
+</article>
+{{ partial "pub/cite-script.html" . }}
+{{ end }}
