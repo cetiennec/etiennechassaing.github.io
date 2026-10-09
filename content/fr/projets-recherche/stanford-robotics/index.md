@@ -1,11 +1,14 @@
 ---
 title: "Etude du don d'objet entre un robot et un humain" 
-summary: ' 6 mois '
+summary: "Mesurer la rigidité de la prise humaine pour savoir quand un robot peut lâcher un objet."
+domain: robotique
+client: "Stanford University"
+duration: "6 mois"
 date: 2022-02-09
 type: docs
 tags:
   - Contrôle
-  - Robotoique
+  - Robotique
   - Modélisation
 ---
 

@@ -1,6 +1,8 @@
 ---
 title: Assistance à la création d’une démonstration en robotique pour une levée de fonds  
-summary: 'Prestation de support technique et stratégique en robotique'  
+summary: "Montage, contrôle et simulateur de bras robotiques pour une démonstration de levée de fonds."
+domain: robotique
+client: "phospho"
 date: 2024-12-20  
 type: docs  
 tags:  

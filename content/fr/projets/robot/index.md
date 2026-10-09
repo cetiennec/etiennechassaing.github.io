@@ -1,6 +1,8 @@
 ---
 title: Conception d’un Robot Autonome pour l’Agriculture
-summary: '6 semaines : 6 jours facturés'
+summary: "Benchmark, dimensionnement et chiffrage d'un prototype de robot agricole autonome."
+domain: robotique
+duration: "6 semaines"
 date: 2023-02-01
 type: docs
 tags:

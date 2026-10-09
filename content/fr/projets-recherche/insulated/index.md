@@ -1,6 +1,9 @@
 ---
 title: "Projet Insulated : développement d'un modèle de reconstruction 3D multi-modal" 
-summary: ' 6 mois '
+summary: "Thermoxels : des modèles thermiques 3D de bâtiments à partir d'images RGB et thermiques."
+domain: thermique
+client: "EPFL et Schindler"
+duration: "6 mois"
 date: 2024-08-09
 type: docs
 tags:

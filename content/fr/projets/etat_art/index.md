@@ -1,6 +1,8 @@
 ---
 title: Analyse d'État de l'Art et Identification d'un verrou Technologique
-summary: ' 1 mois : 4 jours facturés'
+summary: "Revue de plus de 60 articles et brevets pour identifier un verrou technologique en robotique."
+domain: robotique
+duration: "1 mois"
 date: 2022-08-01
 type: docs
 tags:

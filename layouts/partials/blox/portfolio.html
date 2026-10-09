@@ -1,0 +1,54 @@
+{{/* Portfolio: client missions (section `projets`) and research projects (section
+     `projets-recherche`) grouped by their front matter `domain`, newest first.
+     Params: content.text (intro), content.groups: [{id, title, text}].
+     Cards show a Mission/Recherche badge, `client`, `duration`, year, `summary`,
+     tags and, with `case_study:` (a URL), a link to the Jupyter Book case study.
+     The whole card is clickable through the title link's ::after overlay. Styled by the `pf-` rules in custom.css. */}}
+
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $all := where site.RegularPages "Section" "in" (slice "projets" "projets-recherche") }}
+
+<div class="pf-wrap">
+  {{ with $block.content.text }}<div class="pf-intro">{{ . | markdownify }}</div>{{ end }}
+
+  <div class="pf-stats">
+    <span><strong>{{ len (where $all "Section" "projets") }}</strong> missions</span>
+    <span><strong>{{ len (where $all "Section" "projets-recherche") }}</strong> projets de recherche</span>
+  </div>
+
+  <nav class="pf-nav">
+    {{ range $block.content.groups }}<a href="#{{ .id }}">{{ .title }}</a>{{ end }}
+  </nav>
+
+  {{ range $block.content.groups }}
+  {{ $items := where $all "Params.domain" .id }}
+  {{ if $items }}
+  <section class="pf-group" id="{{ .id }}">
+    <h2 class="pf-heading">{{ .title }}</h2>
+    {{ with .text }}<p class="pf-group-text">{{ . }}</p>{{ end }}
+    <div class="pf-grid">
+      {{ range $items.ByDate.Reverse }}
+      {{ $research := eq .Section "projets-recherche" }}
+      <div class="pf-card">
+        {{ with partial "functions/get_featured_image.html" . }}
+        {{ $img := (.Fit "640x400").Process "webp" }}
+        <div class="pf-thumb"><img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="" loading="lazy"></div>
+        {{ end }}
+        <div class="pf-body">
+          <div class="pf-meta">
+            <span class="pf-badge{{ if $research }} pf-badge-research{{ end }}">{{ if $research }}Recherche{{ else }}Mission{{ end }}</span>
+            <span>{{ with .Params.client }}{{ . }} · {{ end }}{{ with .Params.duration }}{{ . }} · {{ end }}{{ .Date.Year }}</span>
+          </div>
+          <h3 class="pf-title"><a class="pf-card-link" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          {{ with .Params.summary }}<p class="pf-summary">{{ . }}</p>{{ end }}
+          {{ with .Params.case_study }}<a class="pf-case-link" href="{{ . }}">📘 Voir l'étude de cas →</a>{{ end }}
+          {{ with .Params.tags }}<ul class="pf-tags">{{ range first 3 . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+  {{ end }}
+</div>

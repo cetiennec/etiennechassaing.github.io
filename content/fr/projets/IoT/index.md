@@ -1,6 +1,8 @@
 ---
 title: Conception d'un Système IoT
-summary: 10 jours sur 8 semaines
+summary: "Réseau de capteurs connectés pour suivre l'usage de machines de laboratoire, du prototype aux 5 capteurs finaux."
+domain: thermique
+duration: "8 semaines"
 date: 2024-08-01
 type: docs
 tags:

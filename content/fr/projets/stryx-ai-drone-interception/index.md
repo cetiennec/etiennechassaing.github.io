@@ -1,6 +1,9 @@
 ---
 title: "Algorithmes de contrôle pour l'interception de drones"
-summary: ' 6 mois '
+summary: "Algorithmes de guidage et de contrôle pour intercepter des drones."
+domain: drones
+client: "Stryx AI"
+duration: "6 mois"
 date: 2025-10-01
 type: docs
 tags:

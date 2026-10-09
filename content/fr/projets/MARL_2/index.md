@@ -1,6 +1,8 @@
 ---
 title: Accompagnement pour le développement d'une stratégie de Reinforcement Learning pour le contrôle multi-agents  
-summary: 'Prestation de conseil pour une compétition en février 2025'  
+summary: "Stratégie de Reinforcement Learning multi-agents pour une compétition, avec montée en compétence de l'équipe."
+domain: rl
+duration: "5 jours"
 date: 2024-12-20  
 type: docs  
 tags:  

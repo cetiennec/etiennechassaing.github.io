@@ -1,12 +1,15 @@
 ---
 title: Étude de Faisabilité sur l'Implémentation d'Algorithmes de Multi-Agent Reinforcement-Learning (MARL)
-summary: '2 mois : 14 jours facturés'
+summary: "Étude de faisabilité et démonstrateur MARL (Gym, Stable-Baselines3) pour un outil d'aide à la décision."
+domain: rl
+client: "Geomatys"
+duration: "2 mois"
 date: 2024-02-01
 type: docs
 tags:
   - Reinforcement Learning
   - Multi-Agent
-  - Modélisaiton
+  - Modélisation
 ---
 
 **Client : [Geomatys](https://www.geomatys.com/en/home/) expert en géo-datascience et visualisation**

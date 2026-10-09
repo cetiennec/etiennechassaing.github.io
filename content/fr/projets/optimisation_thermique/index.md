@@ -1,6 +1,9 @@
 ---
 title: Modélisation et contrôle d’un système thermique via Model Predictive Control (MPC) 
-summary: 'Prestation de dix jours'  
+summary: "Modélisation physique, identification et contrôle prédictif (MPC) d'un système thermique à retard."
+domain: thermique
+duration: "10 jours"
+case_study: /book/case-studies/heat_pipe_control/README.html
 date: 2024-12-20  
 type: docs  
 tags:  
@@ -8,6 +11,12 @@ tags:
   - Contrôle  
   - Matlab  
 ---
+
+<div class="pf-case-callout">
+  <strong>📘 Étude de cas</strong>
+  <span>La modélisation, l'identification et le contrôle MPC de ce système sont détaillés pas à pas, avec le code, dans l'étude de cas.</span>
+  <a href="/book/case-studies/heat_pipe_control/README.html">Lire l'étude de cas : Heated Pipe System →</a>
+</div>
 
 ## Contexte de la Mission  
 Durée : **Prestation de dix jours**  

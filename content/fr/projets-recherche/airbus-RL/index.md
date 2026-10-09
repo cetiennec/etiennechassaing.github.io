@@ -1,6 +1,9 @@
 ---
 title: "Contrôle multi-drones par Apprentissage par Renforcement (RL)" 
-summary: ' 6 mois '
+summary: "Simulateur et contrôle multi-drones par Reinforcement Learning, validé en hardware-in-the-loop sur drones DJI."
+domain: drones
+client: "Airbus Group"
+duration: "6 mois"
 date: 2022-07-09
 type: docs
 tags:
