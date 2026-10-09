@@ -4,9 +4,9 @@ summary: "Tout les cours et les formatiosns que je donne et que j'ai donné, cla
 type: docs
 ---
 
-J'enseigne depuis 10 ans dans des formats différents, cours particuliers, colleur, chargé de TD, cours en amphi devant 150 élèves, des TD en petits groupes, des projets étudiants que j'encadre et maintenant des formations en entreprise. Tout le contenu que j'ai conçu est ici.
+J'enseigne depuis 10 ans dans des formats variés: cours particuliers, colleur, chargé de TD, cours en amphi devant 150 élèves, des TD en petits groupes, des projets étudiants que j'encadre et maintenant des formations en entreprise. Tout le contenu que j'ai développé pour mes cours est ici.
 
-Les supports sont en accès livre sur ce GitHUb :
+Les supports sont tous en accès libre sur ce lien :
 [accès libre](https://github.com/cetiennec/cours-pdf).
 
 {{< sorting-arm bins="CENTRALE/RL|ECE/SYS. BOUCLÉS|ALBERT/MATHS" >}}

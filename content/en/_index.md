@@ -43,6 +43,9 @@ sections:
               <li><a href="/teaching/">📚 See my teaching</a></li>
               <li><a href="/book/case-studies/">🛠️ See my case studies</a></li>
               <li><a href="/publication/">📄 See my publications</a></li>
+            </ul>
+            <p style="margin: 14px 0 6px;">I also run and maintain the following two websites:</p>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 22px;">
               <li><a href="https://cragdiary.com" target="_blank" rel="noopener">🧗 Cragdiary: your multi-pitch climbing logbook</a></li>
               <li><a href="https://thefuturewithai.org" target="_blank" rel="noopener">🔮 The Future With AI: share your bets on the future</a></li>
             </ul>

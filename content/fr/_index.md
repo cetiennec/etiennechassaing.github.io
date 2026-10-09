@@ -49,6 +49,9 @@ sections:
               <li><a href="/fr/teaching/">📚 Voir mes enseignements</a></li>
               <li><a href="/fr/projects/">🛠️ Voir mes projets</a></li>
               <li><a href="/fr/publication/">📄 Voir mes publications</a></li>
+            </ul>
+            <p style="margin: 14px 0 6px;">Je développe et maintiens aussi les deux sites suivants :</p>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 22px;">
               <li><a href="https://cragdiary.com" target="_blank" rel="noopener">🧗 Cragdiary : votre carnet de grande voie</a></li>
               <li><a href="https://thefuturewithai.org" target="_blank" rel="noopener">🔮 The Future With AI : partagez vos paris sur le futur</a></li>
             </ul>
