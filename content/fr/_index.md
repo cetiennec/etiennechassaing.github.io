@@ -49,27 +49,29 @@ sections:
               <li><a href="/fr/teaching/">📚 Voir mes enseignements</a></li>
               <li><a href="/fr/projects/">🛠️ Voir mes projets</a></li>
               <li><a href="/fr/publication/">📄 Voir mes publications</a></li>
+              <li><a href="/fr/experience/">📋 Voir mon CV</a></li>
             </ul>
             <p style="margin: 14px 0 6px;">Je développe et maintiens aussi les deux sites suivants :</p>
             <ul style="list-style: none; padding: 0; margin: 0; font-size: 22px;">
               <li><a href="https://cragdiary.com" target="_blank" rel="noopener">🧗 Cragdiary : votre carnet de grande voie</a></li>
               <li><a href="https://thefuturewithai.org" target="_blank" rel="noopener">🔮 The Future With AI : partagez vos paris sur le futur</a></li>
             </ul>
+            <a class="home-contact" href="mailto:contact@etiennechassaing.com">✉️ Me contacter : contact@etiennechassaing.com</a>
           </div>
         </div>
 
         <h3>Ils m'ont fait confiance :</h3>
         <div class="trusted-companies">
-          <img src="assets/huggingface.png" alt="Hugging Face" class="company-logo-small">
-          <img src="assets/stryx.jpeg" alt="Stryx" class="company-logo-small">
+          <a class="company-link" href="https://huggingface.co" title="Hugging Face" target="_blank" rel="noopener"><img src="assets/huggingface.png" alt="Hugging Face" class="company-logo-small"></a>
+          <a class="company-link" href="/fr/projets/stryx-ai-drone-interception/" title="Voir le projet Stryx"><img src="assets/stryx.jpeg" alt="Stryx" class="company-logo-small"></a>
           <img src="assets/nehemis.png" alt="Nehemis" class="company-logo">
-          <img src="assets/phospho.svg" alt="Phospho" class="company-logo">
-          <img src="assets/neodesystems_logo.jpeg" alt="Neodesystems" class="company-logo">
-          <img src="assets/geomatys.jpeg" alt="Geomatys" class="company-logo">
+          <a class="company-link" href="/fr/projets/phospho/" title="Voir le projet Phospho"><img src="assets/phospho.svg" alt="Phospho" class="company-logo"></a>
+          <a class="company-link" href="/fr/projets/dev_ia_drones/" title="Voir le projet Neodesystems"><img src="assets/neodesystems_logo.jpeg" alt="Neodesystems" class="company-logo"></a>
+          <a class="company-link" href="/fr/projets/marl/" title="Voir le projet Geomatys"><img src="assets/geomatys.jpeg" alt="Geomatys" class="company-logo"></a>
           <img src="assets/logo-eurofins.jpg" alt="Eurofins" class="company-logo">
           <img src="assets/JCS.png" alt="JCS" class="company-logo">
-          <img src="assets/schindler.png" alt="Schindler" class="company-logo">
-          <img src="assets/airbus-group.png" alt="Airbus Group" class="company-logo">
+          <a class="company-link" href="/fr/projets-recherche/insulated/" title="Voir le projet Schindler"><img src="assets/schindler.png" alt="Schindler" class="company-logo"></a>
+          <a class="company-link" href="/fr/projets-recherche/airbus-rl/" title="Voir le projet Airbus Group"><img src="assets/airbus-group.png" alt="Airbus Group" class="company-logo"></a>
         </div>
         </div>
 

@@ -7,10 +7,6 @@ title: Etienne Chassaing
 first_name: Etienne
 last_name: Chassaing
 
-# Status emoji
-status:
-  icon: 👨🏻‍💻
-
 # Is this the primary user of the site?
 superuser: true
 
@@ -29,7 +25,7 @@ organizations:
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
   - icon: at-symbol
-    url: 'mailto:etienne.chassaing.conseil@gmail.com'
+    url: 'mailto:contact@etiennechassaing.com'
     label: E-mail Me
   - icon: brands/github
     url: https://github.com/cetiennec
@@ -37,8 +33,9 @@ profiles:
     url: https://huggingface.co/cetiennec
   - icon: brands/linkedin
     url: https://www.linkedin.com/in/etienne-chassaing1/
-  - icon: academicons/google-scholar
+  - icon: academic-cap
     url: https://scholar.google.com/citations?user=TYvGzyUAAAAJ&hl=fr&oi=ao
+    label: Google Scholar
 
 
 Domaines:
