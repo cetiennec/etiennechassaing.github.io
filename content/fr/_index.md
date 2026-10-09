@@ -59,6 +59,18 @@ sections:
             text: "13 projets : drones, Reinforcement Learning, robotique, thermique."
             url: /fr/projects/
             link: Voir le portfolio
+      side:
+        title: Projets personnels
+        text: "En parallèle, je développe deux projets personnels."
+        items:
+          - title: Cragdiary
+            text: "Un carnet de grande voie pour raconter vos sorties, sans suivi de performance."
+            url: https://cragdiary.com
+            icon: /media/cragdiary-icon.png
+          - title: The Future With AI
+            text: "Écrivez vos paris sur le futur de l'IA et relisez-les dans quelques années."
+            url: https://thefuturewithai.org
+            icon: /media/tfwai-icon.svg
       selected:
         title: Travaux choisis
         items:
@@ -100,15 +112,4 @@ sections:
             img: /fr/assets/JCS.png
           - name: Software République
             img: /fr/assets/software-republique.webp
-      side:
-        title: Projets personnels
-        items:
-          - title: Cragdiary
-            text: "Un carnet de grande voie pour raconter vos sorties, sans suivi de performance."
-            url: https://cragdiary.com
-            icon: /media/cragdiary-icon.png
-          - title: The Future With AI
-            text: "Écrivez vos paris sur le futur de l'IA et relisez-les dans quelques années."
-            url: https://thefuturewithai.org
-            icon: /media/tfwai-icon.svg
 ---

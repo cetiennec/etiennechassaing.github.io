@@ -28,9 +28,9 @@ sections:
       background:
         color: black
         image:
-          filename: mountain-cover.jpg
+          filename: test.jpeg
           filters:
-            brightness: 0.45
+            brightness: 0.4
           size: cover
           position: center
           parallax: false
@@ -59,6 +59,18 @@ sections:
             text: "13 projects: drones, reinforcement learning, robotics, thermal systems."
             url: /fr/projects/
             link: See the portfolio (in French)
+      side:
+        title: Side projects
+        text: "Alongside this, I build two side projects."
+        items:
+          - title: Cragdiary
+            text: "A multi-pitch climbing logbook to tell your outings your way, with no performance tracking."
+            url: https://cragdiary.com
+            icon: /media/cragdiary-icon.png
+          - title: The Future With AI
+            text: "Write down your bets on how AI will shape the future, and revisit them years later."
+            url: https://thefuturewithai.org
+            icon: /media/tfwai-icon.svg
       selected:
         title: Selected work
         items:
@@ -103,15 +115,4 @@ sections:
             img: /fr/assets/JCS.png
           - name: Software République
             img: /fr/assets/software-republique.webp
-      side:
-        title: Side projects
-        items:
-          - title: Cragdiary
-            text: "A multi-pitch climbing logbook to tell your outings your way, with no performance tracking."
-            url: https://cragdiary.com
-            icon: /media/cragdiary-icon.png
-          - title: The Future With AI
-            text: "Write down your bets on how AI will shape the future, and revisit them years later."
-            url: https://thefuturewithai.org
-            icon: /media/tfwai-icon.svg
 ---

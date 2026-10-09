@@ -1509,41 +1509,49 @@
   border-color: rgb(var(--color-primary-800));
 }
 
+/* A quiet, evenly spaced strip with compact marks and readable wordmarks. */
 .hs-logos {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem 1.5rem;
-  padding: 1.25rem 1.5rem;
+  gap: 0.75rem 1rem;
+  padding: 1rem;
   border-radius: 0.9rem;
   background: #fff;
   border: 1px solid var(--hs-line);
 }
 
-/* Fixed-width cells so rows stay even and a short last row is centred */
 .hs-logos > * {
-  flex: 0 0 8.5rem;
+  flex: 0 0 calc((100% - 5rem) / 6);
+  height: 3.5rem;
   display: flex;
+  align-items: center;
   justify-content: center;
+  border-radius: 0.35rem;
 }
 
 .hs-logos img {
-  height: 44px;
   width: auto;
-  max-width: 130px;
+  height: auto;
+  max-width: min(100%, 112px);
+  max-height: 36px;
   object-fit: contain;
   margin: 0 !important;
   filter: grayscale(1);
-  opacity: 0.65;
-  transition: filter 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+  opacity: 0.85;
+  transition: filter 0.2s ease, opacity 0.2s ease;
 }
 
 .hs-logos a:hover img,
-.hs-logos span:hover img {
+.hs-logos a:focus-visible img {
   filter: none;
   opacity: 1;
-  transform: scale(1.06);
+}
+
+.hs-logos a:focus-visible {
+  outline: 2px solid rgb(var(--color-primary-600));
+  outline-offset: 3px;
 }
 
 .hs-side {
@@ -1568,6 +1576,34 @@
 
 .hs-side-card h3 {
   margin-top: 0 !important;
+}
+
+.hs-side-intro {
+  margin-bottom: 1.1rem;
+  max-width: 52rem;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--hs-muted);
+}
+
+.hs-side-intro p {
+  margin: 0;
+}
+
+.hs-side-intro a {
+  color: rgb(var(--color-primary-700));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.dark .hs-side-intro a {
+  color: rgb(var(--color-primary-300));
+}
+
+@media (max-width: 1023px) {
+  .hs-logos > * {
+    flex-basis: calc((100% - 3rem) / 4);
+  }
 }
 
 @media (max-width: 768px) {
@@ -1601,9 +1637,11 @@
   .hs-side {
     grid-template-columns: 1fr;
   }
+}
 
+@media (max-width: 480px) {
   .hs-logos > * {
-    flex-basis: 6.5rem;
+    flex-basis: calc((100% - 2rem) / 3);
   }
 }
 

@@ -1,11 +1,11 @@
-{{/* Homepage body: "what I do" cards, selected work, client logos and side
-     projects, all driven by the block's content (one copy per language).
+{{/* Homepage body: "what I do" cards, side projects, selected work and client logos,
+     all driven by the block's content (one copy per language).
      content.about    {title, username}: the author page's body (the long bio)
      content.statement {title, text}: one centred sentence, shown first
      content.what     {title, items: [{icon, title, text, url, link}]}
+     content.side     {title, text (Markdown), items: [{title, text, url, icon}]}
      content.selected {title, items: [{page} | {url, title, text, image, kind}]}
      content.logos    {title, items: [{name, img, url}]}
-     content.side     {title, items: [{title, text, url, icon}]}
      Styled by the `hs-` rules in custom.css. */}}
 
 {{ $block := .wcBlock }}
@@ -37,6 +37,24 @@
         <h3>{{ .title }}</h3>
         <p>{{ .text }}</p>
         <span class="hs-more">{{ .link }} →</span>
+      </a>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ with $c.side }}
+  <section class="hs-section">
+    <h2 class="hs-heading">{{ .title }}</h2>
+    {{ with .text }}<div class="hs-side-intro">{{ . | markdownify }}</div>{{ end }}
+    <div class="hs-side">
+      {{ range .items }}
+      <a class="hs-side-card" href="{{ .url }}" target="_blank" rel="noopener">
+        {{ with .icon }}<img src="{{ . }}" alt="" width="40" height="40">{{ end }}
+        <div>
+          <h3>{{ .title }}</h3>
+          <p>{{ .text }}</p>
+        </div>
       </a>
       {{ end }}
     </div>
@@ -80,23 +98,6 @@
       {{ if .url }}<a href="{{ .url }}" title="{{ .name }}"{{ if hasPrefix .url "http" }} target="_blank" rel="noopener"{{ end }}>{{ else }}<span title="{{ .name }}">{{ end }}
         <img src="{{ .img }}" alt="{{ .name }}" loading="lazy">
       {{ if .url }}</a>{{ else }}</span>{{ end }}
-      {{ end }}
-    </div>
-  </section>
-  {{ end }}
-
-  {{ with $c.side }}
-  <section class="hs-section">
-    <h2 class="hs-heading">{{ .title }}</h2>
-    <div class="hs-side">
-      {{ range .items }}
-      <a class="hs-side-card" href="{{ .url }}" target="_blank" rel="noopener">
-        {{ with .icon }}<img src="{{ . }}" alt="" width="40" height="40">{{ end }}
-        <div>
-          <h3>{{ .title }}</h3>
-          <p>{{ .text }}</p>
-        </div>
-      </a>
       {{ end }}
     </div>
   </section>

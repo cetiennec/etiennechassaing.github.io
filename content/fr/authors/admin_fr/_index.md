@@ -243,5 +243,3 @@ Awards:
 ## Mon profil
 
 Diplômé de CentraleSupélec et de l'EPFL en Robotique et Contrôle et fort d'expériences de recherche à Stanford University et à l'EPFL. Après deux ans à accompagner des PME souhaitant explorer des sujets d'IA appliquée et de Robotique, je suis maintenant ML Engineer en robotique à HuggingFace 🤗🤖
-
-En parallèle, je développe deux projets personnels : [Cragdiary](https://cragdiary.com), un carnet de grande voie pour raconter vos sorties à votre manière, sans suivi de performance, et [The Future With AI](https://thefuturewithai.org), une façon d'écrire votre vision du futur et d'être invité à la relire dans quelques années.
