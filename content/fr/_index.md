@@ -97,6 +97,7 @@ sections:
             url: /fr/projets/stryx-ai-drone-interception/
           - name: Eurofins
             img: /fr/assets/logo-eurofins.jpg
+            url: /fr/projets/iot/
           - name: Geomatys
             img: /fr/assets/geomatys.jpeg
             url: /fr/projets/marl/
@@ -108,8 +109,11 @@ sections:
             url: /fr/projets/dev_ia_drones/
           - name: Nehemis
             img: /fr/assets/nehemis.png
+            url: /fr/projets/optimisation_thermique/
           - name: Junior CentraleSupélec
             img: /fr/assets/JCS.png
+            url: /fr/projets/robot/
           - name: Software République
             img: /fr/assets/software-republique.webp
+            url: /fr/projets/drone-precision-landing/
 ---

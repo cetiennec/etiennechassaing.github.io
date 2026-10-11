@@ -1534,7 +1534,7 @@
 
 .hs-logos > * {
   flex: 0 0 calc((100% - 5rem) / 6);
-  height: 3.5rem;
+  height: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1544,8 +1544,8 @@
 .hs-logos img {
   width: auto;
   height: auto;
-  max-width: min(100%, 112px);
-  max-height: 36px;
+  max-width: min(100%, 129px);
+  max-height: 41px;
   object-fit: contain;
   margin: 0 !important;
   filter: grayscale(1);

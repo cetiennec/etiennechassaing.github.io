@@ -2,6 +2,7 @@
 title: Conception d’un Robot Autonome pour l’Agriculture
 summary: "Benchmark, dimensionnement et chiffrage d'un prototype de robot agricole autonome."
 domain: robotique
+client: "Junior CentraleSupélec"
 duration: "6 semaines"
 date: 2023-02-01
 type: docs

@@ -2,6 +2,7 @@
 title: "Atterrissage de précision d'un drone Parrot"
 summary: "Faire atterrir un drone Parrot Anafi AI sur une cible repérée par QR code, malgré un contrôle déporté sujet aux retards, au vent et aux pertes de paquets."
 domain: drones
+client: "Software République"
 duration: "4 mois"
 case_study: /book/case-studies/drone_delayed_control/case_study.html
 date: 2025-03-01

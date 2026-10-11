@@ -2,6 +2,7 @@
 title: Modélisation et contrôle d’un système thermique via Model Predictive Control (MPC) 
 summary: "Modélisation physique, identification et contrôle prédictif (MPC) d'un système thermique à retard."
 domain: thermique
+client: "Nehemis"
 duration: "10 jours"
 case_study: /book/case-studies/heat_pipe_control/README.html
 date: 2024-12-20  

@@ -2,6 +2,7 @@
 title: Conception d'un Système IoT
 summary: "Réseau de capteurs connectés pour suivre l'usage de machines de laboratoire, du prototype aux 5 capteurs finaux."
 domain: thermique
+client: "Eurofins"
 duration: "8 semaines"
 date: 2024-08-01
 type: docs
