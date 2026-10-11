@@ -1,0 +1,32 @@
+{{/* Case Studies landing page: one wide card per study of the Jupyter Book
+     (static/book/case-studies/), with its figure, the problem, the key result and
+     links to the study and to the related mission.
+     Params: content.title, content.text, content.items:
+       [{title, image, fit, tags, problem, result, url, mission, mission_label}]
+     (`fit: contain` shows a wide figure whole instead of cropping it)
+     Labels: content.result_label, content.read_label. Styled by the `cs-` rules. */}}
+
+{{ $c := .wcBlock.content }}
+
+<div class="cs-wrap">
+  {{ with $c.title }}<h1 class="cs-page-title">{{ . }}</h1>{{ end }}
+  {{ with $c.text }}<p class="cs-intro">{{ . }}</p>{{ end }}
+
+  {{ range $c.items }}
+  <article class="cs-card">
+    <a class="cs-thumb{{ if eq .fit "contain" }} cs-thumb-contain{{ end }}" href="{{ .url }}" tabindex="-1" aria-hidden="true">
+      <img src="{{ .image }}" alt="" loading="lazy">
+    </a>
+    <div class="cs-body">
+      {{ with .tags }}<ul class="cs-tags">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+      <h2 class="cs-title"><a href="{{ .url }}">{{ .title }}</a></h2>
+      <p class="cs-problem">{{ .problem }}</p>
+      {{ with .result }}<div class="cs-result"><span>{{ $c.result_label }}</span>{{ . }}</div>{{ end }}
+      <div class="cs-actions">
+        <a class="cs-btn cs-btn-primary" href="{{ .url }}">{{ $c.read_label }} →</a>
+        {{ if .mission }}<a class="cs-btn" href="{{ .mission }}">{{ .mission_label }}</a>{{ end }}
+      </div>
+    </div>
+  </article>
+  {{ end }}
+</div>
