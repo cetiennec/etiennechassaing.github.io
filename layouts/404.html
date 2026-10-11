@@ -1,0 +1,380 @@
+{{/* 404 page: a quadrotor explores a random floor plan with a simulated lidar, builds an
+     occupancy grid and drives to the nearest frontier (Dijkstra on the known map,
+     point-mass PD control). Click a mapped cell to send it there. No dependency. */}}
+{{- define "main" -}}
+{{ $fr := eq site.Language.Lang "fr" }}
+<div class="nf-wrap">
+  <h1 class="nf-title">{{ if $fr }}404 : page introuvable{{ else }}404: page not found{{ end }}</h1>
+  <p class="nf-lead">{{ if $fr }}Un drone cartographie le bâtiment pour la retrouver.{{ else }}A drone is mapping the building to find it.{{ end }}</p>
+
+  <div class="nf-stage">
+    <canvas class="nf-canvas" aria-label="{{ if $fr }}Drone qui cartographie un bâtiment au lidar{{ else }}Drone mapping a building with a lidar{{ end }}"></canvas>
+    <div class="nf-status" aria-live="polite"></div>
+  </div>
+  <p class="nf-hint">{{ if $fr }}Cliquez sur une zone cartographiée pour y envoyer le drone.{{ else }}Click a mapped area to send the drone there.{{ end }}</p>
+
+  <nav class="nf-links">
+    {{ if $fr }}
+    <a href="{{ "/" | relLangURL }}">Accueil</a>
+    <a href="{{ "/teaching/" | relLangURL }}">Enseignement</a>
+    <a href="{{ "/case-studies/" | relLangURL }}">Études de cas</a>
+    <a href="{{ "/publication/" | relLangURL }}">Publications</a>
+    {{ else }}
+    <a href="{{ "/" | relLangURL }}">Home</a>
+    <a href="{{ "/teaching/" | relLangURL }}">Teaching</a>
+    <a href="{{ "/case-studies/" | relLangURL }}">Case studies</a>
+    <a href="{{ "/publication/" | relLangURL }}">Publications</a>
+    {{ end }}
+  </nav>
+</div>
+
+<style>
+  .nf-wrap { max-width: 52rem; margin: 0 auto; padding: 2.5rem 1rem 3rem; text-align: center; }
+  .nf-title { font-size: 2.4rem; font-weight: 800; margin: 0; }
+  .nf-lead { margin: 0.6rem 0 1.5rem; font-size: 1.1rem; opacity: 0.8; }
+  .nf-stage { position: relative; border-radius: 0.9rem; overflow: hidden; background: #0b1220; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18); }
+  .nf-canvas { display: block; width: 100%; height: auto; cursor: crosshair; }
+  .nf-status {
+    position: absolute; left: 0.75rem; top: 0.6rem; padding: 0.25rem 0.6rem; border-radius: 0.4rem;
+    font: 600 0.8rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color: #e2e8f0; background: rgba(11, 18, 32, 0.75);
+  }
+  .nf-hint { margin: 0.6rem 0 0; font-size: 0.85rem; opacity: 0.65; }
+  .nf-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 1.75rem; }
+  .nf-links a {
+    padding: 0.45rem 1rem; border-radius: 9999px; font-weight: 600; font-size: 0.95rem; text-decoration: none;
+    border: 1px solid rgb(var(--color-primary-600)); color: rgb(var(--color-primary-700));
+  }
+  .nf-links a:hover { background: rgb(var(--color-primary-600)); color: #fff; }
+  .dark .nf-links a { color: rgb(var(--color-primary-300)); border-color: rgb(var(--color-primary-400)); }
+  .dark .nf-links a:hover { background: rgb(var(--color-primary-500)); color: #0b1220; }
+  @media (max-width: 640px) { .nf-title { font-size: 1.8rem; } }
+</style>
+
+<script>
+(() => {
+  const canvas = document.querySelector('.nf-canvas');
+  if (!canvas) return;
+  const statusEl = document.querySelector('.nf-status');
+  const ctx = canvas.getContext('2d');
+  const FR = {{ $fr }};
+  const T = FR
+    ? { exploring: p => `exploration… ${p} % cartographié`, done: 'carte terminée : 0 page trouvée', next: 'nouveau bâtiment…' }
+    : { exploring: p => `exploring… ${p}% mapped`, done: 'map complete: 0 pages found', next: 'new building…' };
+
+  const W = 32, H = 20, RANGE = 6, RAYS = 90;
+  const UNKNOWN = 0, FREE = 1, OCC = 2;
+  const rgb = (getComputedStyle(document.documentElement).getPropertyValue('--color-primary-500').trim() || '16 185 129').split(/[\s,]+/).join(',');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let truth, known, observable, robot, path, goal, manual, trail, state, stateTime, sweep, props = 0;
+  const idx = (x, y) => y * W + x;
+  const inside = (x, y) => x >= 0 && y >= 0 && x < W && y < H;
+  const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+
+  function buildPlan() {
+    truth = new Uint8Array(W * H);
+    for (let x = 0; x < W; x++) { truth[idx(x, 0)] = 1; truth[idx(x, H - 1)] = 1; }
+    for (let y = 0; y < H; y++) { truth[idx(0, y)] = 1; truth[idx(W - 1, y)] = 1; }
+    const doors = new Set();
+    const nearDoor = (x, y) => [[0, 0], [1, 0], [-1, 0], [0, 1], [0, -1]].some(([dx, dy]) => doors.has(idx(x + dx, y + dy)));
+    const split = (x0, y0, x1, y1, depth) => {
+      const w = x1 - x0 + 1, h = y1 - y0 + 1;
+      if (depth > 4 || (w < 12 && h < 10)) return;
+      const vertical = w / h > 1.2 || (w / h > 0.8 && Math.random() < 0.5);
+      if (vertical && w >= 12) {
+        const xs = rnd(x0 + 5, x1 - 5), d = rnd(y0 + 1, y1 - 3), dw = rnd(2, 3);
+        for (let y = d; y < d + dw && y <= y1; y++) doors.add(idx(xs, y));
+        for (let y = y0; y <= y1; y++) if (!doors.has(idx(xs, y)) && !nearDoor(xs, y)) truth[idx(xs, y)] = 1;
+        split(x0, y0, xs - 1, y1, depth + 1); split(xs + 1, y0, x1, y1, depth + 1);
+      } else if (h >= 10) {
+        const ys = rnd(y0 + 4, y1 - 4), d = rnd(x0 + 1, x1 - 3), dw = rnd(2, 3);
+        for (let x = d; x < d + dw && x <= x1; x++) doors.add(idx(x, ys));
+        for (let x = x0; x <= x1; x++) if (!doors.has(idx(x, ys)) && !nearDoor(x, ys)) truth[idx(x, ys)] = 1;
+        split(x0, y0, x1, ys - 1, depth + 1); split(x0, ys + 1, x1, y1, depth + 1);
+      }
+    };
+    split(1, 1, W - 2, H - 2, 0);
+    // A few crates, only where they keep a 2-cell clearance from everything else.
+    for (let k = 0; k < 6; k++) {
+      const cx = rnd(3, W - 5), cy = rnd(3, H - 5);
+      let clear = true;
+      for (let y = cy - 2; y <= cy + 3 && clear; y++) for (let x = cx - 2; x <= cx + 3; x++) if (truth[idx(x, y)] || doors.has(idx(x, y))) { clear = false; break; }
+      if (clear) for (let y = cy; y <= cy + 1; y++) for (let x = cx; x <= cx + 1; x++) truth[idx(x, y)] = 1;
+    }
+  }
+
+  function start() {
+    buildPlan();
+    known = new Uint8Array(W * H);
+    const free = [];
+    for (let y = 2; y < H - 2; y++) for (let x = 2; x < W - 2; x++) {
+      let ok = true;
+      for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) if (truth[idx(x + dx, y + dy)]) ok = false;
+      if (ok) free.push([x, y]);
+    }
+    const [sx, sy] = free[Math.floor(Math.random() * free.length)];
+    // Cells the robot can ever see: free cells reachable from the start, plus the walls around them.
+    observable = new Uint8Array(W * H);
+    const q = [idx(sx, sy)]; observable[q[0]] = 1;
+    while (q.length) {
+      const c = q.pop(), x = c % W, y = (c / W) | 0;
+      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]]) {
+        const nx = x + dx, ny = y + dy, n = idx(nx, ny);
+        if (!inside(nx, ny) || observable[n]) continue;
+        observable[n] = 1;
+        if (!truth[n] && Math.abs(dx) + Math.abs(dy) === 1) q.push(n);
+        else if (!truth[n]) observable[n] = 0;
+      }
+    }
+    robot = { x: sx + 0.5, y: sy + 0.5, vx: 0, vy: 0, th: Math.random() * 6.283 };
+    path = []; goal = null; manual = false; trail = []; sweep = 0;
+    state = 'explore'; stateTime = 0;
+    scan();
+  }
+
+  function scan() {
+    const cx = Math.floor(robot.x), cy = Math.floor(robot.y);
+    known[idx(cx, cy)] = FREE;
+    for (let i = 0; i < RAYS; i++) {
+      const a = (i / RAYS) * Math.PI * 2, dx = Math.cos(a), dy = Math.sin(a);
+      for (let r = 0; r <= RANGE; r += 0.2) {
+        const x = Math.floor(robot.x + dx * r), y = Math.floor(robot.y + dy * r);
+        if (!inside(x, y)) break;
+        if (truth[idx(x, y)]) { known[idx(x, y)] = OCC; break; }
+        known[idx(x, y)] = FREE;
+      }
+    }
+  }
+
+  const isFrontier = c => {
+    const x = c % W, y = (c / W) | 0;
+    return known[c] === FREE && [[1, 0], [-1, 0], [0, 1], [0, -1]].some(([dx, dy]) => inside(x + dx, y + dy) && known[idx(x + dx, y + dy)] === UNKNOWN);
+  };
+
+  // Dijkstra on known free cells, with a cost for hugging walls; stops at the target test.
+  function plan(isTarget) {
+    const startC = idx(Math.floor(robot.x), Math.floor(robot.y));
+    const dist = new Float32Array(W * H).fill(Infinity), prev = new Int32Array(W * H).fill(-1);
+    const open = [startC]; dist[startC] = 0;
+    while (open.length) {
+      let bi = 0;
+      for (let i = 1; i < open.length; i++) if (dist[open[i]] < dist[open[bi]]) bi = i;
+      const c = open.splice(bi, 1)[0], x = c % W, y = (c / W) | 0;
+      if (c !== startC && isTarget(c)) {
+        const out = [];
+        for (let k = c; k !== -1 && k !== startC; k = prev[k]) out.push(k);
+        return out.reverse().map(k => ({ x: (k % W) + 0.5, y: ((k / W) | 0) + 0.5 }));
+      }
+      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+        const nx = x + dx, ny = y + dy, n = idx(nx, ny);
+        if (!inside(nx, ny) || known[n] !== FREE) continue;
+        let near = 0;
+        for (let ey = -1; ey <= 1; ey++) for (let ex = -1; ex <= 1; ex++) if (inside(nx + ex, ny + ey) && known[idx(nx + ex, ny + ey)] === OCC) near = 1;
+        const nd = dist[c] + 1 + near * 2.5;
+        if (nd < dist[n]) { if (dist[n] === Infinity) open.push(n); dist[n] = nd; prev[n] = c; }
+      }
+    }
+    return null;
+  }
+
+  function mapped() {
+    let k = 0, t = 0;
+    for (let i = 0; i < W * H; i++) if (observable[i]) { t++; if (known[i]) k++; }
+    return t ? Math.min(100, Math.round((100 * k) / t)) : 100;
+  }
+
+  let replanIn = 0;
+  function step(dt) {
+    stateTime += dt;
+    if (state !== 'explore') {
+      if (stateTime > (state === 'done' ? 4 : 1.2)) {
+        if (state === 'done') { state = 'next'; stateTime = 0; } else start();
+      }
+      return;
+    }
+    scan();
+    replanIn -= dt;
+    if (!path.length || (!manual && replanIn <= 0)) {
+      if (manual && !path.length) manual = false;
+      if (!manual) {
+        const p = plan(isFrontier);
+        replanIn = 0.6;
+        if (!p) { state = 'done'; stateTime = 0; goal = null; return; }
+        path = p; goal = p[p.length - 1];
+      }
+    }
+    sweep = (sweep + dt * 4) % (Math.PI * 2);
+    props = (props + dt * 40) % (Math.PI * 2);
+    if (!path.length) { robot.vx *= 0.9; robot.vy *= 0.9; return; }
+    while (path.length > 1 && Math.hypot(path[0].x - robot.x, path[0].y - robot.y) < 0.4) path.shift();
+    // Carrot: the furthest path point within reach that the drone can fly to in a straight line.
+    let target = path[0];
+    for (const p of path) {
+      if (Math.hypot(p.x - robot.x, p.y - robot.y) > 1.6 || !lineClear(robot.x, robot.y, p.x, p.y)) break;
+      target = p;
+    }
+    // Point-mass drone, critically damped PD on the carrot, with acceleration and speed limits.
+    const KP = 14, KD = 2 * Math.sqrt(KP), AMAX = 14, VMAX = 3;
+    let ax = KP * (target.x - robot.x) - KD * robot.vx, ay = KP * (target.y - robot.y) - KD * robot.vy;
+    const an = Math.hypot(ax, ay); if (an > AMAX) { ax *= AMAX / an; ay *= AMAX / an; }
+    robot.vx += ax * dt; robot.vy += ay * dt;
+    const vn = Math.hypot(robot.vx, robot.vy); if (vn > VMAX) { robot.vx *= VMAX / vn; robot.vy *= VMAX / vn; }
+    robot.x += robot.vx * dt; robot.y += robot.vy * dt;
+    if (vn > 0.3) {
+      const e = Math.atan2(robot.vy, robot.vx) - robot.th;
+      robot.th += Math.atan2(Math.sin(e), Math.cos(e)) * Math.min(1, 6 * dt);
+    }
+    if (path.length === 1 && Math.hypot(path[0].x - robot.x, path[0].y - robot.y) < 0.15) path = [];
+    trail.push([robot.x, robot.y]); if (trail.length > 600) trail.shift();
+  }
+
+  // True when the segment keeps CLEAR cells of distance from every known obstacle.
+  const CLEAR = 0.45;
+  function lineClear(ax, ay, bx, by) {
+    const n = Math.max(2, Math.ceil(Math.hypot(bx - ax, by - ay) / 0.1));
+    for (let i = 0; i <= n; i++) {
+      const px = ax + ((bx - ax) * i) / n, py = ay + ((by - ay) * i) / n;
+      for (let cy = Math.floor(py) - 1; cy <= Math.floor(py) + 1; cy++) for (let cx = Math.floor(px) - 1; cx <= Math.floor(px) + 1; cx++) {
+        if (!inside(cx, cy) || known[idx(cx, cy)] !== OCC) continue;
+        const qx = Math.max(cx, Math.min(px, cx + 1)), qy = Math.max(cy, Math.min(py, cy + 1));
+        if (Math.hypot(px - qx, py - qy) < CLEAR) return false;
+      }
+    }
+    return true;
+  }
+
+  // Isometric 2.5D view: world (x, y, z) in cells, z up. Walls are extruded blocks, the drone flies at ALT.
+  const WALL_H = 0.8, ALT = 0.5;
+  let k = 12, ox = 0, oy = 0, cw = 0, ch = 0;
+  const P = (x, y, z = 0) => [ox + (x - y) * k, oy + (x + y) * k * 0.5 - z * k * 1.2];
+  const shade = f => `rgb(${rgb.split(',').map(c => Math.round(c * f)).join(',')})`;
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    cw = canvas.parentElement.clientWidth;
+    k = cw / (W + H + 1);
+    ox = (H + 0.5) * k; oy = WALL_H * k * 1.2 + k * 0.6;
+    ch = (W + H) * k * 0.5 + oy + k * 0.6;
+    canvas.width = Math.round(cw * dpr); canvas.height = Math.round(ch * dpr);
+    canvas.style.height = ch + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  const poly = (pts, fill, stroke) => {
+    ctx.beginPath(); pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath();
+    if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+    if (stroke) { ctx.strokeStyle = stroke; ctx.stroke(); }
+  };
+  const line = (pts, style, width, dash) => {
+    ctx.strokeStyle = style; ctx.lineWidth = width; ctx.setLineDash(dash || []);
+    ctx.beginPath(); pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.stroke(); ctx.setLineDash([]);
+  };
+  const isOcc = (x, y) => inside(x, y) && known[idx(x, y)] === OCC;
+
+  function drawBlock(x, y) {
+    const h = WALL_H;
+    if (!isOcc(x, y + 1)) poly([P(x, y + 1, 0), P(x + 1, y + 1, 0), P(x + 1, y + 1, h), P(x, y + 1, h)], shade(0.45));
+    if (!isOcc(x + 1, y)) poly([P(x + 1, y, 0), P(x + 1, y + 1, 0), P(x + 1, y + 1, h), P(x + 1, y, h)], shade(0.65));
+    poly([P(x, y, h), P(x + 1, y, h), P(x + 1, y + 1, h), P(x, y + 1, h)], shade(1));
+  }
+
+  function draw() {
+    ctx.fillStyle = '#0b1220'; ctx.fillRect(0, 0, cw, ch);
+    ctx.lineWidth = 1;
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (known[idx(x, y)]) {
+      poly([P(x, y), P(x + 1, y), P(x + 1, y + 1), P(x, y + 1)], '#1e293b', '#26354d');
+    }
+    if (trail.length > 1) line(trail.map(([x, y]) => P(x, y)), 'rgba(226,232,240,0.22)', 1.5);
+    if (path.length) {
+      line([P(robot.x, robot.y), ...path.map(p => P(p.x, p.y))], 'rgba(255,255,255,0.55)', 1.5, [4, 4]);
+      const g = path[path.length - 1], c = P(g.x, g.y);
+      ctx.strokeStyle = manual ? '#fbbf24' : '#fff'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.ellipse(c[0], c[1], k * 0.55, k * 0.28, 0, 0, Math.PI * 2); ctx.stroke();
+    }
+    const z = ALT + 0.05 * Math.sin(performance.now() / 300);
+    const sh = P(robot.x, robot.y);
+    ctx.fillStyle = 'rgba(0,0,0,0.45)';
+    ctx.beginPath(); ctx.ellipse(sh[0], sh[1], k * 0.6, k * 0.3, 0, 0, Math.PI * 2); ctx.fill();
+
+    // Walls back to front; the lidar and the drone are drawn at their depth, walls in front of the drone fade.
+    const dd = robot.x + robot.y;
+    let droneDrawn = false;
+    const drawAir = () => {
+      if (state === 'explore') {
+        const o = P(robot.x, robot.y, z), rays = [];
+        for (let i = 0; i < RAYS; i += 2) {
+          const a = (i / RAYS) * Math.PI * 2;
+          let r = 0;
+          for (; r <= RANGE; r += 0.1) { const x = Math.floor(robot.x + Math.cos(a) * r), y = Math.floor(robot.y + Math.sin(a) * r); if (!inside(x, y) || truth[idx(x, y)]) break; }
+          rays.push(P(robot.x + Math.cos(a) * r, robot.y + Math.sin(a) * r, z));
+        }
+        ctx.strokeStyle = `rgba(${rgb},0.13)`; ctx.lineWidth = 1; ctx.beginPath();
+        rays.forEach(([x, y]) => { ctx.moveTo(o[0], o[1]); ctx.lineTo(x, y); }); ctx.stroke();
+        const fan = [o];
+        for (let t = 0; t <= 8; t++) { const a = sweep - 0.35 + (0.35 * t) / 8; fan.push(P(robot.x + Math.cos(a) * RANGE, robot.y + Math.sin(a) * RANGE, z)); }
+        poly(fan, `rgba(${rgb},0.16)`);
+      }
+      drawDrone(z);
+      droneDrawn = true;
+    };
+    for (let d = 0; d <= W + H; d++) {
+      if (!droneDrawn && d + 1 > dd) drawAir();
+      for (let x = Math.max(0, d - H + 1); x <= Math.min(W - 1, d); x++) {
+        const y = d - x;
+        if (!isOcc(x, y)) continue;
+        const front = droneDrawn && Math.abs((x - y) - (robot.x - robot.y)) < 3 && d + 1 - dd < 4;
+        ctx.globalAlpha = front ? 0.35 : 1;
+        drawBlock(x, y);
+        ctx.globalAlpha = 1;
+      }
+    }
+    if (!droneDrawn) drawAir();
+    statusEl.textContent = state === 'explore' ? T.exploring(mapped()) : state === 'done' ? T.done : T.next;
+  }
+
+  // Quadrotor in isometric: X frame, four spinning props (flattened discs), nose LED along the yaw.
+  function drawDrone(z) {
+    const arm = 0.45, pr = 0.25, c = Math.cos(robot.th), s = Math.sin(robot.th);
+    const W2 = (dx, dy, dz = 0) => P(robot.x + c * dx - s * dy, robot.y + s * dx + c * dy, z + dz);
+    const tips = [0, 1, 2, 3].map(i => { const a = Math.PI / 4 + (i * Math.PI) / 2; return [Math.cos(a) * arm, Math.sin(a) * arm]; });
+    ctx.lineCap = 'round';
+    line([W2(...tips[0]), W2(...tips[2])], '#cbd5e1', Math.max(2, k * 0.16));
+    line([W2(...tips[1]), W2(...tips[3])], '#cbd5e1', Math.max(2, k * 0.16));
+    poly([W2(-0.2, -0.15, 0.06), W2(0.2, -0.15, 0.06), W2(0.2, 0.15, 0.06), W2(-0.2, 0.15, 0.06)], '#f8fafc');
+    tips.forEach(([tx, ty], i) => {
+      const p = W2(tx, ty, 0.05);
+      ctx.fillStyle = 'rgba(226,232,240,0.25)';
+      ctx.beginPath(); ctx.ellipse(p[0], p[1], pr * k * 1.4, pr * k * 0.7, 0, 0, Math.PI * 2); ctx.fill();
+      const b = props * (i % 2 ? 1 : -1);
+      line([[p[0] - Math.cos(b) * pr * k * 1.4, p[1] - Math.sin(b) * pr * k * 0.7], [p[0] + Math.cos(b) * pr * k * 1.4, p[1] + Math.sin(b) * pr * k * 0.7]], 'rgba(248,250,252,0.9)', Math.max(1, k * 0.07));
+    });
+    const nose = W2(0.24, 0, 0.07);
+    ctx.fillStyle = `rgb(${rgb})`;
+    ctx.beginPath(); ctx.arc(nose[0], nose[1], Math.max(1.5, k * 0.09), 0, Math.PI * 2); ctx.fill();
+  }
+
+  canvas.addEventListener('click', e => {
+    if (state !== 'explore') return;
+    const b = canvas.getBoundingClientRect();
+    const u = (e.clientX - b.left - ox) / k, v = (e.clientY - b.top - oy) / (k * 0.5);
+    const x = Math.floor((u + v) / 2), y = Math.floor((v - u) / 2);
+    if (!inside(x, y) || known[idx(x, y)] !== FREE) return;
+    const p = plan(c => c === idx(x, y));
+    if (p) { path = p; manual = true; }
+  });
+
+  resize(); start();
+  window.addEventListener('resize', () => { resize(); draw(); });
+  if (reduced) {
+    for (let i = 0; i < 5000 && state === 'explore'; i++) step(0.05);
+    draw();
+    return;
+  }
+  let last = performance.now();
+  const loop = now => {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if (!document.hidden) { step(dt); draw(); }
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+})();
+</script>
+{{- end -}}
