@@ -201,6 +201,9 @@
 - id: pub_patent
   translation: Brevet
 
+- id: pub_patents
+  translation: Brevets
+
 # Project details
 
 - id: open_project_site

@@ -1,0 +1,18 @@
+<article class="pub-card">
+  {{ with partial "functions/get_featured_image.html" . }}
+  {{ $img := (.Fit "600x400").Process "webp" }}
+  <a class="pub-thumb" href="{{ $.RelPermalink }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="" loading="lazy">
+  </a>
+  {{ end }}
+  <div class="pub-body">
+    <div class="pub-meta">
+      {{ with partial "pub/type.html" . }}<span class="pub-type">{{ . }}</span>{{ end }}
+      <span class="pub-venue">{{ (.Params.publication_short | default .Params.publication) | markdownify }}</span>
+    </div>
+    <h3 class="pub-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{ partial "pub/authors.html" . }}
+    {{ with .Params.summary }}<p class="pub-summary">{{ . | markdownify }}</p>{{ end }}
+    {{ partial "pub/links.html" . }}
+  </div>
+</article>

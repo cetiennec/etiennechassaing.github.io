@@ -727,6 +727,16 @@
   background: var(--pub-line);
 }
 
+.pub-patents {
+  margin-top: 4rem;
+}
+
+.pub-section-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0 0 1.25rem;
+}
+
 .pub-card {
   display: grid;
   grid-template-columns: 13rem 1fr;
