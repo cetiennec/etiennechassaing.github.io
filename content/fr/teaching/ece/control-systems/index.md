@@ -35,7 +35,6 @@ QCM d'une page sur les systèmes échantillonnés et le filtrage, en 20 minutes.
 [auto-multiple-choice](https://www.auto-multiple-choice.net/) avec un tirage aléatoire
 différent par groupe, puis corrigés par lecture optique.
 
-- [Exemple de sujet (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/qcm-final/diffusion/qcm_midterm_exemple.pdf)
 
 ### Examen final
 
@@ -54,4 +53,4 @@ Le corrigé n'est pas diffusé.
     title="Examen final : Systèmes bouclés (PDF)"></iframe>
 </div>
 
-Autres documents : [feuille réponse (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final_feuille_reponse.pdf) · [sujet en plein écran](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final.pdf)
+[Sujet en plein écran](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final.pdf)

@@ -25,7 +25,7 @@ Les diapositives sont construites à partir de mes notes manuscrites, prises en 
 {{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/albertschool/mathematics-foundations/cours/03-derivatives-chain-rule/diffusion/03-derivatives-chain-rule.pdf"
     title="Séance 3 : Derivatives and the Chain Rule" >}}
 
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/albertschool/mathematics-foundations/cours/04-gradients-gradient-descent-assessment/diffusion/04-gradients-gradient-descent-assessment.pdf"
+{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/albertschool/mathematics-foundations/cours/04-gradients-gradient-descent/diffusion/04-gradients-gradient-descent.pdf"
     title="Séance 4 : Gradients, Gradient Descent & Assessment" >}}
 
 - Séance 1 : addition de vecteurs et produit scalaire, similarité cosinus sur des données

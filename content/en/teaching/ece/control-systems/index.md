@@ -36,7 +36,6 @@ A one-page, 20-minute quiz on sampled systems and filtering. Every student gets 
 [auto-multiple-choice](https://www.auto-multiple-choice.net/) with a different random
 draw per group, then marked by optical recognition.
 
-- [Sample paper (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/qcm-final/diffusion/qcm_midterm_exemple.pdf)
 
 ### Final exam
 
@@ -65,4 +64,4 @@ Solutions are not published.
     title="Final exam: Sampled Control Systems (PDF)"></iframe>
 </div>
 
-Other documents: [answer sheet (PDF)](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final_feuille_reponse.pdf) · [exam paper, full screen](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final.pdf)
+[Exam paper, full screen](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final.pdf)

@@ -12,16 +12,16 @@ An introductory course on Reinforcement Learning, structured as **four lectures*
 
 ### Lectures
 
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/01-introduction-mdp/diffusion/01-introduction-mdp.pdf"
+{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/01-introduction-mdp/diffusion/01-introduction-mdp-handout.pdf"
     title="Lecture 1: Introduction and MDPs" >}}
 
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/02-programmation-dynamique/diffusion/02-programmation-dynamique.pdf"
+{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/02-programmation-dynamique/diffusion/02-programmation-dynamique-handout.pdf"
     title="Lecture 2: Dynamic Programming" >}}
 
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/03-model-free-learning/diffusion/03-model-free-learning.pdf"
+{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/03-model-free-learning/diffusion/03-model-free-learning-handout.pdf"
     title="Lecture 3: Model-Free Prediction" >}}
 
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/04-deep-rl-applications/diffusion/04-deep-rl-applications.pdf"
+{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/04-deep-rl-applications/diffusion/04-deep-rl-applications-handout.pdf"
     title="Lecture 4: Model-Free Control & Deep RL Applications" >}}
 
 - Session 1: Markov decision processes, return, value functions, Bellman equations.

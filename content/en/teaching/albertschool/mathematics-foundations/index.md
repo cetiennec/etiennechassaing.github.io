@@ -25,7 +25,7 @@ The slides are made from my handwritten notes, taken live during class.
 {{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/albertschool/mathematics-foundations/cours/03-derivatives-chain-rule/diffusion/03-derivatives-chain-rule.pdf"
     title="Session 3: Derivatives and the Chain Rule" >}}
 
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/albertschool/mathematics-foundations/cours/04-gradients-gradient-descent-assessment/diffusion/04-gradients-gradient-descent-assessment.pdf"
+{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/albertschool/mathematics-foundations/cours/04-gradients-gradient-descent/diffusion/04-gradients-gradient-descent.pdf"
     title="Session 4: Gradients, Gradient Descent & Assessment" >}}
 
 - Session 1: vector addition and the dot product, cosine similarity on real data.
