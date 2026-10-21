@@ -6,8 +6,7 @@ type: docs
 
 J'enseigne depuis 10 ans dans des formats variés: cours particuliers, colleur, chargé de TD, cours en amphi devant 150 élèves, des TD en petits groupes, des projets étudiants que j'encadre et maintenant des formations en entreprise. Tout le contenu que j'ai développé pour mes cours est ici.
 
-Les supports sont tous en accès libre sur ce lien :
-[accès libre](https://github.com/cetiennec/cours-pdf).
+Les supports sont tous [en accès libre sur Hugging Face](https://huggingface.co/spaces/cetiennec/teaching) : diaporamas, feuilles de TD et spaces interactifs utilisés en cours.
 
 {{< sorting-arm bins="CENTRALE/RL|ECE/SYS. BOUCLÉS|ALBERT/MATHS" >}}
 

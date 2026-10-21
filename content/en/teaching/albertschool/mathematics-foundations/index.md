@@ -14,21 +14,13 @@ derivatives and the chain rule as backpropagation, and gradient descent.
 
 The slides are made from my handwritten notes, taken live during class.
 
-### Sessions
-
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/albertschool/mathematics-foundations/cours/01-vectors-geometry-similarity/diffusion/01-vectors-geometry-similarity.pdf"
-    title="Session 1: Vectors, Geometry & Similarity" >}}
-
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/albertschool/mathematics-foundations/cours/02-matrices-transformations-eigenstructure/diffusion/02-matrices-transformations-eigenstructure.pdf"
-    title="Session 2: Matrices, Transformations & Eigenstructure" >}}
-
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/albertschool/mathematics-foundations/cours/03-derivatives-chain-rule/diffusion/03-derivatives-chain-rule.pdf"
-    title="Session 3: Derivatives and the Chain Rule" >}}
-
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/albertschool/mathematics-foundations/cours/04-gradients-gradient-descent/diffusion/04-gradients-gradient-descent.pdf"
-    title="Session 4: Gradients, Gradient Descent & Assessment" >}}
-
 - Session 1: vector addition and the dot product, cosine similarity on real data.
 - Session 2: matrices as linear transformations, the forward pass, eigenvectors and PCA.
 - Session 3: derivatives, differentiation rules, the chain rule as backpropagation.
 - Session 4: the gradient, gradient descent, local and global minima.
+
+### Course material
+
+Slides and the interactive spaces used in class, session by session.
+
+{{< teaching-reader course="albert/math-foundations" title="Mathematics Foundations: course material" >}}

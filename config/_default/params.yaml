@@ -66,3 +66,9 @@ features:
     enable: false
   privacy_pack:
     enable: false
+
+# Course material embedded by the `teaching-reader` shortcode: the Hugging Face space
+# cetiennec/teaching. Local test against a local build of the space:
+#   HUGOxPARAMSxTEACHING_READER=http://localhost:8765/index.html hugo server
+#   (HUGOx: the key has an underscore, which Hugo would otherwise read as a nesting level)
+teaching_reader: https://cetiennec-teaching.static.hf.space/index.html

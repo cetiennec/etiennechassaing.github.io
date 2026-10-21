@@ -6,7 +6,7 @@ type: docs
 
 I have been teaching for 10 years in many formats: private tutoring, oral exams (colles), teaching assistant sessions, lectures in front of 150 students, student projects I supervise and, now, training for companies. All the content I designed is here.
 
-The material is [freely available](https://github.com/cetiennec/cours-pdf) on this GitHub.
+The material is [freely available](https://huggingface.co/spaces/cetiennec/teaching) on Hugging Face: slides, exercise sheets and the interactive spaces used in class.
 
 {{< sorting-arm bins="CENTRALE/RL|ECE/CONTROL|ALBERT/MATHS" >}}
 

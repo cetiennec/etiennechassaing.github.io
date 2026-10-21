@@ -10,20 +10,6 @@ math: true
 
 Cours d'introduction au Reinforcement-Learning, structurée en **quatre séances de cours**, chacune suivie d'un TD.
 
-### Cours
-
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/01-introduction-mdp/diffusion/01-introduction-mdp-handout.pdf"
-    title="Cours 1 : Introduction et MDP" >}}
-
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/02-programmation-dynamique/diffusion/02-programmation-dynamique-handout.pdf"
-    title="Cours 2 : Programmation dynamique" >}}
-
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/03-model-free-learning/diffusion/03-model-free-learning-handout.pdf"
-    title="Cours 3 : Prédiction sans modèle" >}}
-
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/cours/04-deep-rl-applications/diffusion/04-deep-rl-applications-handout.pdf"
-    title="Cours 4 : Contrôle sans modèle et deep RL" >}}
-
 - Séance 1 : processus de décision markoviens, retour, fonctions de valeur, équations de
 Bellman. 
 - Séance 2 : évaluation de politique, itération sur la politique, itération sur
@@ -32,15 +18,12 @@ la valeur.
 - Séance 4 :
 Monte-Carlo control, SARSA, Q-Learning, et une ouverture sur le deep RL.
 
-### TD écrits
+### Supports
 
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/TD-2026-2027/01-introduction-mdp/diffusion/exercises.pdf"
-    title="TD : Introduction et MDP" >}}
+Diaporamas, feuilles de TD et spaces interactifs utilisés en cours, séance par séance.
+Les supports sont en anglais.
 
-{{< pdf src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/centralesupelec/reinforcement-learning/TD-2026-2027/02-programmation-dynamique/diffusion/exercises.pdf"
-    title="TD : Programmation dynamique" >}}
-
-> Les feuilles de TD des séances 3 et 4, ainsi que les notebooks, sont en préparation.
+{{< teaching-reader course="centralesupelec/rl" title="Apprentissage par renforcement : supports" >}}
 
 Voir aussi la [formation Deep Reinforcement Learning](/fr/teaching/companies/drl/) que j'ai réalisé en entreprise, sur les mêmes fondamentaux mais orientée mise en pratique avec
 Stable-Baselines3 et Gym.

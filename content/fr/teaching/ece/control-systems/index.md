@@ -17,16 +17,18 @@ les systèmes continus, était assurée par un autre intervenant.
 
 Les documents ci-dessous sont ceux réellement distribués aux étudiants.
 
-### Diaporamas de cours
+### Supports
 
-| # | Séance | Contenu | Pages |
-| - | ------ | ------- | ----- |
-| 5 | [Systèmes continus et discrets](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/cours/05-transformee-z/diffusion/05-transformee-z.pdf) | Transformées de Laplace et en $\mathcal{Z}$ | 32 |
-| 5 bis | [Éléments simples](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/cours/05-bis-elements-simples/diffusion/05-bis-elements-simples.pdf) | Décomposition des fractions rationnelles, cas général | 10 |
-| 6 | [Systèmes échantillonnés](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/cours/06-systemes-echantillonnes/diffusion/06-systemes-echantillonnes.pdf) | Échantillonnage, bloqueur d'ordre zéro, régulation numérique | 38 |
-| 7 | [Correcteur PID numérique](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/cours/07-pid-echantillonnes/diffusion/07-pid-echantillonnes.pdf) | Du modèle à l'implantation réelle | 39 |
-| 8 | [Filtrage et filtre de Kalman](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/cours/08-filtrage-kalman/diffusion/08-filtrage-kalman.pdf) | Du signal bruité à l'estimation optimale d'état | 26 |
-| 9 | [Applications et révisions](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/cours/09-applications-revisions/diffusion/09-applications-revisions-etudiant.pdf) | Approches data-based, étude de cas du pendule inversé *(version étudiant)* | 19 |
+- Séance 5 : systèmes continus et discrets, transformées de Laplace et en $\mathcal{Z}$.
+- Séance 5 bis : éléments simples, décomposition des fractions rationnelles dans le cas général.
+- Séance 6 : systèmes échantillonnés, échantillonnage, bloqueur d'ordre zéro, régulation numérique.
+- Séance 7 : correcteur PID numérique, du modèle à l'implantation réelle.
+- Séance 8 : filtrage et filtre de Kalman, du signal bruité à l'estimation optimale d'état.
+- Séance 9 : applications et révisions, approches data-based, étude de cas du pendule inversé.
+
+Diaporamas des séances 5 à 9 et sujet de l'examen final :
+
+{{< teaching-reader course="ece/sbe" title="Systèmes bouclés échantillonnés : supports" >}}
 
 ### QCM de mi-parcours
 
@@ -34,7 +36,6 @@ QCM d'une page sur les systèmes échantillonnés et le filtrage, en 20 minutes.
 étudiant reçoit un **sujet individualisé** : les sujets sont générés avec
 [auto-multiple-choice](https://www.auto-multiple-choice.net/) avec un tirage aléatoire
 différent par groupe, puis corrigés par lecture optique.
-
 
 ### Examen final
 
@@ -44,13 +45,5 @@ l'implémentation embarquée, puis le filtrage et la fusion de capteurs, sur un 
 système, le contrôle en altitude d'un drone d'observation agricole.
 
 Durée : **1h30**, calculatrice et documents interdits. 20 points, plus 2 points de bonus.
-Le corrigé n'est pas diffusé.
-
-<div style="position:relative;padding-top:129%;margin:1.5rem 0;border:1px solid #d4d4d8;border-radius:6px;overflow:hidden;">
-  <iframe
-    src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final.pdf"
-    style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
-    title="Examen final : Systèmes bouclés (PDF)"></iframe>
-</div>
-
-[Sujet en plein écran](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final.pdf)
+Le corrigé n'est pas diffusé. Le sujet est le dernier document des
+[supports](#supports) ci-dessus.

@@ -1,0 +1,89 @@
+{{/*
+  teaching-reader shortcode: one course of the Hugging Face space "teaching"
+  (cetiennec/teaching, built from the private LatexClasses repo), embedded in the page.
+
+  The space is the single list of a course's PDFs: what sits in a `diffusion/`
+  folder there shows up here, nothing to update on this site.
+
+  The iframe loads the space with `?embed=1#<course>`: the space then hides its own
+  header and menu, posts its height (so the iframe fits its content, no inner scroll
+  bar) and asks this page to open a PDF, which is shown full screen in an overlay
+  (the space's own PDF.js viewer, `?view=<pdf>`). The page's light/dark theme is
+  passed along, and again whenever it is toggled.
+
+  Params:
+    course  (required, or first positional) course key in the space, "<school>/<course>"
+            as in its catalogue.json: centralesupelec/rl, albert/math-foundations, ece/sbe
+    title   (optional) iframe title, for screen readers
+
+  Space URL: site param `teaching_reader`, defaulting to the live space. To test
+  against a local build of the space: HUGOxPARAMSxTEACHING_READER=http://localhost:8765/index.html hugo server
+*/}}
+{{ $course := .Get "course" | default (.Get 0) }}
+{{ $base := site.Params.teaching_reader | default "https://cetiennec-teaching.static.hf.space/index.html" }}
+<div class="teaching-reader" data-base="{{ $base }}" data-course="{{ $course }}">
+  <iframe class="teaching-reader-frame" title="{{ .Get "title" | default "Course material" }}"
+    style="display:block;width:100%;height:640px;border:0;background:transparent;" allow="fullscreen"></iframe>
+  <noscript><a href="{{ $base }}#{{ $course }}">{{ $base }}#{{ $course }}</a></noscript>
+</div>
+<script>
+(() => {
+  // one handler for all the readers of the page (the shortcode may be used more than once)
+  if (window.teachingReader) return;
+  window.teachingReader = true;
+  const init = () => {
+    const frames = [...document.querySelectorAll(".teaching-reader")].map(w => {
+      const f = w.querySelector("iframe"), u = new URL(w.dataset.base);
+      u.searchParams.set("embed", "1");
+      u.searchParams.set("theme", theme());
+      u.hash = w.dataset.course;
+      f.src = u.href;
+      return f;
+    });
+    if (!frames.length) return;
+    const origin = new URL(frames[0].src).origin;
+
+    // PDF opened from the space: its own viewer, full screen above the page
+    let overlay = null;
+    const close = () => {
+      if (!overlay) return;
+      overlay.remove(); overlay = null;
+      document.documentElement.style.overflow = "";
+    };
+    const open = url => {
+      close();
+      overlay = document.createElement("div");
+      overlay.style.cssText = "position:fixed;inset:0;z-index:9999;background:rgba(13,27,42,.55);";
+      const f = document.createElement("iframe");
+      f.style.cssText = "width:100%;height:100%;border:0;background:transparent;";
+      f.title = "PDF";
+      f.src = url;
+      overlay.append(f);
+      overlay.addEventListener("click", e => { if (e.target === overlay) close(); });
+      document.body.append(overlay);
+      document.documentElement.style.overflow = "hidden";
+      f.focus();
+    };
+
+    window.addEventListener("message", e => {
+      const d = e.data;
+      if (e.origin !== origin || !d || d.source !== "teaching") return;
+      if (d.type === "height") {
+        const f = frames.find(f => f.contentWindow === e.source);
+        if (f && d.h > 0) f.style.height = d.h + "px";
+      } else if (d.type === "open" && new URL(d.url).origin === origin) open(d.url);
+      else if (d.type === "close") close();
+    });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
+
+    // the site's dark-mode toggle flips the `dark` class on <html>
+    new MutationObserver(() => {
+      const t = theme();
+      for (const f of [...frames, overlay?.firstChild].filter(Boolean))
+        f.contentWindow?.postMessage({ source: "teaching-host", theme: t }, origin);
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  };
+  const theme = () => document.documentElement.classList.contains("dark") ? "dark" : "light";
+  document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", init) : init();
+})();
+</script>

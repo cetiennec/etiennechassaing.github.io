@@ -18,16 +18,18 @@ another lecturer.
 The documents below are the ones actually handed out to students. The course is taught
 in French, so the material is in French.
 
-### Lecture slides
+### Course material
 
-| # | Session | Topic | Pages |
-| - | ------- | ----- | ----- |
-| 5 | [Continuous and discrete systems](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/cours/05-transformee-z/diffusion/05-transformee-z.pdf) | Laplace and $\mathcal{Z}$ transforms | 32 |
-| 5 bis | [Partial fractions](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/cours/05-bis-elements-simples/diffusion/05-bis-elements-simples.pdf) | Decomposition of rational fractions, general case | 10 |
-| 6 | [Sampled systems](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/cours/06-systemes-echantillonnes/diffusion/06-systemes-echantillonnes.pdf) | Sampling, zero-order hold, digital control | 38 |
-| 7 | [Digital PID controller](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/cours/07-pid-echantillonnes/diffusion/07-pid-echantillonnes.pdf) | From the model to the real implementation | 39 |
-| 8 | [Filtering and the Kalman filter](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/cours/08-filtrage-kalman/diffusion/08-filtrage-kalman.pdf) | From a noisy signal to optimal state estimation | 26 |
-| 9 | [Applications and revision](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/cours/09-applications-revisions/diffusion/09-applications-revisions-etudiant.pdf) | Data-based approaches, inverted-pendulum case study *(student version)* | 19 |
+- Session 5: continuous and discrete systems, Laplace and $\mathcal{Z}$ transforms.
+- Session 5 bis: partial fractions, decomposition of rational fractions in the general case.
+- Session 6: sampled systems, sampling, zero-order hold, digital control.
+- Session 7: the digital PID controller, from the model to the real implementation.
+- Session 8: filtering and the Kalman filter, from a noisy signal to optimal state estimation.
+- Session 9: applications and revision, data-based approaches, inverted-pendulum case study.
+
+Slides of sessions 5 to 9 and the final exam paper:
+
+{{< teaching-reader course="ece/sbe" title="Sampled Control Systems: course material" >}}
 
 ### Midterm quiz
 
@@ -35,7 +37,6 @@ A one-page, 20-minute quiz on sampled systems and filtering. Every student gets 
 **individualised paper**: papers are generated with
 [auto-multiple-choice](https://www.auto-multiple-choice.net/) with a different random
 draw per group, then marked by optical recognition.
-
 
 ### Final exam
 
@@ -55,13 +56,5 @@ French, as the course is taught in French.
 - **Part 4, filtering:** anti-aliasing, and fusing a 10 Hz GPS with a 100 Hz accelerometer
 
 Duration: **1h30**, calculator and documents not allowed. 20 points, plus 2 bonus points.
-Solutions are not published.
-
-<div style="position:relative;padding-top:129%;margin:1.5rem 0;border:1px solid #d4d4d8;border-radius:6px;overflow:hidden;">
-  <iframe
-    src="https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final.pdf"
-    style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
-    title="Final exam: Sampled Control Systems (PDF)"></iframe>
-</div>
-
-[Exam paper, full screen](https://cdn.jsdelivr.net/gh/cetiennec/cours-pdf@main/ece/systemes-boucles/evaluations/2025-2026/examen-final/diffusion/examen_final.pdf)
+Solutions are not published. The exam paper is the last item of the
+[course material](#course-material) above.
