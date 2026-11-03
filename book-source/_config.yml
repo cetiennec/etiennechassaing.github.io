@@ -1,0 +1,28 @@
+title: Case Studies
+author: Etienne Chassaing
+copyright: "2026"
+
+execute:
+  execute_notebooks: "off"
+
+exclude_patterns: [_build, "**/.ipynb_checkpoints"]
+
+parse:
+  myst_enable_extensions: [dollarmath, amsmath, html_image]
+
+launch_buttons:
+  colab_url: https://colab.research.google.com
+
+repository:
+  url: https://github.com/executablebooks/jupyter-book
+  branch: master
+
+html:
+  use_repository_button: false
+  use_issues_button: false
+  use_edit_page_button: false
+
+sphinx:
+  config:
+    html_static_path: [_static]
+    html_title: Case Studies · Etienne Chassaing

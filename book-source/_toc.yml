@@ -1,0 +1,6 @@
+format: jb-book
+root: index
+chapters:
+- file: heat_pipe_control/system_tutorial
+- file: drone_delayed_control/case_study
+- file: fishing_boat/case_study
