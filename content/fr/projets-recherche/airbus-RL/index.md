@@ -16,6 +16,10 @@ image:
   caption: 'Source : databasecamp'
 ---
 
+<p align="center">
+<img src="/fr/assets/airbus-group.png" alt="Airbus Group" width="200"/>
+</p>
+
 ## Contexte du projet
 
 Stage de recherche de 6 mois chez Airbus Group, sur le contrôle multi-agents de drones par apprentissage par renforcement (Reinforcement Learning, RL). L'objectif était de concevoir un algorithme capable de coordonner des équipes de drones sur une tâche collaborative complexe, avec de meilleures performances que les techniques de contrôle existantes.

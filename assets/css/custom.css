@@ -1954,3 +1954,21 @@
   height: auto;
   object-fit: contain;
 }
+
+/* Docs pages (projects, teaching): the theme sizes headings for prose-xl on large
+   screens while the body text stays text-base, so titles dwarf the text. Bring the
+   headings back in proportion with the body. */
+@media (min-width: 1024px) {
+  main.prose .content.text-base > h1 {
+    font-size: 2.25rem;
+    line-height: 1.2;
+  }
+
+  main.prose .content.text-base > h2 {
+    font-size: 1.6rem;
+  }
+
+  main.prose .content.text-base > h3 {
+    font-size: 1.25rem;
+  }
+}

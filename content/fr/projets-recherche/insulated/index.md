@@ -14,6 +14,10 @@ tags:
   - Computer-Vision
 ---
 
+<p align="center">
+<img src="/fr/assets/schindler.png" alt="Schindler" width="200"/>
+</p>
+
 <div class="pf-case-callout">
   <strong>📄 Thermoxels : article et code</strong>
   <span>La méthode est publiée à CISBAT 2025 (<em>Journal of Physics: Conference Series</em>), et son code est en accès libre.</span>

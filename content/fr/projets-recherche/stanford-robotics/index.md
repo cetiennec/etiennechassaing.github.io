@@ -13,6 +13,10 @@ tags:
   - Modélisation
 ---
 
+<p align="center">
+<img src="/fr/assets/stanford-ai.png" alt="Stanford AI Lab" width="300"/>
+</p>
+
 <div class="pf-case-callout">
   <strong>📄 Article</strong>
   <span>Ces travaux sont publiés à la IEEE World Haptics Conference 2023 : <em>Identifying Human Grasp Properties During Robot-to-Human Handovers</em>.</span>
