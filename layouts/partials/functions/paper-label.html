@@ -1,0 +1,8 @@
+{{/* Button label for a paper URL, named after its host. */}}
+{{ $host := (urls.Parse .).Host }}
+{{ $label := "Paper" }}
+{{ if in $host "arxiv.org" }}{{ $label = "arXiv" }}
+{{ else if in $host "ieee" }}{{ $label = "IEEE" }}
+{{ else if in $host "patents.google" }}{{ $label = "Google Patents" }}
+{{ end }}
+{{ return $label }}

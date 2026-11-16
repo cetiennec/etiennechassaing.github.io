@@ -1482,8 +1482,8 @@
   overflow: hidden;
 }
 
-/* The whole card is clickable through the title link's ::after overlay, so a
-   Code button can sit on top of it. */
+/* The whole card is clickable through the title link's ::after overlay, so
+   paper and Code buttons can sit on top of it. */
 .hs-sel-link {
   color: inherit !important;
   text-decoration: none !important;
@@ -1495,13 +1495,19 @@
   inset: 0;
 }
 
+.hs-sel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+
 .hs-sel-code {
   position: relative;
   z-index: 1;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  margin-top: 0.8rem;
   font-size: 0.8rem;
   font-weight: 600;
   padding: 0.3rem 0.7rem;

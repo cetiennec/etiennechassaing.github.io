@@ -3,7 +3,8 @@
      Params: content.text (intro), content.groups: [{id, title, text}].
      Cards show a Mission/Recherche badge, `client`, `duration`, year, `summary`,
      tags and link buttons: `case_study:` (a URL, the Jupyter Book case study),
-     `paper:` (a publication page path like /publication/<slug>, or a URL) and
+     `paper:` (a publication page path like /publication/<slug>, whose "URL" link,
+     e.g. arXiv, the button opens directly; or a URL) and
      `code:` (a URL).
      The whole card is clickable through the title link's ::after overlay. Styled by the `pf-` rules in custom.css. */}}
 
@@ -47,7 +48,14 @@
           {{ if or .Params.case_study .Params.paper .Params.code }}
           <div class="pf-links">
             {{ with .Params.case_study }}<a class="pf-case-link" href="{{ . }}">📘 Voir l'étude de cas →</a>{{ end }}
-            {{ with .Params.paper }}{{ $href := . }}{{ with site.GetPage . }}{{ $href = .RelPermalink }}{{ end }}<a class="pf-case-link" href="{{ $href }}">📄 Lire l'article →</a>{{ end }}
+            {{ with .Params.paper }}
+              {{ $href := . }}{{ $label := "Lire l'article" }}
+              {{ with site.GetPage . }}
+                {{ $href = .RelPermalink }}
+                {{ range first 1 (where (.Params.links | default slice) "name" "URL") }}{{ $href = .url }}{{ $label = partial "functions/paper-label.html" .url }}{{ end }}
+              {{ end }}
+              <a class="pf-case-link" href="{{ $href }}"{{ if hasPrefix $href "http" }} target="_blank" rel="noopener"{{ end }}>📄 {{ $label }} →</a>
+            {{ end }}
             {{ with .Params.code }}<a class="pf-case-link" href="{{ . }}" target="_blank" rel="noopener">💻 Voir le code →</a>{{ end }}
           </div>
           {{ end }}

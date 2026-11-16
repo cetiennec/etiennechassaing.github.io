@@ -4,9 +4,10 @@
      content.statement {title, text}: one centred sentence, shown first
      content.what     {title, items: [{icon, title, text, url, link}]}
      content.side     {title, text (Markdown), items: [{title, text, url, icon}]}
-     content.selected {title, items: [{page} | {url, title, text, image, kind}]}, plus an
-                      optional `code` URL (for a page, its `url_code` or `links` "Code")
-                      shown as a button; the rest of the card links to the page.
+     content.selected {title, items: [{page} | {url, title, text, image, kind}]}, plus
+                      optional `paper` and `code` URLs (for a page, its `links` "URL"
+                      and "Code", or `url_code`) shown as buttons; the rest of the
+                      card links to the page.
      content.logos    {title, items: [{name, img, url}]}
      Styled by the `hs-` rules in custom.css. */}}
 
@@ -68,12 +69,15 @@
     <h2 class="hs-heading">{{ .title }}</h2>
     <div class="hs-selected">
       {{ range .items }}
-      {{ $url := .url }}{{ $title := .title }}{{ $text := .text }}{{ $img := .image }}{{ $kind := .kind }}{{ $code := .code }}
+      {{ $url := .url }}{{ $title := .title }}{{ $text := .text }}{{ $img := .image }}{{ $kind := .kind }}{{ $code := .code }}{{ $paper := .paper }}
       {{ with .page }}
         {{ with site.GetPage . }}
           {{ $url = .RelPermalink }}
           {{ $code = $code | default .Params.url_code }}
-          {{ range .Params.links }}{{ if eq .name "Code" }}{{ $code = $code | default .url }}{{ end }}{{ end }}
+          {{ range .Params.links }}
+            {{ if eq .name "Code" }}{{ $code = $code | default .url }}{{ end }}
+            {{ if eq .name "URL" }}{{ $paper = $paper | default .url }}{{ end }}
+          {{ end }}
           {{ $title = $title | default .Title }}
           {{ $text = $text | default .Params.summary }}
           {{ with partial "functions/get_featured_image.html" . }}{{ $img = ((.Fit "640x400").Process "webp").RelPermalink }}{{ end }}
@@ -87,7 +91,12 @@
           {{ with $kind }}<span class="hs-kind">{{ . }}</span>{{ end }}
           <h3><a class="hs-sel-link" href="{{ $url }}">{{ $title }}</a></h3>
           {{ with $text }}<p>{{ . }}</p>{{ end }}
-          {{ with $code }}<a class="hs-sel-code" href="{{ . }}" target="_blank" rel="noopener">{{ partial "functions/get_icon" (dict "name" "code-bracket" "attributes" "style=\"height: 1em\"") }}Code</a>{{ end }}
+          {{ if or $paper $code }}
+          <div class="hs-sel-actions">
+            {{ with $paper }}<a class="hs-sel-code" href="{{ . }}" target="_blank" rel="noopener">{{ partial "functions/get_icon" (dict "name" "document-text" "attributes" "style=\"height: 1em\"") }}{{ partial "functions/paper-label.html" . }}</a>{{ end }}
+            {{ with $code }}<a class="hs-sel-code" href="{{ . }}" target="_blank" rel="noopener">{{ partial "functions/get_icon" (dict "name" "code-bracket" "attributes" "style=\"height: 1em\"") }}Code</a>{{ end }}
+          </div>
+          {{ end }}
         </div>
       </div>
       {{ end }}

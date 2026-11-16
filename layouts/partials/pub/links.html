@@ -5,13 +5,7 @@
 <div class="pub-links">
   {{ range .Params.links }}
     {{ $label := .name }}
-    {{ if eq .name "URL" }}
-      {{ $host := (urls.Parse .url).Host }}
-      {{ if in $host "arxiv.org" }}{{ $label = "arXiv" }}
-      {{ else if in $host "ieee" }}{{ $label = "IEEE" }}
-      {{ else if in $host "patents.google" }}{{ $label = "Google Patents" }}
-      {{ else }}{{ $label = "Paper" }}{{ end }}
-    {{ end }}
+    {{ if eq .name "URL" }}{{ $label = partial "functions/paper-label.html" .url }}{{ end }}
     <a class="pub-btn" href="{{ .url }}" target="_blank" rel="noopener">
       {{ partial "functions/get_icon" (dict "name" (cond (eq .name "Code") "code-bracket" "document-text") "attributes" "style=\"height: 1em\"") }}{{ $label }}
     </a>
