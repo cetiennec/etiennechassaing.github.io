@@ -2,7 +2,9 @@
      `projets-recherche`) grouped by their front matter `domain`, newest first.
      Params: content.text (intro), content.groups: [{id, title, text}].
      Cards show a Mission/Recherche badge, `client`, `duration`, year, `summary`,
-     tags and, with `case_study:` (a URL), a link to the Jupyter Book case study.
+     tags and link buttons: `case_study:` (a URL, the Jupyter Book case study),
+     `paper:` (a publication page path like /publication/<slug>, or a URL) and
+     `code:` (a URL).
      The whole card is clickable through the title link's ::after overlay. Styled by the `pf-` rules in custom.css. */}}
 
 {{ $page := .wcPage }}
@@ -42,7 +44,13 @@
           </div>
           <h3 class="pf-title"><a class="pf-card-link" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
           {{ with .Params.summary }}<p class="pf-summary">{{ . }}</p>{{ end }}
-          {{ with .Params.case_study }}<a class="pf-case-link" href="{{ . }}">📘 Voir l'étude de cas →</a>{{ end }}
+          {{ if or .Params.case_study .Params.paper .Params.code }}
+          <div class="pf-links">
+            {{ with .Params.case_study }}<a class="pf-case-link" href="{{ . }}">📘 Voir l'étude de cas →</a>{{ end }}
+            {{ with .Params.paper }}{{ $href := . }}{{ with site.GetPage . }}{{ $href = .RelPermalink }}{{ end }}<a class="pf-case-link" href="{{ $href }}">📄 Lire l'article →</a>{{ end }}
+            {{ with .Params.code }}<a class="pf-case-link" href="{{ . }}" target="_blank" rel="noopener">💻 Voir le code →</a>{{ end }}
+          </div>
+          {{ end }}
           {{ with .Params.tags }}<ul class="pf-tags">{{ range first 3 . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
         </div>
       </div>

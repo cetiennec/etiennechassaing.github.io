@@ -1217,11 +1217,16 @@
   inset: 0;
 }
 
+.pf-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.7rem;
+}
+
 .pf-case-link {
   position: relative;
   z-index: 1;
-  align-self: flex-start;
-  margin-top: 0.7rem;
   font-size: 0.8rem;
   font-weight: 600;
   padding: 0.3rem 0.7rem;
@@ -1472,8 +1477,42 @@
 }
 
 .hs-sel-card {
+  position: relative;
   flex-direction: column;
   overflow: hidden;
+}
+
+/* The whole card is clickable through the title link's ::after overlay, so a
+   Code button can sit on top of it. */
+.hs-sel-link {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.hs-sel-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.hs-sel-code {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.5rem;
+  background: rgb(var(--color-primary-600));
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.hs-sel-code:hover {
+  background: rgb(var(--color-primary-700));
 }
 
 .hs-sel-thumb {

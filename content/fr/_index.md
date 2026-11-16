@@ -18,11 +18,11 @@ sections:
       buttons:
         - text: Mon CV
           url: /fr/experience/
-          primary: true
         - text: Portfolio
           url: /fr/projects/
         - text: Contact
           url: mailto:contact@etiennechassaing.com
+          primary: true
     design:
       css_class: dark
       background:
