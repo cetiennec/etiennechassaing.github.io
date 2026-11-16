@@ -1,0 +1,16 @@
+{{/* A page that only forwards to `redirect:` (front matter), for section pages that
+     have nothing of their own to show, like /fr/projets/ whose pages the Portfolio
+     lists. They stay in the docs sidebar and breadcrumbs, which then lead somewhere.
+     Pair with `sitemap: {disable: true}`. */}}
+{{- $to := .Params.redirect | relURL -}}
+<!doctype html>
+<html lang="{{ site.Language.LanguageCode }}">
+<head>
+  <meta charset="utf-8">
+  <title>{{ .Title }}</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="{{ .Params.redirect | absURL }}">
+  <meta http-equiv="refresh" content="0; url={{ $to }}">
+</head>
+<body><a href="{{ $to }}">{{ .Title }}</a></body>
+</html>

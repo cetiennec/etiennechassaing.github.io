@@ -18,7 +18,7 @@ sections:
       buttons:
         - text: Resume
           url: /experience/
-        - text: Portfolio
+        - text: Portfolio (in French)
           url: /fr/projects/
         - text: Contact
           url: mailto:contact@etiennechassaing.com

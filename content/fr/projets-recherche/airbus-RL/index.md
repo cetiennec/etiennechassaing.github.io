@@ -12,34 +12,30 @@ tags:
   - IA
   - Multi-agents
   - Drones
+image:
+  caption: 'Source : databasecamp'
 ---
 
-### Projet : Simulateur et Algorithme de Contrôle Multi-Agents chez Airbus Group
+## Contexte du projet
 
-<p align="center">
-<img src="../../assets/airbus-groups.png" alt="drawing" width="200"/>
-</p>
+Stage de recherche de 6 mois chez Airbus Group, sur le contrôle multi-agents de drones par apprentissage par renforcement (Reinforcement Learning, RL). L'objectif était de concevoir un algorithme capable de coordonner des équipes de drones sur une tâche collaborative complexe, avec de meilleures performances que les techniques de contrôle existantes.
 
-**Contexte**  
-Dans le cadre d'un stage de 6 mois chez Airbus Group, j’ai débuté un projet sur le développement de solutions avancées de contrôle multi-agents pour des drones, en utilisant des techniques d'apprentissage par renforcement (Reinforcement Learning - RL). L’objectif était de concevoir un algorithme capable de gérer efficacement des équipes de drones accomplissant une tâche collaborative complexe, tout en améliorant les performances par rapport aux techniques de contrôle existantes.
+### Approche
 
-**Approche**  
-J’ai développé un simulateur basé sur *OpenAI Gym* et utilisé *Stable Baselines3* pour entraîner les drones dans une tâche multi-agents. En comparant l’état de l’art en contrôle multi-agents, j'ai identifié des domaines où le RL surpassait les méthodes traditionnelles, notamment dans l'adaptabilité et l'efficacité dans des scénarios complexes et dynamiques.
+J'ai développé un simulateur basé sur *OpenAI Gym* et utilisé *Stable Baselines3* pour entraîner les drones sur une tâche multi-agents. En comparant l'état de l'art du contrôle multi-agents, j'ai identifié les situations où le RL surpasse les méthodes traditionnelles, notamment en adaptabilité et en efficacité dans des scénarios complexes et dynamiques.
 
-**Contributions**
+### Contributions
+
 - Développement d'un simulateur pour l'entraînement et la validation d'algorithmes de contrôle.
-- Conception d'un algorithme de contrôle multi-agents basé sur le Reinforcement Learning.
-- Identification des briques techniques où le RL montre une supériorité par rapport aux méthodes classiques dans le cadre de tâches multi-agents.
-- Validation du système en conditions réelles avec des drones DJI, à travers une configuration Hardware in the Loop (HWIL), permettant de tester la robustesse et la performance des algorithmes dans un environnement quasi-réel.
+- Conception d'un algorithme de contrôle multi-agents basé sur le RL.
+- Identification des briques techniques où le RL fait mieux que les méthodes classiques sur des tâches multi-agents.
+- Validation en conditions réelles sur des drones DJI, en Hardware in the Loop (HWIL), pour tester la robustesse et la performance des algorithmes dans un environnement quasi réel.
 
-**Technologies utilisées**
+### Outils
+
 - *Reinforcement Learning* avec *OpenAI Gym* et *Stable Baselines3*.
-- Simulation multi-agents dans un environnement de contrôle matériel en boucle (HWIL).
+- Simulation multi-agents en boucle matérielle (HWIL).
 
-**Résultats**  
-Les algorithmes développés ont démontré des performances améliorées et des stratégies novatrices par rapport aux techniques existantes, en particulier dans des environnements dynamiques et incertains. Ces résultats ont été validés à travers des tests matériels sur des drones DJI, renforçant la faisabilité et la robustesse du contrôle multi-agents basé sur le RL dans des applications industrielles.
+### Résultats
 
-
-Source image: databasecamp
----
-
+Les algorithmes développés ont montré de meilleures performances et des stratégies nouvelles par rapport aux techniques existantes, en particulier dans des environnements dynamiques et incertains. Les essais sur drones DJI ont confirmé la faisabilité et la robustesse du contrôle multi-agents par RL pour des applications industrielles.
